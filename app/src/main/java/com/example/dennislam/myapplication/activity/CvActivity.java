@@ -12,6 +12,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -28,6 +29,9 @@ import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.dennislam.myapplication.R;
 import com.example.dennislam.myapplication.dao.criteria.EducationLevelDao;
 import com.example.dennislam.myapplication.dao.SendCvDao;
@@ -128,7 +132,10 @@ public class CvActivity extends BaseActivity {
             loadingInternetDialog.dismiss();
 
             if(educationLevelItemList == null || educationLevelItemList.isEmpty()) {
-                Toast.makeText(getBaseContext(), "Internet are not working", Toast.LENGTH_LONG).show();
+                new MaterialDialog.Builder(CvActivity.this)
+                        .content("Internet are not working")
+                        .positiveText("ok")
+                        .show();
             }
             else{
                 for(int i = 0; i < educationLevelItemList.size(); i++){

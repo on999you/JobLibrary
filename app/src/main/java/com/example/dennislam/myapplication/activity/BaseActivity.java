@@ -29,7 +29,6 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     ProgressDialog loadingInternetDialog;
     protected DrawerLayout mDrawer;
     GlobalClass globalVariable;
-    Boolean network;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +57,6 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
         if(info == null){
             globalVariable.setNetwork(false);
-            Log.v("vbn", "no network");
 
             //Dialog
             new MaterialDialog.Builder(this)
