@@ -22,10 +22,11 @@
 
             <TextView
                 android:id="@+id/jobTitle"
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#0066cc"
                 android:text="Job Title"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -34,14 +35,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <TextView
             android:layout_weight="1"
             android:id="@+id/companyName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginTop="5dp"
             android:textSize="18sp"
             android:text="Company Name"
@@ -52,9 +52,8 @@
             android:id="@+id/createDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginTop="5dp"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:text="Create Date"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 

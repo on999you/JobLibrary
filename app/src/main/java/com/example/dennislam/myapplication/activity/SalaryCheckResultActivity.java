@@ -189,10 +189,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
         legendBarChart.setOrientation(Legend.LegendOrientation.VERTICAL);
         legendBarChart.setPosition(Legend.LegendPosition.ABOVE_CHART_RIGHT);
 
-
-
     }
-
 
     class GetSalaryCheckResultAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
@@ -264,12 +261,6 @@ public class SalaryCheckResultActivity extends BaseActivity {
         }
     }
 
-
-
-
-
-
-
     class GetGraphInfoAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
         @Override
@@ -291,124 +282,128 @@ public class SalaryCheckResultActivity extends BaseActivity {
 
             loadingInternetDialog.dismiss();
 
-if (graphInfoItemList!=null) {
-    for (int i = 0; i < graphInfoItemList.size(); i++) {
-        labelArray.add(i, graphInfoItemList.get(i).getLabel());
-        countArray.add(i, graphInfoItemList.get(i).getCount());
-        sourceTypeArray.add(i, graphInfoItemList.get(i).getSourceType());
+            if (graphInfoItemList!=null) {
+                for (int i = 0; i < graphInfoItemList.size(); i++) {
+                    labelArray.add(i, graphInfoItemList.get(i).getLabel());
+                    countArray.add(i, graphInfoItemList.get(i).getCount());
+                    sourceTypeArray.add(i, graphInfoItemList.get(i).getSourceType());
 
-                System.out.println(labelArray.get(i));
-                System.out.println(countArray.get(i));
-                System.out.println(sourceTypeArray.get(i));
+                    System.out.println(labelArray.get(i));
+                    System.out.println(countArray.get(i));
+                    System.out.println(sourceTypeArray.get(i));
             }
 
-    for (int i = 0; i < graphInfoItemList.size(); i++) {
-        sourceType = Integer.parseInt(graphInfoItemList.get(i).getSourceType());
-        if (sourceType==2) {
-            totalE = totalE + Integer.parseInt(graphInfoItemList.get(i).getCount());
-        }else{
-            totalJ = totalJ + Integer.parseInt(graphInfoItemList.get(i).getCount());
-        }
-    }
+                for (int i = 0; i < graphInfoItemList.size(); i++) {
+                    sourceType = Integer.parseInt(graphInfoItemList.get(i).getSourceType());
+                    if (sourceType==2) {
+                        totalE = totalE + Integer.parseInt(graphInfoItemList.get(i).getCount());
+                    }else{
+                        totalJ = totalJ + Integer.parseInt(graphInfoItemList.get(i).getCount());
+                    }
+                }
 
-    for (int i = 0; i < graphInfoItemList.size(); i++) {
-        sourceType = Integer.parseInt(graphInfoItemList.get(i).getSourceType());
-        switch (graphInfoItemList.get(i).getLabel()) {
-            case "10000 to 19999":
-                if (sourceType == 1) {
-                    addEntries1(graphInfoItemList.get(i).getCount(), i, 0);
-                    Log.v("labour", "labour");
-                } else if (sourceType == 2) {
-                    addEntries2(graphInfoItemList.get(i).getCount(), i, 0);
+
+                for (int i = 0; i < graphInfoItemList.size(); i++) {
+                    sourceType = Integer.parseInt(graphInfoItemList.get(i).getSourceType());
+                    switch (graphInfoItemList.get(i).getLabel()) {
+                        case "10000 to 19999":
+                            if (sourceType == 1) {
+                                addEntries1(graphInfoItemList.get(i).getCount(), i, 0);
+                                Log.v("labour", "labour");
+                            }
+                            else if (sourceType == 2) {
+                                addEntries2(graphInfoItemList.get(i).getCount(), i, 0);
+                            }
+                            break;
+                        case "20000 to 29999":
+                            if (sourceType == 1) {
+                                addEntries1(graphInfoItemList.get(i).getCount(), i, 1);
+                                Log.v("labour", "labour");
+                            } else if (sourceType == 2) {
+                                addEntries2(graphInfoItemList.get(i).getCount(), i, 1);
+                            }
+                            break;
+                        case "30000 to 39999":
+                            if (sourceType == 1) {
+                                addEntries1(graphInfoItemList.get(i).getCount(), i, 2);
+                                Log.v("labour", "labour");
+                            } else if (sourceType == 2) {
+                                addEntries2(graphInfoItemList.get(i).getCount(), i, 2);
+                            }
+                            break;
+                        case "40000 to 49999":
+                            if (sourceType == 1) {
+                                addEntries1(graphInfoItemList.get(i).getCount(), i, 3);
+                                Log.v("labour", "labour");
+                            } else if (sourceType == 2) {
+                                addEntries2(graphInfoItemList.get(i).getCount(), i, 3);
+                            }
+                            break;
+                        case "50000 to 59999":
+                            if (sourceType == 1) {
+                                addEntries1(graphInfoItemList.get(i).getCount(), i, 4);
+                                Log.v("labour", "labour");
+                            } else if (sourceType == 2) {
+                                addEntries2(graphInfoItemList.get(i).getCount(), i, 4);
+                            }
+                            break;
+                        case "60000 to 69999":
+                            if (sourceType == 1) {
+                                addEntries1(graphInfoItemList.get(i).getCount(), i, 5);
+                                Log.v("labour", "labour");
+                            } else if (sourceType == 2) {
+                                addEntries2(graphInfoItemList.get(i).getCount(), i, 5);
+                            }
+                            break;
+                        case "70000 to 79999":
+                            if (sourceType == 1) {
+                                addEntries1(graphInfoItemList.get(i).getCount(), i, 6);
+                                Log.v("labour", "labour");
+                            } else if (sourceType == 2) {
+                                addEntries2(graphInfoItemList.get(i).getCount(), i, 6);
+                            }
+                            break;
+                        case "80000 to 89999":
+                            if (sourceType == 1) {
+                                addEntries1(graphInfoItemList.get(i).getCount(), i, 7);
+                                Log.v("labour", "labour");
+                            } else if (sourceType == 2) {
+                                addEntries2(graphInfoItemList.get(i).getCount(), i, 7);
+                            }
+                            break;
+                        case "90000 to 99999":
+                            if (sourceType == 1) {
+                                addEntries1(graphInfoItemList.get(i).getCount(), i, 8);
+                                Log.v("labour", "labour");
+                            } else if (sourceType == 2) {
+                                addEntries2(graphInfoItemList.get(i).getCount(), i, 8);
+                            }
+                            break;
+                        case ">100000":
+                            if (sourceType == 1) {
+                                addEntries1(graphInfoItemList.get(i).getCount(), i, 9);
+                                Log.v("labour", "labour");
+                            } else if (sourceType == 2) {
+                                addEntries2(graphInfoItemList.get(i).getCount(), i, 9);
+                            }
+                            break;
+                    }
                 }
-                break;
-            case "20000 to 29999":
-                if (sourceType == 1) {
-                    addEntries1(graphInfoItemList.get(i).getCount(), i, 1);
-                    Log.v("labour", "labour");
-                } else if (sourceType == 2) {
-                    addEntries2(graphInfoItemList.get(i).getCount(), i, 1);
-                }
-                break;
-            case "30000 to 39999":
-                if (sourceType == 1) {
-                    addEntries1(graphInfoItemList.get(i).getCount(), i, 2);
-                    Log.v("labour", "labour");
-                } else if (sourceType == 2) {
-                    addEntries2(graphInfoItemList.get(i).getCount(), i, 2);
-                }
-                break;
-            case "40000 to 49999":
-                if (sourceType == 1) {
-                    addEntries1(graphInfoItemList.get(i).getCount(), i, 3);
-                    Log.v("labour", "labour");
-                } else if (sourceType == 2) {
-                    addEntries2(graphInfoItemList.get(i).getCount(), i, 3);
-                }
-                break;
-            case "50000 to 59999":
-                if (sourceType == 1) {
-                    addEntries1(graphInfoItemList.get(i).getCount(), i, 4);
-                    Log.v("labour", "labour");
-                } else if (sourceType == 2) {
-                    addEntries2(graphInfoItemList.get(i).getCount(), i, 4);
-                }
-                break;
-            case "60000 to 69999":
-                if (sourceType == 1) {
-                    addEntries1(graphInfoItemList.get(i).getCount(), i, 5);
-                    Log.v("labour", "labour");
-                } else if (sourceType == 2) {
-                    addEntries2(graphInfoItemList.get(i).getCount(), i, 5);
-                }
-                break;
-            case "70000 to 79999":
-                if (sourceType == 1) {
-                    addEntries1(graphInfoItemList.get(i).getCount(), i, 6);
-                    Log.v("labour", "labour");
-                } else if (sourceType == 2) {
-                    addEntries2(graphInfoItemList.get(i).getCount(), i, 6);
-                }
-                break;
-            case "80000 to 89999":
-                if (sourceType == 1) {
-                    addEntries1(graphInfoItemList.get(i).getCount(), i, 7);
-                    Log.v("labour", "labour");
-                } else if (sourceType == 2) {
-                    addEntries2(graphInfoItemList.get(i).getCount(), i, 7);
-                }
-                break;
-            case "90000 to 99999":
-                if (sourceType == 1) {
-                    addEntries1(graphInfoItemList.get(i).getCount(), i, 8);
-                    Log.v("labour", "labour");
-                } else if (sourceType == 2) {
-                    addEntries2(graphInfoItemList.get(i).getCount(), i, 8);
-                }
-                break;
-            case ">100000":
-                if (sourceType == 1) {
-                    addEntries1(graphInfoItemList.get(i).getCount(), i, 9);
-                    Log.v("labour", "labour");
-                } else if (sourceType == 2) {
-                    addEntries2(graphInfoItemList.get(i).getCount(), i, 9);
-                }
-                break;
-        }
-    }
-  }else {
-    AlertDialog.Builder myAD = new AlertDialog.Builder(SalaryCheckResultActivity.this);
-    myAD.setTitle("Zero result was found");
-    myAD.setMessage("Please search with othes keywords");
-    DialogInterface.OnClickListener OkClick = new DialogInterface.OnClickListener(){
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            SalaryCheckResultActivity.super.finish();
-        }
-    };
-    myAD.setNeutralButton("OK",OkClick);
-    myAD.show();
-  }
+            }
+            else {
+                AlertDialog.Builder myAD = new AlertDialog.Builder(SalaryCheckResultActivity.this);
+                myAD.setTitle("Zero result was found");
+                myAD.setMessage("Please search with othes keywords");
+                DialogInterface.OnClickListener OkClick = new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        SalaryCheckResultActivity.super.finish();
+                    }
+                };
+                myAD.setNeutralButton("OK",OkClick);
+                myAD.show();
+            }
+
             BarDataSet set1 = new BarDataSet(entries, "Labour");
             BarDataSet set2 = new BarDataSet(entries2,"Employer");
 

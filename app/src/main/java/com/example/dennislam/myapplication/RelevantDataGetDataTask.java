@@ -41,7 +41,7 @@ public class RelevantDataGetDataTask extends AsyncTask<Void,Void,Void> {
         this.rownumStart=rownumStart;
         this.rownumEnd=rownumEnd;
     }
-    
+
 
 
     @Override
