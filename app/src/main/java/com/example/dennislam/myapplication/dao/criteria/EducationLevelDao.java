@@ -59,13 +59,13 @@ public class EducationLevelDao {
             XStream xStream = new XStream();
             xStream.processAnnotations(EducationLevelXML.class);
 
-            EducationLevelXML rss = (EducationLevelXML) xStream.fromXML(contentNoBom);
+            EducationLevelXML xmlFile = (EducationLevelXML) xStream.fromXML(contentNoBom);
 
-            getItemsInfo = rss.getItemsInfo();
+            getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();
 
             if(statusCode == 0) {
-                educationLevelItemList = rss.getItems().getItem();
+                educationLevelItemList = xmlFile.getItems().getItem();
             }
 
         } catch (UnsupportedEncodingException e) {

@@ -68,13 +68,13 @@ public class AppliedJobDao {
             XStream xStream = new XStream();
             xStream.processAnnotations(AppliedJobXML.class);
 
-            AppliedJobXML rss = (AppliedJobXML) xStream.fromXML(contentNoBom);
+            AppliedJobXML xmlFile = (AppliedJobXML) xStream.fromXML(contentNoBom);
 
-            getItemsInfo = rss.getItemsInfo();
+            getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();
 
             if(statusCode == 0) {
-                appliedJobItemList = rss.getItems().getItem();
+                appliedJobItemList = xmlFile.getItems().getItem();
             }
 
         } catch (UnsupportedEncodingException e) {

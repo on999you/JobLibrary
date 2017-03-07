@@ -57,13 +57,13 @@ public class IndustryDao {
             XStream xStream = new XStream();
             xStream.processAnnotations(IndustryXML.class);
 
-            IndustryXML rss = (IndustryXML) xStream.fromXML(contentNoBom);
+            IndustryXML xmlFile = (IndustryXML) xStream.fromXML(contentNoBom);
 
-            getItemsInfo = rss.getItemsInfo();
+            getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();
 
             if(statusCode == 0) {
-                industryItemList = rss.getItems().getItem();
+                industryItemList = xmlFile.getItems().getItem();
             }
 
         } catch (UnsupportedEncodingException e) {

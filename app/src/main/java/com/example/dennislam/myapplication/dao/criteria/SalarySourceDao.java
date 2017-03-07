@@ -57,13 +57,13 @@ public class SalarySourceDao {
             XStream xStream = new XStream();
             xStream.processAnnotations(SalarySourceXML.class);
 
-            SalarySourceXML rss = (SalarySourceXML) xStream.fromXML(contentNoBom);
+            SalarySourceXML xmlFile = (SalarySourceXML) xStream.fromXML(contentNoBom);
 
-            getItemsInfo = rss.getItemsInfo();
+            getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();
 
             if(statusCode == 0) {
-                salarySourceItemList = rss.getItems().getItem();
+                salarySourceItemList = xmlFile.getItems().getItem();
             }
 
         } catch (UnsupportedEncodingException e) {

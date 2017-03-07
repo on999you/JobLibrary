@@ -58,13 +58,13 @@ public class WorkExpDao {
             XStream xStream = new XStream();
             xStream.processAnnotations(WorkExpXML.class);
 
-            WorkExpXML rss = (WorkExpXML) xStream.fromXML(contentNoBom);
+            WorkExpXML xmlFile = (WorkExpXML) xStream.fromXML(contentNoBom);
 
-            getItemsInfo = rss.getItemsInfo();
+            getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();
 
             if(statusCode == 0) {
-                workExpItemList = rss.getItems().getItem();
+                workExpItemList = xmlFile.getItems().getItem();
             }
 
         } catch (UnsupportedEncodingException e) {

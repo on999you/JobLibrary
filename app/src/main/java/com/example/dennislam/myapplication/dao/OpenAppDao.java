@@ -71,16 +71,16 @@ public class OpenAppDao {
             XStream xStream = new XStream();
             xStream.processAnnotations(OpenAppXML.class);
 
-            OpenAppXML rss = (OpenAppXML) xStream.fromXML(contentNoBom);
+            OpenAppXML xmlFile = (OpenAppXML) xStream.fromXML(contentNoBom);
 
-            getItemsInfo = rss.getItemsInfo();
+            getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();
 
             System.out.println(statusCode);
             System.out.println(getItemsInfo.get(0).getMsg());
 
             if(statusCode == 0) {
-                openAppItemList = rss.getItems().getItem();
+                openAppItemList = xmlFile.getItems().getItem();
             }
 
         } catch (UnsupportedEncodingException e) {

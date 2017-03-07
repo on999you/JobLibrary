@@ -71,9 +71,9 @@ public class SendFeedbackDao {
             XStream xStream = new XStream();
             xStream.processAnnotations(SendFeedbackXML.class);
 
-            SendFeedbackXML rss = (SendFeedbackXML) xStream.fromXML(contentNoBom);
+            SendFeedbackXML xmlFile = (SendFeedbackXML) xStream.fromXML(contentNoBom);
 
-            feedbackItemList = rss.getItemsInfo();
+            feedbackItemList = xmlFile.getItemsInfo();
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         } catch (ClientProtocolException e) {

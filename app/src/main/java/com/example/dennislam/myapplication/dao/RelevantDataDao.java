@@ -77,14 +77,14 @@ public class RelevantDataDao {
             XStream xStream = new XStream();
             xStream.processAnnotations(RelevantDataXML.class);
 
-            RelevantDataXML rss = (RelevantDataXML) xStream.fromXML(contentNoBom);
+            RelevantDataXML xmlFile = (RelevantDataXML) xStream.fromXML(contentNoBom);
 
-            getItemsInfo = rss.getItemsInfo();
+            getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();
             itemsTotal = getItemsInfo.get(0).getItemsTotal();
 
             if(statusCode == 0) {
-                relevantDataItemList = rss.getItems().getItem();
+                relevantDataItemList = xmlFile.getItems().getItem();
             }
 
         } catch (UnsupportedEncodingException e) {

@@ -58,7 +58,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
     SalaryResultDao salaryResultItemDao = new SalaryResultDao();
     GraphInfoDao graphInfoItemDao = new GraphInfoDao();
 
-    String jobTitle, workExpFrom, workExpTo;
+    String jobTitle, workExpFrom, workExpTo, salarySourceValue;
     Boolean withSimilarWord;
     int itemsTotal;
 
@@ -105,6 +105,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
             withSimilarWord =(Boolean) b.get("withSimilarWord");
             workExpFrom =(String) b.get("workExpFrom");
             workExpTo =(String) b.get("workExpTo");
+            salarySourceValue =(String) b.get("salarySource");
         }
 
         //Run the code if there are network connected
@@ -209,7 +210,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
             if(salaryResultItemList == null) {
                 //Toast.makeText(getBaseContext(), "nothing", Toast.LENGTH_LONG).show();
             } else {
-                salaryResultItemList = salaryResultItemDao.getSalaryResultItemDao(jobTitle, withSimilarWord, workExpFrom, workExpTo);
+                salaryResultItemList = salaryResultItemDao.getSalaryResultItemDao(jobTitle, withSimilarWord, workExpFrom, workExpTo, salarySourceValue);
             }
 
             itemsTotal = salaryResultItemDao.getItemsTotal();

@@ -49,7 +49,7 @@ public class SalaryResultDao {
     }
 
 
-    public List<SalaryResultXML.SalaryResultItem> getSalaryResultItemDao(String jobTitle, Boolean withSimilarWord, String workExpFrom, String workExpTo){
+    public List<SalaryResultXML.SalaryResultItem> getSalaryResultItemDao(String jobTitle, Boolean withSimilarWord, String workExpFrom, String workExpTo, String salarySourceValue){
 
         String xml;
 
@@ -65,6 +65,7 @@ public class SalaryResultDao {
             nameValuePair.add(new BasicNameValuePair("withSimilarWord", withSimilarWord.toString()));
             nameValuePair.add(new BasicNameValuePair("expFrom", workExpFrom));
             nameValuePair.add(new BasicNameValuePair("expTo", workExpTo));
+            nameValuePair.add(new BasicNameValuePair("salarySource", salarySourceValue));
 
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
 
@@ -79,14 +80,14 @@ public class SalaryResultDao {
             XStream xStream = new XStream();
             xStream.processAnnotations(SalaryResultXML.class);
 
-            SalaryResultXML rss = (SalaryResultXML) xStream.fromXML(contentNoBom);
+            SalaryResultXML xmlFile = (SalaryResultXML) xStream.fromXML(contentNoBom);
 
-            getItemsInfo = rss.getItemsInfo();
+            getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();
             itemsTotal = getItemsInfo.get(0).getItemsTotal();
 
             if(statusCode == 0) {
-                salaryResultItemList = rss.getItems().getItem();
+                salaryResultItemList = xmlFile.getItems().getItem();
             }
 
         } catch (UnsupportedEncodingException e) {

@@ -71,13 +71,13 @@ public class JobListDao {
             XStream xStream = new XStream();
             xStream.processAnnotations(JobListXML.class);
 
-            JobListXML rss = (JobListXML) xStream.fromXML(contentNoBom);
+            JobListXML xmlFile = (JobListXML) xStream.fromXML(contentNoBom);
 
-            getItemsInfo = rss.getItemsInfo();
+            getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();
 
             if(statusCode == 0) {
-                jobListItemList = rss.getItems().getItem();
+                jobListItemList = xmlFile.getItems().getItem();
             }
 
         } catch (UnsupportedEncodingException e) {
