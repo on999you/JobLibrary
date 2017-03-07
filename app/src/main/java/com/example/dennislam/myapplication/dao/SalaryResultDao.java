@@ -55,7 +55,7 @@ public class SalaryResultDao {
 
         try {
             final HttpParams httpParams = new BasicHttpParams();
-            HttpConnectionParams.setConnectionTimeout(httpParams, 3000);
+            HttpConnectionParams.setConnectionTimeout(httpParams, 10000);
 
             DefaultHttpClient httpClient = new DefaultHttpClient(httpParams);
             HttpPost httpPost = new HttpPost(URL);

@@ -1,22 +1,14 @@
 package com.example.dennislam.myapplication.activity;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.example.dennislam.myapplication.JobListGetDataTask;
 import com.example.dennislam.myapplication.R;
-import com.example.dennislam.myapplication.RecyclerItemClickListener;
 import com.example.dennislam.myapplication.RelevantDataGetDataTask;
-import com.example.dennislam.myapplication.adapter.JobListCardViewAdapter;
 import com.example.dennislam.myapplication.adapter.RelevantDataCardViewAdapter;
-import com.example.dennislam.myapplication.dao.RelevantDataDao;
-import com.example.dennislam.myapplication.xml.RelevantDataXML;
 import com.sch.rfview.AnimRFRecyclerView;
 import com.sch.rfview.manager.AnimRFLinearLayoutManager;
 

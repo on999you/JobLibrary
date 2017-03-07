@@ -1,17 +1,18 @@
 package com.example.dennislam.myapplication.activity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.dennislam.myapplication.JobListGetDataTask;
 import com.example.dennislam.myapplication.R;
 import com.example.dennislam.myapplication.RecyclerItemClickListener;
 import com.example.dennislam.myapplication.adapter.JobListCardViewAdapter;
+import com.example.dennislam.myapplication.dao.JobListDao;
+import com.example.dennislam.myapplication.xml.JobListXML;
 import com.sch.rfview.AnimRFRecyclerView;
 import com.sch.rfview.manager.AnimRFLinearLayoutManager;
 
@@ -39,6 +40,7 @@ public class JobListActivity extends BaseActivity {
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_job_list, null, false);
         mDrawer.addView(contentView, 0);
+
 
         //Card View
         recyclerView = (AnimRFRecyclerView)findViewById(R.id.refresh_layout);
@@ -99,6 +101,9 @@ public class JobListActivity extends BaseActivity {
                     }
                 })
         );
+
+
+
     }
 
     public void loadMoreComplate() {
@@ -108,14 +113,53 @@ public class JobListActivity extends BaseActivity {
     private void addData() {
         rownumStart += 5;
         rownumEnd += 5;
-        new JobListGetDataTask(recyclerView,jobIdList,jobTitleList,companyNameList,createDateList,salaryList,rownumStart,rownumEnd).execute();
+        new testing().execute();
     }
 
     public void newData() {
         jobTitleList.clear();
         companyNameList.clear();
         createDateList.clear();
-        new JobListGetDataTask(recyclerView,jobIdList,jobTitleList,companyNameList,createDateList,salaryList,rownumStart,rownumEnd).execute();
+        new testing().execute();
     }
 
+
+
+    JobListDao jobListItemDao = new JobListDao();
+    List<JobListXML.JobListItem> jobListItemList = new ArrayList<JobListXML.JobListItem>();
+
+
+    class testing extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            jobListItemList = jobListItemDao.jobListItemDao(rownumStart, rownumEnd);
+            return null;
+        }
+
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            recyclerView.getAdapter().notifyDataSetChanged();
+            recyclerView.setRefresh(false);
+
+            if(jobListItemList == null){
+                System.out.println("no anymoreeee");
+                recyclerView.getAdapter().notifyDataSetChanged();
+            }
+            else{
+                for(int i = 0; i < jobListItemList.size(); i++){
+                    jobIdList.add(jobListItemList.get(i).getJobID());
+                    jobTitleList.add(jobListItemList.get(i).getJobTitle());
+                    companyNameList.add(jobListItemList.get(i).getCompany());
+                    createDateList.add(jobListItemList.get(i).getCreateDate());
+                    salaryList.add(jobListItemList.get(i).getSalary());
+
+                    System.out.println(jobTitleList);
+                }
+            }
+
+        }
+    }
 }
+
+
