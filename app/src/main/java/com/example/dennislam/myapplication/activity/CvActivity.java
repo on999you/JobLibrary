@@ -1,6 +1,7 @@
 package com.example.dennislam.myapplication.activity;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -107,6 +108,14 @@ public class CvActivity extends BaseActivity {
     class getEduLevelAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
         @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+            loadingInternetDialog = new ProgressDialog(CvActivity.this);
+            loadingInternetDialog.setMessage("Loading...");
+            loadingInternetDialog.show();
+        }
+
+        @Override
         protected Void doInBackground(Void... params) {
             EducationLevelDao educationLevelItemDao = new EducationLevelDao();
             educationLevelItemList = educationLevelItemDao.getEducationLevelItemDao();
@@ -115,6 +124,8 @@ public class CvActivity extends BaseActivity {
 
         @Override
         protected void onPostExecute(Void result) {
+
+            loadingInternetDialog.dismiss();
 
             if(educationLevelItemList == null || educationLevelItemList.isEmpty()) {
                 Toast.makeText(getBaseContext(), "Internet are not working", Toast.LENGTH_LONG).show();

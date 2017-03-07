@@ -25,8 +25,6 @@ import java.util.List;
 
 public class OpenAppActivity extends BaseActivity {
 
-    private ProgressDialog pdia;
-
     private SharedPreferences settings;
     private static final String data = "DATA";
     private static final String existingUdid = "";
@@ -60,9 +58,9 @@ public class OpenAppActivity extends BaseActivity {
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
-            pdia = new ProgressDialog(OpenAppActivity.this);
-            pdia.setMessage("Loading...");
-            pdia.show();
+            loadingInternetDialog = new ProgressDialog(OpenAppActivity.this);
+            loadingInternetDialog.setMessage("Loading...");
+            loadingInternetDialog.show();
         }
 
         @Override
@@ -74,7 +72,7 @@ public class OpenAppActivity extends BaseActivity {
         @Override
         protected void onPostExecute(Void result) {
 
-            pdia.dismiss();
+            loadingInternetDialog.dismiss();
 
             if(openAppItemList == null || openAppItemList.isEmpty()){
                 Intent intent = new Intent(getBaseContext(), MainPageActivity.class);

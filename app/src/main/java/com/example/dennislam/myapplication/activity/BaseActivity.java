@@ -1,6 +1,7 @@
 package com.example.dennislam.myapplication.activity;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,6 +26,7 @@ import com.example.dennislam.myapplication.R;
 
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    ProgressDialog loadingInternetDialog;
     protected DrawerLayout mDrawer;
     GlobalClass globalVariable;
     Boolean network;
