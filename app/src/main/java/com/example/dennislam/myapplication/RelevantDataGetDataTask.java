@@ -57,6 +57,7 @@ public class RelevantDataGetDataTask extends AsyncTask<Void,Void,Void> {
 
         if(relevantDataItemList == null){
             System.out.println("no anymore");
+            mRecyclerView.setRefreshEnable(false);
             mRecyclerView.getAdapter().notifyDataSetChanged();
         }
         else{

@@ -63,16 +63,16 @@ public class RelevantDataCardViewAdapter extends RecyclerView.Adapter<RelevantDa
     @Override
     public void onBindViewHolder(RelevantDataCardViewAdapter.ViewHolder holder, int position) {
         TextView jobTitle = holder.jobTitle;
-        jobTitle.setText(relevantJobTitleList.get(position));
+        jobTitle.setText("Job Title: "+relevantJobTitleList.get(position));
 
         TextView jobCat = holder.jobCat;
         jobCat.setText(relevantJobCatList.get(position));
 
         TextView workExp = holder.workExp;
-        workExp.setText(relevantWorkExpList.get(position));
+        workExp.setText("WorkExp : "+relevantWorkExpList.get(position));
 
         TextView salary = holder.salary;
-        salary.setText(relevantSalaryList.get(position));
+        salary.setText("Wages : "+relevantSalaryList.get(position));
     }
 
     @Override
