@@ -59,7 +59,6 @@ public class JobListActivity extends BaseActivity {
 
         recyclerView.setLayoutManager(manager);
 
-
         recyclerView.setLoadDataListener(new AnimRFRecyclerView.LoadDataListener(){
             @Override
             public void onRefresh() {
@@ -86,6 +85,8 @@ public class JobListActivity extends BaseActivity {
                 recyclerView.loadMoreComplate();
             }
         });
+
+
         recyclerView.setRefresh(true);
 
         recyclerView.addOnItemTouchListener(
@@ -101,8 +102,6 @@ public class JobListActivity extends BaseActivity {
                     }
                 })
         );
-
-
 
     }
 
@@ -143,7 +142,8 @@ public class JobListActivity extends BaseActivity {
             recyclerView.setRefresh(false);
 
             if(jobListItemList == null){
-                System.out.println("no anymoreeee");
+                System.out.println("no anymore");
+                recyclerView.stopScroll();
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
             else{
