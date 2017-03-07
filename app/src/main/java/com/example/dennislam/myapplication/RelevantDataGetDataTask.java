@@ -54,11 +54,17 @@ public class RelevantDataGetDataTask extends AsyncTask<Void,Void,Void> {
         mRecyclerView.getAdapter().notifyDataSetChanged();
         mRecyclerView.setRefresh(false);
 
-        for(int i = 0; i < relevantDataItemList.size(); i++){
-            relevantJobTitleList.add(relevantDataItemList.get(i).getJobTitle());
-            relevantJobCatList.add(relevantDataItemList.get(i).getJobCat());
-            relevantWorkExpList.add(relevantDataItemList.get(i).getExp());
-            relevantSalaryList.add("$" + relevantDataItemList.get(i).getSalary());
+        if(relevantDataItemList == null){
+            System.out.println("no anymore");
+            mRecyclerView.getAdapter().notifyDataSetChanged();
+        }
+        else{
+            for(int i = 0; i < relevantDataItemList.size(); i++) {
+                relevantJobTitleList.add(relevantDataItemList.get(i).getJobTitle());
+                relevantJobCatList.add(relevantDataItemList.get(i).getJobCat());
+                relevantWorkExpList.add(relevantDataItemList.get(i).getExp());
+                relevantSalaryList.add("$" + relevantDataItemList.get(i).getSalary());
+        }
 
 
         }

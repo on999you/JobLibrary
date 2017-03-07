@@ -95,6 +95,7 @@ public class RelevantDataActivity extends BaseActivity {
                         rownumStart = 1;
                         rownumEnd = 5;
                         newData();
+                        recyclerView.refreshComplate();
                     }
                 }).start();
             }
@@ -108,12 +109,18 @@ public class RelevantDataActivity extends BaseActivity {
                 };
                 Thread loadMore = new Thread(myRun);
                 loadMore.start();
+                loadMoreComplate();
+                recyclerView.loadMoreComplate();
                 //recyclerView.loadMoreComplate();
             }
         });
         recyclerView.setRefresh(true);
 
 
+    }
+
+    public void loadMoreComplate() {
+        recyclerView.getAdapter().notifyDataSetChanged();
     }
 
     private void addData() {

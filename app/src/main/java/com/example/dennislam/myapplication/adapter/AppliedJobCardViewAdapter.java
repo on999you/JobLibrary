@@ -41,9 +41,7 @@ public class AppliedJobCardViewAdapter extends RecyclerView.Adapter<AppliedJobCa
             companyName = (TextView)itemView.findViewById(R.id.companyName);
             applyDate = (TextView)itemView.findViewById(R.id.applyDate);
         }
-
     }
-
 
     @Override
     public AppliedJobCardViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -68,5 +66,4 @@ public class AppliedJobCardViewAdapter extends RecyclerView.Adapter<AppliedJobCa
     public int getItemCount() {
         return jobTitleList.size();
     }
-
 }
