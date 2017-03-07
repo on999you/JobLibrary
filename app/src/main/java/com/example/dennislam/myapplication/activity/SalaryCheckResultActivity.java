@@ -1,5 +1,6 @@
 package com.example.dennislam.myapplication.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -193,6 +194,14 @@ public class SalaryCheckResultActivity extends BaseActivity {
     class GetSalaryCheckResultAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
         @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+            loadingInternetDialog = new ProgressDialog(SalaryCheckResultActivity.this);
+            loadingInternetDialog.setMessage("Loading...");
+            loadingInternetDialog.show();
+        }
+
+        @Override
         protected Void doInBackground(Void... params) {
 
             System.out.println(jobTitle);
@@ -210,6 +219,8 @@ public class SalaryCheckResultActivity extends BaseActivity {
 
         @Override
         protected void onPostExecute(Void result) {
+
+            loadingInternetDialog.dismiss();
 
             if(salaryResultItemList == null) {
                 Toast.makeText(getBaseContext(), "nothing", Toast.LENGTH_LONG).show();
@@ -259,6 +270,14 @@ public class SalaryCheckResultActivity extends BaseActivity {
     class GetGraphInfoAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
         @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+            loadingInternetDialog = new ProgressDialog(SalaryCheckResultActivity.this);
+            loadingInternetDialog.setMessage("Loading...");
+            loadingInternetDialog.show();
+        }
+
+        @Override
         protected Void doInBackground(Void... params) {
             graphInfoItemList = graphInfoItemDao.getGraphInfoItemDao(jobTitle);
             return null;
@@ -266,6 +285,8 @@ public class SalaryCheckResultActivity extends BaseActivity {
 
         @Override
         protected void onPostExecute(Void result) {
+
+            loadingInternetDialog.dismiss();
 
             for(int i = 0; i < graphInfoItemList.size(); i++){
                 labelArray.add(i, graphInfoItemList.get(i).getLabel());

@@ -1,5 +1,6 @@
 package com.example.dennislam.myapplication.activity;
 
+import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -149,6 +150,14 @@ public class JobDetailActivity extends BaseActivity {
     class getJobDetailAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
         @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+            loadingInternetDialog = new ProgressDialog(JobDetailActivity.this);
+            loadingInternetDialog.setMessage("Loading...");
+            loadingInternetDialog.show();
+        }
+
+        @Override
         protected Void doInBackground(Void... params) {
             jobDetailItemList = jobDetailItemDao.jobDetailItemDao(jobId);
             return null;
@@ -156,6 +165,8 @@ public class JobDetailActivity extends BaseActivity {
 
         @Override
         protected void onPostExecute(Void result) {
+
+            loadingInternetDialog.dismiss();
 
             for(int i = 0; i < jobDetailItemList.size(); i++){
 
@@ -219,6 +230,14 @@ public class JobDetailActivity extends BaseActivity {
     class applyJobAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
         @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+            loadingInternetDialog = new ProgressDialog(JobDetailActivity.this);
+            loadingInternetDialog.setMessage("Loading...");
+            loadingInternetDialog.show();
+        }
+
+        @Override
         protected Void doInBackground(Void... params) {
 
             applyJobItemList = applyJobItemDao.applyJobItemDao(udid, jobId);
@@ -227,6 +246,8 @@ public class JobDetailActivity extends BaseActivity {
 
         @Override
         protected void onPostExecute(Void result) {
+
+            loadingInternetDialog.dismiss();
 
             Log.v("Testing steps", "Apply Job : Successful");
 

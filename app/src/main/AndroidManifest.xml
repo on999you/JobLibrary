@@ -68,7 +68,6 @@
         <activity
             android:name=".activity.SalaryReportActivity"
             android:label="Salary Report" />
-        <activity android:name=".activity.SelectJobFunctionActivity"></activity>
     </application>
 
 </manifest>
