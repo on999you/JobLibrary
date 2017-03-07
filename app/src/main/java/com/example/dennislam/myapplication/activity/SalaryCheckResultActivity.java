@@ -199,9 +199,9 @@ public class SalaryCheckResultActivity extends BaseActivity {
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
-            loadingInternetDialog = new ProgressDialog(SalaryCheckResultActivity.this);
-            loadingInternetDialog.setMessage("Loading...");
-            loadingInternetDialog.show();
+            //loadingInternetDialog = new ProgressDialog(SalaryCheckResultActivity.this);
+            //loadingInternetDialog.setMessage("Loading...");
+            //loadingInternetDialog.show();
         }
 
         @Override
@@ -223,7 +223,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
         @Override
         protected void onPostExecute(Void result) {
 
-            loadingInternetDialog.dismiss();
+            //loadingInternetDialog.dismiss();
 
             if(salaryResultItemList == null) {
                 //Toast.makeText(getBaseContext(), "nothing", Toast.LENGTH_LONG).show();
@@ -291,10 +291,6 @@ public class SalaryCheckResultActivity extends BaseActivity {
 
             loadingInternetDialog.dismiss();
 
-            for(int i = 0; i < graphInfoItemList.size(); i++){
-                labelArray.add(i, graphInfoItemList.get(i).getLabel());
-                countArray.add(i, graphInfoItemList.get(i).getCount());
-                sourceTypeArray.add(i, graphInfoItemList.get(i).getSourceType());
 if (graphInfoItemList!=null) {
     for (int i = 0; i < graphInfoItemList.size(); i++) {
         labelArray.add(i, graphInfoItemList.get(i).getLabel());
@@ -441,7 +437,7 @@ if (graphInfoItemList!=null) {
         Log.v("test1", count);
         itemcount = Integer.parseInt(count);
         percent= (itemcount*100/totalJ);
-        Log.v("test1", totalJ + "                          total1");
+        Log.v("test1", totalJ + "total1");
         decimalFormat.format(percent);
         entries.add(new BarEntry(position,(float)percent));
 
@@ -451,7 +447,7 @@ if (graphInfoItemList!=null) {
         Log.v("test2", count);
         itemcount = Integer.parseInt(count);
         percent= (itemcount*100/totalE);
-
+        Log.v("test2", totalE + "total2");
         decimalFormat.format(percent);
         entries2.add(new BarEntry(firstletter,(float)percent));
     }
