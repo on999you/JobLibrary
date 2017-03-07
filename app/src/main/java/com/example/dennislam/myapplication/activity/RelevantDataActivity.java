@@ -3,13 +3,13 @@ package com.example.dennislam.myapplication.activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.dennislam.myapplication.JobListGetDataTask;
 import com.example.dennislam.myapplication.R;
 import com.example.dennislam.myapplication.RecyclerItemClickListener;
 import com.example.dennislam.myapplication.RelevantDataGetDataTask;
