@@ -3,6 +3,7 @@ package com.example.dennislam.myapplication.activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.widget.DividerItemDecoration;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -84,6 +85,10 @@ public class RelevantDataActivity extends BaseActivity {
         recyclerView.setAdapter(customAdapter);
         recyclerView.setHeaderImage((ImageView)headerView.findViewById(R.id.iv_hander));
         manager = new AnimRFLinearLayoutManager(this);
+
+        DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
+                manager.getOrientation());
+        recyclerView.addItemDecoration(mDividerItemDecoration);
         recyclerView.setLayoutManager(manager);
 
         recyclerView.setLoadDataListener(new AnimRFRecyclerView.LoadDataListener(){

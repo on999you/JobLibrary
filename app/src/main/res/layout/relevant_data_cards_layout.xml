@@ -8,56 +8,37 @@
     android:layout_height="wrap_content"
     card_view:cardCornerRadius="1dp"
     card_view:cardElevation="10dp"
-    card_view:cardUseCompatPadding="true"
+    card_view:cardUseCompatPadding="false"
     card_view:contentPadding="10dp" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/jobTitle"
-                android:gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
+                android:textSize="13sp"
                 android:text="Job Title"
                 android:singleLine="true"
                 android:maxLines="1"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
-                android:id="@+id/jobCat"
-                android:gravity="center"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="22sp"
-                android:text="Job Function"
-                android:singleLine="true"
-                android:maxLines="1"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <TextView
                 android:layout_weight="1"
                 android:id="@+id/workExp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginTop="5dp"
-                android:textSize="18sp"
+                android:textSize="13sp"
                 android:text="Work Exp"
                 android:singleLine="true"
                 android:maxLines="1"
@@ -68,13 +49,31 @@
                 android:id="@+id/salary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_marginTop="5dp"
-                android:textSize="18sp"
+                android:textSize="13sp"
                 android:text="Salary"
                 android:singleLine="true"
                 android:maxLines="1"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_weight="1.5">
+            <TextView
+                android:id="@+id/jobCat"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:text="Job Function"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
 
         </LinearLayout>
 
