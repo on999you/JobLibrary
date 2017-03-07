@@ -28,6 +28,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="22sp"
                 android:text="Job Title"
+                android:singleLine="true"
+                android:maxLines="1"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
@@ -37,6 +39,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="22sp"
                 android:text="Job Function"
+                android:singleLine="true"
+                android:maxLines="1"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
         </LinearLayout>
@@ -55,6 +59,8 @@
                 android:layout_marginTop="5dp"
                 android:textSize="18sp"
                 android:text="Work Exp"
+                android:singleLine="true"
+                android:maxLines="1"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
@@ -66,6 +72,8 @@
                 android:layout_marginTop="5dp"
                 android:textSize="18sp"
                 android:text="Salary"
+                android:singleLine="true"
+                android:maxLines="1"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
         </LinearLayout>

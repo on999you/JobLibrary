@@ -28,6 +28,8 @@
                 android:textStyle="bold"
                 android:textColor="#0066cc"
                 android:text="Job Title"
+                android:singleLine="true"
+                android:maxLines="1"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
         </LinearLayout>
@@ -45,6 +47,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
+            android:singleLine="true"
+            android:maxLines="1"
             android:textSize="18sp"
             android:text="Company Name"
             android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -64,6 +68,8 @@
                 android:layout_marginTop="5dp"
                 android:textSize="16sp"
                 android:text="Create Date"
+                android:singleLine="true"
+                android:maxLines="1"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <TextView
@@ -75,6 +81,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:textSize="16sp"
+                android:singleLine="true"
+                android:maxLines="1"
                 android:text="Salary"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
