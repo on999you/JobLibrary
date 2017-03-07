@@ -154,13 +154,13 @@ public class SalaryCheckActivity extends BaseActivity {
 
         //Run the code if there are network connected
         if(globalVariable.getNetwork() == true){
-            new GetCriteriasAsyncTaskRunner().execute();
+            new getCriteriasAsyncTaskRunner().execute();
         }
 
 
     }
 
-    class GetCriteriasAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
+    class getCriteriasAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute(){

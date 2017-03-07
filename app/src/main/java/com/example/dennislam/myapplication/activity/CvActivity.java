@@ -152,18 +152,18 @@ public class CvActivity extends BaseActivity {
             Toast.makeText(getBaseContext(), "Cannot get education level", Toast.LENGTH_LONG).show();
         }
         else {
-            new android.app.AlertDialog.Builder(this)
-                    .setSingleChoiceItems(educationLevelArray.toArray(new String[educationLevelArray.size()]), 0, null)
-                    .setPositiveButton("ok", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int whichButton) {
-                            dialog.dismiss();
-                            int selectedPosition = ((android.app.AlertDialog)dialog).getListView().getCheckedItemPosition();
-                            TextView educationLevelField = (TextView)findViewById(R.id.educationLevelField);
-                            educationLevelField.setText(((android.app.AlertDialog)dialog).getListView().getItemAtPosition(selectedPosition).toString());
-                            educationLevelId = educationLevelIdArray.get(selectedPosition);
-
-                        }
+            new MaterialDialog.Builder(this)
+                    .title("Education Level")
+                    .widgetColor(Color.parseColor("#6F9394"))
+                    .items(educationLevelArray.toArray(new CharSequence[educationLevelArray.size()]))
+                    .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
+                        TextView educationLevelField = (TextView)findViewById(R.id.educationLevelField);
+                        educationLevelField.setText(text);
+                        educationLevelId = educationLevelIdArray.get(which);
+                        return true; // allow selection
                     })
+                    .positiveColor(Color.parseColor("#486E76"))
+                    .positiveText("Done")
                     .show();
         }
     }
