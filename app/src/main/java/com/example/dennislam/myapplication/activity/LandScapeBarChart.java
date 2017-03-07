@@ -33,7 +33,7 @@ public class LandScapeBarChart extends AppCompatActivity {
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// x-axis  value
         ///// //x-axis value for bar Chart
 
-        final  String[] salaryIndex = new String[] {"10k-20k", "20k-30k", "30k-40k","40k-50k","50k-60K","60k-70k","70k-80k" ,"80k-90k","90k-100K",">100k",""};
+        final  String[] salaryIndex = new String[] {"10k-20k", "20k-30k", "30k-40k","40k-50k","50k-60K","60k-70k","70k-80k" ,"80k-90k","90k-100K",">100k","","","","","","","",""};
 
         //////Formatter
 
