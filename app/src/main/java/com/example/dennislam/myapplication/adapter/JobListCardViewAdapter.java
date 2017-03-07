@@ -21,13 +21,15 @@ public class JobListCardViewAdapter extends RecyclerView.Adapter<JobListCardView
     private List<String> companyNameList;
     private List<String> createDateList;
     private List<String> jobIdList;
+    private List<String> salaryList;
 
-    public JobListCardViewAdapter(Context context, List<String> jobIdList2, List<String> jobTitleList2, List<String> companyNameList2, List<String> createDateList2) {
+    public JobListCardViewAdapter(Context context, List<String> jobIdList2, List<String> jobTitleList2, List<String> companyNameList2, List<String> createDateList2,List<String> salaryList2) {
         this.context=context;
         this.jobIdList = jobIdList2;
         this.jobTitleList = jobTitleList2;
         this.companyNameList = companyNameList2;
         this.createDateList = createDateList2;
+        this.salaryList = salaryList2;
     }
 
     public  static class ViewHolder extends RecyclerView.ViewHolder {
@@ -35,12 +37,14 @@ public class JobListCardViewAdapter extends RecyclerView.Adapter<JobListCardView
         public TextView jobTitle;
         public TextView companyName;
         public TextView createDate;
+        public TextView salary;
 
         public ViewHolder(View itemView) {
             super(itemView);
             jobTitle = (TextView)itemView.findViewById(R.id.jobTitle);
             companyName = (TextView)itemView.findViewById(R.id.companyName);
             createDate = (TextView)itemView.findViewById(R.id.createDate);
+            salary = (TextView)itemView.findViewById(R.id.salary);
         }
     }
 
@@ -61,6 +65,9 @@ public class JobListCardViewAdapter extends RecyclerView.Adapter<JobListCardView
 
         TextView createDate = holder.createDate;
         createDate.setText(createDateList.get(position));
+
+        TextView salary = holder.salary;
+        salary.setText(salaryList.get(position));
     }
 
     @Override

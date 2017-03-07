@@ -85,6 +85,9 @@ public class JobListXML extends ItemsInfoBaseXML {
         @XStreamAlias("CREATE_DATE")
         private String createDate;
 
+        @XStreamAlias("SALARY")
+        private String salary;
+
 
         public String getJobID() {
             return jobID;
@@ -116,6 +119,14 @@ public class JobListXML extends ItemsInfoBaseXML {
 
         public void setCreateDate(String createDate) {
             this.createDate = createDate;
+        }
+
+        public String getSalary() {
+            return salary;
+        }
+
+        public void setSalary(String salary) {
+            this.salary = salary;
         }
 
     }

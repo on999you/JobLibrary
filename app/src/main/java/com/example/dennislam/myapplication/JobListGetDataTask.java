@@ -22,18 +22,20 @@ public class JobListGetDataTask extends AsyncTask<Void,Void,Void> {
     private List<String> companyNameList;
     private List<String> createDateList;
     private List<String> jobIdList;
+    private List<String> salaryList;
 
     int rownumStart, rownumEnd;
 
     JobListDao jobListItemDao = new JobListDao();
     List<JobListXML.JobListItem> jobListItemList = new ArrayList<JobListXML.JobListItem>();
 
-    public JobListGetDataTask(AnimRFRecyclerView recyclerView, List<String> jobIdList2, List<String> jobTitleList2, List<String> companyNameList2, List<String> createDateList2, Integer rownumStart, Integer rownumEnd) {
+    public JobListGetDataTask(AnimRFRecyclerView recyclerView, List<String> jobIdList2, List<String> jobTitleList2, List<String> companyNameList2, List<String> createDateList2,List<String> salaryList2, Integer rownumStart, Integer rownumEnd) {
         mRecyclerView = recyclerView;
         jobIdList = jobIdList2;
         jobTitleList = jobTitleList2;
         companyNameList = companyNameList2;
         createDateList = createDateList2;
+        salaryList = salaryList2;
 
         this.rownumStart=rownumStart;
         this.rownumEnd=rownumEnd;
@@ -62,6 +64,7 @@ public class JobListGetDataTask extends AsyncTask<Void,Void,Void> {
                 jobTitleList.add(jobListItemList.get(i).getJobTitle());
                 companyNameList.add(jobListItemList.get(i).getCompany());
                 createDateList.add(jobListItemList.get(i).getCreateDate());
+                salaryList.add(jobListItemList.get(i).getSalary());
 
                 System.out.println(jobTitleList);
             }

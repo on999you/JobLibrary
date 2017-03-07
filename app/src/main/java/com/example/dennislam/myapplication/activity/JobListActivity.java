@@ -29,6 +29,7 @@ public class JobListActivity extends BaseActivity {
     private List<String> companyNameList= new ArrayList<>();
     private List<String> createDateList= new ArrayList<>();
     private List<String> jobIdList= new ArrayList<>();
+    private List<String> salaryList= new ArrayList<>();
     int rownumStart, rownumEnd;
 
     @Override
@@ -42,7 +43,7 @@ public class JobListActivity extends BaseActivity {
         recyclerView = (AnimRFRecyclerView)findViewById(R.id.refresh_layout);
         headerView = LayoutInflater.from(this).inflate(R.layout.header_view, null);
         footerView = LayoutInflater.from(this).inflate(R.layout.footer_view, null);
-        customAdapter = new JobListCardViewAdapter(this,jobIdList,jobTitleList,companyNameList,createDateList);
+        customAdapter = new JobListCardViewAdapter(this,jobIdList,jobTitleList,companyNameList,createDateList,salaryList);
         recyclerView.addHeaderView(headerView);
         recyclerView.addFootView(footerView);
         recyclerView.setAdapter(customAdapter);
@@ -100,14 +101,14 @@ public class JobListActivity extends BaseActivity {
     private void addData() {
         rownumStart += 5;
         rownumEnd += 5;
-        new JobListGetDataTask(recyclerView,jobIdList,jobTitleList,companyNameList,createDateList,rownumStart,rownumEnd).execute();
+        new JobListGetDataTask(recyclerView,jobIdList,jobTitleList,companyNameList,createDateList,salaryList,rownumStart,rownumEnd).execute();
     }
 
     public void newData() {
         jobTitleList.clear();
         companyNameList.clear();
         createDateList.clear();
-        new JobListGetDataTask(recyclerView,jobIdList,jobTitleList,companyNameList,createDateList,rownumStart,rownumEnd).execute();
+        new JobListGetDataTask(recyclerView,jobIdList,jobTitleList,companyNameList,createDateList,salaryList,rownumStart,rownumEnd).execute();
     }
 
 }
