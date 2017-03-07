@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         card_view:cardCornerRadius="1dp"
         card_view:cardElevation="10dp"
-        card_view:cardUseCompatPadding="true"
+        card_view:cardUseCompatPadding="false"
         card_view:contentPadding="10dp">
 
     <LinearLayout
@@ -87,8 +87,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
         </LinearLayout>
-
-
+        
 
     </LinearLayout>
 
