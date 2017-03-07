@@ -1,6 +1,7 @@
 package com.example.dennislam.myapplication.activity;
-
 import android.app.ProgressDialog;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -47,7 +48,8 @@ public class SalaryCheckResultActivity extends BaseActivity {
     public static List<BarEntry> entries2 = new ArrayList<>();
     boolean firstuse =true;
     public BarChart barChart;
-    public static int total= 0;
+    public static int totalE= 0;
+    public static int totalJ= 0;
     public double percent=0;
     public int sourceType= 0;
     private double itemcount;
@@ -76,7 +78,8 @@ public class SalaryCheckResultActivity extends BaseActivity {
         View contentView = inflater.inflate(R.layout.activity_salary_check_result, null, false);
         mDrawer.addView(contentView, 0);
 
-        total = 0;
+        totalE = 0;
+        totalJ = 0;
         entries.clear();
         entries2.clear();
 
@@ -196,9 +199,9 @@ public class SalaryCheckResultActivity extends BaseActivity {
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
-            loadingInternetDialog = new ProgressDialog(SalaryCheckResultActivity.this);
-            loadingInternetDialog.setMessage("Loading...");
-            loadingInternetDialog.show();
+            //loadingInternetDialog = new ProgressDialog(SalaryCheckResultActivity.this);
+            //loadingInternetDialog.setMessage("Loading...");
+            //loadingInternetDialog.show();
         }
 
         @Override
@@ -207,7 +210,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
             System.out.println(jobTitle);
 
             if(salaryResultItemList == null) {
-                Toast.makeText(getBaseContext(), "nothing", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getBaseContext(), "nothing", Toast.LENGTH_LONG).show();
             } else {
                 salaryResultItemList = salaryResultItemDao.getSalaryResultItemDao(jobTitle, withSimilarWord, workExpFrom, workExpTo);
             }
@@ -220,10 +223,10 @@ public class SalaryCheckResultActivity extends BaseActivity {
         @Override
         protected void onPostExecute(Void result) {
 
-            loadingInternetDialog.dismiss();
+            //loadingInternetDialog.dismiss();
 
             if(salaryResultItemList == null) {
-                Toast.makeText(getBaseContext(), "nothing", Toast.LENGTH_LONG).show();
+                //Toast.makeText(getBaseContext(), "nothing", Toast.LENGTH_LONG).show();
             } else {
 
                 for(int i = 0; i < salaryResultItemList.size(); i++) {
@@ -261,14 +264,20 @@ public class SalaryCheckResultActivity extends BaseActivity {
         }
     }
 
+
+
+
+
+
+
     class GetGraphInfoAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
-            //loadingInternetDialog = new ProgressDialog(SalaryCheckResultActivity.this);
-            //loadingInternetDialog.setMessage("Loading...");
-            //loadingInternetDialog.show();
+            loadingInternetDialog = new ProgressDialog(SalaryCheckResultActivity.this);
+            loadingInternetDialog.setMessage("Loading...");
+            loadingInternetDialog.show();
         }
 
         @Override
@@ -280,108 +289,126 @@ public class SalaryCheckResultActivity extends BaseActivity {
         @Override
         protected void onPostExecute(Void result) {
 
-            //loadingInternetDialog.dismiss();
+            loadingInternetDialog.dismiss();
 
-            for(int i = 0; i < graphInfoItemList.size(); i++){
-                labelArray.add(i, graphInfoItemList.get(i).getLabel());
-                countArray.add(i, graphInfoItemList.get(i).getCount());
-                sourceTypeArray.add(i, graphInfoItemList.get(i).getSourceType());
+if (graphInfoItemList!=null) {
+    for (int i = 0; i < graphInfoItemList.size(); i++) {
+        labelArray.add(i, graphInfoItemList.get(i).getLabel());
+        countArray.add(i, graphInfoItemList.get(i).getCount());
+        sourceTypeArray.add(i, graphInfoItemList.get(i).getSourceType());
 
                 System.out.println(labelArray.get(i));
                 System.out.println(countArray.get(i));
                 System.out.println(sourceTypeArray.get(i));
             }
 
-            for(int i = 0; i < graphInfoItemList.size(); i++) {
-                total = total + Integer.parseInt(graphInfoItemList.get(i).getCount());
-            }
+    for (int i = 0; i < graphInfoItemList.size(); i++) {
+        sourceType = Integer.parseInt(graphInfoItemList.get(i).getSourceType());
+        if (sourceType==2) {
+            totalE = totalE + Integer.parseInt(graphInfoItemList.get(i).getCount());
+        }else{
+            totalJ = totalJ + Integer.parseInt(graphInfoItemList.get(i).getCount());
+        }
+    }
 
-            for(int i = 0; i < graphInfoItemList.size(); i++) {
-                sourceType=Integer.parseInt(graphInfoItemList.get(i).getSourceType());
-                switch (graphInfoItemList.get(i).getLabel()){
-                    case "10000 to 19999":
-                        if (sourceType==1){
-                            addEntries1(graphInfoItemList.get(i).getCount(),i,0);
-                            Log.v("labour","labour");
-                        }else if (sourceType==2){
-                            addEntries2(graphInfoItemList.get(i).getCount(),i,0);
-                        }
-                        break;
-                    case "20000 to 29999":
-                        if (sourceType==1){
-                            addEntries1(graphInfoItemList.get(i).getCount(),i,1);
-                            Log.v("labour","labour");
-                        }else if (sourceType==2){
-                            addEntries2(graphInfoItemList.get(i).getCount(),i,1);
-                        }
-                        break;
-                    case "30000 to 39999":
-                        if (sourceType==1){
-                            addEntries1(graphInfoItemList.get(i).getCount(),i,2);
-                            Log.v("labour","labour");
-                        }else if (sourceType==2){
-                            addEntries2(graphInfoItemList.get(i).getCount(),i,2);
-                        }
-                        break;
-                    case "40000 to 49999":
-                        if (sourceType==1){
-                            addEntries1(graphInfoItemList.get(i).getCount(),i,3);
-                            Log.v("labour","labour");
-                        }else if (sourceType==2){
-                            addEntries2(graphInfoItemList.get(i).getCount(),i,3);
-                        }
-                        break;
-                    case "50000 to 59999":
-                        if (sourceType==1){
-                            addEntries1(graphInfoItemList.get(i).getCount(),i,4);
-                            Log.v("labour","labour");
-                        }else if (sourceType==2){
-                            addEntries2(graphInfoItemList.get(i).getCount(),i,4);
-                        }
-                        break;
-                    case "60000 to 69999":
-                        if (sourceType==1){
-                            addEntries1(graphInfoItemList.get(i).getCount(),i,5);
-                            Log.v("labour","labour");
-                        }else if (sourceType==2){
-                            addEntries2(graphInfoItemList.get(i).getCount(),i,5);
-                        }
-                        break;
-                    case "70000 to 79999":
-                        if (sourceType==1){
-                            addEntries1(graphInfoItemList.get(i).getCount(),i,6);
-                            Log.v("labour","labour");
-                        }else if (sourceType==2){
-                            addEntries2(graphInfoItemList.get(i).getCount(),i,6);
-                        }
-                        break;
-                    case "80000 to 89999":
-                        if (sourceType==1){
-                            addEntries1(graphInfoItemList.get(i).getCount(),i,7);
-                            Log.v("labour","labour");
-                        }else if (sourceType==2){
-                            addEntries2(graphInfoItemList.get(i).getCount(),i,7);
-                        }
-                        break;
-                    case "90000 to 99999":
-                        if (sourceType==1){
-                            addEntries1(graphInfoItemList.get(i).getCount(),i,8);
-                            Log.v("labour","labour");
-                        }else if (sourceType==2){
-                            addEntries2(graphInfoItemList.get(i).getCount(),i,8);
-                        }
-                        break;
-                    case ">100000":
-                        if (sourceType==1){
-                            addEntries1(graphInfoItemList.get(i).getCount(),i,9);
-                            Log.v("labour","labour");
-                        }else if (sourceType==2){
-                            addEntries2(graphInfoItemList.get(i).getCount(),i,9);
-                        }
-                        break;
+    for (int i = 0; i < graphInfoItemList.size(); i++) {
+        sourceType = Integer.parseInt(graphInfoItemList.get(i).getSourceType());
+        switch (graphInfoItemList.get(i).getLabel()) {
+            case "10000 to 19999":
+                if (sourceType == 1) {
+                    addEntries1(graphInfoItemList.get(i).getCount(), i, 0);
+                    Log.v("labour", "labour");
+                } else if (sourceType == 2) {
+                    addEntries2(graphInfoItemList.get(i).getCount(), i, 0);
                 }
-            }
-
+                break;
+            case "20000 to 29999":
+                if (sourceType == 1) {
+                    addEntries1(graphInfoItemList.get(i).getCount(), i, 1);
+                    Log.v("labour", "labour");
+                } else if (sourceType == 2) {
+                    addEntries2(graphInfoItemList.get(i).getCount(), i, 1);
+                }
+                break;
+            case "30000 to 39999":
+                if (sourceType == 1) {
+                    addEntries1(graphInfoItemList.get(i).getCount(), i, 2);
+                    Log.v("labour", "labour");
+                } else if (sourceType == 2) {
+                    addEntries2(graphInfoItemList.get(i).getCount(), i, 2);
+                }
+                break;
+            case "40000 to 49999":
+                if (sourceType == 1) {
+                    addEntries1(graphInfoItemList.get(i).getCount(), i, 3);
+                    Log.v("labour", "labour");
+                } else if (sourceType == 2) {
+                    addEntries2(graphInfoItemList.get(i).getCount(), i, 3);
+                }
+                break;
+            case "50000 to 59999":
+                if (sourceType == 1) {
+                    addEntries1(graphInfoItemList.get(i).getCount(), i, 4);
+                    Log.v("labour", "labour");
+                } else if (sourceType == 2) {
+                    addEntries2(graphInfoItemList.get(i).getCount(), i, 4);
+                }
+                break;
+            case "60000 to 69999":
+                if (sourceType == 1) {
+                    addEntries1(graphInfoItemList.get(i).getCount(), i, 5);
+                    Log.v("labour", "labour");
+                } else if (sourceType == 2) {
+                    addEntries2(graphInfoItemList.get(i).getCount(), i, 5);
+                }
+                break;
+            case "70000 to 79999":
+                if (sourceType == 1) {
+                    addEntries1(graphInfoItemList.get(i).getCount(), i, 6);
+                    Log.v("labour", "labour");
+                } else if (sourceType == 2) {
+                    addEntries2(graphInfoItemList.get(i).getCount(), i, 6);
+                }
+                break;
+            case "80000 to 89999":
+                if (sourceType == 1) {
+                    addEntries1(graphInfoItemList.get(i).getCount(), i, 7);
+                    Log.v("labour", "labour");
+                } else if (sourceType == 2) {
+                    addEntries2(graphInfoItemList.get(i).getCount(), i, 7);
+                }
+                break;
+            case "90000 to 99999":
+                if (sourceType == 1) {
+                    addEntries1(graphInfoItemList.get(i).getCount(), i, 8);
+                    Log.v("labour", "labour");
+                } else if (sourceType == 2) {
+                    addEntries2(graphInfoItemList.get(i).getCount(), i, 8);
+                }
+                break;
+            case ">100000":
+                if (sourceType == 1) {
+                    addEntries1(graphInfoItemList.get(i).getCount(), i, 9);
+                    Log.v("labour", "labour");
+                } else if (sourceType == 2) {
+                    addEntries2(graphInfoItemList.get(i).getCount(), i, 9);
+                }
+                break;
+        }
+    }
+  }else {
+    AlertDialog.Builder myAD = new AlertDialog.Builder(SalaryCheckResultActivity.this);
+    myAD.setTitle("Zero result was found");
+    myAD.setMessage("Please search with othes keywords");
+    DialogInterface.OnClickListener OkClick = new DialogInterface.OnClickListener(){
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            SalaryCheckResultActivity.super.finish();
+        }
+    };
+    myAD.setNeutralButton("OK",OkClick);
+    myAD.show();
+  }
             BarDataSet set1 = new BarDataSet(entries, "Labour");
             BarDataSet set2 = new BarDataSet(entries2,"Employer");
 
@@ -409,8 +436,8 @@ public class SalaryCheckResultActivity extends BaseActivity {
     public void addEntries1 (String count, int i,float position){
         Log.v("test1", count);
         itemcount = Integer.parseInt(count);
-        percent= (itemcount*100/total);
-        Log.v("test1", total + "total1");
+        percent= (itemcount*100/totalJ);
+        Log.v("test1", totalJ + "total1");
         decimalFormat.format(percent);
         entries.add(new BarEntry(position,(float)percent));
 
@@ -419,8 +446,8 @@ public class SalaryCheckResultActivity extends BaseActivity {
     public void addEntries2 (String count,int i,float firstletter){
         Log.v("test2", count);
         itemcount = Integer.parseInt(count);
-        percent= (itemcount*100/total);
-        Log.v("test2", total + "total2");
+        percent= (itemcount*100/totalE);
+        Log.v("test2", totalE + "total2");
         decimalFormat.format(percent);
         entries2.add(new BarEntry(firstletter,(float)percent));
     }
