@@ -22,11 +22,11 @@ public class AppliedJobCardViewAdapter extends RecyclerView.Adapter<AppliedJobCa
     private List<String> companyNameList;
     private List<String> applyDateList;
 
-    public AppliedJobCardViewAdapter(Context context,List<String> listItems, List<String> listItems2, List<String> listItems3) {
+    public AppliedJobCardViewAdapter(Context context,List<String> jobTitleList2, List<String> companyNameList2, List<String> applyDateList2) {
         this.context=context;
-        this.jobTitleList = listItems;
-        this.companyNameList = listItems2;
-        this.applyDateList = listItems3;
+        this.jobTitleList = jobTitleList2;
+        this.companyNameList = companyNameList2;
+        this.applyDateList = applyDateList2;
     }
 
     public  static class ViewHolder extends RecyclerView.ViewHolder {

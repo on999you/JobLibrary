@@ -143,7 +143,6 @@ public class CvActivity extends BaseActivity {
                     educationLevelIdArray.add(i, educationLevelItemList.get(i).getEducationID());
                 }
             }
-
         }
     }
 

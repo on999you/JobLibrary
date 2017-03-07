@@ -24,12 +24,12 @@ public class RelevantDataCardViewAdapter extends RecyclerView.Adapter<RelevantDa
     private List<String> relevantWorkExpList= new ArrayList<>();
     private List<String> relevantSalaryList= new ArrayList<>();
 
-    public RelevantDataCardViewAdapter(Context context, List<String> listItemss, List<String> listItems, List<String> listItems2, List<String> listItems3) {
+    public RelevantDataCardViewAdapter(Context context, List<String> relevantJobTitleList2, List<String> relevantJobCatList2, List<String> relevantWorkExpList2, List<String> relevantSalaryList2) {
         this.context=context;
-        this.relevantJobTitleList = listItemss;
-        this.relevantJobCatList = listItems;
-        this.relevantWorkExpList = listItems2;
-        this.relevantSalaryList = listItems3;
+        this.relevantJobTitleList = relevantJobTitleList2;
+        this.relevantJobCatList = relevantJobCatList2;
+        this.relevantWorkExpList = relevantWorkExpList2;
+        this.relevantSalaryList = relevantSalaryList2;
 
         System.out.println(relevantJobTitleList);
     }
@@ -37,16 +37,16 @@ public class RelevantDataCardViewAdapter extends RecyclerView.Adapter<RelevantDa
     public  static class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView jobTitle;
-        public TextView textViewName2;
-        public TextView textViewName3;
-        public TextView textViewName4;
+        public TextView jobCat;
+        public TextView workExp;
+        public TextView salary;
 
         public ViewHolder(View itemView) {
             super(itemView);
             jobTitle = (TextView)itemView.findViewById(R.id.jobTitle);
-            textViewName2 = (TextView)itemView.findViewById(R.id.textView2);
-            textViewName3 = (TextView)itemView.findViewById(R.id.textView3);
-            textViewName4 = (TextView)itemView.findViewById(R.id.textView4);
+            jobCat = (TextView)itemView.findViewById(R.id.jobCat);
+            workExp = (TextView)itemView.findViewById(R.id.workExp);
+            salary = (TextView)itemView.findViewById(R.id.salary);
         }
 
     }
@@ -65,14 +65,14 @@ public class RelevantDataCardViewAdapter extends RecyclerView.Adapter<RelevantDa
         TextView jobTitle = holder.jobTitle;
         jobTitle.setText(relevantJobTitleList.get(position));
 
-        TextView textViewName2 = holder.textViewName2;
-        textViewName2.setText(relevantJobCatList.get(position));
+        TextView jobCat = holder.jobCat;
+        jobCat.setText(relevantJobCatList.get(position));
 
-        TextView textViewName3 = holder.textViewName3;
-        textViewName3.setText(relevantWorkExpList.get(position));
+        TextView workExp = holder.workExp;
+        workExp.setText(relevantWorkExpList.get(position));
 
-        TextView textViewName4 = holder.textViewName4;
-        textViewName4.setText(relevantSalaryList.get(position));
+        TextView salary = holder.salary;
+        salary.setText(relevantSalaryList.get(position));
     }
 
     @Override
