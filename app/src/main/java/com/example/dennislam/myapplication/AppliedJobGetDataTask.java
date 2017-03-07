@@ -16,7 +16,7 @@ import java.util.List;
  */
 
 public class AppliedJobGetDataTask extends AsyncTask<Void,Void,Void> {
-//nvojgvskonvnsnnhnnghnhgh
+//ll
     GlobalClass globalVariable;
 
     private AnimRFRecyclerView mRecyclerView;
