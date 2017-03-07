@@ -70,9 +70,9 @@ public class ApplyJobDao {
             XStream xStream = new XStream();
             xStream.processAnnotations(ApplyJobXML.class);
 
-            ApplyJobXML rss = (ApplyJobXML) xStream.fromXML(contentNoBom);
+            ApplyJobXML xmlFile = (ApplyJobXML) xStream.fromXML(contentNoBom);
 
-            applyJobItemList = rss.getItemsInfo();
+            applyJobItemList = xmlFile.getItemsInfo();
 
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();

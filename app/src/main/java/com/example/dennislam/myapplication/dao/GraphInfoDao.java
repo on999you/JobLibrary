@@ -73,13 +73,13 @@ public class GraphInfoDao {
             XStream xStream = new XStream();
             xStream.processAnnotations(GraphInfoXML.class);
 
-            GraphInfoXML rss = (GraphInfoXML) xStream.fromXML(contentNoBom);
+            GraphInfoXML xmlFile = (GraphInfoXML) xStream.fromXML(contentNoBom);
 
-            getItemsInfo = rss.getItemsInfo();
+            getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();
 
             if(statusCode == 0) {
-                graphInfoItemList = rss.getItems().getItem();
+                graphInfoItemList = xmlFile.getItems().getItem();
             }
 
         } catch (UnsupportedEncodingException e) {

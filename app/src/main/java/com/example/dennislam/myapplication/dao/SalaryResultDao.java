@@ -80,14 +80,14 @@ public class SalaryResultDao {
             XStream xStream = new XStream();
             xStream.processAnnotations(SalaryResultXML.class);
 
-            SalaryResultXML rss = (SalaryResultXML) xStream.fromXML(contentNoBom);
+            SalaryResultXML xmlFile = (SalaryResultXML) xStream.fromXML(contentNoBom);
 
-            getItemsInfo = rss.getItemsInfo();
+            getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();
             itemsTotal = getItemsInfo.get(0).getItemsTotal();
 
             if(statusCode == 0) {
-                salaryResultItemList = rss.getItems().getItem();
+                salaryResultItemList = xmlFile.getItems().getItem();
             }
 
         } catch (UnsupportedEncodingException e) {

@@ -78,9 +78,9 @@ public class SendCvDao {
             XStream xStream = new XStream();
             xStream.processAnnotations(SendCvXML.class);
 
-            SendCvXML rss = (SendCvXML) xStream.fromXML(contentNoBom);
+            SendCvXML xmlFile = (SendCvXML) xStream.fromXML(contentNoBom);
 
-            cvItemList = rss.getItemsInfo();
+            cvItemList = xmlFile.getItemsInfo();
 
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
