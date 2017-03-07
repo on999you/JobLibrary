@@ -18,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JobListActivity extends BaseActivity {
-
+//HI
     //Card View
     private AnimRFRecyclerView recyclerView;
     private AnimRFLinearLayoutManager manager ;
