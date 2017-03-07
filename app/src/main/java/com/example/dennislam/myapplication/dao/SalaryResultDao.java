@@ -49,7 +49,7 @@ public class SalaryResultDao {
     }
 
 
-    public List<SalaryResultXML.SalaryResultItem> getSalaryResultItemDao(String jobTitle, Boolean withSimilarWord, String workExpFrom, String workExpTo){
+    public List<SalaryResultXML.SalaryResultItem> getSalaryResultItemDao(String jobTitle, Boolean withSimilarWord, String workExpFrom, String workExpTo, String salarySourceValue){
 
         String xml;
 
@@ -65,6 +65,7 @@ public class SalaryResultDao {
             nameValuePair.add(new BasicNameValuePair("withSimilarWord", withSimilarWord.toString()));
             nameValuePair.add(new BasicNameValuePair("expFrom", workExpFrom));
             nameValuePair.add(new BasicNameValuePair("expTo", workExpTo));
+            nameValuePair.add(new BasicNameValuePair("salarySource", salarySourceValue));
 
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
 

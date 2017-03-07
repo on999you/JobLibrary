@@ -146,6 +146,8 @@ public class SalaryCheckActivity extends BaseActivity {
                     intent.putExtra("withSimilarWord", similarCheckBox.isChecked());
                     intent.putExtra("workExpFrom", workExpFrom);
                     intent.putExtra("workExpTo", workExpTo);
+                    intent.putExtra("salarySource", salarySourceValue);
+
                     sdtvName = jobTitleField.getText().toString().trim();
                     startActivity(intent);
                 }
