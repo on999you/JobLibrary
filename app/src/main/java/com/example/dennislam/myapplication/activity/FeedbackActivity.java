@@ -1,5 +1,6 @@
 package com.example.dennislam.myapplication.activity;
 
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -94,6 +95,14 @@ public class FeedbackActivity extends BaseActivity {
     class sendFeedbackAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
         @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+            loadingInternetDialog = new ProgressDialog(FeedbackActivity.this);
+            loadingInternetDialog.setMessage("Loading...");
+            loadingInternetDialog.show();
+        }
+
+        @Override
         protected Void doInBackground(Void... params) {
             udid = globalVariable.getUdid();
             feedbackItemList = feedbackItemDao.getFeedbackItemDao(udid,name,email,comments,rating);
@@ -102,6 +111,8 @@ public class FeedbackActivity extends BaseActivity {
 
         @Override
         protected void onPostExecute(Void result) {
+
+            loadingInternetDialog.dismiss();
 
             if(feedbackItemList == null || feedbackItemList.isEmpty()) {
                 Toast.makeText(getBaseContext(), "Internet are not working", Toast.LENGTH_LONG).show();

@@ -1,6 +1,7 @@
 package com.example.dennislam.myapplication.activity;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -11,6 +12,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -27,6 +29,9 @@ import java.io.File;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.dennislam.myapplication.R;
 import com.example.dennislam.myapplication.dao.criteria.EducationLevelDao;
 import com.example.dennislam.myapplication.dao.SendCvDao;
@@ -107,6 +112,14 @@ public class CvActivity extends BaseActivity {
     class getEduLevelAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
         @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+            loadingInternetDialog = new ProgressDialog(CvActivity.this);
+            loadingInternetDialog.setMessage("Loading...");
+            loadingInternetDialog.show();
+        }
+
+        @Override
         protected Void doInBackground(Void... params) {
             EducationLevelDao educationLevelItemDao = new EducationLevelDao();
             educationLevelItemList = educationLevelItemDao.getEducationLevelItemDao();
@@ -116,8 +129,13 @@ public class CvActivity extends BaseActivity {
         @Override
         protected void onPostExecute(Void result) {
 
+            loadingInternetDialog.dismiss();
+
             if(educationLevelItemList == null || educationLevelItemList.isEmpty()) {
-                Toast.makeText(getBaseContext(), "Internet are not working", Toast.LENGTH_LONG).show();
+                new MaterialDialog.Builder(CvActivity.this)
+                        .content("Internet are not working")
+                        .positiveText("ok")
+                        .show();
             }
             else{
                 for(int i = 0; i < educationLevelItemList.size(); i++){
@@ -125,7 +143,6 @@ public class CvActivity extends BaseActivity {
                     educationLevelIdArray.add(i, educationLevelItemList.get(i).getEducationID());
                 }
             }
-
         }
     }
 

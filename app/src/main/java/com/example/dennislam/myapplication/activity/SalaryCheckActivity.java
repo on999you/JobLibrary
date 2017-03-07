@@ -1,6 +1,7 @@
 package com.example.dennislam.myapplication.activity;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -162,6 +163,14 @@ public class SalaryCheckActivity extends BaseActivity {
     class GetCriteriasAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
         @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+            loadingInternetDialog = new ProgressDialog(SalaryCheckActivity.this);
+            loadingInternetDialog.setMessage("Loading...");
+            loadingInternetDialog.show();
+        }
+
+        @Override
         protected Void doInBackground(Void... params) {
             jobCatItemList = jobCatItemDao.getJobCatItemDao();
             workExpItemList = workExpItemDao.getWorkExpItemDao();
@@ -172,6 +181,8 @@ public class SalaryCheckActivity extends BaseActivity {
 
         @Override
         protected void onPostExecute(Void result) {
+
+            loadingInternetDialog.dismiss();
 
             //Get Job Cat
             for(int i = 0; i < jobCatItemList.size(); i++){
@@ -322,60 +333,3 @@ public class SalaryCheckActivity extends BaseActivity {
                 .show();
     }
 }
-
-
-
-
-/*
-        CharSequence[] cs = jobCatArray.toArray(new CharSequence[jobCatArray.size()]);
-
-        android.support.v7.app.AlertDialog dialog;
-        final android.support.v7.app.AlertDialog.Builder builder = new android.support.v7.app.AlertDialog.Builder(SalaryCheckActivity.this);
-
-        builder.setTitle("Job Function");
-        builder.setMultiChoiceItems(cs, job_function_checkbox_status,
-                new DialogInterface.OnMultiChoiceClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int indexSelected,
-                                        boolean isChecked) {
-                        if (isChecked) {
-                            job_function_seletedItems.add(indexSelected);
-                            job_function_checkbox_status[indexSelected] = isChecked;
-
-
-                            if(job_function_seletedItems.size() > 4) {
-                                Toast.makeText(SalaryCheckActivity.this, "More than 5 options" , Toast.LENGTH_SHORT).show();
-
-                                //((android.support.v7.app.AlertDialog)dialog).getListView().getChildAt(0).setFocusable(false);
-                                //((android.support.v7.app.AlertDialog)dialog).getListView().getChildAt(0).setEnabled(false);
-                                //((android.support.v7.app.AlertDialog)dialog).getListView().getChildAt(0).setClickable(false);
-
-
-                                for(int i = 0; i<job_function_seletedItems.size(); i++) {
-                                    ((android.support.v7.app.AlertDialog)dialog).getListView().getChildAt(Integer.parseInt(job_function_seletedItems.get(i).toString())).setEnabled(false);
-                                }
-                            }
-
-                        } else if (job_function_seletedItems.contains(indexSelected)) {
-                            job_function_seletedItems.remove(Integer.valueOf(indexSelected));
-                        }
-                    }
-                })
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int id) {
-                        if(job_function_seletedItems.size() > 4) {
-                            Toast.makeText(SalaryCheckActivity.this, "Cannot select more than five", Toast.LENGTH_SHORT).show();
-                        }
-
-                        jobFunctionButton.setTextColor(Color.parseColor("#000000"));
-                        jobFunctionButton.setText(job_function_seletedItems.size() + " Items Selected");
-
-                    }
-                });
-        dialog = builder.create();
-        dialog.show();
-        */
-
-
-

@@ -1,7 +1,6 @@
 package com.example.dennislam.myapplication.activity;
-
+import android.app.ProgressDialog;
 import android.app.AlertDialog;
-import android.content.ContentProviderOperation;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -198,6 +197,14 @@ public class SalaryCheckResultActivity extends BaseActivity {
     class GetSalaryCheckResultAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
         @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+            loadingInternetDialog = new ProgressDialog(SalaryCheckResultActivity.this);
+            loadingInternetDialog.setMessage("Loading...");
+            loadingInternetDialog.show();
+        }
+
+        @Override
         protected Void doInBackground(Void... params) {
 
             System.out.println(jobTitle);
@@ -215,6 +222,8 @@ public class SalaryCheckResultActivity extends BaseActivity {
 
         @Override
         protected void onPostExecute(Void result) {
+
+            loadingInternetDialog.dismiss();
 
             if(salaryResultItemList == null) {
                 //Toast.makeText(getBaseContext(), "nothing", Toast.LENGTH_LONG).show();
@@ -264,6 +273,14 @@ public class SalaryCheckResultActivity extends BaseActivity {
     class GetGraphInfoAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
         @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+            loadingInternetDialog = new ProgressDialog(SalaryCheckResultActivity.this);
+            loadingInternetDialog.setMessage("Loading...");
+            loadingInternetDialog.show();
+        }
+
+        @Override
         protected Void doInBackground(Void... params) {
             graphInfoItemList = graphInfoItemDao.getGraphInfoItemDao(jobTitle);
             return null;
@@ -271,16 +288,23 @@ public class SalaryCheckResultActivity extends BaseActivity {
 
         @Override
         protected void onPostExecute(Void result) {
+
+            loadingInternetDialog.dismiss();
+
+            for(int i = 0; i < graphInfoItemList.size(); i++){
+                labelArray.add(i, graphInfoItemList.get(i).getLabel());
+                countArray.add(i, graphInfoItemList.get(i).getCount());
+                sourceTypeArray.add(i, graphInfoItemList.get(i).getSourceType());
 if (graphInfoItemList!=null) {
     for (int i = 0; i < graphInfoItemList.size(); i++) {
         labelArray.add(i, graphInfoItemList.get(i).getLabel());
         countArray.add(i, graphInfoItemList.get(i).getCount());
         sourceTypeArray.add(i, graphInfoItemList.get(i).getSourceType());
 
-        System.out.println(labelArray.get(i));
-        System.out.println(countArray.get(i));
-        System.out.println(sourceTypeArray.get(i));
-    }
+                System.out.println(labelArray.get(i));
+                System.out.println(countArray.get(i));
+                System.out.println(sourceTypeArray.get(i));
+            }
 
     for (int i = 0; i < graphInfoItemList.size(); i++) {
         sourceType = Integer.parseInt(graphInfoItemList.get(i).getSourceType());

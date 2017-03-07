@@ -22,12 +22,12 @@ public class JobListCardViewAdapter extends RecyclerView.Adapter<JobListCardView
     private List<String> createDateList;
     private List<String> jobIdList;
 
-    public JobListCardViewAdapter(Context context, List<String> listItemss, List<String> listItems, List<String> listItems2, List<String> listItems3) {
+    public JobListCardViewAdapter(Context context, List<String> jobIdList2, List<String> jobTitleList2, List<String> companyNameList2, List<String> createDateList2) {
         this.context=context;
-        this.jobIdList = listItemss;
-        this.jobTitleList = listItems;
-        this.companyNameList = listItems2;
-        this.createDateList = listItems3;
+        this.jobIdList = jobIdList2;
+        this.jobTitleList = jobTitleList2;
+        this.companyNameList = companyNameList2;
+        this.createDateList = createDateList2;
     }
 
     public  static class ViewHolder extends RecyclerView.ViewHolder {
@@ -42,9 +42,7 @@ public class JobListCardViewAdapter extends RecyclerView.Adapter<JobListCardView
             companyName = (TextView)itemView.findViewById(R.id.companyName);
             createDate = (TextView)itemView.findViewById(R.id.createDate);
         }
-
     }
-
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
