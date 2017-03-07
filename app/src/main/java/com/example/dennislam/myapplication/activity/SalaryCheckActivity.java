@@ -39,6 +39,7 @@ import static com.example.dennislam.myapplication.R.id.unspecifiedRadio;
 public class SalaryCheckActivity extends BaseActivity {
 
     private Toast toast;
+    public static String sdtvName;
 
     WorkExpDao workExpItemDao = new WorkExpDao();
     SalarySourceDao salarySourceItemDao = new SalarySourceDao();
@@ -145,6 +146,7 @@ public class SalaryCheckActivity extends BaseActivity {
                     intent.putExtra("withSimilarWord", similarCheckBox.isChecked());
                     intent.putExtra("workExpFrom", workExpFrom);
                     intent.putExtra("workExpTo", workExpTo);
+                    sdtvName = jobTitleField.getText().toString().trim();
                     startActivity(intent);
                 }
             }
