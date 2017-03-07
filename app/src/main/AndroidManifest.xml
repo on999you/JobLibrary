@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.dennislam.myapplication">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    //Camera permission
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:name=".GlobalClass"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".activity.OpenAppActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.FeedbackActivity"
+            android:label="Feedback"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".activity.BaseActivity" />
+        <activity
+            android:name=".activity.SalaryCheckActivity"
+            android:label="Salary Check" />
+        <activity
+            android:name=".activity.CvActivity"
+            android:label="Submit Your CV" />
+        <activity
+            android:name="com.afollestad.materialcamera.CaptureActivity"
+            android:theme="@style/MaterialCamera.CaptureActivity" />
+        <activity
+            android:name="com.afollestad.materialcamera.CaptureActivity2"
+            android:theme="@style/MaterialCamera.CaptureActivity" />
+        <activity android:name=".activity.SalaryCheckResultActivity" />
+        <activity
+            android:name=".activity.LandScapeBarChart"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".activity.JobListActivity"
+            android:label="Jobs" />
+        <activity android:name=".activity.MainPageActivity" />
+        <activity android:name=".activity.RelevantDataActivity" />
+        <activity
+            android:name=".activity.JobDetailActivity"
+            android:label="Job Detail" />
+        <activity
+            android:name=".activity.AppliedJobActivity"
+            android:label="Applied Job" />
+        <activity
+            android:name=".activity.AboutUsActivity"
+            android:label="About Us" />
+        <activity
+            android:name=".activity.SalaryReportActivity"
+            android:label="Salary Report" />
+        <activity android:name=".activity.SelectJobFunctionActivity"></activity>
+    </application>
+
+</manifest>

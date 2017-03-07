@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_job_detail"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="?attr/actionBarSize"
+    tools:context="com.example.dennislam.myapplication.activity.JobDetailActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:orientation="vertical">
+
+            <TextView
+                android:paddingTop="10dp"
+                android:id="@+id/createDateView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="CREATE_DATE"
+                android:textSize="18sp"
+                android:gravity="right"/>
+
+            <TextView
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="10dp"
+                android:id="@+id/jobTitleView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="JOBTITLE"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="#000000"
+                android:gravity="center"/>
+
+            <TextView
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="15dp"
+                android:id="@+id/companyView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="COMPANY_NAME"
+                android:textSize="20sp"
+                android:textColor="#000000"
+                android:gravity="center"/>
+
+
+            <RadioGroup
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:orientation="horizontal"
+                android:id="@+id/jobDetailRadioGroup">
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Job Description"
+                    android:id="@+id/jobDescription"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:button="@android:color/transparent"/>
+
+                <RadioButton
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:text="Company Info"
+                    android:id="@+id/companyInfo"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:button="@android:color/transparent"/>
+
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/textView1"
+                android:paddingTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Job Function"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:paddingTop="3dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="JOBAREA_NAME"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:autoLink="email" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:paddingTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Industry"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:paddingTop="3dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="INDUSTRY_NAME"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:autoLink="phone"/>
+
+            <TextView
+                android:id="@+id/textView5"
+                android:paddingTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Job Description"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:paddingTop="3dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="JOBDESC"
+                android:textColor="#000000"
+                android:textSize="18sp"/>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+<LinearLayout
+    android:paddingTop="5dp"
+    android:paddingBottom="0dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center">
+
+    <Button
+        android:id="@+id/applyJobButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Apply now"
+        android:textSize="20sp"
+        android:textColor="#F7F7F7"
+        android:background="@drawable/button_style"
+        android:layout_gravity="center"/>
+
+</LinearLayout>
+
+
+</LinearLayout>

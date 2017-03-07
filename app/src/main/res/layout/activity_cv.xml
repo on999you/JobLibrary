@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/testingbg"
+    android:paddingTop="?attr/actionBarSize"
+    tools:context="com.example.dennislam.myapplication.activity.CvActivity">
+
+
+
+    <EditText
+        android:id="@+id/nameField"
+        android:layout_marginTop="15dp"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:hint="Full Name"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/testing"/>
+
+    <EditText
+        android:id="@+id/emailField"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:hint="Email Address"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/testing"/>
+
+
+    <EditText
+        android:id="@+id/mobileNoField"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:hint="Mobile Number"
+        android:inputType="number"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/testing"/>
+
+    <EditText
+        android:id="@+id/expectedSalaryField"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:hint="Expected Salary (HKD)"
+        android:inputType="number"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/testing"/>
+
+    <TextView
+        android:id="@+id/educationLevelField"
+        android:onClick="EducationLevelDialog"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:hint="Education Level"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/testing"/>
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="120dp"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:background="@drawable/testing">
+
+        <ImageButton
+            android:onClick="startRecordVideo"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/video_camera"
+            android:background="@null"
+            android:id="@+id/click_videobox"
+            android:layout_gravity="center" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/sendCvButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            android:textAllCaps="false"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:gravity="center"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

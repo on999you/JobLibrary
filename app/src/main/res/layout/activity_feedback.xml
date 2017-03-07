@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/testingbg"
+    android:paddingTop="?attr/actionBarSize"
+    tools:context="com.example.dennislam.myapplication.activity.FeedbackActivity">
+
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="HAVE SOMETHING TO SAY?!"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#F7F7F7"
+        android:layout_gravity="center"
+        android:gravity="center"/>
+
+    <EditText
+        android:layout_marginTop="10dp"
+        android:id="@+id/nameField"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:hint="Name"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/testing"/>
+
+    <EditText
+        android:id="@+id/emailField"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:hint="Email Address"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/testing"/>
+
+    <EditText
+        android:id="@+id/commentField"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:hint="Comments"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:background="@drawable/testing"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <RatingBar
+            android:theme="@style/RatingBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/feedbackRating"
+            android:paddingTop="10dp"
+            android:rating="4"
+            android:stepSize="1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/resetFeedback"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Reset"
+            android:textSize="15sp"
+            android:layout_marginRight="25dp"/>
+
+        <Button
+            android:id="@+id/submitFeedback"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Done"
+            android:textSize="15sp" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="- FAQ -"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:background="#18FFFFFF"
+        android:textColor="#FFFFFF"/>
+
+    <ExpandableListView
+        android:id="@+id/expandableListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:indicatorLeft="?android:attr/expandableListPreferredItemIndicatorLeft"
+        android:divider="@android:color/darker_gray"
+        android:dividerHeight="0.5dp"/>
+
+
+</LinearLayout>
