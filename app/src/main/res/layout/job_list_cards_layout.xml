@@ -48,6 +48,7 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <TextView
+            android:drawableLeft="@drawable/clock"
             android:layout_weight="1"
             android:id="@+id/createDate"
             android:layout_width="match_parent"
