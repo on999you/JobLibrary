@@ -22,33 +22,33 @@ public class MainPageActivity extends BaseActivity {
         Log.v("Testing steps", "Main Page : Get Udid from global class = " + globalVariable.getUdid());
     }
 
-    public void PassToJobList(View v){
+    public void passToJobList(View v){
         Intent intent = new Intent(getBaseContext(), JobListActivity.class);
         startActivity(intent);
     }
 
-    public void PassToSalary(View v){
+    public void passToSalary(View v){
         Intent intent = new Intent(getBaseContext(), SalaryCheckActivity.class);
         startActivity(intent);
     }
 
-    public void PassToAppliedJob(View v){
+    public void passToAppliedJob(View v){
         Intent intent = new Intent(getBaseContext(), AppliedJobActivity.class);
         startActivity(intent);
     }
 
-    public void PassToCV(View v){
+    public void passToCV(View v){
         Intent intent = new Intent(getBaseContext(), CvActivity.class);
         startActivity(intent);
     }
 
-    public void PassToFAQ(View v){
+    public void passToFAQ(View v){
         Intent intent = new Intent(getBaseContext(), FeedbackActivity.class);
         startActivity(intent);
     }
 
 
-    public void exitapp(View v){
+    public void exitApp(View v){
         createDialog();
     }
 

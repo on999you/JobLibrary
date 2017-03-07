@@ -16,7 +16,7 @@
         android:gravity="center">
 
         <LinearLayout
-            android:onClick="PassToJobList"
+            android:onClick="passToJobList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -41,7 +41,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:onClick="PassToSalary"
+            android:onClick="passToSalary"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -75,7 +75,7 @@
         android:gravity="center">
 
         <LinearLayout
-            android:onClick="PassToAppliedJob"
+            android:onClick="passToAppliedJob"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -100,7 +100,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:onClick="PassToCV"
+            android:onClick="passToCV"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -134,7 +134,7 @@
         android:gravity="center">
 
         <LinearLayout
-            android:onClick="PassToFAQ"
+            android:onClick="passToFAQ"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -159,7 +159,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:onClick="exitapp"
+            android:onClick="exitApp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
