@@ -1,5 +1,6 @@
 package com.example.dennislam.myapplication.activity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,6 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OpenAppActivity extends BaseActivity {
+
+    private ProgressDialog pdia;
 
     private SharedPreferences settings;
     private static final String data = "DATA";
@@ -55,6 +58,14 @@ public class OpenAppActivity extends BaseActivity {
     class openAppAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
         @Override
+        protected void onPreExecute(){
+            super.onPreExecute();
+            pdia = new ProgressDialog(OpenAppActivity.this);
+            pdia.setMessage("Loading...");
+            pdia.show();
+        }
+
+        @Override
         protected Void doInBackground(Void... params) {
             openAppItemList = openAppItemDao.getOpenAppItemDao(udid, appVersion, mobAppId, osType);
             return null;
@@ -62,6 +73,8 @@ public class OpenAppActivity extends BaseActivity {
 
         @Override
         protected void onPostExecute(Void result) {
+
+            pdia.dismiss();
 
             if(openAppItemList == null || openAppItemList.isEmpty()){
                 Intent intent = new Intent(getBaseContext(), MainPageActivity.class);
