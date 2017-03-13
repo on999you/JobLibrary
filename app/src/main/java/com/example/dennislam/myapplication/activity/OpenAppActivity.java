@@ -44,9 +44,6 @@ public class OpenAppActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        //View contentView = inflater.inflate(R.layout.activity_open_app, null, false);
-        //mDrawer.addView(contentView, 0);
         setContentView(R.layout.activity_open_app);
 
         settings = getSharedPreferences(data,0);
