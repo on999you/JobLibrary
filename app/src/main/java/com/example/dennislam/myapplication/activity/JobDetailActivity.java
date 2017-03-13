@@ -54,7 +54,7 @@ public class JobDetailActivity extends BaseActivity {
     JobDetailDao jobDetailItemDao = new JobDetailDao();
     ApplyJobDao applyJobItemDao = new ApplyJobDao();
 
-    TextView jobTitleView, industryView, jobAreaView, companyView, emailView, simpleBodyView, jobDescView, contactView, createDateView;
+    TextView jobTitleView, companyView, createDateView;
     TextView textView1, textView2, textView3, textView4, textView5, textView6;
 
     @Override
