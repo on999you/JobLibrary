@@ -70,12 +70,12 @@ public class SalaryCheckActivity extends BaseActivity {
     RadioButton radioButton1, radioButton2, radioButton3;
 
     //Values that pass to database
-    String jobCat, jobIndustry;
     String workExpFrom;
     String workExpTo;
     String salarySourceValue;
 
-    ArrayList<String> testArray = new ArrayList<String>();
+    ArrayList<String> selectedJobCatArray = new ArrayList<String>();
+    ArrayList<String> selectedJobIndustryArray = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -296,8 +296,11 @@ public class SalaryCheckActivity extends BaseActivity {
                     } else {
                         jobFunctionButton.setText(which.length + " items selected");
 
-                        testArray.clear();
-                        testArray.add(Arrays.toString(which));
+                        ArrayList<String> testArray = new ArrayList<String>();
+
+                        selectedJobCatArray.add(Arrays.toString(which));
+
+                        which = null;
                     }
                     return allowSelectionChange;
 
@@ -307,7 +310,7 @@ public class SalaryCheckActivity extends BaseActivity {
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                            Log.v("testing", testArray.get(0));
+                            Log.v("testing", selectedJobCatArray.toString());
                     }
                 })
                 .alwaysCallMultiChoiceCallback()
