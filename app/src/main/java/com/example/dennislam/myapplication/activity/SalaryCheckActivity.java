@@ -296,11 +296,14 @@ public class SalaryCheckActivity extends BaseActivity {
                     } else {
                         jobFunctionButton.setText(which.length + " items selected");
 
-                        ArrayList<String> testArray = new ArrayList<String>();
+                        selectedJobCatArray.clear();
 
-                        selectedJobCatArray.add(Arrays.toString(which));
+                        for(int i=0; i< which.length; i++){
+                            //System.out.println(Arrays.toString(which));
+                            //System.out.println(which[i]);
+                            selectedJobCatArray.add(which[i].toString());
+                        }
 
-                        which = null;
                     }
                     return allowSelectionChange;
 
@@ -310,7 +313,12 @@ public class SalaryCheckActivity extends BaseActivity {
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                            Log.v("testing", selectedJobCatArray.toString());
+                        Log.v("testing", selectedJobCatArray.toString());
+
+                        for(int i =0; i<selectedJobCatArray.size(); i++){
+                            Log.v("testing2", jobCatIdArray.get(Integer.parseInt(selectedJobCatArray.get(i))));
+                        }
+
                     }
                 })
                 .alwaysCallMultiChoiceCallback()
