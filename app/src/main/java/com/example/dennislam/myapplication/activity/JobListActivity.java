@@ -41,7 +41,6 @@ public class JobListActivity extends BaseActivity {
         View contentView = inflater.inflate(R.layout.activity_job_list, null, false);
         mDrawer.addView(contentView, 0);
 
-
         //Card View
         recyclerView = (AnimRFRecyclerView)findViewById(R.id.refresh_layout);
         headerView = LayoutInflater.from(this).inflate(R.layout.header_view, null);
@@ -143,7 +142,6 @@ public class JobListActivity extends BaseActivity {
 
             if(jobListItemList == null){
                 System.out.println("no anymore");
-                recyclerView.stopScroll();
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
             else{
