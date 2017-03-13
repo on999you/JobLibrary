@@ -1,14 +1,16 @@
 package com.example.dennislam.myapplication.activity;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.dennislam.myapplication.AppliedJobGetDataTask;
 import com.example.dennislam.myapplication.R;
 import com.example.dennislam.myapplication.adapter.AppliedJobCardViewAdapter;
+import com.example.dennislam.myapplication.dao.AppliedJobDao;
+import com.example.dennislam.myapplication.xml.AppliedJobXML;
 import com.sch.rfview.AnimRFRecyclerView;
 import com.sch.rfview.manager.AnimRFLinearLayoutManager;
 
@@ -93,14 +95,50 @@ public class AppliedJobActivity extends BaseActivity{
     private void addData() {
         rownumStart += 5;
         rownumEnd += 5;
-        new AppliedJobGetDataTask(recyclerView,jobTitleList,companyNameList,applyDateList,rownumStart,rownumEnd).execute();
+        new AppliedJobGetDataTask().execute();
     }
 
     public void newData() {
         jobTitleList.clear();
         companyNameList.clear();
         applyDateList.clear();
-        new AppliedJobGetDataTask(recyclerView,jobTitleList,companyNameList,applyDateList,rownumStart,rownumEnd).execute();
+        new AppliedJobGetDataTask().execute();
+    }
+
+    List<AppliedJobXML.AppliedJobItem> appliedJobItemList = new ArrayList<AppliedJobXML.AppliedJobItem>();
+    AppliedJobDao appliedJobItemDao = new AppliedJobDao();
+
+    class AppliedJobGetDataTask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            //String udid = globalVariable.getUdid();
+            String udid = "1133XHIKYKJBEW";
+            appliedJobItemList = appliedJobItemDao.getAppliedJobItemDao(rownumStart, rownumEnd,udid);
+            return null;
+        }
+
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            recyclerView.getAdapter().notifyDataSetChanged();
+            recyclerView.setRefresh(false);
+
+            if(appliedJobItemList == null){
+                System.out.println("no anymore");
+                recyclerView.getAdapter().notifyDataSetChanged();
+            }
+            else{
+                for(int i = 0; i < appliedJobItemList.size(); i++){
+                    jobTitleList.add(appliedJobItemList.get(i).getJobTitle());
+                    companyNameList.add(appliedJobItemList.get(i).getCompany());
+                    applyDateList.add(appliedJobItemList.get(i).getApplyDate());
+
+                    System.out.println(jobTitleList.get(i));
+                }
+            }
+
+
+        }
     }
 
 }

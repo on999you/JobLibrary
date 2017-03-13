@@ -4,16 +4,11 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.example.dennislam.myapplication.R;
-import com.example.dennislam.myapplication.RecyclerItemClickListener;
-import com.example.dennislam.myapplication.RelevantDataGetDataTask;
-import com.example.dennislam.myapplication.adapter.JobListCardViewAdapter;
 import com.example.dennislam.myapplication.adapter.RelevantDataCardViewAdapter;
 import com.example.dennislam.myapplication.dao.RelevantDataDao;
 import com.example.dennislam.myapplication.xml.RelevantDataXML;
@@ -40,11 +35,6 @@ public class RelevantDataActivity extends BaseActivity {
 
     String jobTitle, workExpFrom, workExpTo;
     Boolean withSimilarWord;
-
-    ArrayList<String> relevantJobTitleArray = new ArrayList<String>();
-    ArrayList<String> relevantJobCatArray = new ArrayList<String>();
-    ArrayList<String> relevantWorkExpArray = new ArrayList<String>();
-    ArrayList<String> relevantSalaryArray = new ArrayList<String>();
 
 
 
@@ -78,7 +68,7 @@ public class RelevantDataActivity extends BaseActivity {
         recyclerView = (AnimRFRecyclerView)findViewById(R.id.refresh_layout2);
         headerView = LayoutInflater.from(this).inflate(R.layout.header_view, null);
         footerView = LayoutInflater.from(this).inflate(R.layout.footer_view, null);
-        customAdapter = new RelevantDataCardViewAdapter(this,relevantJobTitleList,relevantJobCatArray,relevantWorkExpArray,relevantSalaryArray);
+        customAdapter = new RelevantDataCardViewAdapter(this,relevantJobTitleList,relevantJobCatList,relevantWorkExpList,relevantSalaryList);
         recyclerView.addHeaderView(headerView);
         recyclerView.addFootView(footerView);
         recyclerView.setAdapter(customAdapter);
@@ -130,15 +120,52 @@ public class RelevantDataActivity extends BaseActivity {
     private void addData() {
         rownumStart += 5;
         rownumEnd += 5;
-        new RelevantDataGetDataTask(jobTitle,recyclerView,relevantJobTitleList,relevantJobCatArray,relevantWorkExpArray,relevantSalaryArray,rownumStart,rownumEnd).execute();
+        new RelevantDataGetDataTask().execute();
     }
 
     public void newData() {
         relevantJobTitleList.clear();
-        relevantJobCatArray.clear();
-        relevantWorkExpArray.clear();
-        relevantSalaryArray.clear();
-        new RelevantDataGetDataTask(jobTitle,recyclerView,relevantJobTitleList,relevantJobCatArray,relevantWorkExpArray,relevantSalaryArray,rownumStart,rownumEnd).execute();
+        relevantJobCatList.clear();
+        relevantWorkExpList.clear();
+        relevantSalaryList.clear();
+        new RelevantDataGetDataTask().execute();
+    }
+
+
+    RelevantDataDao relevantDataItemDao = new RelevantDataDao();
+    List<RelevantDataXML.RelevantDataItem> relevantDataItemList = new ArrayList<RelevantDataXML.RelevantDataItem>();
+
+    class RelevantDataGetDataTask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            relevantDataItemList = relevantDataItemDao.getRelevantDataItemDao(jobTitle,rownumStart,rownumEnd);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            recyclerView.getAdapter().notifyDataSetChanged();
+            recyclerView.setRefresh(false);
+
+            if(relevantDataItemList == null){
+                System.out.println("no anymore");
+                recyclerView.setRefreshEnable(false);
+                recyclerView.getAdapter().notifyDataSetChanged();
+            }
+            else{
+                for(int i = 0; i < relevantDataItemList.size(); i++) {
+                    relevantJobTitleList.add(relevantDataItemList.get(i).getJobTitle());
+                    relevantJobCatList.add(relevantDataItemList.get(i).getJobCat());
+                    relevantWorkExpList.add(relevantDataItemList.get(i).getExp());
+                    relevantSalaryList.add("$" + relevantDataItemList.get(i).getSalary());
+                }
+
+
+            }
+
+
+        }
     }
 
 }
