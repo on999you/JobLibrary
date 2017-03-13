@@ -74,6 +74,8 @@ public class SalaryCheckActivity extends BaseActivity {
     String workExpTo;
     String salarySourceValue;
 
+    ArrayList<String> tempJobCatArray = new ArrayList<String>();
+
     ArrayList<String> selectedJobCatArray = new ArrayList<String>();
     ArrayList<String> selectedJobIndustryArray = new ArrayList<String>();
 
@@ -296,14 +298,10 @@ public class SalaryCheckActivity extends BaseActivity {
                     } else {
                         jobFunctionButton.setText(which.length + " items selected");
 
-                        selectedJobCatArray.clear();
-
+                        tempJobCatArray.clear();
                         for(int i=0; i< which.length; i++){
-                            //System.out.println(Arrays.toString(which));
-                            //System.out.println(which[i]);
-                            selectedJobCatArray.add(which[i].toString());
+                            tempJobCatArray.add(which[i].toString());
                         }
-
                     }
                     return allowSelectionChange;
 
@@ -313,12 +311,11 @@ public class SalaryCheckActivity extends BaseActivity {
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        Log.v("testing", selectedJobCatArray.toString());
-
-                        for(int i =0; i<selectedJobCatArray.size(); i++){
-                            Log.v("testing2", jobCatIdArray.get(Integer.parseInt(selectedJobCatArray.get(i))));
+                        Log.v("testing", tempJobCatArray.toString());
+                        for(int i =0; i<tempJobCatArray.size(); i++){
+                            selectedJobCatArray.add(jobCatIdArray.get(Integer.parseInt(tempJobCatArray.get(i))));
                         }
-
+                        Log.v("testing", selectedJobCatArray.toString());
                     }
                 })
                 .alwaysCallMultiChoiceCallback()
