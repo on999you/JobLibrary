@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.StringRes;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -19,6 +20,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.dennislam.myapplication.R;
 import com.example.dennislam.myapplication.dao.criteria.IndustryDao;
@@ -31,6 +33,7 @@ import com.example.dennislam.myapplication.xml.SalarySourceXML;
 import com.example.dennislam.myapplication.xml.WorkExpXML;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static com.example.dennislam.myapplication.R.id.jobDescription;
@@ -67,10 +70,14 @@ public class SalaryCheckActivity extends BaseActivity {
     RadioButton radioButton1, radioButton2, radioButton3;
 
     //Values that pass to database
-    String jobCat, jobIndustry;
     String workExpFrom;
     String workExpTo;
     String salarySourceValue;
+
+    ArrayList<String> tempJobCatArray = new ArrayList<String>();
+
+    ArrayList<String> selectedJobCatArray = new ArrayList<String>();
+    ArrayList<String> selectedJobIndustryArray = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -282,18 +289,6 @@ public class SalaryCheckActivity extends BaseActivity {
                 .items(jobCatArray.toArray(new CharSequence[jobCatArray.size()]))
                 .itemsCallbackMultiChoice(new Integer[]{}, (dialog, which, text) -> {
 
-
-                    /*
-                    StringBuilder str = new StringBuilder();
-                    for (int i = 0; i < which.length; i++) {
-                        if (i > 0) str.append('\n');
-                        str.append(which[i]);
-                        str.append(": ");
-                        str.append(text[i]);
-                    }
-                    //showToast(str.toString());
-                    */
-
                     boolean allowSelectionChange = which.length <= 5;
                     if (!allowSelectionChange) {
                         showToast("Select up to 5 choices only.");
@@ -302,12 +297,27 @@ public class SalaryCheckActivity extends BaseActivity {
                         jobFunctionButton.setText(5 + " items selected");
                     } else {
                         jobFunctionButton.setText(which.length + " items selected");
+
+                        tempJobCatArray.clear();
+                        for(int i=0; i< which.length; i++){
+                            tempJobCatArray.add(which[i].toString());
+                        }
                     }
                     return allowSelectionChange;
 
                 })
                 .positiveColor(Color.parseColor("#486E76"))
                 .positiveText("Done")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        Log.v("testing", tempJobCatArray.toString());
+                        for(int i =0; i<tempJobCatArray.size(); i++){
+                            selectedJobCatArray.add(jobCatIdArray.get(Integer.parseInt(tempJobCatArray.get(i))));
+                        }
+                        Log.v("testing", selectedJobCatArray.toString());
+                    }
+                })
                 .alwaysCallMultiChoiceCallback()
                 .show();
     }
