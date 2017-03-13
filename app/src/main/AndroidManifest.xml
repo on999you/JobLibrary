@@ -40,7 +40,7 @@
             android:label="Salary Check" />
         <activity
             android:name=".activity.CvActivity"
-            android:label="Submit Your CV" />
+            android:label="Create Your Own CV" />
         <activity
             android:name="com.afollestad.materialcamera.CaptureActivity"
             android:theme="@style/MaterialCamera.CaptureActivity" />

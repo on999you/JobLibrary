@@ -78,7 +78,7 @@
 
             <TextView
                 android:drawablePadding="5dp"
-                android:drawableLeft="@drawable/coin"
+                android:drawableLeft="@drawable/coins"
                 android:layout_weight="1"
                 android:id="@+id/salary"
                 android:layout_width="match_parent"

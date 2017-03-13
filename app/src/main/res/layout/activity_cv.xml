@@ -18,7 +18,8 @@
         android:hint="Full Name"
         android:layout_gravity="center"
         android:gravity="center"
-        android:background="@drawable/testing"/>
+        android:background="@drawable/testing"
+        android:drawablePadding="7dp"/>
 
     <EditText
         android:id="@+id/emailField"
@@ -28,7 +29,8 @@
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:background="@drawable/testing"/>
+        android:background="@drawable/testing"
+        android:drawablePadding="7dp"/>
 
 
     <EditText
@@ -40,7 +42,8 @@
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:background="@drawable/testing"/>
+        android:background="@drawable/testing"
+        android:drawablePadding="7dp"/>
 
     <EditText
         android:id="@+id/expectedSalaryField"
@@ -51,7 +54,8 @@
         android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:background="@drawable/testing"/>
+        android:background="@drawable/testing"
+        android:drawablePadding="7dp"/>
 
     <TextView
         android:id="@+id/educationLevelField"

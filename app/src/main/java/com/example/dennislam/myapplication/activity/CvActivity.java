@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.media.ThumbnailUtils;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,7 +16,9 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -67,32 +70,31 @@ public class CvActivity extends BaseActivity {
         final EditText emailField = (EditText)findViewById(R.id.emailField);
         final EditText mobileNoField = (EditText)findViewById(R.id.mobileNoField);
         final EditText expectedSalaryField = (EditText)findViewById(R.id.expectedSalaryField);
+        final TextView educationLevelField = (TextView)findViewById(R.id.educationLevelField);
 
         Button sendCvButton = (Button)findViewById(R.id.sendCvButton);
-
+        Drawable exclamation= ResourcesCompat.getDrawable(getResources(), R.drawable.exclamation_mark, null);
+        exclamation.setBounds(0, 0, exclamation.getMinimumWidth(), exclamation.getMinimumHeight());
         sendCvButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                if(nameField.getText().toString().isEmpty()){
-                    Toast.makeText(getBaseContext(), "Please enter your full name first", Toast.LENGTH_LONG).show();
-                } else if(emailField.getText().toString().isEmpty()){
-                    Toast.makeText(view.getContext(), "Please enter your email address first", Toast.LENGTH_LONG).show();
-                } else if(mobileNoField.getText().toString().isEmpty()){
-                    Toast.makeText(view.getContext(), "Please enter your mobile number first", Toast.LENGTH_LONG).show();
-                } else if(expectedSalaryField.getText().toString().isEmpty()){
-                    Toast.makeText(view.getContext(), "Please enter the expected salary first", Toast.LENGTH_LONG).show();
-                } else if(educationLevelId.isEmpty()){
-                    Toast.makeText(view.getContext(), "Please select the education level first", Toast.LENGTH_LONG).show();
-                } else if(!videoFile.exists()){
-                    Toast.makeText(view.getContext(), "Please take a video first", Toast.LENGTH_LONG).show();
-                } else {
+                if(nameField.getText().toString().isEmpty() || emailField.getText().toString().isEmpty() || mobileNoField.getText().toString().isEmpty()
+                        || expectedSalaryField.getText().toString().isEmpty() || educationLevelId.isEmpty()){
+                    alertMsg("Empty Field(s) Found","Please fill in every field !");
+                } else{
                     name = nameField.getText().toString();
                     email = emailField.getText().toString();
                     mobileNo = mobileNoField.getText().toString();
                     expectedSalary = expectedSalaryField.getText().toString();
                     new sendCvAsyncTaskRunner().execute();
                 }
+
+                //add drawleft if fields did not complete
+                if(nameField.getText().toString().isEmpty()){nameField.setCompoundDrawables(exclamation,null,null,null);}else{nameField.setCompoundDrawables(null,null,null,null);}
+                if(emailField.getText().toString().isEmpty()){emailField.setCompoundDrawables(exclamation,null,null,null);}else{emailField.setCompoundDrawables(null,null,null,null);}
+                if(mobileNoField.getText().toString().isEmpty()){mobileNoField.setCompoundDrawables(exclamation,null,null,null);}else{mobileNoField.setCompoundDrawables(null,null,null,null);}
+                if(expectedSalaryField.getText().toString().isEmpty()){expectedSalaryField.setCompoundDrawables(exclamation,null,null,null);}else{expectedSalaryField.setCompoundDrawables(null,null,null,null);}
+                if(educationLevelId.isEmpty()){educationLevelField.setCompoundDrawables(exclamation,null,null,null);}else{educationLevelField.setCompoundDrawables(null,null,null,null);}
             }
         });
 
@@ -107,6 +109,20 @@ public class CvActivity extends BaseActivity {
         }
 
 
+    }
+
+    private void alertMsg(String title,String msg){
+        android.app.AlertDialog.Builder myAD = new android.app.AlertDialog.Builder(this);
+        myAD.setTitle(title);
+        myAD.setMessage(msg);
+        DialogInterface.OnClickListener OkClick = new DialogInterface.OnClickListener(){
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        };
+        myAD.setNeutralButton("OK",OkClick);
+        myAD.show();
     }
 
     class getEduLevelAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
