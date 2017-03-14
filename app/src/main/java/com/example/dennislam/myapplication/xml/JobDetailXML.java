@@ -89,9 +89,6 @@ public class JobDetailXML extends ItemsInfoBaseXML {
         @XStreamAlias("EMAIL")
         private String email;
 
-        @XStreamAlias("SIMPLE_BODY")
-        private String simpleBody;
-
         @XStreamAlias("JOBDESC")
         private String jobDesc;
 
@@ -103,6 +100,9 @@ public class JobDetailXML extends ItemsInfoBaseXML {
 
         @XStreamAlias("CREATE_DATE")
         private String createDate;
+
+        @XStreamAlias("SALARY")
+        private String salary;
 
 
         public String getJobTitle() {
@@ -145,14 +145,6 @@ public class JobDetailXML extends ItemsInfoBaseXML {
             this.email = email;
         }
 
-        public String getSimpleBody() {
-            return simpleBody;
-        }
-
-        public void setSimpleBody(String simpleBody) {
-            this.simpleBody = simpleBody;
-        }
-
         public String getJobDesc() {
             return jobDesc;
         }
@@ -185,9 +177,13 @@ public class JobDetailXML extends ItemsInfoBaseXML {
             this.createDate = createDate;
         }
 
+        public String getSalary() {
+            return salary;
+        }
 
-
-
+        public void setSalary(String salary) {
+            this.salary = salary;
+        }
 
     }
 }

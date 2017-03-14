@@ -151,6 +151,27 @@
                 android:textColor="#000000"
                 android:textSize="18sp"/>
 
+            <TextView
+                android:id="@+id/textView7"
+                android:paddingTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Salary"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="#000000" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:paddingTop="3dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="salary"
+                android:textColor="#000000"
+                android:textSize="18sp"/>
+
 
 
         </LinearLayout>
