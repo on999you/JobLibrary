@@ -228,7 +228,7 @@ public class SalaryCheckActivity extends BaseActivity {
                 .items(workExpNameArray.toArray(new CharSequence[workExpNameArray.size()]))
                 .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
                     TextView WorkExpFrom = (TextView)findViewById(R.id.WorkExpFrom);
-                    WorkExpFrom.setText(text);
+                    WorkExpFrom.setText("Work Exp From - " + text);
                     workExpFrom = workExpIdArray.get(which);
                     System.out.println(workExpFrom);
                     return true; // allow selection
@@ -245,7 +245,7 @@ public class SalaryCheckActivity extends BaseActivity {
                 .items(workExpNameArray.toArray(new CharSequence[workExpNameArray.size()]))
                 .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
                     TextView WorkExpTo = (TextView)findViewById(R.id.WorkExpTo);
-                    WorkExpTo.setText(text);
+                    WorkExpTo.setText("Work Exp To - " + text);
                     workExpTo = workExpIdArray.get(which);
                     System.out.println(workExpTo);
                     return true; // allow selection
