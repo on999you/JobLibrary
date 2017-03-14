@@ -1,17 +1,14 @@
 package com.example.dennislam.myapplication.dao;
 
-import android.util.Log;
-
+import com.example.dennislam.myapplication.xml.AppliedJobXML;
+import com.example.dennislam.myapplication.xml.GetCvXML;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
-import com.example.dennislam.myapplication.xml.SalaryResultXML;
-import com.example.dennislam.myapplication.xml.SendFeedbackXML;
 import com.thoughtworks.xstream.XStream;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -28,44 +25,33 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by dennislam on 16/1/2017.
+ * Created by dennislam on 14/3/2017.
  */
 
-public class SalaryResultDao {
+public class GetCvDao {
 
-    static final String URL = "http://192.168.232.66:8009/API_CT2_SALARY/GET_RESULT_FROM_SALARY_CHECK.aspx";
-    private List<SalaryResultXML.SalaryResultItem> salaryResultItemList;
+    static final String URL = "http://192.168.232.66:8009/API_CT2_MOBILECV/GET_CV.aspx";
+    private List<GetCvXML.GetCvItem> getCvItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;
-
     int statusCode;
     public int getStatusCode() {
         return statusCode;
     }
 
-    int itemsTotal;
-    public int getItemsTotal() {
-        return itemsTotal;
-    }
-
-
-    public List<SalaryResultXML.SalaryResultItem> getSalaryResultItemDao(String jobTitle, Boolean withSimilarWord, String workExpFrom, String workExpTo, String salarySourceValue){
+    public List<GetCvXML.GetCvItem> getCvItemDao(String udid){
 
         String xml;
 
         try {
             final HttpParams httpParams = new BasicHttpParams();
-            HttpConnectionParams.setConnectionTimeout(httpParams, 10000);
+            HttpConnectionParams.setConnectionTimeout(httpParams, 3000);
 
             DefaultHttpClient httpClient = new DefaultHttpClient(httpParams);
             HttpPost httpPost = new HttpPost(URL);
 
-            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(5);
-            nameValuePair.add(new BasicNameValuePair("jobTitle", jobTitle));
-            nameValuePair.add(new BasicNameValuePair("withSimilarWord", withSimilarWord.toString()));
-            nameValuePair.add(new BasicNameValuePair("expFrom", workExpFrom));
-            nameValuePair.add(new BasicNameValuePair("expTo", workExpTo));
-            nameValuePair.add(new BasicNameValuePair("salarySource", salarySourceValue));
+            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(1);
+            nameValuePair.add(new BasicNameValuePair("udid", udid));
 
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
 
@@ -78,16 +64,15 @@ public class SalaryResultDao {
             String contentNoBom = new String(bytes, 3, bytes.length - 3);
 
             XStream xStream = new XStream();
-            xStream.processAnnotations(SalaryResultXML.class);
+            xStream.processAnnotations(GetCvXML.class);
 
-            SalaryResultXML xmlFile = (SalaryResultXML) xStream.fromXML(contentNoBom);
+            GetCvXML xmlFile = (GetCvXML) xStream.fromXML(contentNoBom);
 
             getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();
-            itemsTotal = getItemsInfo.get(0).getItemsTotal();
 
             if(statusCode == 0) {
-                salaryResultItemList = xmlFile.getItems().getItem();
+                getCvItemList = xmlFile.getItems().getItem();
             }
 
         } catch (UnsupportedEncodingException e) {
@@ -97,7 +82,8 @@ public class SalaryResultDao {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return salaryResultItemList;
+        return getCvItemList;
+
     }
 
 }

@@ -34,28 +34,20 @@ public class JobDetailActivity extends BaseActivity {
     private SharedPreferences settings;
     private static final String data = "DATA";
     private static final String existingUdid = "";
-    String udid;
+    String udid, jobId;
 
-    String jobId;
-
-    List<JobDetailXML.JobDetailItem> jobDetailItemList = new ArrayList<JobDetailXML.JobDetailItem>();
     ArrayList<String> jobTitleArray = new ArrayList<String>();
     ArrayList<String> industryArray = new ArrayList<String>();
     ArrayList<String> jobAreaArray = new ArrayList<String>();
     ArrayList<String> companyArray = new ArrayList<String>();
     ArrayList<String> emailArray = new ArrayList<String>();
-    ArrayList<String> simpleBodyArray = new ArrayList<String>();
     ArrayList<String> jobDescArray = new ArrayList<String>();
     ArrayList<String> contactArray = new ArrayList<String>();
     ArrayList<String> companyDescArray = new ArrayList<String>();
     ArrayList<String> createDateArray = new ArrayList<String>();
+    ArrayList<String> salaryArray = new ArrayList<String>();
 
-    List<ItemsInfoBaseXML> applyJobItemList = new ArrayList<ItemsInfoBaseXML>();
-    JobDetailDao jobDetailItemDao = new JobDetailDao();
-    ApplyJobDao applyJobItemDao = new ApplyJobDao();
-
-    TextView jobTitleView, companyView, createDateView;
-    TextView textView1, textView2, textView3, textView4, textView5, textView6;
+    TextView jobTitleView, companyView, createDateView, textView1, textView2, textView3, textView4, textView5, textView6, textView7, textView8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +66,6 @@ public class JobDetailActivity extends BaseActivity {
             new getJobDetailAsyncTaskRunner().execute();
         }
 
-
         jobTitleView = (TextView)findViewById(R.id.jobTitleView);
         companyView = (TextView)findViewById(R.id.companyView);
         createDateView = (TextView)findViewById(R.id.createDateView);
@@ -85,6 +76,8 @@ public class JobDetailActivity extends BaseActivity {
         textView4 = (TextView)findViewById(R.id.textView4);
         textView5 = (TextView)findViewById(R.id.textView5);
         textView6 = (TextView)findViewById(R.id.textView6);
+        textView7 = (TextView)findViewById(R.id.textView7);
+        textView8 = (TextView)findViewById(R.id.textView8);
 
         RadioGroup jobDetailRadioGroup = (RadioGroup)findViewById(R.id.jobDetailRadioGroup);
         RadioButton jobDescRadio = (RadioButton) findViewById(R.id.jobDescription);
@@ -108,10 +101,12 @@ public class JobDetailActivity extends BaseActivity {
                     textView1.setText("Job Function");
                     textView3.setText("Job Industry");
                     textView5.setText("Job Description");
+                    textView7.setText("Salary");
 
-                    textView2.setText(jobAreaArray.get(0));
+                    textView2.setText(jobAreaArray.get(0) + salaryArray.get(0));
                     textView4.setText(industryArray.get(0));
                     textView6.setText(jobDescArray.get(0));
+                    textView8.setText(salaryArray.get(0));
 
                 } else if(checkedId == R.id.companyInfo) {
                     companyInfoRadio.setBackgroundColor(Color.parseColor("#85A4A0"));
@@ -123,12 +118,12 @@ public class JobDetailActivity extends BaseActivity {
                     textView1.setText("Email Address");
                     textView3.setText("Contact");
                     textView5.setText("Company Description");
+                    textView7.setText("");
 
                     textView2.setText(emailArray.get(0));
                     textView4.setText(contactArray.get(0));
                     textView6.setText(companyDescArray.get(0));
-
-
+                    textView8.setText("");
                 }
             }
         });
@@ -142,12 +137,12 @@ public class JobDetailActivity extends BaseActivity {
                 new applyJobAsyncTaskRunner().execute();
             }
         });
-
-
     }
 
-
     class getJobDetailAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
+
+        List<JobDetailXML.JobDetailItem> jobDetailItemList = new ArrayList<JobDetailXML.JobDetailItem>();
+        JobDetailDao jobDetailItemDao = new JobDetailDao();
 
         @Override
         protected void onPreExecute(){
@@ -175,42 +170,25 @@ public class JobDetailActivity extends BaseActivity {
                 jobAreaArray.add(i, jobDetailItemList.get(i).getJobArea());
                 companyArray.add(i, jobDetailItemList.get(i).getCompany());
                 emailArray.add(i, jobDetailItemList.get(i).getEmail());
-                simpleBodyArray.add(i, jobDetailItemList.get(i).getSimpleBody());
                 jobDescArray.add(i, jobDetailItemList.get(i).getJobDesc());
                 contactArray.add(i, jobDetailItemList.get(i).getContact());
                 companyDescArray.add(i, jobDetailItemList.get(i).getCompanyDesc());
                 createDateArray.add(i, jobDetailItemList.get(i).getCreateDate());
-
-
-                System.out.println(jobTitleArray.get(i));
-                System.out.println(industryArray.get(i));
-                System.out.println(jobAreaArray.get(i));
-                System.out.println(companyArray.get(i));
-                System.out.println(emailArray.get(i));
-                System.out.println(simpleBodyArray.get(i));
-                System.out.println(jobDescArray.get(i));
-                System.out.println(contactArray.get(i));
-                System.out.println(createDateArray.get(i));
-
-
+                salaryArray.add(i, jobDetailItemList.get(i).getSalary());
 
                 jobTitleView.setText(jobTitleArray.get(0));
-                //industryView.setText(industryArray.get(0));
-                //jobAreaView.setText(jobAreaArray.get(0));
                 companyView.setText("( " + companyArray.get(0) + " )");
-                //emailView.setText(emailArray.get(0));
-                //simpleBodyView.setText(simpleBodyArray.get(0));
-                //jobDescView.setText(jobDescArray.get(0));
-                //contactView.setText(contactArray.get(0));
                 createDateView.setText(createDateArray.get(0));
 
                 textView1.setText("Job Function");
                 textView3.setText("Industry");
                 textView5.setText("Job Description");
+                textView7.setText("Salary");
 
                 textView2.setText(jobAreaArray.get(0));
                 textView4.setText(industryArray.get(0));
                 textView6.setText(jobDescArray.get(0));
+                textView8.setText(salaryArray.get(0));
 
             }
             if (jobDetailItemList.size() > 0) {
@@ -225,9 +203,10 @@ public class JobDetailActivity extends BaseActivity {
     }
 
 
-
-
     class applyJobAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
+
+        List<ItemsInfoBaseXML> applyJobItemList = new ArrayList<ItemsInfoBaseXML>();
+        ApplyJobDao applyJobItemDao = new ApplyJobDao();
 
         @Override
         protected void onPreExecute(){
@@ -239,7 +218,6 @@ public class JobDetailActivity extends BaseActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-
             applyJobItemList = applyJobItemDao.applyJobItemDao(udid, jobId);
             return null;
         }

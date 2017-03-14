@@ -20,34 +20,34 @@
         android:gravity="center"/>
 
     <EditText
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="12dp"
         android:id="@+id/nameField"
         android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:hint="@string/faq_name"
         android:layout_gravity="center"
         android:gravity="center"
-        android:background="@drawable/testing"/>
+        android:background="@drawable/criterias_bg"/>
 
     <EditText
         android:id="@+id/emailField"
         android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:hint="@string/faq_email"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="12dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:background="@drawable/testing"/>
+        android:background="@drawable/criterias_bg"/>
 
     <EditText
         android:id="@+id/commentField"
         android:layout_width="300dp"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:hint="@string/faq_comments"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="12dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:background="@drawable/testing"/>
+        android:background="@drawable/criterias_bg"/>
 
     <LinearLayout
         android:layout_width="wrap_content"

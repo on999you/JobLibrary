@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,15 +28,11 @@ import java.util.List;
 public class SearchJobsActivity extends BaseActivity {
 
     private Toast toast;
+    EditText salaryMin, salaryMax;
 
-    JobCatDao jobCatItemDao = new JobCatDao();
-    IndustryDao industryItemDao = new IndustryDao();
-
-    List<JobCatXML.JobCatItem> jobCatItemList = new ArrayList<JobCatXML.JobCatItem>();
     ArrayList<String> jobCatArray = new ArrayList<String>();
     ArrayList<String> jobCatIdArray = new ArrayList<String>();
 
-    List<IndustryXML.IndustryItem> industryItemList = new ArrayList<IndustryXML.IndustryItem>();
     ArrayList<String> industryArray = new ArrayList<String>();
     ArrayList<String> industryIdArray = new ArrayList<String>();
 
@@ -55,6 +52,8 @@ public class SearchJobsActivity extends BaseActivity {
 
         jobFunctionButton = (TextView)findViewById(R.id.jobFunctionButton);
         jobIndustryButton = (TextView)findViewById(R.id.jobIndustryButton);
+        salaryMin = (EditText)findViewById(R.id.salaryMin);
+        salaryMax = (EditText)findViewById(R.id.salaryMax);
 
         //Run the code if there are network connected
         if(globalVariable.getNetwork() == true){
@@ -62,7 +61,20 @@ public class SearchJobsActivity extends BaseActivity {
         }
     }
 
+    public void searchNow(View view){
+        if(salaryMin.getText().toString()!="" && salaryMax.getText().toString()!=""){
+            if(Integer.parseInt(salaryMin.getText().toString()) > Integer.parseInt(salaryMax.getText().toString())){
+                Toast.makeText(getBaseContext(), "Wrong salary range", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
     class getCriteriasAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
+
+        List<JobCatXML.JobCatItem> jobCatItemList = new ArrayList<JobCatXML.JobCatItem>();
+        List<IndustryXML.IndustryItem> industryItemList = new ArrayList<IndustryXML.IndustryItem>();
+        JobCatDao jobCatItemDao = new JobCatDao();
+        IndustryDao industryItemDao = new IndustryDao();
 
         @Override
         protected void onPreExecute(){
@@ -137,11 +149,11 @@ public class SearchJobsActivity extends BaseActivity {
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        Log.v("testing", tempJobCatArray.toString());
+                        Log.v("criterias_bg", tempJobCatArray.toString());
                         for(int i =0; i<tempJobCatArray.size(); i++){
                             selectedJobCatArray.add(jobCatIdArray.get(Integer.parseInt(tempJobCatArray.get(i))));
                         }
-                        Log.v("testing", selectedJobCatArray.toString());
+                        Log.v("criterias_bg", selectedJobCatArray.toString());
                     }
                 })
                 .alwaysCallMultiChoiceCallback()

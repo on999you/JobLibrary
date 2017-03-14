@@ -8,13 +8,22 @@
     android:paddingTop="?attr/actionBarSize"
     tools:context="com.example.dennislam.myapplication.activity.AboutUsActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/dra_aboutUs"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:layout_gravity="center"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="#85A4A0">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="string/dra_aboutUs"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:textSize="30sp"
+            android:layout_gravity="center"/>
+
+    </LinearLayout>
+
 
 
 </LinearLayout>
