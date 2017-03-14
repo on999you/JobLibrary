@@ -23,7 +23,7 @@ public class MainPageActivity extends BaseActivity {
     }
 
     public void passToJobList(View v){
-        Intent intent = new Intent(getBaseContext(), JobListActivity.class);
+        Intent intent = new Intent(getBaseContext(), SearchJobsActivity.class);
         startActivity(intent);
     }
 
