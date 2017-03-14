@@ -47,40 +47,11 @@ public class MainPageActivity extends BaseActivity {
         startActivity(intent);
     }
 
-
     public void exitApp(View v){
-        createDialog();
+        exitAppDialog();
     }
 
     public void onBackPressed() {
-        createDialog();
+        exitAppDialog();
     }
-
-    private void createDialog() {
-        AlertDialog.Builder alertDlg = new AlertDialog.Builder(this);
-        alertDlg.setMessage("Are you sure you want to exit?");
-        alertDlg.setCancelable(false); // We avoid that the dialog can be cancelled, forcing the user to choose one of the options
-        alertDlg.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_HOME);
-                startActivity(intent);
-            }
-        });
-
-        alertDlg.setNegativeButton("No", new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-        alertDlg.create().show();
-    }
-
-
-
-
 }

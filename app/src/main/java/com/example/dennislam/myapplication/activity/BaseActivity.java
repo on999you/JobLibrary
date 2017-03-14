@@ -123,7 +123,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             startActivity(intent);
 
         } else if(id == R.id.nav_search) {
-            Intent intent = new Intent(getBaseContext(), JobListActivity.class);
+            Intent intent = new Intent(getBaseContext(), SearchJobsActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_applied) {
@@ -152,7 +152,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
         } else if (id == R.id.nav_exit) {
             //Exit app
-            createDialog();
+            exitAppDialog();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -160,28 +160,21 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    private void createDialog() {
-        AlertDialog.Builder alertDlg = new AlertDialog.Builder(this);
-        alertDlg.setMessage("Are you sure you want to exit?");
-        alertDlg.setCancelable(false); // We avoid that the dialog can be cancelled, forcing the user to choose one of the options
-        alertDlg.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+    public void exitAppDialog() {
+        new MaterialDialog.Builder(this)
+                .content("Are you sure you want to exit?")
+                .positiveText("Yes")
+                .negativeText("No")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        Intent intent = new Intent(Intent.ACTION_MAIN);
+                        intent.addCategory(Intent.CATEGORY_HOME);
+                        startActivity(intent);
+                    }
+                })
+                .show();
 
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                intent.addCategory(Intent.CATEGORY_HOME);
-                startActivity(intent);
-            }
-        });
-
-        alertDlg.setNegativeButton("No", new DialogInterface.OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-
-            }
-        });
-        alertDlg.create().show();
     }
 
 }
