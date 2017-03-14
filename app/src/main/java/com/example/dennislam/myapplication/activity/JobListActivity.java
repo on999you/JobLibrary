@@ -150,7 +150,6 @@ public class JobListActivity extends BaseActivity {
             recyclerView.setRefresh(false);
 
             if(jobListItemList == null){
-                recyclerView.getAdapter().notifyDataSetChanged();
                 needLoadMore = false;
             }
             else{
