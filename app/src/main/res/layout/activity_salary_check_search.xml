@@ -15,7 +15,7 @@
         android:id="@+id/jobTitleField"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:hint="JOB TITLE"
+        android:hint="@string/sC_jobtitle"
         android:layout_gravity="center"
         android:gravity="center"
         android:backgroundTint="#000000" />
@@ -24,7 +24,7 @@
         android:id="@+id/similarCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search with similar words"
+        android:text="@string/sC_searchWithS"
         android:layout_gravity="center"
         android:checked="true"/>
 
@@ -35,7 +35,7 @@
         android:layout_height="40dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="Job Function"
+        android:text="@string/sC_jobFunction"
         android:textSize="17sp"
         android:background="@drawable/testing" />
 
@@ -47,7 +47,7 @@
         android:layout_height="40dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="Job Industry"
+        android:text="@string/sC_jobIndustry"
         android:textSize="17sp"
         android:background="@drawable/testing"/>
 
@@ -55,7 +55,7 @@
         android:id="@+id/salarySource"
         android:onClick="salarySourceDialog"
         android:layout_marginTop="10dp"
-        android:text="Salary Source(s) Within"
+        android:text="@string/sC_Salarysource"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
@@ -67,7 +67,7 @@
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Work Exp"
+        android:text="@string/sC_workExp"
         android:textColor="#F7F7F7"
         android:textStyle="bold"
         android:textSize="20sp"
@@ -87,7 +87,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="FROM"
+                android:text="@string/from"
                 android:textSize="20sp"
                 android:layout_gravity="center"/>
 
@@ -96,7 +96,7 @@
                 android:onClick="WorkExpFromDialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ALL / UNSPECIFIED"
+                android:text="@string/sC_Workstart"
                 android:textSize="18sp"
                 android:textColor="#000000"
                 android:gravity="center"/>
@@ -113,7 +113,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TO"
+                android:text="@string/to"
                 android:textSize="20sp"
                 android:layout_gravity="center"/>
 
@@ -122,7 +122,7 @@
                 android:onClick="WorkExpToDialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="ALL / UNSPECIFIED"
+                android:text="@string/sC_WorkTo"
                 android:textSize="18sp"
                 android:textColor="#000000"
                 android:gravity="center"/>
@@ -136,7 +136,7 @@
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Source Type"
+        android:text="@string/sC_SourceT"
         android:textStyle="bold"
         android:textSize="20sp"
         android:textColor="#F7F7F7"
@@ -161,7 +161,7 @@
             android:buttonTint="#000000"
             android:gravity="center"
             android:padding="5dp"
-            android:text="UNSPECIFIED"
+            android:text="@string/unspecified"
             android:button="@android:color/transparent"/>
 
         <RadioButton
@@ -173,7 +173,7 @@
             android:gravity="center"
             android:padding="5dp"
             android:buttonTint="#000000"
-            android:text="Employer"
+            android:text="@string/employer"
             android:button="@android:color/transparent"/>
 
         <RadioButton
@@ -184,7 +184,7 @@
             android:gravity="center"
             android:padding="5dp"
             android:buttonTint="#000000"
-            android:text="Job Seeker"
+            android:text="@string/jobSeeker"
             android:button="@android:color/transparent"/>
 
     </RadioGroup>
@@ -204,7 +204,7 @@
             android:id="@+id/searchButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Search NOW"
+            android:text="@string/sC_buttonSearch"
             android:textSize="20sp"
             android:textColor="#F7F7F7"
             android:background="@drawable/button_style"

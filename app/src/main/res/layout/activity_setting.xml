@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="?attr/actionBarSize"
-    >
+    tool:context="com.example.dennislam.myapplication.activity.SearchJobsActivity">
     <TextView
      android:layout_width="match_parent"
-     android:layout_height="50dp"
-     android:text="Notification"
+     android:layout_height="55dp"
+     android:text="@string/notification"
      android:textSize="25dp"
      android:textStyle="bold"
      android:padding="10dp"
@@ -16,8 +18,8 @@
      android:onClick=""/>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="Language"
+        android:layout_height="55dp"
+        android:text="@string/language"
         android:textSize="25dp"
         android:textStyle="bold"
         android:padding="10dp"

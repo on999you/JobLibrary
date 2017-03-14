@@ -27,7 +27,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="13sp"
-                android:text="Job Title"
+                android:text="@string/rlj_jobT"
                 android:singleLine="true"
                 android:maxLines="1"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:textSize="13sp"
-                android:text="Work Exp"
+                android:text="@string/rlj_workExp"
                 android:singleLine="true"
                 android:maxLines="1"
                 android:textAppearance="?android:attr/textAppearanceLarge" />
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:textSize="13sp"
-                android:text="Salary"
+                android:text="@string/rlj_wages"
                 android:singleLine="true"
                 android:maxLines="1"
                 android:textAppearance="?android:attr/textAppearanceLarge" />

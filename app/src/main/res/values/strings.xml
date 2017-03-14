@@ -7,4 +7,73 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_base2">BaseActivity2</string>
 
+    <string name="mp_salaryCheck">SALARY CHECK</string>
+    <string name="mp_searchJobs">SEARCH</string>
+    <string name="mp_CV">CV</string>
+    <string name="mp_appliedJobs">APPLIED JOBS</string>
+    <string name="mp_FAQ">FAQ</string>
+    <string name="mp_exit">EXIT</string>
+
+    <string name="dra_searchJobs">Search Jobs</string>
+    <string name="dra_appliedJobs">Applied Jobs</string>
+    <string name="dra_salaryCheck">Salary Check</string>
+    <string name="dra_salaryReport">Salary Report</string>
+    <string name="dra_settings">Settings</string>
+    <string name="dra_aboutUs">About Us</string>
+    <string name="dra_exit">Exit</string>
+
+    <string name="sC_jobtitle">Job Title</string>
+    <string name="sC_jobFunction">Job Function</string>
+    <string name="sC_jobIndustry">Job Industry</string>
+    <string name="sC_Salarysource">Salary Source(s) Within</string>
+    <string name="sC_searchWithS">Search with similar words</string>
+    <string name="sC_workExp">Work Exp</string>
+    <string name="sC_SourceT">Source Type</string>
+    <string name="sC_buttonSearch">SEARCH NOW</string>
+    <string name="sC_Workstart">ALL / UNSPECIFIED</string>
+    <string name="sC_WorkTo">ALL / UNSPECIFIED</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+    <string name="unspecified">UNSPECIFIED</string>
+    <string name="employer">EMPLOYER</string>
+    <string name="jobSeeker">JOB SEEKER</string>
+
+    <string name="barC_title">Salary Distribution</string>
+    <string name="relevantSalaryD">RELEVANT SALARY DATA</string>
+    <string name="barC_landscape_title"> 's Salary Distribution Chart</string>
+    <string name="barC_low">Lowest : </string>
+    <string name="barC_mid">Median : </string>
+    <string name="barC_high">Highest : </string>
+
+    <string name="rlj_jobT">Job Tilte : </string>
+    <string name="rlj_workExp">WorkExp : </string>
+    <string name="rlj_wages">Wages : </string>
+
+    <string name="faq_name">Name</string>
+    <string name="faq_email">Email Address</string>
+    <string name="faq_comments">Comments</string>
+    <string name="faq_btnR">RESET</string>
+    <string name="faq_btnD">DONE</string>
+    <string name="feedback">FeedBack</string>
+
+    <string name="language">Language</string>
+    <string name="notification">Notification</string>
+    <string name="CV_phoneNo">Phone Number</string>
+    <string name="CV_expectedSalary">Expected Salary (HKD)</string>
+    <string name="CV_submit">Submit</string>
+    <string name="Cv_eduLevel">Education Level</string>
+
+    <string name="apply">Apply now</string>
+    <string name="jobDesc">Job Description</string>
+    <string name="industrial">Industry</string>
+    <string name="jobinfo">Job Info</string>
+    <string name="companyInfo">Company Info</string>
+    <string name="jobFun">Job Funcion</string>
+
+    <string name="mainPage">Home page</string>
+    <string name="jobs">JOBS</string>
+    <string name="salary">SALARY</string>
+    <string name="others">OTHERS</string>
+
+
 </resources>
