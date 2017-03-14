@@ -55,8 +55,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
     private double itemcount;
     private DecimalFormat decimalFormat = new DecimalFormat("###,###,###,##0.00");
 
-    SalaryResultDao salaryResultItemDao = new SalaryResultDao();
-    GraphInfoDao graphInfoItemDao = new GraphInfoDao();
+
 
     //Receive inserting data
     Boolean withSimilarWord;
@@ -65,9 +64,6 @@ public class SalaryCheckResultActivity extends BaseActivity {
     ArrayList<String> finalSelectedJobIndustryArray = new ArrayList<String>();
 
     int itemsTotal;
-
-    List<SalaryResultXML.SalaryResultItem> salaryResultItemList = new ArrayList<SalaryResultXML.SalaryResultItem>();
-    List<GraphInfoXML.GraphInfoItem> graphInfoItemList = new ArrayList<GraphInfoXML.GraphInfoItem>();
 
     ArrayList<Integer> medSalaryArray = new ArrayList<Integer>();
 
@@ -202,6 +198,9 @@ public class SalaryCheckResultActivity extends BaseActivity {
 
     class GetSalaryCheckResultAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
+        List<SalaryResultXML.SalaryResultItem> salaryResultItemList = new ArrayList<SalaryResultXML.SalaryResultItem>();
+        SalaryResultDao salaryResultItemDao = new SalaryResultDao();
+
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
@@ -269,6 +268,9 @@ public class SalaryCheckResultActivity extends BaseActivity {
     }
 
     class GetGraphInfoAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
+
+        List<GraphInfoXML.GraphInfoItem> graphInfoItemList = new ArrayList<GraphInfoXML.GraphInfoItem>();
+        GraphInfoDao graphInfoItemDao = new GraphInfoDao();
 
         @Override
         protected void onPreExecute(){

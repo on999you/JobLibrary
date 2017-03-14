@@ -34,11 +34,8 @@ public class JobDetailActivity extends BaseActivity {
     private SharedPreferences settings;
     private static final String data = "DATA";
     private static final String existingUdid = "";
-    String udid;
+    String udid, jobId;
 
-    String jobId;
-
-    List<JobDetailXML.JobDetailItem> jobDetailItemList = new ArrayList<JobDetailXML.JobDetailItem>();
     ArrayList<String> jobTitleArray = new ArrayList<String>();
     ArrayList<String> industryArray = new ArrayList<String>();
     ArrayList<String> jobAreaArray = new ArrayList<String>();
@@ -50,12 +47,7 @@ public class JobDetailActivity extends BaseActivity {
     ArrayList<String> createDateArray = new ArrayList<String>();
     ArrayList<String> salaryArray = new ArrayList<String>();
 
-    List<ItemsInfoBaseXML> applyJobItemList = new ArrayList<ItemsInfoBaseXML>();
-    JobDetailDao jobDetailItemDao = new JobDetailDao();
-    ApplyJobDao applyJobItemDao = new ApplyJobDao();
-
-    TextView jobTitleView, companyView, createDateView;
-    TextView textView1, textView2, textView3, textView4, textView5, textView6, textView7, textView8;
+    TextView jobTitleView, companyView, createDateView, textView1, textView2, textView3, textView4, textView5, textView6, textView7, textView8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +65,6 @@ public class JobDetailActivity extends BaseActivity {
         if(globalVariable.getNetwork() == true){
             new getJobDetailAsyncTaskRunner().execute();
         }
-
 
         jobTitleView = (TextView)findViewById(R.id.jobTitleView);
         companyView = (TextView)findViewById(R.id.companyView);
@@ -133,8 +124,6 @@ public class JobDetailActivity extends BaseActivity {
                     textView4.setText(contactArray.get(0));
                     textView6.setText(companyDescArray.get(0));
                     textView8.setText("");
-
-
                 }
             }
         });
@@ -148,12 +137,12 @@ public class JobDetailActivity extends BaseActivity {
                 new applyJobAsyncTaskRunner().execute();
             }
         });
-
-
     }
 
-
     class getJobDetailAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
+
+        List<JobDetailXML.JobDetailItem> jobDetailItemList = new ArrayList<JobDetailXML.JobDetailItem>();
+        JobDetailDao jobDetailItemDao = new JobDetailDao();
 
         @Override
         protected void onPreExecute(){
@@ -216,6 +205,9 @@ public class JobDetailActivity extends BaseActivity {
 
     class applyJobAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
+        List<ItemsInfoBaseXML> applyJobItemList = new ArrayList<ItemsInfoBaseXML>();
+        ApplyJobDao applyJobItemDao = new ApplyJobDao();
+
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
@@ -226,7 +218,6 @@ public class JobDetailActivity extends BaseActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-
             applyJobItemList = applyJobItemDao.applyJobItemDao(udid, jobId);
             return null;
         }

@@ -25,10 +25,6 @@ public class FeedbackActivity extends BaseActivity {
     String udid, name, email, comments;
     float rating;
 
-    SendFeedbackDao feedbackItemDao = new SendFeedbackDao();
-
-    List<ItemsInfoBaseXML> feedbackItemList = new ArrayList<ItemsInfoBaseXML>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +83,9 @@ public class FeedbackActivity extends BaseActivity {
 
     class sendFeedbackAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
+        List<ItemsInfoBaseXML> feedbackItemList = new ArrayList<ItemsInfoBaseXML>();
+        SendFeedbackDao feedbackItemDao = new SendFeedbackDao();
+
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
@@ -98,6 +97,7 @@ public class FeedbackActivity extends BaseActivity {
         @Override
         protected Void doInBackground(Void... params) {
             udid = globalVariable.getUdid();
+
             feedbackItemList = feedbackItemDao.getFeedbackItemDao(udid,name,email,comments,rating);
             return null;
         }

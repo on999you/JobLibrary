@@ -130,13 +130,10 @@ public class JobListActivity extends BaseActivity {
         new getJobListAsyncTaskRunner().execute();
     }
 
-
-
-    JobListDao jobListItemDao = new JobListDao();
-    List<JobListXML.JobListItem> jobListItemList = new ArrayList<JobListXML.JobListItem>();
-
-
     class getJobListAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
+
+        List<JobListXML.JobListItem> jobListItemList = new ArrayList<JobListXML.JobListItem>();
+        JobListDao jobListItemDao = new JobListDao();
 
         @Override
         protected Void doInBackground(Void... params) {

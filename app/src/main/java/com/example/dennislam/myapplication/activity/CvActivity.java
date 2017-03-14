@@ -53,10 +53,6 @@ public class CvActivity extends BaseActivity {
     String udid,name,email,mobileNo,expectedSalary;
     String educationLevelId = "";
 
-    List<ItemsInfoBaseXML> cvItemList = new ArrayList<ItemsInfoBaseXML>();
-    List<GetCvXML.GetCvItem> getCvItemList = new ArrayList<GetCvXML.GetCvItem>();
-    List<EducationLevelXML.EducationLevelItem> educationLevelItemList = new ArrayList<EducationLevelXML.EducationLevelItem>();
-
     ArrayList<String> educationLevelArray = new ArrayList<String>();
     ArrayList<String> educationLevelIdArray = new ArrayList<String>();
 
@@ -111,8 +107,6 @@ public class CvActivity extends BaseActivity {
         if(globalVariable.getNetwork() == true){
             new getEduLvAndCvAsyncTaskRunner().execute();
         }
-
-
     }
 
 
@@ -133,6 +127,11 @@ public class CvActivity extends BaseActivity {
 
     class getEduLvAndCvAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
+        List<GetCvXML.GetCvItem> getCvItemList = new ArrayList<GetCvXML.GetCvItem>();
+        List<EducationLevelXML.EducationLevelItem> educationLevelItemList = new ArrayList<EducationLevelXML.EducationLevelItem>();
+        EducationLevelDao educationLevelItemDao = new EducationLevelDao();
+        GetCvDao getCvItemDao = new GetCvDao();
+
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
@@ -143,11 +142,9 @@ public class CvActivity extends BaseActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            EducationLevelDao educationLevelItemDao = new EducationLevelDao();
             educationLevelItemList = educationLevelItemDao.getEducationLevelItemDao();
 
             udid = globalVariable.getUdid();
-            GetCvDao getCvItemDao = new GetCvDao();
             getCvItemList = getCvItemDao.getCvItemDao(udid);
 
             return null;
@@ -305,10 +302,13 @@ public class CvActivity extends BaseActivity {
 
     class sendCvAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
+        List<ItemsInfoBaseXML> cvItemList = new ArrayList<ItemsInfoBaseXML>();
+        SendCvDao cvItemDao = new SendCvDao();
+
         @Override
         protected Void doInBackground(Void... params) {
             udid = globalVariable.getUdid();
-            SendCvDao cvItemDao = new SendCvDao();
+
             cvItemList = cvItemDao.sendCvItemDao(videoFile,udid,name,email,mobileNo,expectedSalary,educationLevelId);
             return null;
         }

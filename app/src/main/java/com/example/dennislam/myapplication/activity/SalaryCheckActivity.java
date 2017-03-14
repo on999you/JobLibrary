@@ -44,25 +44,15 @@ public class SalaryCheckActivity extends BaseActivity {
     private Toast toast;
     public static String sdtvName;
 
-    WorkExpDao workExpItemDao = new WorkExpDao();
-    SalarySourceDao salarySourceItemDao = new SalarySourceDao();
-    JobCatDao jobCatItemDao = new JobCatDao();
-    IndustryDao industryItemDao = new IndustryDao();
-
-    List<WorkExpXML.WorkExpItem> workExpItemList = new ArrayList<WorkExpXML.WorkExpItem>();
     ArrayList<String> workExpNameArray = new ArrayList<String>();
     ArrayList<String> workExpIdArray = new ArrayList<String>();
 
-    List<JobCatXML.JobCatItem> jobCatItemList = new ArrayList<JobCatXML.JobCatItem>();
     ArrayList<String> jobCatArray = new ArrayList<String>();
     ArrayList<String> jobCatIdArray = new ArrayList<String>();
 
-    List<IndustryXML.IndustryItem> industryItemList = new ArrayList<IndustryXML.IndustryItem>();
     ArrayList<String> industryArray = new ArrayList<String>();
     ArrayList<String> industryIdArray = new ArrayList<String>();
 
-
-    List<SalarySourceXML.SalarySourceItem> salarySourceItemList = new ArrayList<SalarySourceXML.SalarySourceItem>();
     ArrayList<String> salarySourceArray = new ArrayList<String>();
     ArrayList<String> salarySourceIdArray = new ArrayList<String>();
 
@@ -164,6 +154,16 @@ public class SalaryCheckActivity extends BaseActivity {
     }
 
     class getCriteriasAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
+
+        List<WorkExpXML.WorkExpItem> workExpItemList = new ArrayList<WorkExpXML.WorkExpItem>();
+        List<JobCatXML.JobCatItem> jobCatItemList = new ArrayList<JobCatXML.JobCatItem>();
+        List<IndustryXML.IndustryItem> industryItemList = new ArrayList<IndustryXML.IndustryItem>();
+        List<SalarySourceXML.SalarySourceItem> salarySourceItemList = new ArrayList<SalarySourceXML.SalarySourceItem>();
+
+        WorkExpDao workExpItemDao = new WorkExpDao();
+        SalarySourceDao salarySourceItemDao = new SalarySourceDao();
+        JobCatDao jobCatItemDao = new JobCatDao();
+        IndustryDao industryItemDao = new IndustryDao();
 
         @Override
         protected void onPreExecute(){

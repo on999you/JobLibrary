@@ -34,9 +34,7 @@ public class AppliedJobActivity extends BaseActivity{
     private List<String> companyNameList= new ArrayList<>();
     private List<String> applyDateList= new ArrayList<>();
     int rownumStart, rownumEnd;
-
     Boolean needLoadMore = true;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -132,10 +130,10 @@ public class AppliedJobActivity extends BaseActivity{
         new AppliedJobGetDataTask().execute();
     }
 
-    List<AppliedJobXML.AppliedJobItem> appliedJobItemList = new ArrayList<AppliedJobXML.AppliedJobItem>();
-    AppliedJobDao appliedJobItemDao = new AppliedJobDao();
-
     class AppliedJobGetDataTask extends AsyncTask<Void, Void, Void> {
+
+        List<AppliedJobXML.AppliedJobItem> appliedJobItemList = new ArrayList<AppliedJobXML.AppliedJobItem>();
+        AppliedJobDao appliedJobItemDao = new AppliedJobDao();
 
         @Override
         protected Void doInBackground(Void... params) {

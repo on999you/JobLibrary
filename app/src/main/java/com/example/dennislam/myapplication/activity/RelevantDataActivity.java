@@ -138,11 +138,10 @@ public class RelevantDataActivity extends BaseActivity {
         new RelevantDataGetDataTask().execute();
     }
 
-
-    RelevantDataDao relevantDataItemDao = new RelevantDataDao();
-    List<RelevantDataXML.RelevantDataItem> relevantDataItemList = new ArrayList<RelevantDataXML.RelevantDataItem>();
-
     class RelevantDataGetDataTask extends AsyncTask<Void, Void, Void> {
+
+        List<RelevantDataXML.RelevantDataItem> relevantDataItemList = new ArrayList<RelevantDataXML.RelevantDataItem>();
+        RelevantDataDao relevantDataItemDao = new RelevantDataDao();
 
         @Override
         protected Void doInBackground(Void... params) {

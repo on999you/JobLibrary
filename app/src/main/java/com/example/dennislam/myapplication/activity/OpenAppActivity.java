@@ -37,9 +37,7 @@ public class OpenAppActivity extends BaseActivity {
     String osType = "A";
 
 
-    OpenAppDao openAppItemDao = new OpenAppDao();
 
-    List<OpenAppXML.OpenAppItem> openAppItemList = new ArrayList<OpenAppXML.OpenAppItem>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +54,9 @@ public class OpenAppActivity extends BaseActivity {
     }
 
     class openAppAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
+
+        List<OpenAppXML.OpenAppItem> openAppItemList = new ArrayList<OpenAppXML.OpenAppItem>();
+        OpenAppDao openAppItemDao = new OpenAppDao();
 
         @Override
         protected void onPreExecute(){
