@@ -59,7 +59,7 @@ public class AppliedJobCardViewAdapter extends RecyclerView.Adapter<AppliedJobCa
         companyName.setText(companyNameList.get(position));
 
         TextView applyDate = holder.applyDate;
-        applyDate.setText("Apply Date : " + System.lineSeparator() + applyDateList.get(position));
+        applyDate.setText("Apply Date : " + System.lineSeparator()+applyDateList.get(position));
     }
 
     @Override

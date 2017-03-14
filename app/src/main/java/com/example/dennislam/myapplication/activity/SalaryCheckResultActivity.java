@@ -433,8 +433,8 @@ public class SalaryCheckResultActivity extends BaseActivity {
         Log.v("test1", count);
         itemcount = Integer.parseInt(count);
         percent= (itemcount*100/totalJ);
-        Log.v("test1", totalJ + "total1");
         decimalFormat.format(percent);
+        Log.v("test1", totalJ + "total1 ////"+percent );
         entries.add(new BarEntry(position,(float)percent));
 
     }
@@ -443,8 +443,8 @@ public class SalaryCheckResultActivity extends BaseActivity {
         Log.v("test2", count);
         itemcount = Integer.parseInt(count);
         percent= (itemcount*100/totalE);
-        Log.v("test2", totalE + "total2");
         decimalFormat.format(percent);
+        Log.v("test2", totalE + "total2////"+percent);
         entries2.add(new BarEntry(firstletter,(float)percent));
     }
 
