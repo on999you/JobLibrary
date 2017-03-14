@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -32,6 +33,8 @@ public class AppliedJobActivity extends BaseActivity{
     private List<String> companyNameList= new ArrayList<>();
     private List<String> applyDateList= new ArrayList<>();
     int rownumStart, rownumEnd;
+
+    Boolean needLoadMore = true;
 
 
     @Override
@@ -76,7 +79,7 @@ public class AppliedJobActivity extends BaseActivity{
                 Runnable myRun = new Runnable() {
                     @Override
                     public void run() {
-                        addData();
+                        addData(needLoadMore);
                     }
                 };
                 Thread loadMore = new Thread(myRun);
@@ -109,10 +112,16 @@ public class AppliedJobActivity extends BaseActivity{
         recyclerView.getAdapter().notifyDataSetChanged();
     }
 
-    private void addData() {
-        rownumStart += 5;
-        rownumEnd += 5;
-        new AppliedJobGetDataTask().execute();
+    private void addData(Boolean needLoadMore) {
+        if(needLoadMore){
+            rownumStart += 5;
+            rownumEnd += 5;
+            new AppliedJobGetDataTask().execute();
+        }
+        else{
+            System.out.println("No more data");
+        }
+
     }
 
     public void newData() {
@@ -140,8 +149,8 @@ public class AppliedJobActivity extends BaseActivity{
             recyclerView.setRefresh(false);
 
             if(appliedJobItemList == null){
-                System.out.println("no anymore");
                 recyclerView.getAdapter().notifyDataSetChanged();
+                needLoadMore = false;
             }
             else{
                 for(int i = 0; i < appliedJobItemList.size(); i++){
