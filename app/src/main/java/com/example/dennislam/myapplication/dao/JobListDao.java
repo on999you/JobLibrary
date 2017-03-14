@@ -1,5 +1,7 @@
 package com.example.dennislam.myapplication.dao;
 
+import android.util.Log;
+
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
 import com.example.dennislam.myapplication.xml.JobCatXML;
 import com.example.dennislam.myapplication.xml.JobListXML;
@@ -36,9 +38,15 @@ public class JobListDao {
     private List<JobListXML.JobListItem> jobListItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;
+
     int statusCode;
     public int getStatusCode() {
         return statusCode;
+    }
+
+    int itemsTotal;
+    public int getItemsTotal() {
+        return itemsTotal;
     }
 
 
@@ -75,6 +83,7 @@ public class JobListDao {
 
             getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();
+            itemsTotal = getItemsInfo.get(0).getItemsTotal();
 
             if(statusCode == 0) {
                 jobListItemList = xmlFile.getItems().getItem();

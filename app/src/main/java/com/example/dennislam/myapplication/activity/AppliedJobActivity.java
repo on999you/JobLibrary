@@ -1,13 +1,16 @@
 package com.example.dennislam.myapplication.activity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.example.dennislam.myapplication.R;
+import com.example.dennislam.myapplication.RecyclerItemClickListener;
 import com.example.dennislam.myapplication.adapter.AppliedJobCardViewAdapter;
 import com.example.dennislam.myapplication.dao.AppliedJobDao;
 import com.example.dennislam.myapplication.xml.AppliedJobXML;
@@ -25,10 +28,13 @@ public class AppliedJobActivity extends BaseActivity{
     private View headerView;
     private View footerView;
     private AppliedJobCardViewAdapter customAdapter;
+    private List<String> jobIdList= new ArrayList<>();
     private List<String> jobTitleList= new ArrayList<>();
     private List<String> companyNameList= new ArrayList<>();
     private List<String> applyDateList= new ArrayList<>();
     int rownumStart, rownumEnd;
+
+    Boolean needLoadMore = true;
 
 
     @Override
@@ -73,7 +79,7 @@ public class AppliedJobActivity extends BaseActivity{
                 Runnable myRun = new Runnable() {
                     @Override
                     public void run() {
-                        addData();
+                        addData(needLoadMore);
                     }
                 };
                 Thread loadMore = new Thread(myRun);
@@ -86,16 +92,36 @@ public class AppliedJobActivity extends BaseActivity{
         });
         recyclerView.setRefresh(true);
 
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(getBaseContext(), recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        Intent intent = new Intent(getBaseContext(), JobDetailActivity.class);
+                        intent.putExtra("jobId", jobIdList.get(position-2));
+                        startActivity(intent);
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+                        // do whatever
+                    }
+                })
+        );
+
     }
 
     public void loadMoreComplate() {
         recyclerView.getAdapter().notifyDataSetChanged();
     }
 
-    private void addData() {
-        rownumStart += 5;
-        rownumEnd += 5;
-        new AppliedJobGetDataTask().execute();
+    private void addData(Boolean needLoadMore) {
+        if(needLoadMore){
+            rownumStart += 5;
+            rownumEnd += 5;
+            new AppliedJobGetDataTask().execute();
+        }
+        else{
+            System.out.println("No more data");
+        }
+
     }
 
     public void newData() {
@@ -112,8 +138,7 @@ public class AppliedJobActivity extends BaseActivity{
 
         @Override
         protected Void doInBackground(Void... params) {
-            //String udid = globalVariable.getUdid();
-            String udid = "1133XHIKYKJBEW";
+            String udid = globalVariable.getUdid();
             appliedJobItemList = appliedJobItemDao.getAppliedJobItemDao(rownumStart, rownumEnd,udid);
             return null;
         }
@@ -124,11 +149,11 @@ public class AppliedJobActivity extends BaseActivity{
             recyclerView.setRefresh(false);
 
             if(appliedJobItemList == null){
-                System.out.println("no anymore");
-                recyclerView.getAdapter().notifyDataSetChanged();
+                needLoadMore = false;
             }
             else{
                 for(int i = 0; i < appliedJobItemList.size(); i++){
+                    jobIdList.add(appliedJobItemList.get(i).getJobId());
                     jobTitleList.add(appliedJobItemList.get(i).getJobTitle());
                     companyNameList.add(appliedJobItemList.get(i).getCompany());
                     applyDateList.add(appliedJobItemList.get(i).getApplyDate());

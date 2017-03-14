@@ -75,6 +75,9 @@ public class AppliedJobXML extends ItemsInfoBaseXML{
     @XStreamAlias("item")
     public class AppliedJobItem {
 
+        @XStreamAlias("JOB_ID")
+        private String jobId;
+
         @XStreamAlias("JOBTITLE")
         private String jobTitle;
 
@@ -83,6 +86,14 @@ public class AppliedJobXML extends ItemsInfoBaseXML{
 
         @XStreamAlias("APPLY_DATE")
         private String applyDate;
+
+        public String getJobId() {
+            return jobId;
+        }
+
+        public void setJobId(String jobId) {
+            this.jobId = jobId;
+        }
 
         public String getJobTitle() {
             return jobTitle;

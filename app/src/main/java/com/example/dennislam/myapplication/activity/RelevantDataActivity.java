@@ -32,6 +32,7 @@ public class RelevantDataActivity extends BaseActivity {
     private List<String> relevantSalaryList= new ArrayList<>();
     int rownumStart, rownumEnd;
 
+    Boolean needLoadMore = true;
 
     String jobTitle, workExpFrom, workExpTo;
     Boolean withSimilarWord;
@@ -98,7 +99,7 @@ public class RelevantDataActivity extends BaseActivity {
                 Runnable myRun = new Runnable() {
                     @Override
                     public void run() {
-                        addData();
+                        addData(needLoadMore);
                     }
                 };
                 Thread loadMore = new Thread(myRun);
@@ -117,10 +118,15 @@ public class RelevantDataActivity extends BaseActivity {
         recyclerView.getAdapter().notifyDataSetChanged();
     }
 
-    private void addData() {
-        rownumStart += 5;
-        rownumEnd += 5;
-        new RelevantDataGetDataTask().execute();
+    private void addData(Boolean needLoadMore) {
+        if(needLoadMore) {
+            rownumStart += 5;
+            rownumEnd += 5;
+            new RelevantDataGetDataTask().execute();
+        }
+        else{
+            System.out.println("No more data");
+        }
     }
 
     public void newData() {
@@ -149,9 +155,7 @@ public class RelevantDataActivity extends BaseActivity {
             recyclerView.setRefresh(false);
 
             if(relevantDataItemList == null){
-                System.out.println("no anymore");
-                recyclerView.setRefreshEnable(false);
-                recyclerView.getAdapter().notifyDataSetChanged();
+                needLoadMore = false;
             }
             else{
                 for(int i = 0; i < relevantDataItemList.size(); i++) {

@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.dennislam.myapplication.R;
 import com.example.dennislam.myapplication.RecyclerItemClickListener;
@@ -32,7 +34,9 @@ public class JobListActivity extends BaseActivity {
     private List<String> createDateList= new ArrayList<>();
     private List<String> jobIdList= new ArrayList<>();
     private List<String> salaryList= new ArrayList<>();
-    int rownumStart, rownumEnd;
+    int rownumStart = 0, rownumEnd = 0;
+
+    Boolean needLoadMore = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +79,7 @@ public class JobListActivity extends BaseActivity {
                 Runnable myRun = new Runnable() {
                     @Override
                     public void run() {
-                        addData();
+                        addData(needLoadMore);
                     }
                 };
                 Thread loadMore = new Thread(myRun);
@@ -108,17 +112,22 @@ public class JobListActivity extends BaseActivity {
         recyclerView.getAdapter().notifyDataSetChanged();
     }
 
-    private void addData() {
-        rownumStart += 5;
-        rownumEnd += 5;
-        new testing().execute();
+    private void addData(Boolean needLoadMore) {
+        if(needLoadMore) {
+            rownumStart += 5;
+            rownumEnd += 5;
+            new getJobListAsyncTaskRunner().execute();
+        }
+        else{
+            System.out.println("No more data");
+        }
     }
 
     public void newData() {
         jobTitleList.clear();
         companyNameList.clear();
         createDateList.clear();
-        new testing().execute();
+        new getJobListAsyncTaskRunner().execute();
     }
 
 
@@ -127,7 +136,7 @@ public class JobListActivity extends BaseActivity {
     List<JobListXML.JobListItem> jobListItemList = new ArrayList<JobListXML.JobListItem>();
 
 
-    class testing extends AsyncTask<Void, Void, Void> {
+    class getJobListAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... params) {
@@ -141,8 +150,7 @@ public class JobListActivity extends BaseActivity {
             recyclerView.setRefresh(false);
 
             if(jobListItemList == null){
-                System.out.println("no anymore");
-                recyclerView.getAdapter().notifyDataSetChanged();
+                needLoadMore = false;
             }
             else{
                 for(int i = 0; i < jobListItemList.size(); i++){
