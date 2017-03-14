@@ -188,6 +188,8 @@ public class CvActivity extends BaseActivity {
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void startRecordVideo(View view) {
 
+        Log.v("tyty", "1");
+
         File saveDir = null;
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
@@ -231,6 +233,8 @@ public class CvActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        Log.v("tyty", "2");
 
         // Received recording or error from MaterialCamera
         if (requestCode == CAMERA_RQ) {

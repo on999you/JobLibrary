@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -32,7 +33,8 @@ public class JobListActivity extends BaseActivity {
     private List<String> createDateList= new ArrayList<>();
     private List<String> jobIdList= new ArrayList<>();
     private List<String> salaryList= new ArrayList<>();
-    int rownumStart, rownumEnd;
+    int rownumStart = 0, rownumEnd = 0;
+    int itemstotal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,14 +113,14 @@ public class JobListActivity extends BaseActivity {
     private void addData() {
         rownumStart += 5;
         rownumEnd += 5;
-        new testing().execute();
+        new getJobListAsyncTaskRunner().execute();
     }
 
     public void newData() {
         jobTitleList.clear();
         companyNameList.clear();
         createDateList.clear();
-        new testing().execute();
+        new getJobListAsyncTaskRunner().execute();
     }
 
 
@@ -127,7 +129,7 @@ public class JobListActivity extends BaseActivity {
     List<JobListXML.JobListItem> jobListItemList = new ArrayList<JobListXML.JobListItem>();
 
 
-    class testing extends AsyncTask<Void, Void, Void> {
+    class getJobListAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... params) {
@@ -139,6 +141,8 @@ public class JobListActivity extends BaseActivity {
             super.onPostExecute(result);
             recyclerView.getAdapter().notifyDataSetChanged();
             recyclerView.setRefresh(false);
+
+            itemstotal = jobListItemDao.getItemsTotal();
 
             if(jobListItemList == null){
                 System.out.println("no anymore");

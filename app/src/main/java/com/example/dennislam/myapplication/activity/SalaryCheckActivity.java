@@ -154,6 +154,7 @@ public class SalaryCheckActivity extends BaseActivity {
                     intent.putExtra("workExpFrom", workExpFrom);
                     intent.putExtra("workExpTo", workExpTo);
                     intent.putExtra("salarySource", salarySourceValue);
+                    intent.putExtra("jobCat", selectedJobCatArray);
 
                     sdtvName = jobTitleField.getText().toString().trim();
                     startActivity(intent);
