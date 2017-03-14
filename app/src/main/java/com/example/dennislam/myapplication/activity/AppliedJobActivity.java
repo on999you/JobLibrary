@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.dennislam.myapplication.R;
 import com.example.dennislam.myapplication.RecyclerItemClickListener;
@@ -150,6 +151,7 @@ public class AppliedJobActivity extends BaseActivity{
 
             if(appliedJobItemList == null){
                 needLoadMore = false;
+                Toast.makeText(AppliedJobActivity.this, "No more data", Toast.LENGTH_LONG).show();
             }
             else{
                 for(int i = 0; i < appliedJobItemList.size(); i++){

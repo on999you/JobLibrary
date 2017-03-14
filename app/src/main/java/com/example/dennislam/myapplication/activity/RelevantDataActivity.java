@@ -7,6 +7,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.dennislam.myapplication.R;
 import com.example.dennislam.myapplication.adapter.RelevantDataCardViewAdapter;
@@ -156,6 +157,7 @@ public class RelevantDataActivity extends BaseActivity {
 
             if(relevantDataItemList == null){
                 needLoadMore = false;
+                Toast.makeText(RelevantDataActivity.this, "No more data", Toast.LENGTH_SHORT).show();
             }
             else{
                 for(int i = 0; i < relevantDataItemList.size(); i++) {
@@ -164,11 +166,7 @@ public class RelevantDataActivity extends BaseActivity {
                     relevantWorkExpList.add(relevantDataItemList.get(i).getExp());
                     relevantSalaryList.add("$" + relevantDataItemList.get(i).getSalary());
                 }
-
-
             }
-
-
         }
     }
 
