@@ -111,6 +111,8 @@ public class CvActivity extends BaseActivity {
 
     }
 
+
+
     private void alertMsg(String title,String msg){
         android.app.AlertDialog.Builder myAD = new android.app.AlertDialog.Builder(this);
         myAD.setTitle(title);
@@ -188,7 +190,6 @@ public class CvActivity extends BaseActivity {
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void startRecordVideo(View view) {
 
-        Log.v("tyty", "1");
 
         File saveDir = null;
 
@@ -234,7 +235,10 @@ public class CvActivity extends BaseActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Log.v("tyty", "2");
+        if(resultCode == RESULT_CANCELED){
+            Log.v("ggg", "ggg");
+            return;
+        }
 
         // Received recording or error from MaterialCamera
         if (requestCode == CAMERA_RQ) {
