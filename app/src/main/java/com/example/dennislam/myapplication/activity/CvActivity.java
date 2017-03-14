@@ -36,9 +36,11 @@ import java.util.List;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.dennislam.myapplication.R;
+import com.example.dennislam.myapplication.dao.GetCvDao;
 import com.example.dennislam.myapplication.dao.criteria.EducationLevelDao;
 import com.example.dennislam.myapplication.dao.SendCvDao;
 import com.example.dennislam.myapplication.xml.EducationLevelXML;
+import com.example.dennislam.myapplication.xml.GetCvXML;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
 
 public class CvActivity extends BaseActivity {
@@ -48,16 +50,18 @@ public class CvActivity extends BaseActivity {
     private final static int CAMERA_RQ = 6969;
     private final static int PERMISSION_RQ = 84;
 
-    List<ItemsInfoBaseXML> cvItemList = new ArrayList<ItemsInfoBaseXML>();
-    ProgressBar progressBar;
     String udid,name,email,mobileNo,expectedSalary;
     String educationLevelId = "";
 
-    SendCvDao cvItemDao = new SendCvDao();
-
+    List<ItemsInfoBaseXML> cvItemList = new ArrayList<ItemsInfoBaseXML>();
+    List<GetCvXML.GetCvItem> getCvItemList = new ArrayList<GetCvXML.GetCvItem>();
     List<EducationLevelXML.EducationLevelItem> educationLevelItemList = new ArrayList<EducationLevelXML.EducationLevelItem>();
+
     ArrayList<String> educationLevelArray = new ArrayList<String>();
     ArrayList<String> educationLevelIdArray = new ArrayList<String>();
+
+    EditText nameField, emailField, mobileNoField, expectedSalaryField;
+    TextView educationLevelField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +70,11 @@ public class CvActivity extends BaseActivity {
         View contentView = inflater.inflate(R.layout.activity_cv, null, false);
         mDrawer.addView(contentView, 0);
 
-        final EditText nameField = (EditText)findViewById(R.id.nameField);
-        final EditText emailField = (EditText)findViewById(R.id.emailField);
-        final EditText mobileNoField = (EditText)findViewById(R.id.mobileNoField);
-        final EditText expectedSalaryField = (EditText)findViewById(R.id.expectedSalaryField);
-        final TextView educationLevelField = (TextView)findViewById(R.id.educationLevelField);
+        nameField = (EditText)findViewById(R.id.nameField);
+        emailField = (EditText)findViewById(R.id.emailField);
+        mobileNoField = (EditText)findViewById(R.id.mobileNoField);
+        expectedSalaryField = (EditText)findViewById(R.id.expectedSalaryField);
+        educationLevelField = (TextView)findViewById(R.id.educationLevelField);
 
         Button sendCvButton = (Button)findViewById(R.id.sendCvButton);
         Drawable exclamation= ResourcesCompat.getDrawable(getResources(), R.drawable.exclamation_mark, null);
@@ -105,7 +109,7 @@ public class CvActivity extends BaseActivity {
 
         //Run the code if there are network connected
         if(globalVariable.getNetwork() == true){
-            new getEduLevelAsyncTaskRunner().execute();
+            new getEduLvAndCvAsyncTaskRunner().execute();
         }
 
 
@@ -127,7 +131,7 @@ public class CvActivity extends BaseActivity {
         myAD.show();
     }
 
-    class getEduLevelAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
+    class getEduLvAndCvAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute(){
@@ -141,6 +145,11 @@ public class CvActivity extends BaseActivity {
         protected Void doInBackground(Void... params) {
             EducationLevelDao educationLevelItemDao = new EducationLevelDao();
             educationLevelItemList = educationLevelItemDao.getEducationLevelItemDao();
+
+            udid = globalVariable.getUdid();
+            GetCvDao getCvItemDao = new GetCvDao();
+            getCvItemList = getCvItemDao.getCvItemDao(udid);
+
             return null;
         }
 
@@ -160,6 +169,34 @@ public class CvActivity extends BaseActivity {
                     educationLevelArray.add(i, educationLevelItemList.get(i).getEducationName());
                     educationLevelIdArray.add(i, educationLevelItemList.get(i).getEducationID());
                 }
+            }
+
+            //CV
+            if(getCvItemList == null){
+                new MaterialDialog.Builder(CvActivity.this)
+                        .content("Internet are not working")
+                        .positiveText("ok")
+                        .show();
+            }
+            else{
+                String getName = getCvItemList.get(0).getName();
+                String getEmail = getCvItemList.get(0).getEmailAddress();
+                String getMobileNo = getCvItemList.get(0).getMobileNo();
+                String getExpectedSalary = getCvItemList.get(0).getExpectedSalary();
+                String getEducationLevel = getCvItemList.get(0).getEducationLevel();
+
+                nameField.setText(getName);
+                emailField.setText(getEmail);
+                mobileNoField.setText(getMobileNo);
+                expectedSalaryField.setText(getExpectedSalary);
+                educationLevelId = getEducationLevel;
+
+                for(int i = 0; i<educationLevelIdArray.size(); i++){
+                    if(educationLevelIdArray.get(i).equals(getEducationLevel)){
+                        educationLevelField.setText(educationLevelArray.get(i));
+                    }
+                }
+
             }
         }
     }
@@ -271,8 +308,8 @@ public class CvActivity extends BaseActivity {
         @Override
         protected Void doInBackground(Void... params) {
             udid = globalVariable.getUdid();
-
-            cvItemList = cvItemDao.getCvItemDao(videoFile,udid,name,email,mobileNo,expectedSalary,educationLevelId);
+            SendCvDao cvItemDao = new SendCvDao();
+            cvItemList = cvItemDao.sendCvItemDao(videoFile,udid,name,email,mobileNo,expectedSalary,educationLevelId);
             return null;
         }
 
@@ -293,4 +330,5 @@ public class CvActivity extends BaseActivity {
                     .show();
         }
     }
+
 }

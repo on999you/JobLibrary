@@ -1,23 +1,16 @@
 package com.example.dennislam.myapplication.dao;
 
-import android.util.Log;
-
-import com.android.internal.http.multipart.MultipartEntity;
+import com.example.dennislam.myapplication.xml.AppliedJobXML;
+import com.example.dennislam.myapplication.xml.GetCvXML;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
-import com.example.dennislam.myapplication.xml.SendCvXML;
-import com.example.dennislam.myapplication.xml.SendFeedbackXML;
 import com.thoughtworks.xstream.XStream;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.entity.mime.content.ContentBody;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.params.BasicHttpParams;
@@ -26,24 +19,27 @@ import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by dennislam on 16/1/2017.
+ * Created by dennislam on 14/3/2017.
  */
 
-public class SendCvDao {
+public class GetCvDao {
 
-    static final String URL = "http://192.168.232.66:8009/API_CT2_MOBILECV/SEND_CV.aspx";
-    private List<ItemsInfoBaseXML> cvItemList;
+    static final String URL = "http://192.168.232.66:8009/API_CT2_MOBILECV/GET_CV.aspx";
+    private List<GetCvXML.GetCvItem> getCvItemList;
 
-    public List<ItemsInfoBaseXML> sendCvItemDao(File videoFile, String udid, String name, String email, String mobileNo,String expectedSalary,String educationLevelId){
+    private List<ItemsInfoBaseXML> getItemsInfo;
+    int statusCode;
+    public int getStatusCode() {
+        return statusCode;
+    }
+
+    public List<GetCvXML.GetCvItem> getCvItemDao(String udid){
 
         String xml;
 
@@ -54,18 +50,10 @@ public class SendCvDao {
             DefaultHttpClient httpClient = new DefaultHttpClient(httpParams);
             HttpPost httpPost = new HttpPost(URL);
 
-            HttpEntity entity = MultipartEntityBuilder.create()
-                    .setMode(HttpMultipartMode.BROWSER_COMPATIBLE)
-                    .addTextBody("udid", udid)
-                    .addTextBody("name", name)
-                    .addTextBody("email", email)
-                    .addTextBody("mobileNo", mobileNo)
-                    .addTextBody("expectedSalary", expectedSalary)
-                    .addTextBody("educationLevel", educationLevelId)
-                    .addBinaryBody("video", videoFile)
-                    .build();
+            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(1);
+            nameValuePair.add(new BasicNameValuePair("udid", udid));
 
-            httpPost.setEntity(entity);
+            httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
 
             HttpResponse httpResponse = httpClient.execute(httpPost);
             HttpEntity httpEntity = httpResponse.getEntity();
@@ -76,11 +64,16 @@ public class SendCvDao {
             String contentNoBom = new String(bytes, 3, bytes.length - 3);
 
             XStream xStream = new XStream();
-            xStream.processAnnotations(SendCvXML.class);
+            xStream.processAnnotations(GetCvXML.class);
 
-            SendCvXML xmlFile = (SendCvXML) xStream.fromXML(contentNoBom);
+            GetCvXML xmlFile = (GetCvXML) xStream.fromXML(contentNoBom);
 
-            cvItemList = xmlFile.getItemsInfo();
+            getItemsInfo = xmlFile.getItemsInfo();
+            statusCode = getItemsInfo.get(0).getStatus_code();
+
+            if(statusCode == 0) {
+                getCvItemList = xmlFile.getItems().getItem();
+            }
 
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
@@ -89,7 +82,8 @@ public class SendCvDao {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return cvItemList;
+        return getCvItemList;
+
     }
 
 }
