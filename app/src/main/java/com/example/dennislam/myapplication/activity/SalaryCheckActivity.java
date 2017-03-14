@@ -151,7 +151,7 @@ public class SalaryCheckActivity extends BaseActivity {
                     intent.putExtra("workExpTo", finalWorkExpToID);
                     intent.putExtra("salarySource", finalSalarySourceID);
 
-                    Log.v("testing", jobTitleField.getText().toString().trim() + "\n" + similarCheckBox.isChecked() + "\n" + finalSelectedJobCatArray + "\n" + finalSelectedJobIndustryArray + "\n" + finalWorkExpFromID + "\n" + finalWorkExpToID + "\n" + finalSalarySourceID);
+                    Log.v("criterias_bg", jobTitleField.getText().toString().trim() + "\n" + similarCheckBox.isChecked() + "\n" + finalSelectedJobCatArray + "\n" + finalSelectedJobIndustryArray + "\n" + finalWorkExpFromID + "\n" + finalWorkExpToID + "\n" + finalSalarySourceID);
                     startActivity(intent);
                 }
             }

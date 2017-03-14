@@ -137,11 +137,11 @@ public class SearchJobsActivity extends BaseActivity {
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        Log.v("testing", tempJobCatArray.toString());
+                        Log.v("criterias_bg", tempJobCatArray.toString());
                         for(int i =0; i<tempJobCatArray.size(); i++){
                             selectedJobCatArray.add(jobCatIdArray.get(Integer.parseInt(tempJobCatArray.get(i))));
                         }
-                        Log.v("testing", selectedJobCatArray.toString());
+                        Log.v("criterias_bg", selectedJobCatArray.toString());
                     }
                 })
                 .alwaysCallMultiChoiceCallback()

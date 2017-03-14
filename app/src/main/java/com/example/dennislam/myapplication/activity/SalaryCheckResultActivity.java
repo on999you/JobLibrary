@@ -113,7 +113,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
             finalWorkExpToID =(String) b.get("workExpTo");
             finalSalarySourceID =(String) b.get("salarySource");
 
-            Log.v("testing", finalJobTitle + "\n" + withSimilarWord + "\n" + finalSelectedJobCatArray + "\n" + finalSelectedJobIndustryArray + "\n" + finalWorkExpFromID + "\n" + finalWorkExpToID + "\n" + finalSalarySourceID);
+            Log.v("criterias_bg", finalJobTitle + "\n" + withSimilarWord + "\n" + finalSelectedJobCatArray + "\n" + finalSelectedJobIndustryArray + "\n" + finalWorkExpFromID + "\n" + finalWorkExpToID + "\n" + finalSalarySourceID);
         }
 
         //Run the code if there are network connected

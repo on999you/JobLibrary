@@ -31,55 +31,56 @@
         android:layout_height="wrap_content"
         android:text="Search with similar words"
         android:layout_gravity="center"
-        android:checked="true"/>
+        android:checked="true"
+        android:buttonTint="#000000"/>
 
     <TextView
         android:layout_marginTop="12dp"
         android:id="@+id/jobFunctionButton"
         android:onClick="showJobFunction"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:text="Job Function"
         android:textSize="17sp"
-        android:background="@drawable/testing" />
+        android:background="@drawable/criterias_bg" />
 
     <TextView
         android:id="@+id/jobIndustryButton"
         android:onClick="showJobIndustry"
         android:layout_marginTop="12dp"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:text="Job Industry"
         android:textSize="17sp"
-        android:background="@drawable/testing"/>
+        android:background="@drawable/criterias_bg"/>
 
     <EditText
         android:id="@+id/salaryMin"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:hint="Salary Range (Min)"
         android:inputType="number"
         android:layout_marginTop="12dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:textSize="17sp"
-        android:background="@drawable/testing" />
+        android:background="@drawable/criterias_bg" />
 
     <EditText
         android:id="@+id/salaryMax"
         android:layout_width="300dp"
-        android:layout_height="40dp"
+        android:layout_height="45dp"
         android:hint="Salary Range (Max)"
         android:inputType="number"
         android:layout_marginTop="12dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:textSize="17sp"
-        android:background="@drawable/testing" />
+        android:background="@drawable/criterias_bg" />
 
     <LinearLayout
         android:paddingTop="5dp"
