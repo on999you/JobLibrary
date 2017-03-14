@@ -58,8 +58,12 @@ public class SalaryCheckResultActivity extends BaseActivity {
     SalaryResultDao salaryResultItemDao = new SalaryResultDao();
     GraphInfoDao graphInfoItemDao = new GraphInfoDao();
 
-    String jobTitle, workExpFrom, workExpTo, salarySourceValue;
+    //Receive inserting data
     Boolean withSimilarWord;
+    String finalJobTitle, finalWorkExpFromID, finalWorkExpToID, finalSalarySourceID;
+    ArrayList<String> finalSelectedJobCatArray = new ArrayList<String>();
+    ArrayList<String> finalSelectedJobIndustryArray = new ArrayList<String>();
+
     int itemsTotal;
 
     List<SalaryResultXML.SalaryResultItem> salaryResultItemList = new ArrayList<SalaryResultXML.SalaryResultItem>();
@@ -90,10 +94,10 @@ public class SalaryCheckResultActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getBaseContext(), RelevantDataActivity.class);
-                intent.putExtra("jobTitle", jobTitle);
+                intent.putExtra("jobTitle", finalJobTitle);
                 intent.putExtra("withSimilarWord", withSimilarWord);
-                intent.putExtra("workExpFrom", workExpFrom);
-                intent.putExtra("workExpTo", workExpTo);
+                intent.putExtra("workExpFrom", finalWorkExpFromID);
+                intent.putExtra("workExpTo", finalWorkExpToID);
                 startActivity(intent);
             }
         });
@@ -101,11 +105,15 @@ public class SalaryCheckResultActivity extends BaseActivity {
         Intent intent= getIntent();
         Bundle b = intent.getExtras();
         if(b!=null) {
-            jobTitle =(String) b.get("jobTitle");
+            finalJobTitle =(String) b.get("jobTitle");
             withSimilarWord =(Boolean) b.get("withSimilarWord");
-            workExpFrom =(String) b.get("workExpFrom");
-            workExpTo =(String) b.get("workExpTo");
-            salarySourceValue =(String) b.get("salarySource");
+            finalSelectedJobCatArray =(ArrayList<String>) b.get("jobCat");
+            finalSelectedJobIndustryArray =(ArrayList<String>) b.get("jobIndustry");
+            finalWorkExpFromID =(String) b.get("workExpFrom");
+            finalWorkExpToID =(String) b.get("workExpTo");
+            finalSalarySourceID =(String) b.get("salarySource");
+
+            Log.v("testing", finalJobTitle + "\n" + withSimilarWord + "\n" + finalSelectedJobCatArray + "\n" + finalSelectedJobIndustryArray + "\n" + finalWorkExpFromID + "\n" + finalWorkExpToID + "\n" + finalSalarySourceID);
         }
 
         //Run the code if there are network connected
@@ -205,12 +213,10 @@ public class SalaryCheckResultActivity extends BaseActivity {
         @Override
         protected Void doInBackground(Void... params) {
 
-            System.out.println(jobTitle);
-
             if(salaryResultItemList == null) {
                 //Toast.makeText(getBaseContext(), "nothing", Toast.LENGTH_LONG).show();
             } else {
-                salaryResultItemList = salaryResultItemDao.getSalaryResultItemDao(jobTitle, withSimilarWord, workExpFrom, workExpTo, salarySourceValue);
+                salaryResultItemList = salaryResultItemDao.getSalaryResultItemDao(finalJobTitle, withSimilarWord, finalWorkExpFromID, finalWorkExpToID, finalSalarySourceID);
             }
 
             itemsTotal = salaryResultItemDao.getItemsTotal();
@@ -247,7 +253,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
                 //Header
                 View header = (View)getLayoutInflater().inflate(R.layout.salary_check_result_listview_header,null);
                 TextView headerValue = (TextView) header.findViewById(R.id.txtHeader);
-                headerValue.setText(jobTitle);
+                headerValue.setText(finalJobTitle);
                 listView.addHeaderView(header);
 
                 //Row
@@ -274,7 +280,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            graphInfoItemList = graphInfoItemDao.getGraphInfoItemDao(jobTitle);
+            graphInfoItemList = graphInfoItemDao.getGraphInfoItemDao(finalJobTitle);
             return null;
         }
 
@@ -426,29 +432,19 @@ public class SalaryCheckResultActivity extends BaseActivity {
         }
     }
 
-
-
-
     public void addEntries1 (String count, int i,float position){
-        Log.v("test1", count);
         itemcount = Integer.parseInt(count);
         percent= (itemcount*100/totalJ);
         decimalFormat.format(percent);
-        Log.v("test1", totalJ + "total1 ////"+percent );
         entries.add(new BarEntry(position,(float)percent));
-
     }
 
     public void addEntries2 (String count,int i,float firstletter){
-        Log.v("test2", count);
         itemcount = Integer.parseInt(count);
         percent= (itemcount*100/totalE);
         decimalFormat.format(percent);
-        Log.v("test2", totalE + "total2////"+percent);
         entries2.add(new BarEntry(firstletter,(float)percent));
     }
-
-
 
 
 }

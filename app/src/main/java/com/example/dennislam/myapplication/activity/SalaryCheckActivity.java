@@ -67,17 +67,14 @@ public class SalaryCheckActivity extends BaseActivity {
     ArrayList<String> salarySourceIdArray = new ArrayList<String>();
 
     TextView jobFunctionButton , jobIndustryButton;
-    RadioButton radioButton1, radioButton2, radioButton3;
 
     //Values that pass to database
-    String workExpFrom;
-    String workExpTo;
-    String salarySourceValue;
+    String finalWorkExpFromID, finalWorkExpToID, finalSalarySourceID;
+    ArrayList<String> finalSelectedJobCatArray = new ArrayList<String>();
+    ArrayList<String> finalSelectedJobIndustryArray = new ArrayList<String>();
 
     ArrayList<String> tempJobCatArray = new ArrayList<String>();
-
-    ArrayList<String> selectedJobCatArray = new ArrayList<String>();
-    ArrayList<String> selectedJobIndustryArray = new ArrayList<String>();
+    ArrayList<String> tempJobIndustryArray = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +89,6 @@ public class SalaryCheckActivity extends BaseActivity {
 
         jobFunctionButton = (TextView)findViewById(R.id.jobFunctionButton);
         jobIndustryButton = (TextView)findViewById(R.id.jobIndustryButton);
-
 
         RadioGroup soruceRadioGroup = (RadioGroup)findViewById(R.id.soruceRadioGroup);
         RadioButton unspecifiedRadioBtn = (RadioButton) findViewById(R.id.unspecifiedRadio);
@@ -138,8 +134,6 @@ public class SalaryCheckActivity extends BaseActivity {
             }
         });
 
-
-
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -151,12 +145,13 @@ public class SalaryCheckActivity extends BaseActivity {
                     Intent intent = new Intent(getBaseContext(), SalaryCheckResultActivity.class);
                     intent.putExtra("jobTitle", jobTitleField.getText().toString().trim());
                     intent.putExtra("withSimilarWord", similarCheckBox.isChecked());
-                    intent.putExtra("workExpFrom", workExpFrom);
-                    intent.putExtra("workExpTo", workExpTo);
-                    intent.putExtra("salarySource", salarySourceValue);
-                    intent.putExtra("jobCat", selectedJobCatArray);
+                    intent.putExtra("jobCat", finalSelectedJobCatArray);
+                    intent.putExtra("jobIndustry", finalSelectedJobIndustryArray);
+                    intent.putExtra("workExpFrom", finalWorkExpFromID);
+                    intent.putExtra("workExpTo", finalWorkExpToID);
+                    intent.putExtra("salarySource", finalSalarySourceID);
 
-                    sdtvName = jobTitleField.getText().toString().trim();
+                    Log.v("testing", jobTitleField.getText().toString().trim() + "\n" + similarCheckBox.isChecked() + "\n" + finalSelectedJobCatArray + "\n" + finalSelectedJobIndustryArray + "\n" + finalWorkExpFromID + "\n" + finalWorkExpToID + "\n" + finalSalarySourceID);
                     startActivity(intent);
                 }
             }
@@ -166,8 +161,6 @@ public class SalaryCheckActivity extends BaseActivity {
         if(globalVariable.getNetwork() == true){
             new getCriteriasAsyncTaskRunner().execute();
         }
-
-
     }
 
     class getCriteriasAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
@@ -229,8 +222,7 @@ public class SalaryCheckActivity extends BaseActivity {
                 .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
                     TextView WorkExpFrom = (TextView)findViewById(R.id.WorkExpFrom);
                     WorkExpFrom.setText("Work Exp From - " + text);
-                    workExpFrom = workExpIdArray.get(which);
-                    System.out.println(workExpFrom);
+                    finalWorkExpFromID = workExpIdArray.get(which);
                     return true; // allow selection
                 })
                 .positiveColor(Color.parseColor("#486E76"))
@@ -246,8 +238,7 @@ public class SalaryCheckActivity extends BaseActivity {
                 .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
                     TextView WorkExpTo = (TextView)findViewById(R.id.WorkExpTo);
                     WorkExpTo.setText("Work Exp To - " + text);
-                    workExpTo = workExpIdArray.get(which);
-                    System.out.println(workExpTo);
+                    finalWorkExpToID = workExpIdArray.get(which);
                     return true; // allow selection
                 })
                 .positiveColor(Color.parseColor("#486E76"))
@@ -263,16 +254,13 @@ public class SalaryCheckActivity extends BaseActivity {
                 .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
                     TextView salarySource = (TextView)findViewById(R.id.salarySource);
                     salarySource.setText("Salary Source(s) Within - " + text);
-                    salarySourceValue = salarySourceIdArray.get(which);
-                    System.out.println(salarySourceValue);
+                    finalSalarySourceID = salarySourceIdArray.get(which);
                     return true; // allow selection
                 })
                 .positiveColor(Color.parseColor("#486E76"))
                 .positiveText("Done")
                 .show();
     }
-
-
 
     private void showToast(String message) {
         if (toast != null) {
@@ -312,11 +300,9 @@ public class SalaryCheckActivity extends BaseActivity {
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        Log.v("testing", tempJobCatArray.toString());
                         for(int i =0; i<tempJobCatArray.size(); i++){
-                            selectedJobCatArray.add(jobCatIdArray.get(Integer.parseInt(tempJobCatArray.get(i))));
+                            finalSelectedJobCatArray.add(jobCatIdArray.get(Integer.parseInt(tempJobCatArray.get(i))));
                         }
-                        Log.v("testing", selectedJobCatArray.toString());
                     }
                 })
                 .alwaysCallMultiChoiceCallback()
@@ -337,11 +323,24 @@ public class SalaryCheckActivity extends BaseActivity {
                         jobIndustryButton.setText(5 + " items selected");
                     } else {
                         jobIndustryButton.setText(which.length + " items selected");
+
+                        tempJobIndustryArray.clear();
+                        for(int i=0; i< which.length; i++){
+                            tempJobIndustryArray.add(which[i].toString());
+                        }
                     }
                     return allowSelectionChange;
                 })
                 .positiveColor(Color.parseColor("#486E76"))
                 .positiveText("Done")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        for(int i =0; i<tempJobIndustryArray.size(); i++){
+                            finalSelectedJobIndustryArray.add(industryIdArray.get(Integer.parseInt(tempJobIndustryArray.get(i))));
+                        }
+                    }
+                })
                 .alwaysCallMultiChoiceCallback()
                 .show();
     }
