@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +28,7 @@ import java.util.List;
 public class SearchJobsActivity extends BaseActivity {
 
     private Toast toast;
+    EditText salaryMin, salaryMax;
 
     ArrayList<String> jobCatArray = new ArrayList<String>();
     ArrayList<String> jobCatIdArray = new ArrayList<String>();
@@ -50,10 +52,20 @@ public class SearchJobsActivity extends BaseActivity {
 
         jobFunctionButton = (TextView)findViewById(R.id.jobFunctionButton);
         jobIndustryButton = (TextView)findViewById(R.id.jobIndustryButton);
+        salaryMin = (EditText)findViewById(R.id.salaryMin);
+        salaryMax = (EditText)findViewById(R.id.salaryMax);
 
         //Run the code if there are network connected
         if(globalVariable.getNetwork() == true){
             new getCriteriasAsyncTaskRunner().execute();
+        }
+    }
+
+    public void searchNow(View view){
+        if(salaryMin.getText().toString()!="" && salaryMax.getText().toString()!=""){
+            if(Integer.parseInt(salaryMin.getText().toString()) > Integer.parseInt(salaryMax.getText().toString())){
+                Toast.makeText(getBaseContext(), "Wrong salary range", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
