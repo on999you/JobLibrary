@@ -81,14 +81,17 @@ public class CvActivity extends BaseActivity {
 
         settings = getSharedPreferences(data2,0);
         videoCvName = settings.getString("existingVideoCv", "");
-        Log.v("why", videoCvName);
+
+        File file = new File(videoCvName);
+        videoFile = file;
 
         /*
         if(!videoCvName.isEmpty()){
-            previewVideo = ThumbnailUtils.createVideoThumbnail(videoCvName, MediaStore.Images.Thumbnails.MINI_KIND);
+            previewVideo = ThumbnailUtils.createVideoThumbnail(file.getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
             clickToVideo.setImageBitmap(previewVideo);
         }
         */
+
 
         nameField = (EditText)findViewById(R.id.nameField);
         emailField = (EditText)findViewById(R.id.emailField);
@@ -133,8 +136,6 @@ public class CvActivity extends BaseActivity {
             new getEduLvAndCvAsyncTaskRunner().execute();
         }
     }
-
-
 
     private void alertMsg(String title,String msg){
         android.app.AlertDialog.Builder myAD = new android.app.AlertDialog.Builder(this);
@@ -280,7 +281,10 @@ public class CvActivity extends BaseActivity {
                                 .allowRetry(true)
                                 .defaultToFrontFacing(false)
                                 .autoSubmit(false)
-                                .labelConfirm(R.string.mcam_use_video);
+                                .labelConfirm(R.string.mcam_use_video)
+                                .iconRecord(R.drawable.video_start)
+                                .iconFrontCamera(R.drawable.video_change)
+                                .iconRearCamera(R.drawable.video_change);
 
                         materialCamera.start(CAMERA_RQ);
                     }
@@ -297,11 +301,9 @@ public class CvActivity extends BaseActivity {
                         else {
                             Toast.makeText(getBaseContext(), "Sorry, File have been deleted on your phone", Toast.LENGTH_SHORT).show();
                         }
-
                     }
                 })
                 .show();
-
     }
 
     private String readableFileSize(long size) {
@@ -327,8 +329,6 @@ public class CvActivity extends BaseActivity {
         if (requestCode == CAMERA_RQ) {
             if (resultCode == RESULT_OK) {
                 final File file = new File(data.getData().getPath());
-                //Toast.makeText(this, String.format("Saved to: %s, size: %s",
-                        //file.getAbsolutePath(), fileSize(file)), Toast.LENGTH_LONG).show();
 
                 previewVideo = ThumbnailUtils.createVideoThumbnail(file.getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
                 clickToVideo.setImageBitmap(previewVideo);
