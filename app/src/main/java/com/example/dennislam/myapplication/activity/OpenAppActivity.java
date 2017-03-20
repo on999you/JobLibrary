@@ -41,12 +41,6 @@ public class OpenAppActivity extends BaseActivity {
         settings = getSharedPreferences(data,0);
         udid = settings.getString("existingUdid", "");
 
-        settings.edit()
-                .putString("testValue", "hello all")
-                .apply();
-
-        Log.v("testing", settings.getString("testValue", ""));
-
         //Run the code if there are network connected
         if(globalVariable.getNetwork() == true){
             new openAppAsyncTaskRunner().execute();

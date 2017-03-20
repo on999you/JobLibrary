@@ -109,13 +109,20 @@ public class SalaryCheckResultActivity extends BaseActivity {
             finalWorkExpToID =(String) b.get("workExpTo");
             finalSalarySourceID =(String) b.get("salarySource");
 
-            Log.v("criterias_bg", finalJobTitle + "\n" + withSimilarWord + "\n" + finalSelectedJobCatArray + "\n" + finalSelectedJobIndustryArray + "\n" + finalWorkExpFromID + "\n" + finalWorkExpToID + "\n" + finalSalarySourceID);
+            Log.v("criterias_bg",
+                    finalJobTitle + "\n" +
+                            withSimilarWord + "\n" +
+                            finalSelectedJobCatArray + "\n" +
+                            finalSelectedJobIndustryArray + "\n" +
+                            finalWorkExpFromID + "\n" +
+                            finalWorkExpToID + "\n" +
+                            finalSalarySourceID);
         }
 
         //Run the code if there are network connected
         if(globalVariable.getNetwork() == true){
             new GetSalaryCheckResultAsyncTaskRunner().execute();
-            new GetGraphInfoAsyncTaskRunner().execute();
+            //new GetGraphInfoAsyncTaskRunner().execute();
         }
 
 
@@ -215,7 +222,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
             if(salaryResultItemList == null) {
                 //Toast.makeText(getBaseContext(), "nothing", Toast.LENGTH_LONG).show();
             } else {
-                salaryResultItemList = salaryResultItemDao.getSalaryResultItemDao(finalJobTitle, withSimilarWord, finalWorkExpFromID, finalWorkExpToID, finalSalarySourceID);
+                salaryResultItemList = salaryResultItemDao.getSalaryResultItemDao(finalJobTitle, withSimilarWord, finalSelectedJobCatArray, finalSelectedJobIndustryArray, finalWorkExpFromID, finalWorkExpToID, finalSalarySourceID);
             }
 
             itemsTotal = salaryResultItemDao.getItemsTotal();
@@ -228,8 +235,8 @@ public class SalaryCheckResultActivity extends BaseActivity {
 
             //loadingInternetDialog.dismiss();
 
-            if(salaryResultItemList == null) {
-                //Toast.makeText(getBaseContext(), "nothing", Toast.LENGTH_LONG).show();
+            if(salaryResultItemList == null || salaryResultItemList.isEmpty()) {
+                Toast.makeText(getBaseContext(), "nothing", Toast.LENGTH_LONG).show();
             } else {
 
                 for(int i = 0; i < salaryResultItemList.size(); i++) {

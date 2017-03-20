@@ -1,5 +1,10 @@
 package com.example.dennislam.myapplication.activity;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -161,6 +166,29 @@ public class JobListActivity extends BaseActivity {
                     System.out.println(jobTitleList);
                 }
             }
+
+
+            /*
+            final int notifyID = 1; // 通知的識別號碼
+            final boolean autoCancel = true;
+            final int requestCode = notifyID; // PendingIntent的Request Code
+            final Intent intent = new Intent(getApplicationContext(), MainPageActivity.class); // 開啟另一個Activity的Intent
+            final int flags = PendingIntent.FLAG_UPDATE_CURRENT; // ONE_SHOT：PendingIntent只使用一次；CANCEL_CURRENT：PendingIntent執行前會先結束掉之前的；NO_CREATE：沿用先前的PendingIntent，不建立新的PendingIntent；UPDATE_CURRENT：更新先前PendingIntent所帶的額外資料，並繼續沿用
+            final TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext()); // 建立TaskStackBuilder
+            stackBuilder.addParentStack(MainPageActivity.class); // 加入目前要啟動的Activity，這個方法會將這個Activity的所有上層的Activity(Parents)都加到堆疊中
+            stackBuilder.addNextIntent(intent); // 加入啟動Activity的Intent
+            final PendingIntent pendingIntent = stackBuilder.getPendingIntent(requestCode, flags); // 取得PendingIntent
+            final NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE); // 取得系統的通知服務
+            final Notification notification = new Notification.Builder(getApplicationContext())
+                    .setSmallIcon(R.drawable.drawer_icon)
+                    .setContentTitle("Testing - Title")
+                    .setContentText("Testing - Text")
+                    .setContentIntent(pendingIntent)
+                    .setAutoCancel(autoCancel)
+                    .setVibrate(new long[] { 1000, 1000, 1000 })
+                    .build(); // 建立通知
+            notificationManager.notify(notifyID, notification); // 發送通知
+            */
 
         }
     }

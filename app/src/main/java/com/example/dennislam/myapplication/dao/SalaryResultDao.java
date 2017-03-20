@@ -49,7 +49,7 @@ public class SalaryResultDao {
     }
 
 
-    public List<SalaryResultXML.SalaryResultItem> getSalaryResultItemDao(String jobTitle, Boolean withSimilarWord, String workExpFrom, String workExpTo, String salarySourceValue){
+    public List<SalaryResultXML.SalaryResultItem> getSalaryResultItemDao(String jobTitle, Boolean withSimilarWord,ArrayList<String> finalSelectedJobCatArray, ArrayList<String> finalSelectedJobIndustryArray, String workExpFrom, String workExpTo, String salarySourceValue){
 
         String xml;
 
@@ -63,6 +63,8 @@ public class SalaryResultDao {
             List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(5);
             nameValuePair.add(new BasicNameValuePair("jobTitle", jobTitle));
             nameValuePair.add(new BasicNameValuePair("withSimilarWord", withSimilarWord.toString()));
+            //nameValuePair.add(new BasicNameValuePair("jobCat", finalSelectedJobCatArray));
+            //nameValuePair.add(new BasicNameValuePair("jobIndustry", finalSelectedJobIndustryArray));
             nameValuePair.add(new BasicNameValuePair("expFrom", workExpFrom));
             nameValuePair.add(new BasicNameValuePair("expTo", workExpTo));
             nameValuePair.add(new BasicNameValuePair("salarySource", salarySourceValue));

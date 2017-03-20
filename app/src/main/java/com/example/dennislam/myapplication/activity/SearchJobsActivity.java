@@ -95,17 +95,28 @@ public class SearchJobsActivity extends BaseActivity {
 
             loadingInternetDialog.dismiss();
 
-            //Get Job Cat
-            for(int i = 0; i < jobCatItemList.size(); i++){
-                jobCatArray.add(i, jobCatItemList.get(i).getJobCatName());
-                jobCatIdArray.add(i, jobCatItemList.get(i).getJobCatID());
+            if(jobCatItemList == null || jobCatItemList.isEmpty()){
+                Toast.makeText(getBaseContext(), "error", Toast.LENGTH_LONG).show();
+            }
+            else {
+                //Get Job Cat
+                for(int i = 0; i < jobCatItemList.size(); i++){
+                    jobCatArray.add(i, jobCatItemList.get(i).getJobCatName());
+                    jobCatIdArray.add(i, jobCatItemList.get(i).getJobCatID());
+                }
             }
 
-            //Get Job Industry
-            for(int i = 0; i < industryItemList.size(); i++){
-                industryArray.add(i, industryItemList.get(i).getIndustryName());
-                industryIdArray.add(i, industryItemList.get(i).getIndustryID());
+            if(industryItemList == null || industryItemList.isEmpty()){
+                Toast.makeText(getBaseContext(), "error", Toast.LENGTH_LONG).show();
             }
+            else {
+                //Get Job Industry
+                for(int i = 0; i < industryItemList.size(); i++){
+                    industryArray.add(i, industryItemList.get(i).getIndustryName());
+                    industryIdArray.add(i, industryItemList.get(i).getIndustryID());
+                }
+            }
+
 
         }
     }

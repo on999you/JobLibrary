@@ -70,7 +70,7 @@ public class CvActivity extends BaseActivity {
     ArrayList<String> educationLevelIdArray = new ArrayList<String>();
 
     EditText nameField, emailField, mobileNoField, expectedSalaryField;
-    TextView educationLevelField;
+    TextView educationLevelField, videoCvField;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,20 +85,21 @@ public class CvActivity extends BaseActivity {
         File file = new File(videoCvName);
         videoFile = file;
 
-        /*
-        if(!videoCvName.isEmpty()){
-            previewVideo = ThumbnailUtils.createVideoThumbnail(file.getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
-            clickToVideo.setImageBitmap(previewVideo);
-        }
-        */
+        videoCvField = (TextView)findViewById(R.id.videoCvField);
 
+        if(!videoCvName.isEmpty()){
+            videoCvField.setText("Already taken a video");
+            //previewVideo = ThumbnailUtils.createVideoThumbnail(file.getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
+            //clickToVideo.setImageBitmap(previewVideo);
+        }
 
         nameField = (EditText)findViewById(R.id.nameField);
         emailField = (EditText)findViewById(R.id.emailField);
         mobileNoField = (EditText)findViewById(R.id.mobileNoField);
         expectedSalaryField = (EditText)findViewById(R.id.expectedSalaryField);
         educationLevelField = (TextView)findViewById(R.id.educationLevelField);
-        clickToVideo = (ImageButton)findViewById(R.id.clickToVideo);
+        //clickToVideo = (ImageButton)findViewById(R.id.clickToVideo);
+
 
         Button sendCvButton = (Button)findViewById(R.id.sendCvButton);
         Drawable exclamation= ResourcesCompat.getDrawable(getResources(), R.drawable.exclamation_mark, null);
@@ -330,16 +331,11 @@ public class CvActivity extends BaseActivity {
             if (resultCode == RESULT_OK) {
                 final File file = new File(data.getData().getPath());
 
-                previewVideo = ThumbnailUtils.createVideoThumbnail(file.getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
-                clickToVideo.setImageBitmap(previewVideo);
+                //previewVideo = ThumbnailUtils.createVideoThumbnail(file.getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
+                //clickToVideo.setImageBitmap(previewVideo);
 
-                settings.edit()
-                        .putString("existingVideoCv", file.getAbsolutePath())
-                        .apply();
-                videoCvName = settings.getString("existingVideoCv", "");
-
+                videoCvField.setText("Already taken a video");
                 videoFile = file;
-
 
             } else if (data != null) {
                 Exception e = (Exception) data.getSerializableExtra(MaterialCamera.ERROR_EXTRA);
@@ -373,12 +369,15 @@ public class CvActivity extends BaseActivity {
 
             System.out.println(feedbackStatusCode);
 
-            new AlertDialog.Builder(CvActivity.this)
-                    .setMessage(dialogMessage)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                        }
-                    })
+            settings.edit()
+                    .putString("existingVideoCv", videoFile.getAbsolutePath())
+                    .apply();
+            videoCvName = settings.getString("existingVideoCv", "");
+
+
+            new MaterialDialog.Builder(CvActivity.this)
+                    .content(dialogMessage)
+                    .positiveText("ok")
                     .show();
         }
     }

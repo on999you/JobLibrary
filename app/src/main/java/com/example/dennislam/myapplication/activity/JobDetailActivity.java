@@ -1,9 +1,12 @@
 package com.example.dennislam.myapplication.activity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.SystemClock;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +18,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.dennislam.myapplication.R;
 import com.example.dennislam.myapplication.dao.ApplyJobDao;
 import com.example.dennislam.myapplication.dao.JobDetailDao;
@@ -33,7 +38,6 @@ public class JobDetailActivity extends BaseActivity {
 
     private SharedPreferences settings;
     private static final String data = "DATA";
-    private static final String existingUdid = "";
     String udid, jobId;
 
     ArrayList<String> jobTitleArray = new ArrayList<String>();
@@ -49,6 +53,8 @@ public class JobDetailActivity extends BaseActivity {
 
     TextView jobTitleView, companyView, createDateView, textView1, textView2, textView3, textView4, textView5, textView6, textView7, textView8;
 
+    private long mLastClickTime = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,7 +65,7 @@ public class JobDetailActivity extends BaseActivity {
         jobId = getIntent().getStringExtra("jobId");
 
         settings = getSharedPreferences(data,0);
-        udid = settings.getString(existingUdid, "");
+        udid = settings.getString("existingUdid", "");
 
         //Run the code if there are network connected
         if(globalVariable.getNetwork() == true){
@@ -131,9 +137,19 @@ public class JobDetailActivity extends BaseActivity {
 
         Button applyJobButton = (Button)findViewById(R.id.applyJobButton);
 
+
         applyJobButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //prevent double click in a second
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 3000) {
+                    new MaterialDialog.Builder(JobDetailActivity.this)
+                            .content("Cannot apply the same job within 3 seconds")
+                            .positiveText("ok")
+                            .show();
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 new applyJobAsyncTaskRunner().execute();
             }
         });
@@ -163,41 +179,42 @@ public class JobDetailActivity extends BaseActivity {
 
             loadingInternetDialog.dismiss();
 
-            for(int i = 0; i < jobDetailItemList.size(); i++){
-
-                jobTitleArray.add(i, jobDetailItemList.get(i).getJobTitle());
-                industryArray.add(i, jobDetailItemList.get(i).getIndustry());
-                jobAreaArray.add(i, jobDetailItemList.get(i).getJobArea());
-                companyArray.add(i, jobDetailItemList.get(i).getCompany());
-                emailArray.add(i, jobDetailItemList.get(i).getEmail());
-                jobDescArray.add(i, jobDetailItemList.get(i).getJobDesc());
-                contactArray.add(i, jobDetailItemList.get(i).getContact());
-                companyDescArray.add(i, jobDetailItemList.get(i).getCompanyDesc());
-                createDateArray.add(i, jobDetailItemList.get(i).getCreateDate());
-                salaryArray.add(i, jobDetailItemList.get(i).getSalary());
-
-                jobTitleView.setText(jobTitleArray.get(0));
-                companyView.setText("( " + companyArray.get(0) + " )");
-                createDateView.setText(createDateArray.get(0));
-
-                textView1.setText("Job Function");
-                textView3.setText("Industry");
-                textView5.setText("Job Description");
-                textView7.setText("Salary");
-
-                textView2.setText(jobAreaArray.get(0));
-                textView4.setText(industryArray.get(0));
-                textView6.setText(jobDescArray.get(0));
-                textView8.setText(salaryArray.get(0));
-
+            if(jobDetailItemList == null || jobDetailItemList.isEmpty()) {
+                Toast.makeText(JobDetailActivity.this, "error", Toast.LENGTH_LONG).show();
             }
-            if (jobDetailItemList.size() > 0) {
-                Log.v("Testing steps", "Search Job : Got Job Detail");
-                System.out.println("successful");
-            }
+
             else {
-                System.out.println("failed");
+                for(int i = 0; i < jobDetailItemList.size(); i++){
+
+                    jobTitleArray.add(i, jobDetailItemList.get(i).getJobTitle());
+                    industryArray.add(i, jobDetailItemList.get(i).getIndustry());
+                    jobAreaArray.add(i, jobDetailItemList.get(i).getJobArea());
+                    companyArray.add(i, jobDetailItemList.get(i).getCompany());
+                    emailArray.add(i, jobDetailItemList.get(i).getEmail());
+                    jobDescArray.add(i, jobDetailItemList.get(i).getJobDesc());
+                    contactArray.add(i, jobDetailItemList.get(i).getContact());
+                    companyDescArray.add(i, jobDetailItemList.get(i).getCompanyDesc());
+                    createDateArray.add(i, jobDetailItemList.get(i).getCreateDate());
+                    salaryArray.add(i, jobDetailItemList.get(i).getSalary());
+
+                    jobTitleView.setText(jobTitleArray.get(0));
+                    companyView.setText("( " + companyArray.get(0) + " )");
+                    createDateView.setText(createDateArray.get(0));
+
+                    textView1.setText("Job Function");
+                    textView3.setText("Industry");
+                    textView5.setText("Job Description");
+                    textView7.setText("Salary");
+
+                    textView2.setText(jobAreaArray.get(0));
+                    textView4.setText(industryArray.get(0));
+                    textView6.setText(jobDescArray.get(0));
+                    textView8.setText(salaryArray.get(0));
+
+                }
             }
+
+
 
         }
     }
@@ -211,9 +228,9 @@ public class JobDetailActivity extends BaseActivity {
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
-            loadingInternetDialog = new ProgressDialog(JobDetailActivity.this);
-            loadingInternetDialog.setMessage("Loading...");
-            loadingInternetDialog.show();
+            //loadingInternetDialog = new ProgressDialog(JobDetailActivity.this);
+            //loadingInternetDialog.setMessage("Loading...");
+            //loadingInternetDialog.show();
         }
 
         @Override
@@ -225,12 +242,20 @@ public class JobDetailActivity extends BaseActivity {
         @Override
         protected void onPostExecute(Void result) {
 
-            loadingInternetDialog.dismiss();
+            //loadingInternetDialog.dismiss();
 
-            Log.v("Testing steps", "Apply Job : Successful");
+            if(applyJobItemList == null || applyJobItemList.isEmpty()){
+                Toast.makeText(getBaseContext(), "error", Toast.LENGTH_LONG).show();
 
-            System.out.println(applyJobItemList.get(0).getMsg());
+            }
+            else {
+                String dialogMessage = applyJobItemList.get(0).getMsg();
 
+                new MaterialDialog.Builder(JobDetailActivity.this)
+                        .content(dialogMessage)
+                        .positiveText("ok")
+                        .show();
+            }
         }
     }
 }
