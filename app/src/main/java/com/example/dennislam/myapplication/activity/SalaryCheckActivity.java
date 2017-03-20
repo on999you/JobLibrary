@@ -187,28 +187,44 @@ public class SalaryCheckActivity extends BaseActivity {
 
             loadingInternetDialog.dismiss();
 
-            //Get Job Cat
-            for(int i = 0; i < jobCatItemList.size(); i++){
-                jobCatArray.add(i, jobCatItemList.get(i).getJobCatName());
-                jobCatIdArray.add(i, jobCatItemList.get(i).getJobCatID());
+            if(jobCatItemList == null || jobCatItemList.isEmpty()) {
+                Toast.makeText(SalaryCheckActivity.this, "cannot get job cat", Toast.LENGTH_LONG).show();
+            } else {
+                //Get Job Cat
+                for(int i = 0; i < jobCatItemList.size(); i++){
+                    jobCatArray.add(i, jobCatItemList.get(i).getJobCatName());
+                    jobCatIdArray.add(i, jobCatItemList.get(i).getJobCatID());
+                }
             }
 
-            //Get Job Industry
-            for(int i = 0; i < industryItemList.size(); i++){
-                industryArray.add(i, industryItemList.get(i).getIndustryName());
-                industryIdArray.add(i, industryItemList.get(i).getIndustryID());
+            if(industryItemList == null || industryItemList.isEmpty()) {
+                Toast.makeText(SalaryCheckActivity.this, "cannot get job industry", Toast.LENGTH_LONG).show();
+            } else {
+                //Get Job Industry
+                for(int i = 0; i < industryItemList.size(); i++){
+                    industryArray.add(i, industryItemList.get(i).getIndustryName());
+                    industryIdArray.add(i, industryItemList.get(i).getIndustryID());
+                }
             }
 
-            //Get Work Exp
-            for(int i = 0; i < workExpItemList.size(); i++){
-                workExpNameArray.add(i, workExpItemList.get(i).getWorkExpname());
-                workExpIdArray.add(i, workExpItemList.get(i).getWorkExpid());
+            if(workExpItemList == null || workExpItemList.isEmpty()) {
+                Toast.makeText(SalaryCheckActivity.this, "cannot get work exp", Toast.LENGTH_LONG).show();
+            } else {
+                //Get Work Exp
+                for(int i = 0; i < workExpItemList.size(); i++){
+                    workExpNameArray.add(i, workExpItemList.get(i).getWorkExpname());
+                    workExpIdArray.add(i, workExpItemList.get(i).getWorkExpid());
+                }
             }
 
-            //Get Salary Source
-            for(int i = 0; i < salarySourceItemList.size(); i++){
-                salarySourceArray.add(i, salarySourceItemList.get(i).getDescription());
-                salarySourceIdArray.add(i, salarySourceItemList.get(i).getSoruce_id());
+            if(salarySourceItemList == null || salarySourceItemList.isEmpty()) {
+                Toast.makeText(SalaryCheckActivity.this, "cannot get salary source", Toast.LENGTH_LONG).show();
+            } else {
+                //Get Salary Source
+                for (int i = 0; i < salarySourceItemList.size(); i++) {
+                    salarySourceArray.add(i, salarySourceItemList.get(i).getDescription());
+                    salarySourceIdArray.add(i, salarySourceItemList.get(i).getSoruce_id());
+                }
             }
 
         }

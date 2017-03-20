@@ -9,12 +9,15 @@
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/toolbar123"
+        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
+            android:gravity="center"
+            android:layout_gravity="center"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="#3E5975"
