@@ -1,29 +1,26 @@
 package com.example.dennislam.myapplication.activity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.example.dennislam.myapplication.GlobalClass;
 import com.example.dennislam.myapplication.R;
 import com.example.dennislam.myapplication.dao.OpenAppDao;
 import com.example.dennislam.myapplication.xml.OpenAppXML;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class OpenAppActivity extends BaseActivity {
 
@@ -38,6 +35,7 @@ public class OpenAppActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_open_app);
 
         settings = getSharedPreferences(data,0);
@@ -53,6 +51,25 @@ public class OpenAppActivity extends BaseActivity {
         if(globalVariable.getNetwork() == true){
             new openAppAsyncTaskRunner().execute();
         }
+
+    }
+    public void loadLocale() {
+        SharedPreferences prefs = getSharedPreferences("CommonPrefs",
+                Activity.MODE_PRIVATE);
+        String language = prefs.getString("Language", "");
+        setLocale(language);
+
+         Log.v(prefs.getString("Language",""),"~nionoiopnionionoinionojk");
+    }
+
+    public void setLocale(String lang) {
+        Locale myLocale = new Locale(lang);
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Configuration conf = res.getConfiguration();
+        conf.locale = myLocale;
+        res.updateConfiguration(conf, dm);
+        ;
     }
 
     class openAppAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
@@ -86,13 +103,14 @@ public class OpenAppActivity extends BaseActivity {
                         .onPositive(new MaterialDialog.SingleButtonCallback() {
                             @Override
                             public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                                Intent intent = new Intent(getBaseContext(), MainPageActivity.class);
+                                Intent intent = new Intent(getBaseContext(), SearchJobsActivity.MainPageActivity.class);
                                 startActivity(intent);
                             }
                         })
                         .show();
             }
             else {
+                loadLocale();
                 int status_code = openAppItemDao.getStatusCode();
 
                 if(udid == "" && status_code == 0) {
@@ -108,7 +126,7 @@ public class OpenAppActivity extends BaseActivity {
 
                 Log.v("Testing steps", "Open App : Udid = " + udid);
 
-                Intent intent = new Intent(getBaseContext(), MainPageActivity.class);
+                Intent intent = new Intent(getBaseContext(), SearchJobsActivity.MainPageActivity.class);
                 startActivity(intent);
             }
 

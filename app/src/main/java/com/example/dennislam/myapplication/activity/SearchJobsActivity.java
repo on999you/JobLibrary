@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -186,5 +185,73 @@ public class SearchJobsActivity extends BaseActivity {
     public void testing(View view){
         Intent intent = new Intent(getBaseContext(), JobListActivity.class);
         startActivity(intent);
+    }
+
+    public static class MainPageActivity extends BaseActivity {
+
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+
+    //
+    //        loadLocale();
+            LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
+            View contentView = inflater.inflate(R.layout.activity_main_page, null, false);
+            mDrawer.addView(contentView, 0);
+            Log.v("Testing steps", "Main Page : Get Udid from global class = " + globalVariable.getUdid());
+
+        }
+
+        public void passToJobList(View v){
+            Intent intent = new Intent(getBaseContext(), SearchJobsActivity.class);
+            startActivity(intent);
+        }
+
+        public void passToSalary(View v){
+            Intent intent = new Intent(getBaseContext(), SalaryCheckActivity.class);
+            startActivity(intent);
+        }
+
+        public void passToAppliedJob(View v){
+            Intent intent = new Intent(getBaseContext(), AppliedJobActivity.class);
+            startActivity(intent);
+        }
+
+        public void passToCV(View v){
+            Intent intent = new Intent(getBaseContext(), CvActivity.class);
+            startActivity(intent);
+        }
+
+        public void passToFAQ(View v){
+            Intent intent = new Intent(getBaseContext(), FeedbackActivity.class);
+            startActivity(intent);
+        }
+
+        public void exitApp(View v){
+            exitAppDialog();
+        }
+
+        public void onBackPressed() {
+            exitAppDialog();
+        }
+
+    //    public void loadLocale() {
+    //        String langPref = "Language";
+    //        SharedPreferences prefs = getSharedPreferences("CommonPrefs",
+    //                Activity.MODE_PRIVATE);
+    //        String language = prefs.getString(langPref, "");
+    //        setLocale(language);
+    //
+    //    }
+    //
+    //    public void setLocale(String lang) {
+    //        Locale myLocale = new Locale(lang);
+    //        Resources res = getResources();
+    //        DisplayMetrics dm = res.getDisplayMetrics();
+    //        Configuration conf = res.getConfiguration();
+    //        conf.locale = myLocale;
+    //        res.updateConfiguration(conf, dm);
+    //
+    //    }
     }
 }

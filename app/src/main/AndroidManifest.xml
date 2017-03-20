@@ -33,15 +33,15 @@
         </activity>
         <activity
             android:name=".activity.FeedbackActivity"
-            android:label="Feedback"
+            android:label="@string/feedback"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".activity.BaseActivity" />
         <activity
             android:name=".activity.SalaryCheckActivity"
-            android:label="Salary Check" />
+            android:label="@string/mp_salaryCheck" />
         <activity
             android:name=".activity.CvActivity"
-            android:label="Create Your Own CV" />
+            android:label="@string/act_lab_cv" />
         <activity
             android:name="com.afollestad.materialcamera.CaptureActivity"
             android:theme="@style/MaterialCamera.CaptureActivity" />
@@ -55,25 +55,25 @@
         <activity
             android:name=".activity.JobListActivity"
             android:label="Jobs" />
-        <activity android:name=".activity.MainPageActivity" />
+        <activity android:name=".activity.SearchJobsActivity$MainPageActivity" />
         <activity android:name=".activity.RelevantDataActivity" />
         <activity
             android:name=".activity.JobDetailActivity"
             android:label="Job Detail" />
         <activity
             android:name=".activity.AppliedJobActivity"
-            android:label="Applied Job" />
+            android:label="@string/dra_appliedJobs" />
         <activity
             android:name=".activity.AboutUsActivity"
-            android:label="About Us" />
+            android:label="@string/dra_aboutUs" />
         <activity
             android:name=".activity.SalaryReportActivity"
-            android:label="Salary Report" />
+            android:label="@string/dra_salaryReport" />
         <activity
             android:name=".activity.SearchJobsActivity"/>
         <activity
             android:name=".activity.SettingsActivity"
-            android:label="Settings"/>
+            android:label="@string/dra_settings"/>
         <activity android:name=".activity.LanguageActivity"/>
 
     </application>

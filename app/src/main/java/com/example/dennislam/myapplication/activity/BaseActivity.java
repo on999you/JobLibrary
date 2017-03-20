@@ -1,9 +1,7 @@
 package com.example.dennislam.myapplication.activity;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -119,7 +117,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if(id == R.id.nav_home) {
-            Intent intent = new Intent(getBaseContext(), MainPageActivity.class);
+            Intent intent = new Intent(getBaseContext(), SearchJobsActivity.MainPageActivity.class);
             startActivity(intent);
 
         } else if(id == R.id.nav_search) {

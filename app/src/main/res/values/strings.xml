@@ -76,5 +76,6 @@
     <string name="salary">SALARY</string>
     <string name="others">OTHERS</string>
 
+    <string name="act_lab_cv">Curriculum Vitae</string>
 
 </resources>

@@ -26,4 +26,5 @@
         android:background="#ffffff"
         android:onClick="passToLang"/>
 
+
 </LinearLayout>

@@ -53,8 +53,8 @@
     <string name="industrial">公司名稱:</string>
     <string name="navigation_drawer_open"></string>
     <string name="sC_jobIndustry">選擇行業</string>
-    <string name="sC_WorkTo">工作經驗 (由)</string>
-    <string name="sC_Workstart">工作經驗 (至)</string>
+    <string name="sC_WorkTo">工作經驗 (至)</string>
+    <string name="sC_Workstart">工作經驗 (由)</string>
     <string name="to">至</string>
     <string name="from">由</string>
     <string name="mainPage">主頁</string>
@@ -64,4 +64,5 @@
     <string name="jobinfo">關於工作</string>
     <string name="jobFun">工種:</string>
     <string name="faq_title">有東西想說?</string>
+    <string name="act_lab_cv">履歷表</string>
 </resources>

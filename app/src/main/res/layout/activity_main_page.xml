@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingTop="?attr/actionBarSize"
-    tools:context="com.example.dennislam.myapplication.activity.MainPageActivity">
+    tools:context="com.example.dennislam.myapplication.activity.SearchJobsActivity$MainPageActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
