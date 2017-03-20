@@ -33,7 +33,6 @@ public class JobDetailActivity extends BaseActivity {
 
     private SharedPreferences settings;
     private static final String data = "DATA";
-    private static final String existingUdid = "";
     String udid, jobId;
 
     ArrayList<String> jobTitleArray = new ArrayList<String>();
@@ -57,9 +56,7 @@ public class JobDetailActivity extends BaseActivity {
         mDrawer.addView(contentView, 0);
 
         jobId = getIntent().getStringExtra("jobId");
-
-        settings = getSharedPreferences(data,0);
-        udid = settings.getString(existingUdid, "");
+        udid = globalVariable.getUdid();
 
         //Run the code if there are network connected
         if(globalVariable.getNetwork() == true){
@@ -228,6 +225,8 @@ public class JobDetailActivity extends BaseActivity {
             loadingInternetDialog.dismiss();
 
             Log.v("Testing steps", "Apply Job : Successful");
+
+            Log.v("abc", applyJobItemList.get(0).getMsg());
 
             System.out.println(applyJobItemList.get(0).getMsg());
 
