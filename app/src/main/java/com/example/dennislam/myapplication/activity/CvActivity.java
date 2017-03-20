@@ -9,7 +9,10 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.ThumbnailUtils;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -74,7 +77,6 @@ public class CvActivity extends BaseActivity {
 
         settings = getSharedPreferences(data2,0);
         videoCvName = settings.getString("existingVideoCv", "");
-        Log.v("videoCv1", videoCvName + "");
 
         nameField = (EditText)findViewById(R.id.nameField);
         emailField = (EditText)findViewById(R.id.emailField);
@@ -234,34 +236,52 @@ public class CvActivity extends BaseActivity {
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void startRecordVideo(View view) {
 
+        new MaterialDialog.Builder(this)
+                .content("Take a new video / Play currently video ?")
+                .positiveText("Take")
+                .negativeText("Play")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        File saveDir = null;
 
-        File saveDir = null;
+                        if (ContextCompat.checkSelfPermission(CvActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                            // Only use external storage directory if permission is granted, otherwise cache directory is used by default
+                            saveDir = new File(Environment.getExternalStorageDirectory(), "JobLibrary");
+                            saveDir.mkdirs();
+                        }
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            // Only use external storage directory if permission is granted, otherwise cache directory is used by default
-            saveDir = new File(Environment.getExternalStorageDirectory(), "JobLibrary");
-            saveDir.mkdirs();
-        }
+                        MaterialCamera materialCamera = new MaterialCamera(CvActivity.this)
+                                .forceCamera1()
+                                .primaryColor(Color.parseColor("#3E5975"))
+                                .videoEncodingBitRate(500000)
+                                .audioEncodingBitRate(50000)
+                                .videoPreferredHeight(640)
+                                //.qualityProfile(MaterialCamera.QUALITY_480P)
+                                .videoPreferredAspect(4f / 3f)
+                                .countdownMinutes(0.5f)
+                                .videoFrameRate(30)
 
-        MaterialCamera materialCamera = new MaterialCamera(this)
-                .forceCamera1()
-                .primaryColor(Color.parseColor("#3E5975"))
-                .videoEncodingBitRate(500000)
-                .audioEncodingBitRate(50000)
-                .videoPreferredHeight(640)
-                //.qualityProfile(MaterialCamera.QUALITY_480P)
-                .videoPreferredAspect(4f / 3f)
-                .countdownMinutes(0.5f)
-                .videoFrameRate(30)
+                                .showPortraitWarning(false)
+                                .saveDir(saveDir)
+                                .allowRetry(true)
+                                .defaultToFrontFacing(false)
+                                .autoSubmit(false)
+                                .labelConfirm(R.string.mcam_use_video);
 
-                .showPortraitWarning(false)
-                .saveDir(saveDir)
-                .allowRetry(true)
-                .defaultToFrontFacing(false)
-                .autoSubmit(false)
-                .labelConfirm(R.string.mcam_use_video);
+                        materialCamera.start(CAMERA_RQ);
+                    }
+                })
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(videoCvName));
+                        intent.setDataAndType(Uri.parse(videoCvName), "video/mp4");
+                        startActivity(intent);
+                    }
+                })
+                .show();
 
-        materialCamera.start(CAMERA_RQ);
     }
 
     private String readableFileSize(long size) {
@@ -298,7 +318,7 @@ public class CvActivity extends BaseActivity {
                 settings.edit()
                         .putString("existingVideoCv", file.getAbsolutePath())
                         .apply();
-                Log.v("videoCv2", settings.getString("existingVideoCv", ""));
+                videoCvName = settings.getString("existingVideoCv", "");
 
 
                 videoFile = file;
