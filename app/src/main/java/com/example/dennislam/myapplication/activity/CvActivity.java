@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -35,6 +36,7 @@ import java.util.List;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.example.dennislam.myapplication.GlobalClass;
 import com.example.dennislam.myapplication.R;
 import com.example.dennislam.myapplication.dao.GetCvDao;
 import com.example.dennislam.myapplication.dao.criteria.EducationLevelDao;
@@ -46,6 +48,10 @@ import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
 public class CvActivity extends BaseActivity {
 
     File videoFile = new File("");
+
+    String videoCvName;
+    private SharedPreferences settings;
+    private static final String data2 = "DATA";
 
     private final static int CAMERA_RQ = 6969;
     private final static int PERMISSION_RQ = 84;
@@ -65,6 +71,10 @@ public class CvActivity extends BaseActivity {
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_cv, null, false);
         mDrawer.addView(contentView, 0);
+
+        settings = getSharedPreferences(data2,0);
+        videoCvName = settings.getString("existingVideoCv", "");
+        Log.v("videoCv1", videoCvName + "");
 
         nameField = (EditText)findViewById(R.id.nameField);
         emailField = (EditText)findViewById(R.id.emailField);
@@ -229,7 +239,7 @@ public class CvActivity extends BaseActivity {
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             // Only use external storage directory if permission is granted, otherwise cache directory is used by default
-            saveDir = new File(Environment.getExternalStorageDirectory(), "MaterialCamera");
+            saveDir = new File(Environment.getExternalStorageDirectory(), "JobLibrary");
             saveDir.mkdirs();
         }
 
@@ -270,7 +280,6 @@ public class CvActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(resultCode == RESULT_CANCELED){
-            Log.v("ggg", "ggg");
             return;
         }
 
@@ -283,9 +292,14 @@ public class CvActivity extends BaseActivity {
 
                 Bitmap thumb = ThumbnailUtils.createVideoThumbnail(file.getAbsolutePath(),
                         MediaStore.Images.Thumbnails.MINI_KIND);
-
                 ImageButton click_videobox = (ImageButton)findViewById(R.id.click_videobox);
                 click_videobox.setImageBitmap(thumb);
+
+                settings.edit()
+                        .putString("existingVideoCv", file.getAbsolutePath())
+                        .apply();
+                Log.v("videoCv2", settings.getString("existingVideoCv", ""));
+
 
                 videoFile = file;
 

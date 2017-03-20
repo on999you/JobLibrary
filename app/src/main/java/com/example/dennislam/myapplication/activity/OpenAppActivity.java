@@ -29,15 +29,11 @@ public class OpenAppActivity extends BaseActivity {
 
     private SharedPreferences settings;
     private static final String data = "DATA";
-    private static final String existingUdid = "";
 
     String udid;
     String appVersion = "1.5.0";
     String mobAppId = "3";
     String osType = "A";
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +41,13 @@ public class OpenAppActivity extends BaseActivity {
         setContentView(R.layout.activity_open_app);
 
         settings = getSharedPreferences(data,0);
-        udid = settings.getString(existingUdid, "");
+        udid = settings.getString("existingUdid", "");
+
+        settings.edit()
+                .putString("testValue", "hello all")
+                .apply();
+
+        Log.v("testing", settings.getString("testValue", ""));
 
         //Run the code if there are network connected
         if(globalVariable.getNetwork() == true){
@@ -96,12 +98,12 @@ public class OpenAppActivity extends BaseActivity {
                 if(udid == "" && status_code == 0) {
                     settings = getSharedPreferences(data,0);
                     settings.edit()
-                            .putString(existingUdid, openAppItemList.get(0).getUdid())
-                            .commit();
-                    udid = settings.getString(existingUdid, "");
+                            .putString("existingUdid", openAppItemList.get(0).getUdid())
+                            .apply();
+                    udid = settings.getString("existingUdid", "");
                 }
 
-                final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
+                //final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
                 globalVariable.setUdid(udid);
 
                 Log.v("Testing steps", "Open App : Udid = " + udid);
