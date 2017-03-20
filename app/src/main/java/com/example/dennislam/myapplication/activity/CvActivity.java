@@ -48,9 +48,13 @@ import com.example.dennislam.myapplication.xml.EducationLevelXML;
 import com.example.dennislam.myapplication.xml.GetCvXML;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
 
+import org.apache.commons.io.FileSystemUtils;
+
 public class CvActivity extends BaseActivity {
 
     File videoFile = new File("");
+    ImageButton clickToVideo;
+    Bitmap previewVideo;
 
     String videoCvName;
     private SharedPreferences settings;
@@ -77,12 +81,21 @@ public class CvActivity extends BaseActivity {
 
         settings = getSharedPreferences(data2,0);
         videoCvName = settings.getString("existingVideoCv", "");
+        Log.v("why", videoCvName);
+
+        /*
+        if(!videoCvName.isEmpty()){
+            previewVideo = ThumbnailUtils.createVideoThumbnail(videoCvName, MediaStore.Images.Thumbnails.MINI_KIND);
+            clickToVideo.setImageBitmap(previewVideo);
+        }
+        */
 
         nameField = (EditText)findViewById(R.id.nameField);
         emailField = (EditText)findViewById(R.id.emailField);
         mobileNoField = (EditText)findViewById(R.id.mobileNoField);
         expectedSalaryField = (EditText)findViewById(R.id.expectedSalaryField);
         educationLevelField = (TextView)findViewById(R.id.educationLevelField);
+        clickToVideo = (ImageButton)findViewById(R.id.clickToVideo);
 
         Button sendCvButton = (Button)findViewById(R.id.sendCvButton);
         Drawable exclamation= ResourcesCompat.getDrawable(getResources(), R.drawable.exclamation_mark, null);
@@ -275,9 +288,16 @@ public class CvActivity extends BaseActivity {
                 .onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(videoCvName));
-                        intent.setDataAndType(Uri.parse(videoCvName), "video/mp4");
-                        startActivity(intent);
+                        File file = new File(videoCvName);
+                        if(file.exists()){
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(videoCvName));
+                            intent.setDataAndType(Uri.parse(videoCvName), "video/mp4");
+                            startActivity(intent);
+                        }
+                        else {
+                            Toast.makeText(getBaseContext(), "Sorry, File have been deleted on your phone", Toast.LENGTH_SHORT).show();
+                        }
+
                     }
                 })
                 .show();
@@ -310,18 +330,16 @@ public class CvActivity extends BaseActivity {
                 //Toast.makeText(this, String.format("Saved to: %s, size: %s",
                         //file.getAbsolutePath(), fileSize(file)), Toast.LENGTH_LONG).show();
 
-                Bitmap thumb = ThumbnailUtils.createVideoThumbnail(file.getAbsolutePath(),
-                        MediaStore.Images.Thumbnails.MINI_KIND);
-                ImageButton click_videobox = (ImageButton)findViewById(R.id.click_videobox);
-                click_videobox.setImageBitmap(thumb);
+                previewVideo = ThumbnailUtils.createVideoThumbnail(file.getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
+                clickToVideo.setImageBitmap(previewVideo);
 
                 settings.edit()
                         .putString("existingVideoCv", file.getAbsolutePath())
                         .apply();
                 videoCvName = settings.getString("existingVideoCv", "");
 
-
                 videoFile = file;
+
 
             } else if (data != null) {
                 Exception e = (Exception) data.getSerializableExtra(MaterialCamera.ERROR_EXTRA);
