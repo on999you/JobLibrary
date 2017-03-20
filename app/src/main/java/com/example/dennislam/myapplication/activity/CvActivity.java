@@ -93,8 +93,6 @@ public class CvActivity extends BaseActivity {
             //clickToVideo.setImageBitmap(previewVideo);
         }
 
-
-
         nameField = (EditText)findViewById(R.id.nameField);
         emailField = (EditText)findViewById(R.id.emailField);
         mobileNoField = (EditText)findViewById(R.id.mobileNoField);
@@ -376,12 +374,10 @@ public class CvActivity extends BaseActivity {
                     .apply();
             videoCvName = settings.getString("existingVideoCv", "");
 
-            new AlertDialog.Builder(CvActivity.this)
-                    .setMessage(dialogMessage)
-                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                        }
-                    })
+
+            new MaterialDialog.Builder(CvActivity.this)
+                    .content(dialogMessage)
+                    .positiveText("ok")
                     .show();
         }
     }
