@@ -12,7 +12,7 @@
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="HAVE SOMETHING TO SAY?!"
+        android:text="@string/faq_title"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#F7F7F7"
@@ -24,7 +24,7 @@
         android:id="@+id/nameField"
         android:layout_width="300dp"
         android:layout_height="45dp"
-        android:hint="Name"
+        android:hint="@string/faq_name"
         android:layout_gravity="center"
         android:gravity="center"
         android:background="@drawable/criterias_bg"/>
@@ -33,7 +33,7 @@
         android:id="@+id/emailField"
         android:layout_width="300dp"
         android:layout_height="45dp"
-        android:hint="Email Address"
+        android:hint="@string/faq_email"
         android:layout_marginTop="12dp"
         android:layout_gravity="center"
         android:gravity="center"
@@ -43,7 +43,7 @@
         android:id="@+id/commentField"
         android:layout_width="300dp"
         android:layout_height="45dp"
-        android:hint="Comments"
+        android:hint="@string/faq_comments"
         android:layout_marginTop="12dp"
         android:layout_gravity="center"
         android:gravity="center"
@@ -76,7 +76,7 @@
             android:id="@+id/resetFeedback"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Reset"
+            android:text="@string/faq_btnR"
             android:textSize="15sp"
             android:layout_marginRight="25dp"/>
 
@@ -84,7 +84,7 @@
             android:id="@+id/submitFeedback"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Done"
+            android:text="@string/faq_btnD"
             android:textSize="15sp" />
 
 

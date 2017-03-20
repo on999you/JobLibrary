@@ -4,62 +4,62 @@
     <item
         android:id="@+id/nav_home"
         android:icon="@drawable/home"
-        android:title="Home Page" />
+        android:title="@string/mainPage" />
 
-    <item android:title="JOBS">
+    <item android:title="@string/jobs">
         <menu>
         <group android:checkableBehavior="single">
             <item
                 android:id="@+id/nav_search"
                 android:icon="@drawable/search2"
-                android:title="Search Jobs" />
+                android:title="@string/dra_searchJobs" />
             <item
                 android:id="@+id/nav_applied"
                 android:icon="@drawable/appliedjob2"
-                android:title="Applied Jobs" />
+                android:title="@string/dra_appliedJobs" />
             <item
                 android:id="@+id/nav_cv"
                 android:icon="@drawable/updatecv2"
-                android:title="CV" />
+                android:title="@string/mp_CV" />
         </group>
         </menu>
     </item>
 
-    <item android:title="SALARY">
+    <item android:title="@string/salary">
         <menu>
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_salary"
                     android:icon="@drawable/salarycheck2"
-                    android:title="Salary Check" />
+                    android:title="@string/dra_salaryCheck" />
                 <item
                     android:id="@+id/nav_report"
                     android:icon="@drawable/report"
-                    android:title="Salary Report" />
+                    android:title="@string/dra_salaryReport" />
             </group>
         </menu>
     </item>
 
-    <item android:title="OTHERS">
+    <item android:title="@string/others">
         <menu>
             <group android:checkableBehavior="single">
             <item
                 android:id="@+id/nav_faq"
                 android:icon="@drawable/faq2"
-                android:title="FAQ" />
+                android:title="@string/mp_FAQ" />
                 <item
                     android:id="@+id/nav_setting"
                     android:icon="@drawable/settings"
-                    android:title="Settings" />
+                    android:title="@string/dra_settings" />
             <item
                 android:id="@+id/nav_aboutus"
                 android:icon="@drawable/aboutus"
-                android:title="About Us" />
+                android:title="@string/dra_aboutUs" />
 
             <item
                 android:id="@+id/nav_exit"
                 android:icon="@drawable/exit2"
-                android:title="Exit" />
+                android:title="@string/dra_exit" />
             </group>
         </menu>
     </item>

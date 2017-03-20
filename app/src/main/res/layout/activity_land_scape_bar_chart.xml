@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:textSize="25dp"
         android:textAlignment="center"
-        android:text="Salary Distribution Chart"
+        android:text="@string/barC_landscape_title"
         />
 
     <com.github.mikephil.charting.charts.BarChart

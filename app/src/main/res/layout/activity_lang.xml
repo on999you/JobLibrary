@@ -5,25 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="?attr/actionBarSize"
-    tool:context="com.example.dennislam.myapplication.activity.SearchJobsActivity">
-    <TextView
-     android:layout_width="match_parent"
-     android:layout_height="55dp"
-     android:text="@string/notification"
-     android:textSize="25dp"
-     android:textStyle="bold"
-     android:padding="10dp"
-     android:drawableRight="@drawable/next_black"
-     android:background="#ffffff" />
+    tool:context="com.example.dennislam.myapplication.activity.LanguageActivity">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:text="@string/language"
+        android:text="ENGLISH"
         android:textSize="25dp"
         android:textStyle="bold"
         android:padding="10dp"
         android:drawableRight="@drawable/next_black"
         android:background="#ffffff"
-        android:onClick="passToLang"/>
+        android:onClick="changeEngLang"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="中文"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:drawableRight="@drawable/next_black"
+        android:background="#ffffff"
+        android:onClick="changeChinLang"/>
 
 </LinearLayout>

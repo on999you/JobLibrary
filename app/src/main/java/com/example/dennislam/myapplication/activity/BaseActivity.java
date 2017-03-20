@@ -153,6 +153,9 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_exit) {
             //Exit app
             exitAppDialog();
+        } else if (id == R.id.nav_setting){
+            Intent intent = new Intent(getBaseContext(), SettingsActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

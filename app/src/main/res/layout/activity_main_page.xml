@@ -34,7 +34,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SEARCH JOBS"
+                android:text="@string/mp_searchJobs"
                 android:textColor="#FFFFFF"
                 android:paddingTop="10dp"/>
 
@@ -59,7 +59,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="SALARY CHECK"
+                android:text="@string/mp_salaryCheck"
                 android:textColor="#FFFFFF"
                 android:paddingTop="10dp"/>
 
@@ -93,7 +93,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="APPLIED JOBS"
+                android:text="@string/mp_appliedJobs"
                 android:textColor="#FFFFFF"
                 android:paddingTop="10dp"/>
 
@@ -118,7 +118,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CV"
+                android:text="@string/mp_CV"
                 android:textColor="#FFFFFF"
                 android:paddingTop="10dp"/>
 
@@ -152,7 +152,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="FAQ"
+                android:text="@string/mp_FAQ"
                 android:textColor="#FFFFFF"
                 android:paddingTop="10dp"/>
 
@@ -177,7 +177,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="EXIT"
+                android:text="@string/mp_exit"
                 android:textColor="#FFFFFF"
                 android:paddingTop="10dp"/>
 
