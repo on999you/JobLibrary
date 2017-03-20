@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="string/dra_aboutUs"
+            android:text="@string/dra_aboutUs"
             android:gravity="center"
             android:textColor="#FFFFFF"
             android:textSize="30sp"

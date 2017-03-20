@@ -14,8 +14,7 @@
      android:textStyle="bold"
      android:padding="10dp"
      android:drawableRight="@drawable/next_black"
-     android:background="#ffffff"
-     android:onClick=""/>
+     android:background="#ffffff" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="55dp"
@@ -25,6 +24,6 @@
         android:padding="10dp"
         android:drawableRight="@drawable/next_black"
         android:background="#ffffff"
-        android:onClick=""/>
+        android:onClick="passToLang"/>
 
 </LinearLayout>

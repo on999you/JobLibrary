@@ -12,7 +12,7 @@
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="HAVE SOMETHING TO SAY?!"
+        android:text="@string/faq_title"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#F7F7F7"

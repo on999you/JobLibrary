@@ -73,6 +73,7 @@
         <activity
             android:name=".activity.SettingsActivity"
             android:label="Settings"/>
+        <activity android:name=".activity.LanguageActivity"/>
 
     </application>
 

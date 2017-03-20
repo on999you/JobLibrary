@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">JOB LIBRARY</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_base2">BaseActivity2</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="title_activity_base2" translatable="false">BaseActivity2</string>
 
     <string name="mp_salaryCheck">SALARY CHECK</string>
     <string name="mp_searchJobs">SEARCH</string>
@@ -30,8 +30,8 @@
     <string name="sC_workExp">Work Exp</string>
     <string name="sC_SourceT">Source Type</string>
     <string name="sC_buttonSearch">SEARCH NOW</string>
-    <string name="sC_Workstart">ALL / UNSPECIFIED</string>
-    <string name="sC_WorkTo">ALL / UNSPECIFIED</string>
+    <string name="sC_Workstart">Work Experience (From)</string>
+    <string name="sC_WorkTo">Work Experience (To)</string>
     <string name="from">From</string>
     <string name="to">To</string>
     <string name="unspecified">UNSPECIFIED</string>
@@ -40,7 +40,7 @@
 
     <string name="barC_title">Salary Distribution</string>
     <string name="relevantSalaryD">RELEVANT SALARY DATA</string>
-    <string name="barC_landscape_title"> 's Salary Distribution Chart</string>
+    <string name="barC_landscape_title"> Salary Distribution Chart</string>
     <string name="barC_low">Lowest : </string>
     <string name="barC_mid">Median : </string>
     <string name="barC_high">Highest : </string>
@@ -54,6 +54,7 @@
     <string name="faq_comments">Comments</string>
     <string name="faq_btnR">RESET</string>
     <string name="faq_btnD">DONE</string>
+    <string name="faq_title">Having something to say?</string>
     <string name="feedback">FeedBack</string>
 
     <string name="language">Language</string>

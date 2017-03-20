@@ -13,7 +13,7 @@
     <string name="sC_Salarysource">選擇薪酬來源日期</string>
     <string name="rlj_workExp">工作經驗</string>
     <string name="rlj_jobT">職位名稱</string>
-    <string name="rlj_wages">薪金</string>
+    <string name="rlj_wages">薪金:</string>
     <string name="relevantSalaryD">相關薪酬記錄</string>
     <string name="notification">通知</string>
     <string name="mp_searchJobs">搜尋</string>
@@ -49,12 +49,12 @@
     <string name="CV_submit">提交</string>
     <string name="CV_phoneNo">電話號碼</string>
     <string name="CV_expectedSalary">預期薪酬</string>
-    <string name="jobDesc">工作描述</string>
-    <string name="industrial">公司名稱</string>
+    <string name="jobDesc">工作描述:</string>
+    <string name="industrial">公司名稱:</string>
     <string name="navigation_drawer_open"></string>
     <string name="sC_jobIndustry">選擇行業</string>
-    <string name="sC_WorkTo">全部/不指定</string>
-    <string name="sC_Workstart">全部/不指定</string>
+    <string name="sC_WorkTo">工作經驗 (由)</string>
+    <string name="sC_Workstart">工作經驗 (至)</string>
     <string name="to">至</string>
     <string name="from">由</string>
     <string name="mainPage">主頁</string>
@@ -62,5 +62,6 @@
     <string name="others">其他</string>
     <string name="jobs">關於工作</string>
     <string name="jobinfo">關於工作</string>
-    <string name="jobFun">工種</string>
+    <string name="jobFun">工種:</string>
+    <string name="faq_title">有東西想說?</string>
 </resources>
