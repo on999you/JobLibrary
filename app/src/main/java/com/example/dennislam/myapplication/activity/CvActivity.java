@@ -4,11 +4,15 @@ import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.ThumbnailUtils;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -35,6 +39,7 @@ import java.util.List;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.example.dennislam.myapplication.GlobalClass;
 import com.example.dennislam.myapplication.R;
 import com.example.dennislam.myapplication.dao.GetCvDao;
 import com.example.dennislam.myapplication.dao.criteria.EducationLevelDao;
@@ -43,9 +48,17 @@ import com.example.dennislam.myapplication.xml.EducationLevelXML;
 import com.example.dennislam.myapplication.xml.GetCvXML;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
 
+import org.apache.commons.io.FileSystemUtils;
+
 public class CvActivity extends BaseActivity {
 
     File videoFile = new File("");
+    ImageButton clickToVideo;
+    Bitmap previewVideo;
+
+    String videoCvName;
+    private SharedPreferences settings;
+    private static final String data2 = "DATA";
 
     private final static int CAMERA_RQ = 6969;
     private final static int PERMISSION_RQ = 84;
@@ -66,11 +79,26 @@ public class CvActivity extends BaseActivity {
         View contentView = inflater.inflate(R.layout.activity_cv, null, false);
         mDrawer.addView(contentView, 0);
 
+        settings = getSharedPreferences(data2,0);
+        videoCvName = settings.getString("existingVideoCv", "");
+
+        File file = new File(videoCvName);
+        videoFile = file;
+
+        /*
+        if(!videoCvName.isEmpty()){
+            previewVideo = ThumbnailUtils.createVideoThumbnail(file.getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
+            clickToVideo.setImageBitmap(previewVideo);
+        }
+        */
+
+
         nameField = (EditText)findViewById(R.id.nameField);
         emailField = (EditText)findViewById(R.id.emailField);
         mobileNoField = (EditText)findViewById(R.id.mobileNoField);
         expectedSalaryField = (EditText)findViewById(R.id.expectedSalaryField);
         educationLevelField = (TextView)findViewById(R.id.educationLevelField);
+        clickToVideo = (ImageButton)findViewById(R.id.clickToVideo);
 
         Button sendCvButton = (Button)findViewById(R.id.sendCvButton);
         Drawable exclamation= ResourcesCompat.getDrawable(getResources(), R.drawable.exclamation_mark, null);
@@ -108,8 +136,6 @@ public class CvActivity extends BaseActivity {
             new getEduLvAndCvAsyncTaskRunner().execute();
         }
     }
-
-
 
     private void alertMsg(String title,String msg){
         android.app.AlertDialog.Builder myAD = new android.app.AlertDialog.Builder(this);
@@ -224,34 +250,60 @@ public class CvActivity extends BaseActivity {
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void startRecordVideo(View view) {
 
+        new MaterialDialog.Builder(this)
+                .content("Take a new video / Play currently video ?")
+                .positiveText("Take")
+                .negativeText("Play")
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        File saveDir = null;
 
-        File saveDir = null;
+                        if (ContextCompat.checkSelfPermission(CvActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                            // Only use external storage directory if permission is granted, otherwise cache directory is used by default
+                            saveDir = new File(Environment.getExternalStorageDirectory(), "JobLibrary");
+                            saveDir.mkdirs();
+                        }
 
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            // Only use external storage directory if permission is granted, otherwise cache directory is used by default
-            saveDir = new File(Environment.getExternalStorageDirectory(), "MaterialCamera");
-            saveDir.mkdirs();
-        }
+                        MaterialCamera materialCamera = new MaterialCamera(CvActivity.this)
+                                .forceCamera1()
+                                .primaryColor(Color.parseColor("#3E5975"))
+                                .videoEncodingBitRate(500000)
+                                .audioEncodingBitRate(50000)
+                                .videoPreferredHeight(640)
+                                //.qualityProfile(MaterialCamera.QUALITY_480P)
+                                .videoPreferredAspect(4f / 3f)
+                                .countdownMinutes(0.5f)
+                                .videoFrameRate(30)
 
-        MaterialCamera materialCamera = new MaterialCamera(this)
-                .forceCamera1()
-                .primaryColor(Color.parseColor("#3E5975"))
-                .videoEncodingBitRate(500000)
-                .audioEncodingBitRate(50000)
-                .videoPreferredHeight(640)
-                //.qualityProfile(MaterialCamera.QUALITY_480P)
-                .videoPreferredAspect(4f / 3f)
-                .countdownMinutes(0.5f)
-                .videoFrameRate(30)
+                                .showPortraitWarning(false)
+                                .saveDir(saveDir)
+                                .allowRetry(true)
+                                .defaultToFrontFacing(false)
+                                .autoSubmit(false)
+                                .labelConfirm(R.string.mcam_use_video)
+                                .iconRecord(R.drawable.video_start)
+                                .iconFrontCamera(R.drawable.video_change)
+                                .iconRearCamera(R.drawable.video_change);
 
-                .showPortraitWarning(false)
-                .saveDir(saveDir)
-                .allowRetry(true)
-                .defaultToFrontFacing(false)
-                .autoSubmit(false)
-                .labelConfirm(R.string.mcam_use_video);
-
-        materialCamera.start(CAMERA_RQ);
+                        materialCamera.start(CAMERA_RQ);
+                    }
+                })
+                .onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        File file = new File(videoCvName);
+                        if(file.exists()){
+                            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(videoCvName));
+                            intent.setDataAndType(Uri.parse(videoCvName), "video/mp4");
+                            startActivity(intent);
+                        }
+                        else {
+                            Toast.makeText(getBaseContext(), "Sorry, File have been deleted on your phone", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .show();
     }
 
     private String readableFileSize(long size) {
@@ -270,7 +322,6 @@ public class CvActivity extends BaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(resultCode == RESULT_CANCELED){
-            Log.v("ggg", "ggg");
             return;
         }
 
@@ -278,16 +329,17 @@ public class CvActivity extends BaseActivity {
         if (requestCode == CAMERA_RQ) {
             if (resultCode == RESULT_OK) {
                 final File file = new File(data.getData().getPath());
-                //Toast.makeText(this, String.format("Saved to: %s, size: %s",
-                        //file.getAbsolutePath(), fileSize(file)), Toast.LENGTH_LONG).show();
 
-                Bitmap thumb = ThumbnailUtils.createVideoThumbnail(file.getAbsolutePath(),
-                        MediaStore.Images.Thumbnails.MINI_KIND);
+                previewVideo = ThumbnailUtils.createVideoThumbnail(file.getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
+                clickToVideo.setImageBitmap(previewVideo);
 
-                ImageButton click_videobox = (ImageButton)findViewById(R.id.click_videobox);
-                click_videobox.setImageBitmap(thumb);
+                settings.edit()
+                        .putString("existingVideoCv", file.getAbsolutePath())
+                        .apply();
+                videoCvName = settings.getString("existingVideoCv", "");
 
                 videoFile = file;
+
 
             } else if (data != null) {
                 Exception e = (Exception) data.getSerializableExtra(MaterialCamera.ERROR_EXTRA);

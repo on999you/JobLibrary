@@ -88,7 +88,7 @@
             android:scaleType="fitXY"
             android:src="@drawable/video_camera"
             android:background="@null"
-            android:id="@+id/click_videobox"
+            android:id="@+id/clickToVideo"
             android:layout_gravity="center" />
 
     </LinearLayout>

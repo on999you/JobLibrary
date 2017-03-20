@@ -28,5 +28,4 @@ public class GlobalClass extends Application {
         this.network = network;
     }
 
-
 }
