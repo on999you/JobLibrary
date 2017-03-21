@@ -83,10 +83,12 @@ public class SalaryCheckActivity extends BaseActivity {
 
         //Detect Language
         SharedPreferences prefs = getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
-        if(prefs.getString("Language","")=="zh"){
+        if("zh".equals(prefs.getString("Language", ""))){
             currLanguage = "chi";
+            Log.v("testinglang", "chi now");
         } else{
             currLanguage = "eng";
+            Log.v("testinglang", "eng now");
         }
 
         final EditText jobTitleField = (EditText)findViewById(R.id.jobTitleField);
