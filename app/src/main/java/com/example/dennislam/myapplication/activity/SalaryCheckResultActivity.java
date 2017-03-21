@@ -122,7 +122,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
         //Run the code if there are network connected
         if(globalVariable.getNetwork() == true){
             new GetSalaryCheckResultAsyncTaskRunner().execute();
-            //new GetGraphInfoAsyncTaskRunner().execute();
+            new GetGraphInfoAsyncTaskRunner().execute();
         }
 
 
@@ -173,6 +173,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
             @Override
             public void onChartDoubleTapped(MotionEvent me) {
                 Intent myintent = new Intent(getBaseContext(),LandScapeBarChart.class);
+                intent.putExtra("title", finalJobTitle);
                 startActivity(myintent);
             }
 

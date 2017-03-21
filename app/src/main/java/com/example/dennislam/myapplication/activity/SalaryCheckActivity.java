@@ -1,9 +1,11 @@
 package com.example.dennislam.myapplication.activity;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -41,6 +43,8 @@ import static com.example.dennislam.myapplication.R.id.unspecifiedRadio;
 
 public class SalaryCheckActivity extends BaseActivity {
 
+    String currLanguage;
+
     private Toast toast;
     public static String sdtvName;
 
@@ -72,6 +76,14 @@ public class SalaryCheckActivity extends BaseActivity {
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_salary_check_search, null, false);
         mDrawer.addView(contentView, 0);
+
+        //Detect Language
+        SharedPreferences prefs = getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
+        if(prefs.getString("Language","")=="zh"){
+            currLanguage = "chi";
+        } else{
+            currLanguage = "eng";
+        }
 
         final EditText jobTitleField = (EditText)findViewById(R.id.jobTitleField);
         Button searchButton = (Button)findViewById(R.id.searchButton);
@@ -192,7 +204,11 @@ public class SalaryCheckActivity extends BaseActivity {
             } else {
                 //Get Job Cat
                 for(int i = 0; i < jobCatItemList.size(); i++){
-                    jobCatArray.add(i, jobCatItemList.get(i).getJobCatName());
+                    if(currLanguage == "chi") {
+                        jobCatArray.add(i, jobCatItemList.get(i).getJobCatNameChi());
+                    } else {
+                        jobCatArray.add(i, jobCatItemList.get(i).getJobCatName());
+                    }
                     jobCatIdArray.add(i, jobCatItemList.get(i).getJobCatID());
                 }
             }
@@ -202,7 +218,11 @@ public class SalaryCheckActivity extends BaseActivity {
             } else {
                 //Get Job Industry
                 for(int i = 0; i < industryItemList.size(); i++){
-                    industryArray.add(i, industryItemList.get(i).getIndustryName());
+                    if(currLanguage == "chi") {
+                        industryArray.add(i, industryItemList.get(i).getIndustryNameChi());
+                    } else {
+                        industryArray.add(i, industryItemList.get(i).getIndustryName());
+                    }
                     industryIdArray.add(i, industryItemList.get(i).getIndustryID());
                 }
             }
@@ -212,7 +232,11 @@ public class SalaryCheckActivity extends BaseActivity {
             } else {
                 //Get Work Exp
                 for(int i = 0; i < workExpItemList.size(); i++){
-                    workExpNameArray.add(i, workExpItemList.get(i).getWorkExpname());
+                    if(currLanguage == "chi") {
+                        workExpNameArray.add(i, workExpItemList.get(i).getWorkExpnameChi());
+                    } else {
+                        workExpNameArray.add(i, workExpItemList.get(i).getWorkExpname());
+                    }
                     workExpIdArray.add(i, workExpItemList.get(i).getWorkExpid());
                 }
             }

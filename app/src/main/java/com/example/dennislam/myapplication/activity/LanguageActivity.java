@@ -31,27 +31,30 @@ public class LanguageActivity extends BaseActivity{
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_lang, null, false);
         mDrawer.addView(contentView, 0);
-         chi = (TextView)findViewById(R.id.chineseLangField);
-         eng = (TextView)findViewById(R.id.englishLangField);
 
-        SharedPreferences prefs = getSharedPreferences("CommonPrefs",
-                Activity.MODE_PRIVATE);
+        chi = (TextView)findViewById(R.id.chineseLangField);
+        eng = (TextView)findViewById(R.id.englishLangField);
+
+        SharedPreferences prefs = getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
         Drawable checked= ResourcesCompat.getDrawable(getResources(), R.drawable.checked, null);
         checked.setBounds(0, 0, checked.getMinimumWidth(), checked.getMinimumHeight());
         if(prefs.getString("Language","")=="zh"){
             chi.setCompoundDrawables(null,null,checked,null);
-        }else{
+        } else{
             eng.setCompoundDrawables(null,null,checked,null);
         }
     }
+
     public void changeEngLang(View v){
         lang = "en";
         setLocale(lang);
     }
+
     public void changeChinLang(View v){
         lang = "zh";
         setLocale(lang);
     }
+
     public void setLocale(String langu) {
         SharedPreferences prefs = getSharedPreferences("CommonPrefs",
                 Activity.MODE_PRIVATE);
