@@ -344,6 +344,7 @@ public class SalaryCheckActivity extends BaseActivity {
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        finalSelectedJobCatArray.clear();
                         for(int i =0; i<tempJobCatArray.size(); i++){
                             finalSelectedJobCatArray.add(jobCatIdArray.get(Integer.parseInt(tempJobCatArray.get(i))));
                         }
@@ -380,6 +381,7 @@ public class SalaryCheckActivity extends BaseActivity {
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        finalSelectedJobIndustryArray.clear();
                         for(int i =0; i<tempJobIndustryArray.size(); i++){
                             finalSelectedJobIndustryArray.add(industryIdArray.get(Integer.parseInt(tempJobIndustryArray.get(i))));
                         }
