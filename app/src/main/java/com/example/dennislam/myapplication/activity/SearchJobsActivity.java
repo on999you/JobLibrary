@@ -1,7 +1,9 @@
 package com.example.dennislam.myapplication.activity;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
@@ -18,13 +20,19 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.dennislam.myapplication.R;
 import com.example.dennislam.myapplication.dao.criteria.IndustryDao;
 import com.example.dennislam.myapplication.dao.criteria.JobCatDao;
+import com.example.dennislam.myapplication.dao.criteria.SalarySourceDao;
+import com.example.dennislam.myapplication.dao.criteria.WorkExpDao;
 import com.example.dennislam.myapplication.xml.IndustryXML;
 import com.example.dennislam.myapplication.xml.JobCatXML;
+import com.example.dennislam.myapplication.xml.SalarySourceXML;
+import com.example.dennislam.myapplication.xml.WorkExpXML;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SearchJobsActivity extends BaseActivity {
+
+    String currLanguage;
 
     private Toast toast;
     EditText salaryMin, salaryMax;
@@ -49,6 +57,14 @@ public class SearchJobsActivity extends BaseActivity {
         View contentView = inflater.inflate(R.layout.activity_search_jobs, null, false);
         mDrawer.addView(contentView, 0);
 
+        //Detect Language
+        SharedPreferences prefs = getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
+        if(prefs.getString("Language","")=="zh"){
+            currLanguage = "chi";
+        } else{
+            currLanguage = "eng";
+        }
+
         jobFunctionButton = (TextView)findViewById(R.id.jobFunctionButton);
         jobIndustryButton = (TextView)findViewById(R.id.jobIndustryButton);
         salaryMin = (EditText)findViewById(R.id.salaryMin);
@@ -72,6 +88,7 @@ public class SearchJobsActivity extends BaseActivity {
 
         List<JobCatXML.JobCatItem> jobCatItemList = new ArrayList<JobCatXML.JobCatItem>();
         List<IndustryXML.IndustryItem> industryItemList = new ArrayList<IndustryXML.IndustryItem>();
+
         JobCatDao jobCatItemDao = new JobCatDao();
         IndustryDao industryItemDao = new IndustryDao();
 
@@ -95,28 +112,33 @@ public class SearchJobsActivity extends BaseActivity {
 
             loadingInternetDialog.dismiss();
 
-            if(jobCatItemList == null || jobCatItemList.isEmpty()){
-                Toast.makeText(getBaseContext(), "error", Toast.LENGTH_LONG).show();
-            }
-            else {
+            if(jobCatItemList == null || jobCatItemList.isEmpty()) {
+                Toast.makeText(SearchJobsActivity.this, "cannot get job cat", Toast.LENGTH_LONG).show();
+            } else {
                 //Get Job Cat
                 for(int i = 0; i < jobCatItemList.size(); i++){
-                    jobCatArray.add(i, jobCatItemList.get(i).getJobCatName());
+                    if(currLanguage == "chi") {
+                        jobCatArray.add(i, jobCatItemList.get(i).getJobCatNameChi());
+                    } else {
+                        jobCatArray.add(i, jobCatItemList.get(i).getJobCatName());
+                    }
                     jobCatIdArray.add(i, jobCatItemList.get(i).getJobCatID());
                 }
             }
 
-            if(industryItemList == null || industryItemList.isEmpty()){
-                Toast.makeText(getBaseContext(), "error", Toast.LENGTH_LONG).show();
-            }
-            else {
+            if(industryItemList == null || industryItemList.isEmpty()) {
+                Toast.makeText(SearchJobsActivity.this, "cannot get job industry", Toast.LENGTH_LONG).show();
+            } else {
                 //Get Job Industry
                 for(int i = 0; i < industryItemList.size(); i++){
-                    industryArray.add(i, industryItemList.get(i).getIndustryName());
+                    if(currLanguage == "chi") {
+                        industryArray.add(i, industryItemList.get(i).getIndustryNameChi());
+                    } else {
+                        industryArray.add(i, industryItemList.get(i).getIndustryName());
+                    }
                     industryIdArray.add(i, industryItemList.get(i).getIndustryID());
                 }
             }
-
 
         }
     }

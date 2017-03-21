@@ -40,20 +40,21 @@ public class LanguageActivity extends BaseActivity{
         checked.setBounds(0, 0, checked.getMinimumWidth(), checked.getMinimumHeight());
         if("zh".equals(prefs.getString("Language",""))){
             chi.setCompoundDrawables(null,null,checked,null);
-            Log.v("chi","~");
         }else{
             eng.setCompoundDrawables(null,null,checked,null);
-            Log.v("eng","~");
         }
     }
+
     public void changeEngLang(View v){
         lang = "en";
         setLocale(lang);
     }
+
     public void changeChinLang(View v){
         lang = "zh";
         setLocale(lang);
     }
+
     public void setLocale(String langu) {
         SharedPreferences prefs = getSharedPreferences("CommonPrefs",
                 Activity.MODE_PRIVATE);
@@ -71,14 +72,15 @@ public class LanguageActivity extends BaseActivity{
             conf.locale = myLocale;
             res.updateConfiguration(conf, dm);
             Locale.setDefault(myLocale);
+            Intent refresh = new Intent(this, SearchJobsActivity.MainPageActivity.class);
+            startActivity(refresh);
+            finish();
             if("zh".equals(prefs.getString("Language",""))){
                 chi.setCompoundDrawables(null,null,checked,null);
                 eng.setCompoundDrawables(null,null,null,null);
-                Log.v("chi","~");
             }else if ("en".equals(prefs.getString("Language",""))){
                 eng.setCompoundDrawables(null,null,checked,null);
                 chi.setCompoundDrawables(null,null,null,null);
-                Log.v("eng","~");
             }
         }
     }

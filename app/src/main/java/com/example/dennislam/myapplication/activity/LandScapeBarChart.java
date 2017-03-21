@@ -1,5 +1,6 @@
 package com.example.dennislam.myapplication.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,13 +22,24 @@ import com.github.mikephil.charting.listener.OnChartGestureListener;
 
 public class LandScapeBarChart extends AppCompatActivity {
 
+    String title;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_land_scape_bar_chart);
-        TextView sdtv = (TextView)findViewById(R.id.salarydistributionTVL);
+
+        Intent intent= getIntent();
+        Bundle b = intent.getExtras();
+        if(b!=null) {
+            title = (String) b.get("title");
+            TextView sdtv = (TextView)findViewById(R.id.salarydistributionTVL);
+            sdtv.setText(title +" 's Salary Distribution Chart");
+        }
+
+
         BarChart barChart = (BarChart)findViewById(R.id.barChart2) ;
-        sdtv.setText(SalaryCheckActivity.sdtvName+" 's Salary Distribution Chart");
+
         BarDataSet set1 = new BarDataSet(SalaryCheckResultActivity.entries, "Labour");
         BarDataSet set2 =new BarDataSet(SalaryCheckResultActivity.entries2,"Employer");
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// x-axis  value
