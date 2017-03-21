@@ -6,6 +6,7 @@ import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -44,6 +45,7 @@ import static com.example.dennislam.myapplication.R.id.unspecifiedRadio;
 public class SalaryCheckActivity extends BaseActivity {
 
     String currLanguage;
+    Resources res ;
 
     private Toast toast;
     public static String sdtvName;
@@ -76,6 +78,8 @@ public class SalaryCheckActivity extends BaseActivity {
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_salary_check_search, null, false);
         mDrawer.addView(contentView, 0);
+
+        res = getResources();
 
         //Detect Language
         SharedPreferences prefs = getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
@@ -261,7 +265,7 @@ public class SalaryCheckActivity extends BaseActivity {
                 .items(workExpNameArray.toArray(new CharSequence[workExpNameArray.size()]))
                 .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
                     TextView WorkExpFrom = (TextView)findViewById(R.id.WorkExpFrom);
-                    WorkExpFrom.setText(R.string.sC_reminder6 + "" + text );
+                    WorkExpFrom.setText(res.getString(R.string.sC_reminder6) + "" + text );
                     finalWorkExpFromID = workExpIdArray.get(which);
                     return true; // allow selection
                 })
@@ -277,7 +281,7 @@ public class SalaryCheckActivity extends BaseActivity {
                 .items(workExpNameArray.toArray(new CharSequence[workExpNameArray.size()]))
                 .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
                     TextView WorkExpTo = (TextView)findViewById(R.id.WorkExpTo);
-                    WorkExpTo.setText(R.string.sC_reminder5 + "" + text);
+                    WorkExpTo.setText(res.getString(R.string.sC_reminder5) + "" + text);
                     finalWorkExpToID = workExpIdArray.get(which);
                     return true; // allow selection
                 })
@@ -293,7 +297,7 @@ public class SalaryCheckActivity extends BaseActivity {
                 .items(salarySourceArray.toArray(new CharSequence[salarySourceArray.size()]))
                 .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
                     TextView salarySource = (TextView)findViewById(R.id.salarySource);
-                    salarySource.setText(R.string.sC_reminder4 + "" + text);
+                    salarySource.setText(res.getString(R.string.sC_reminder4) + "" + text);
                     finalSalarySourceID = salarySourceIdArray.get(which);
                     return true; // allow selection
                 })
@@ -320,12 +324,12 @@ public class SalaryCheckActivity extends BaseActivity {
 
                     boolean allowSelectionChange = which.length <= 5;
                     if (!allowSelectionChange) {
-                        showToast(R.string.sC_reminder2 + "");
+                        showToast(res.getString(R.string.sC_reminder2) + "");
                     }
                     if(which.length == 6){
-                        jobFunctionButton.setText(5 + "@string/sC_reminder3");
+                        jobFunctionButton.setText(5 + res.getString(R.string.sC_reminder3));
                     } else {
-                        jobFunctionButton.setText(which.length + "@string/sC_reminder3");
+                        jobFunctionButton.setText(which.length + "" + res.getString(R.string.sC_reminder3));
 
                         tempJobCatArray.clear();
                         for(int i=0; i< which.length; i++){
@@ -357,12 +361,12 @@ public class SalaryCheckActivity extends BaseActivity {
                 .itemsCallbackMultiChoice(new Integer[]{}, (dialog, which, text) -> {
                     boolean allowSelectionChange = which.length <= 5;
                     if (!allowSelectionChange) {
-                        showToast(R.string.sC_reminder2 + "");
+                        showToast(res.getString(R.string.sC_reminder2) + "");
                     }
                     if(which.length == 6){
-                        jobIndustryButton.setText(5 + " @string/reminder3");
+                        jobIndustryButton.setText(5 + res.getString(R.string.sC_reminder3));
                     } else {
-                        jobIndustryButton.setText(which.length + " @string/reminder3");
+                        jobIndustryButton.setText(which.length + "" + res.getString(R.string.sC_reminder3));
 
                         tempJobIndustryArray.clear();
                         for(int i=0; i< which.length; i++){
