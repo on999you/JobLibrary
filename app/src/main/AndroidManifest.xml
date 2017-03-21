@@ -19,9 +19,8 @@
         android:allowBackup="true"
         android:icon="@drawable/logo"
 
-
         android:supportsRtl="true"
-        android:theme="@style/android:Theme.NoTitleBar">
+        android:theme="@style/AppTheme">
         <activity
             android:name=".activity.OpenAppActivity"
             android:label="@string/app_name"
