@@ -14,6 +14,14 @@
         android:text="@string/barC_landscape_title"
         />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:textAlignment="center"
+        android:text="double click for exit"
+        />
+
     <com.github.mikephil.charting.charts.BarChart
         android:layout_width="match_parent"
         android:layout_height="match_parent"
