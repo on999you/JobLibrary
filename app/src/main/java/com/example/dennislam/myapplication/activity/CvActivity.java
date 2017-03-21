@@ -88,7 +88,7 @@ public class CvActivity extends BaseActivity {
         videoCvField = (TextView)findViewById(R.id.videoCvField);
 
         if(!videoCvName.isEmpty()){
-            videoCvField.setText("Already taken a video");
+            videoCvField.setText(res.getString(R.string.Cv_reminder1));
             //previewVideo = ThumbnailUtils.createVideoThumbnail(file.getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
             //clickToVideo.setImageBitmap(previewVideo);
         }
@@ -109,7 +109,7 @@ public class CvActivity extends BaseActivity {
             public void onClick(View view) {
                 if(nameField.getText().toString().isEmpty() || emailField.getText().toString().isEmpty() || mobileNoField.getText().toString().isEmpty()
                         || expectedSalaryField.getText().toString().isEmpty() || educationLevelId.isEmpty()){
-                    alertMsg("Empty Field(s) Found","Please fill in every field !");
+                    alertMsg(res.getString(R.string.Cv_reminder2),res.getString(R.string.Cv_reminder10));
                 } else{
                     name = nameField.getText().toString();
                     email = emailField.getText().toString();
@@ -148,7 +148,7 @@ public class CvActivity extends BaseActivity {
 
             }
         };
-        myAD.setNeutralButton("OK",OkClick);
+        myAD.setNeutralButton(res.getString(R.string.baseAct_reminder3),OkClick);
         myAD.show();
     }
 
@@ -163,7 +163,7 @@ public class CvActivity extends BaseActivity {
         protected void onPreExecute(){
             super.onPreExecute();
             loadingInternetDialog = new ProgressDialog(CvActivity.this);
-            loadingInternetDialog.setMessage("Loading...");
+            loadingInternetDialog.setMessage(res.getString(R.string.Cv_reminder3));
             loadingInternetDialog.show();
         }
 
@@ -184,8 +184,8 @@ public class CvActivity extends BaseActivity {
 
             if(educationLevelItemList == null || educationLevelItemList.isEmpty()) {
                 new MaterialDialog.Builder(CvActivity.this)
-                        .content("Internet are not working")
-                        .positiveText("ok")
+                        .content(res.getString(R.string.Cv_reminder4))
+                        .positiveText(res.getString(R.string.baseAct_reminder3))
                         .show();
             }
             else{
@@ -198,8 +198,8 @@ public class CvActivity extends BaseActivity {
             //CV
             if(getCvItemList == null){
                 new MaterialDialog.Builder(CvActivity.this)
-                        .content("Internet are not working")
-                        .positiveText("ok")
+                        .content(res.getString(R.string.Cv_reminder4))
+                        .positiveText(res.getString(R.string.baseAct_reminder3))
                         .show();
             }
             else{
@@ -252,9 +252,9 @@ public class CvActivity extends BaseActivity {
     public void startRecordVideo(View view) {
 
         new MaterialDialog.Builder(this)
-                .content("Take a new video / Play currently video ?")
-                .positiveText("Take")
-                .negativeText("Play")
+                .content(res.getString(R.string.Cv_reminder5))
+                .positiveText(res.getString(R.string.Cv_reminder6))
+                .negativeText(res.getString(R.string.Cv_reminder7))
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
@@ -300,7 +300,7 @@ public class CvActivity extends BaseActivity {
                             startActivity(intent);
                         }
                         else {
-                            Toast.makeText(getBaseContext(), "Sorry, File have been deleted on your phone", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getBaseContext(), res.getString(R.string.Cv_reminder9), Toast.LENGTH_SHORT).show();
                         }
                     }
                 })
@@ -334,7 +334,7 @@ public class CvActivity extends BaseActivity {
                 //previewVideo = ThumbnailUtils.createVideoThumbnail(file.getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
                 //clickToVideo.setImageBitmap(previewVideo);
 
-                videoCvField.setText("Already taken a video");
+                videoCvField.setText(res.getString(R.string.Cv_reminder1));
                 videoFile = file;
 
             } else if (data != null) {

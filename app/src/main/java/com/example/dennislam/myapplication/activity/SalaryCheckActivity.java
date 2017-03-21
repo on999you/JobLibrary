@@ -145,7 +145,7 @@ public class SalaryCheckActivity extends BaseActivity {
             public void onClick(View view) {
 
                 if(jobTitleField.getText().toString().isEmpty()){
-                    Toast.makeText(getBaseContext(), R.string.sC_reminder1, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), res.getString(R.string.sC_reminder1), Toast.LENGTH_LONG).show();
                 }
                 else {
                     Intent intent = new Intent(getBaseContext(), SalaryCheckResultActivity.class);
