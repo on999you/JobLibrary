@@ -36,6 +36,8 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_base);
         globalVariable = (GlobalClass) getApplicationContext();
 
+        res = getResources();
+
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
