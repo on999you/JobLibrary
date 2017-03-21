@@ -55,7 +55,7 @@
         <activity
             android:name=".activity.JobListActivity"
             android:label="Jobs" />
-        <activity android:name=".activity.SearchJobsActivity$MainPageActivity" />
+        <activity android:name=".activity.MainPageActivity" />
         <activity android:name=".activity.RelevantDataActivity" />
         <activity
             android:name=".activity.JobDetailActivity"

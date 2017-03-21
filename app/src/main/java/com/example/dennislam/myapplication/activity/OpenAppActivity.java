@@ -97,7 +97,7 @@ public class OpenAppActivity extends BaseActivity {
                         .onPositive(new MaterialDialog.SingleButtonCallback() {
                             @Override
                             public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                                Intent intent = new Intent(getBaseContext(), SearchJobsActivity.MainPageActivity.class);
+                                Intent intent = new Intent(getBaseContext(), MainPageActivity.class);
                                 startActivity(intent);
                             }
                         })
@@ -120,7 +120,7 @@ public class OpenAppActivity extends BaseActivity {
 
                 Log.v("Testing steps", "Open App : Udid = " + udid);
 
-                Intent intent = new Intent(getBaseContext(), SearchJobsActivity.MainPageActivity.class);
+                Intent intent = new Intent(getBaseContext(), MainPageActivity.class);
                 startActivity(intent);
             }
 

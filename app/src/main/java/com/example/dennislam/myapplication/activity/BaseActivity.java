@@ -121,7 +121,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if(id == R.id.nav_home) {
-            Intent intent = new Intent(getBaseContext(), SearchJobsActivity.MainPageActivity.class);
+            Intent intent = new Intent(getBaseContext(), MainPageActivity.class);
             startActivity(intent);
 
         } else if(id == R.id.nav_search) {

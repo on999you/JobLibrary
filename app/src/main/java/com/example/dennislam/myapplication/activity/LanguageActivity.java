@@ -72,7 +72,7 @@ public class LanguageActivity extends BaseActivity{
             conf.locale = myLocale;
             res.updateConfiguration(conf, dm);
             Locale.setDefault(myLocale);
-            Intent refresh = new Intent(this, SearchJobsActivity.MainPageActivity.class);
+            Intent refresh = new Intent(this, MainPageActivity.class);
             startActivity(refresh);
             finish();
             if(langu=="zh"){
