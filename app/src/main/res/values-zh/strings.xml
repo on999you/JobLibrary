@@ -39,9 +39,9 @@
     <string name="dra_appliedJobs">已申請的工作</string>
     <string name="dra_aboutUs">關於我們</string>
     <string name="barC_title">薪酬分佈</string>
-    <string name="barC_mid">中位數</string>
-    <string name="barC_low">最低</string>
-    <string name="barC_high">最高</string>
+    <string name="barC_mid">\"中位數 : $\"</string>
+    <string name="barC_low">\"最低 : $\"</string>
+    <string name="barC_high">\"最高 : $\"</string>
     <string name="barC_landscape_title">薪酬分佈棒形圖</string>
     <string name="companyInfo">關於公司</string>
     <string name="apply">申請</string>
@@ -65,5 +65,33 @@
     <string name="jobFun">工種:</string>
     <string name="act_lab_cv">履歷表</string>
     <string name="faq_title">有東西想說?</string>
+    <string name="sC_entriesName1">勞工</string>
+    <string name="sC_entriesName2">僱主</string>
+    <string name="sC_reminder1">請輸入工作名稱再搜尋</string>
+    <string name="sC_reminder2">只可以選擇五個或以下選項</string>
+    <string name="sC_reminder3">個選項已選擇</string>
+    <string name="sC_reminder4">日期</string>
+    <string name="sC_reminder5">工作經驗-至</string>
+    <string name="sC_reminder6">工作經驗-由</string>
+    <string name="sC_reminder7">沒有相關記錄</string>
+    <string name="sC_reminder8">請輸入其他有效關鍵詞</string>
+    <string name="relevantData_reminder1">沒有記錄</string>
+    <string name="jobDetail_reminder1">不要狂APPLY JOB LA</string>
+    <string name="baseAct_reminder1">線已斷</string>
+    <string name="baseAct_reminder2">請先與網絡連線</string>
+    <string name="baseAct_reminder3">收到</string>
+    <string name="baseAct_reminder4">你確定要離開此應用程式?</string>
+    <string name="baseAct_reminder5">是</string>
+    <string name="baseAct_reminder6">不是</string>
+    <string name="Cv_reminder1">已拍了自介影片</string>
+    <string name="Cv_reminder10">請不要留空</string>
+    <string name="Cv_reminder2">發現空白處</string>
+    <string name="Cv_reminder3">Load緊</string>
+    <string name="Cv_reminder4">網絡連接失敗</string>
+    <string name="Cv_reminder5">拍新片或是播放已拍的?</string>
+    <string name="Cv_reminder6">拍新片</string>
+    <string name="Cv_reminder7">播放舊片</string>
+    <string name="Cv_reminder9">對不起, 目標檔案不存在於你手機之內</string>
+    <string name="appJob_reminder1">沒有記錄</string>
 
 </resources>

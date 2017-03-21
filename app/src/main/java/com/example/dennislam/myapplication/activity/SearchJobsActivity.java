@@ -96,7 +96,7 @@ public class SearchJobsActivity extends BaseActivity {
         protected void onPreExecute(){
             super.onPreExecute();
             loadingInternetDialog = new ProgressDialog(SearchJobsActivity.this);
-            loadingInternetDialog.setMessage("Loading...");
+            loadingInternetDialog.setMessage("Loading");
             loadingInternetDialog.show();
         }
 
@@ -161,12 +161,12 @@ public class SearchJobsActivity extends BaseActivity {
 
                     boolean allowSelectionChange = which.length <= 5;
                     if (!allowSelectionChange) {
-                        showToast("Select up to 5 choices only.");
+                        showToast( res.getString(R.string.sC_reminder2));
                     }
                     if(which.length == 6){
-                        jobFunctionButton.setText(5 + " items selected");
+                        jobFunctionButton.setText(5 +  res.getString(R.string.sC_reminder3));
                     } else {
-                        jobFunctionButton.setText(which.length + " items selected");
+                        jobFunctionButton.setText(which.length +  res.getString(R.string.sC_reminder3));
 
                         tempJobCatArray.clear();
                         for(int i=0; i< which.length; i++){
@@ -200,17 +200,17 @@ public class SearchJobsActivity extends BaseActivity {
                 .itemsCallbackMultiChoice(new Integer[]{}, (dialog, which, text) -> {
                     boolean allowSelectionChange = which.length <= 5;
                     if (!allowSelectionChange) {
-                        showToast("Select up to 5 choices only.");
+                        showToast(res.getString(R.string.sC_reminder2));
                     }
                     if(which.length == 6){
-                        jobIndustryButton.setText(5 + " items selected");
+                        jobIndustryButton.setText(5 + res.getString(R.string.sC_reminder3));
                     } else {
-                        jobIndustryButton.setText(which.length + " items selected");
+                        jobIndustryButton.setText(which.length + res.getString(R.string.sC_reminder3));
                     }
                     return allowSelectionChange;
                 })
                 .positiveColor(Color.parseColor("#486E76"))
-                .positiveText("Done")
+                .positiveText(res.getString(R.string.faq_btnD))
                 .alwaysCallMultiChoiceCallback()
                 .show();
     }

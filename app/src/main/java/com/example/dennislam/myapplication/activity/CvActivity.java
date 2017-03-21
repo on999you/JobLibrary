@@ -109,7 +109,7 @@ public class CvActivity extends BaseActivity {
             public void onClick(View view) {
                 if(nameField.getText().toString().isEmpty() || emailField.getText().toString().isEmpty() || mobileNoField.getText().toString().isEmpty()
                         || expectedSalaryField.getText().toString().isEmpty() || educationLevelId.isEmpty()){
-                    alertMsg(res.getString(R.string.Cv_reminder2),res.getString(R.string.Cv_reminder10));
+                    alertMsg(R.string.Cv_reminder2,R.string.Cv_reminder10);
                 } else{
                     name = nameField.getText().toString();
                     email = emailField.getText().toString();
@@ -138,7 +138,7 @@ public class CvActivity extends BaseActivity {
         }
     }
 
-    private void alertMsg(String title,String msg){
+    private void alertMsg(int title,int msg){
         android.app.AlertDialog.Builder myAD = new android.app.AlertDialog.Builder(this);
         myAD.setTitle(title);
         myAD.setMessage(msg);
@@ -148,7 +148,7 @@ public class CvActivity extends BaseActivity {
 
             }
         };
-        myAD.setNeutralButton(res.getString(R.string.baseAct_reminder3),OkClick);
+        myAD.setNeutralButton(R.string.baseAct_reminder3,OkClick);
         myAD.show();
     }
 
@@ -163,7 +163,7 @@ public class CvActivity extends BaseActivity {
         protected void onPreExecute(){
             super.onPreExecute();
             loadingInternetDialog = new ProgressDialog(CvActivity.this);
-            loadingInternetDialog.setMessage(res.getString(R.string.Cv_reminder3));
+            loadingInternetDialog.setMessage("Loading..");
             loadingInternetDialog.show();
         }
 

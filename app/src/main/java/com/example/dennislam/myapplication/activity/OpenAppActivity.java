@@ -75,7 +75,7 @@ public class OpenAppActivity extends BaseActivity {
         protected void onPreExecute(){
             super.onPreExecute();
             loadingInternetDialog = new ProgressDialog(OpenAppActivity.this);
-            loadingInternetDialog.setMessage("Loading...");
+            loadingInternetDialog.setMessage("Loading");
             loadingInternetDialog.show();
         }
 
@@ -92,8 +92,8 @@ public class OpenAppActivity extends BaseActivity {
 
             if(openAppItemList == null || openAppItemList.isEmpty()){
                 new MaterialDialog.Builder(OpenAppActivity.this)
-                        .content("Internet are not working")
-                        .positiveText("ok")
+                        .content(res.getString(R.string.Cv_reminder4))
+                        .positiveText(res.getString(R.string.baseAct_reminder3))
                         .onPositive(new MaterialDialog.SingleButtonCallback() {
                             @Override
                             public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {

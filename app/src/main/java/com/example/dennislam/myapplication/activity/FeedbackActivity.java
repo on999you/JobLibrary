@@ -108,7 +108,7 @@ public class FeedbackActivity extends BaseActivity {
             loadingInternetDialog.dismiss();
 
             if(feedbackItemList == null || feedbackItemList.isEmpty()) {
-                Toast.makeText(getBaseContext(), "Internet are not working", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), res.getString(R.string.Cv_reminder4), Toast.LENGTH_LONG).show();
             }
             else {
                 int feedbackStatusCode = feedbackItemList.get(0).getStatus_code();

@@ -38,6 +38,10 @@
     <string name="sC_reminder4">Salary Source(s) Within -</string>
     <string name="sC_reminder5">Work Exp To - </string>
     <string name="sC_reminder6">Work Exp From - </string>
+    <string name="sC_reminder7">Zero result was found</string>
+    <string name="sC_reminder8">Please search with othes keywords</string>
+    <string name="sC_entriesName1">Labour</string>
+    <string name="sC_entriesName2">Employer</string>
     <string name="from">From</string>
     <string name="to">To</string>
     <string name="unspecified">UNSPECIFIED</string>
@@ -47,9 +51,9 @@
     <string name="barC_title">Salary Distribution</string>
     <string name="relevantSalaryD">RELEVANT SALARY DATA</string>
     <string name="barC_landscape_title"> Salary Distribution Chart</string>
-    <string name="barC_low">Lowest : </string>
-    <string name="barC_mid">Median : </string>
-    <string name="barC_high">Highest : </string>
+    <string name="barC_low">Lowest  : $</string>
+    <string name="barC_mid">Median  : $</string>
+    <string name="barC_high">Highest : $</string>
 
     <string name="rlj_jobT">Job Tilte : </string>
     <string name="rlj_workExp">WorkExp : </string>
@@ -80,12 +84,13 @@
     <string name="Cv_reminder7">Play</string>
     <string name="Cv_reminder9">Sorry, target file have been deleted on your phone</string>
     <string name="Cv_reminder10">Please fill in every field !</string>
-    <string name="Cv_reminder11"></string>
-    <string name="Cv_reminder12"></string>
-    <string name="Cv_reminder13"></string>
+    <string name="Cv_reminder11" translatable="false"></string>
+    <string name="Cv_reminder12" translatable="false"></string>
+    <string name="Cv_reminder13" translatable="false"></string>
 
+    <string name="jobDetail_reminder1">Cannot apply the same job within 3 seconds</string>
 
-
+    <string name="relevantData_reminder1">No more records</string>
     <string name="apply">Apply now</string>
     <string name="jobDesc">Job Description</string>
     <string name="industrial">Industry</string>
@@ -99,10 +104,13 @@
     <string name="salary">SALARY</string>
     <string name="others">OTHERS</string>
 
+
     <string name="baseAct_reminder1">No Internet Access</string>
     <string name="baseAct_reminder2">Please connect the network first</string>
     <string name="baseAct_reminder3">OK</string>
     <string name="baseAct_reminder4">Are you sure you want to exit?</string>
     <string name="baseAct_reminder5">Yes</string>
     <string name="baseAct_reminder6">No</string>
+
+
 </resources>

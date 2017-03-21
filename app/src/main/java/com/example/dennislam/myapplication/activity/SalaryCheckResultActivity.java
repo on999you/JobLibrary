@@ -252,9 +252,9 @@ public class SalaryCheckResultActivity extends BaseActivity {
                     median = (median + (int)medSalaryArray.get(mid-1))/2;
                 }
 
-                String resultMedSalary = "Median  : $" + median;
-                String resultMaxSalary = "Highest : $" + salaryResultItemList.get(0).getMaxSalary();
-                String resultMinSalary = "Lowest  : $" + salaryResultItemList.get(0).getMinSalary();
+                String resultMedSalary = res.getString(R.string.barC_mid) + median;
+                String resultMaxSalary = res.getString(R.string.barC_high) + salaryResultItemList.get(0).getMaxSalary();
+                String resultMinSalary = res.getString(R.string.barC_low) + salaryResultItemList.get(0).getMinSalary();
 
                 //Set ListView Item
                 //Header
@@ -409,19 +409,20 @@ public class SalaryCheckResultActivity extends BaseActivity {
             }
             else {
                 AlertDialog.Builder myAD = new AlertDialog.Builder(SalaryCheckResultActivity.this);
-                myAD.setTitle("Zero result was found");
-                myAD.setMessage("Please search with othes keywords");
+                myAD.setTitle(R.string.sC_reminder7);
+                myAD.setMessage(R.string.sC_reminder8);
                 DialogInterface.OnClickListener OkClick = new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         SalaryCheckResultActivity.super.finish();
                     }
                 };
-                myAD.setNeutralButton("OK",OkClick);
+                myAD.setNeutralButton(R.string.baseAct_reminder3,OkClick);
                 myAD.show();
             }
 
-            BarDataSet set1 = new BarDataSet(entries, "Labour");
+
+            BarDataSet set1 = new BarDataSet(entries,"Labour");
             BarDataSet set2 = new BarDataSet(entries2,"Employer");
 
             set1.setColors(Color.parseColor("#81DAF5"));
