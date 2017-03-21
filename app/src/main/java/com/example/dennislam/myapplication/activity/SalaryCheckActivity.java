@@ -141,7 +141,7 @@ public class SalaryCheckActivity extends BaseActivity {
             public void onClick(View view) {
 
                 if(jobTitleField.getText().toString().isEmpty()){
-                    Toast.makeText(getBaseContext(), "@string/sC_reminder1", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), R.string.sC_reminder1, Toast.LENGTH_LONG).show();
                 }
                 else {
                     Intent intent = new Intent(getBaseContext(), SalaryCheckResultActivity.class);
@@ -261,7 +261,7 @@ public class SalaryCheckActivity extends BaseActivity {
                 .items(workExpNameArray.toArray(new CharSequence[workExpNameArray.size()]))
                 .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
                     TextView WorkExpFrom = (TextView)findViewById(R.id.WorkExpFrom);
-                    WorkExpFrom.setText("@string/reminder6" + text);
+                    WorkExpFrom.setText(R.string.sC_reminder6 + "" + text );
                     finalWorkExpFromID = workExpIdArray.get(which);
                     return true; // allow selection
                 })
@@ -277,7 +277,7 @@ public class SalaryCheckActivity extends BaseActivity {
                 .items(workExpNameArray.toArray(new CharSequence[workExpNameArray.size()]))
                 .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
                     TextView WorkExpTo = (TextView)findViewById(R.id.WorkExpTo);
-                    WorkExpTo.setText("@string/reminder5" + text);
+                    WorkExpTo.setText(R.string.sC_reminder5 + "" + text);
                     finalWorkExpToID = workExpIdArray.get(which);
                     return true; // allow selection
                 })
@@ -293,7 +293,7 @@ public class SalaryCheckActivity extends BaseActivity {
                 .items(salarySourceArray.toArray(new CharSequence[salarySourceArray.size()]))
                 .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
                     TextView salarySource = (TextView)findViewById(R.id.salarySource);
-                    salarySource.setText("@string/reminder4" + text);
+                    salarySource.setText(R.string.sC_reminder4 + "" + text);
                     finalSalarySourceID = salarySourceIdArray.get(which);
                     return true; // allow selection
                 })
@@ -320,7 +320,7 @@ public class SalaryCheckActivity extends BaseActivity {
 
                     boolean allowSelectionChange = which.length <= 5;
                     if (!allowSelectionChange) {
-                        showToast("@string/sC_reminder2");
+                        showToast(R.string.sC_reminder2 + "");
                     }
                     if(which.length == 6){
                         jobFunctionButton.setText(5 + "@string/sC_reminder3");
@@ -357,7 +357,7 @@ public class SalaryCheckActivity extends BaseActivity {
                 .itemsCallbackMultiChoice(new Integer[]{}, (dialog, which, text) -> {
                     boolean allowSelectionChange = which.length <= 5;
                     if (!allowSelectionChange) {
-                        showToast("@string/reminder2");
+                        showToast(R.string.sC_reminder2 + "");
                     }
                     if(which.length == 6){
                         jobIndustryButton.setText(5 + " @string/reminder3");
