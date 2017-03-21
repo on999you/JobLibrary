@@ -129,7 +129,7 @@ public class SalaryCheckActivity extends BaseActivity {
             public void onClick(View view) {
 
                 if(jobTitleField.getText().toString().isEmpty()){
-                    Toast.makeText(getBaseContext(), "Please enter the job title first", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), "@string/sC_reminder1", Toast.LENGTH_LONG).show();
                 }
                 else {
                     Intent intent = new Intent(getBaseContext(), SalaryCheckResultActivity.class);
@@ -237,7 +237,7 @@ public class SalaryCheckActivity extends BaseActivity {
                 .items(workExpNameArray.toArray(new CharSequence[workExpNameArray.size()]))
                 .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
                     TextView WorkExpFrom = (TextView)findViewById(R.id.WorkExpFrom);
-                    WorkExpFrom.setText("Work Exp From - " + text);
+                    WorkExpFrom.setText("@string/reminder6" + text);
                     finalWorkExpFromID = workExpIdArray.get(which);
                     return true; // allow selection
                 })
@@ -253,7 +253,7 @@ public class SalaryCheckActivity extends BaseActivity {
                 .items(workExpNameArray.toArray(new CharSequence[workExpNameArray.size()]))
                 .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
                     TextView WorkExpTo = (TextView)findViewById(R.id.WorkExpTo);
-                    WorkExpTo.setText("Work Exp To - " + text);
+                    WorkExpTo.setText("@string/reminder5" + text);
                     finalWorkExpToID = workExpIdArray.get(which);
                     return true; // allow selection
                 })
@@ -269,7 +269,7 @@ public class SalaryCheckActivity extends BaseActivity {
                 .items(salarySourceArray.toArray(new CharSequence[salarySourceArray.size()]))
                 .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
                     TextView salarySource = (TextView)findViewById(R.id.salarySource);
-                    salarySource.setText("Salary Source(s) Within - " + text);
+                    salarySource.setText("@string/reminder4" + text);
                     finalSalarySourceID = salarySourceIdArray.get(which);
                     return true; // allow selection
                 })
@@ -296,12 +296,12 @@ public class SalaryCheckActivity extends BaseActivity {
 
                     boolean allowSelectionChange = which.length <= 5;
                     if (!allowSelectionChange) {
-                        showToast("Select up to 5 choices only.");
+                        showToast("@string/sC_reminder2");
                     }
                     if(which.length == 6){
-                        jobFunctionButton.setText(5 + " items selected");
+                        jobFunctionButton.setText(5 + "@string/sC_reminder3");
                     } else {
-                        jobFunctionButton.setText(which.length + " items selected");
+                        jobFunctionButton.setText(which.length + "@string/sC_reminder3");
 
                         tempJobCatArray.clear();
                         for(int i=0; i< which.length; i++){
@@ -333,12 +333,12 @@ public class SalaryCheckActivity extends BaseActivity {
                 .itemsCallbackMultiChoice(new Integer[]{}, (dialog, which, text) -> {
                     boolean allowSelectionChange = which.length <= 5;
                     if (!allowSelectionChange) {
-                        showToast("Select up to 5 choices only.");
+                        showToast("@string/reminder2");
                     }
                     if(which.length == 6){
-                        jobIndustryButton.setText(5 + " items selected");
+                        jobIndustryButton.setText(5 + " @string/reminder3");
                     } else {
-                        jobIndustryButton.setText(which.length + " items selected");
+                        jobIndustryButton.setText(which.length + " @string/reminder3");
 
                         tempJobIndustryArray.clear();
                         for(int i=0; i< which.length; i++){
