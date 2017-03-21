@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchJobsActivity extends BaseActivity {
- //x
+
     String currLanguage;
 
     private Toast toast;
