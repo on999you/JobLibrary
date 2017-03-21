@@ -63,12 +63,18 @@
     <string name="faq_title">Having something to say?</string>
     <string name="feedback">FeedBack</string>
 
+    <string name="appJob_reminder1">No record was found!</string>
+
     <string name="language">Language</string>
     <string name="notification">Notification</string>
     <string name="CV_phoneNo">Phone Number</string>
     <string name="CV_expectedSalary">Expected Salary (HKD)</string>
     <string name="CV_submit">Submit</string>
     <string name="Cv_eduLevel">Education Level</string>
+    <string name="Cv_reminder1">Already taken a video</string>
+    <string name="Cv_reminder2"></string>
+    <string name="Cv_reminder3"></string>
+    <string name="Cv_reminder4"></string>
 
     <string name="apply">Apply now</string>
     <string name="jobDesc">Job Description</string>
@@ -83,7 +89,10 @@
     <string name="salary">SALARY</string>
     <string name="others">OTHERS</string>
 
-
-
-
+    <string name="baseAct_reminder1">No Internet Access</string>
+    <string name="baseAct_reminder2">Please connect the network first and press 'ok' </string>
+    <string name="baseAct_reminder3">ok</string>
+    <string name="baseAct_reminder4">Are you sure you want to exit?</string>
+    <string name="baseAct_reminder5">Yes</string>
+    <string name="baseAct_reminder6">No</string>
 </resources>

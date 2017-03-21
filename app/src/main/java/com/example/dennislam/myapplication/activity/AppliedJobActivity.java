@@ -149,7 +149,7 @@ public class AppliedJobActivity extends BaseActivity{
 
             if(appliedJobItemList == null){
                 needLoadMore = false;
-                Toast.makeText(AppliedJobActivity.this, "No more data", Toast.LENGTH_LONG).show();
+                Toast.makeText(AppliedJobActivity.this,res.getString(R.string.appJob_reminder1),Toast.LENGTH_LONG).show();
             }
             else{
                 for(int i = 0; i < appliedJobItemList.size(); i++){

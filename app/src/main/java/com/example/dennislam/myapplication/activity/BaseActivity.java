@@ -3,6 +3,7 @@ package com.example.dennislam.myapplication.activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -28,7 +29,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     ProgressDialog loadingInternetDialog;
     protected DrawerLayout mDrawer;
     GlobalClass globalVariable;
-
+    Resources res;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,9 +59,9 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
             //Dialog
             new MaterialDialog.Builder(this)
-                    .title("No Internet Access")
-                    .content("Please connect the network first and press 'ok' ")
-                    .positiveText("ok")
+                    .title(res.getString(R.string.baseAct_reminder1))
+                    .content(res.getString(R.string.baseAct_reminder2))
+                    .positiveText(res.getString(R.string.baseAct_reminder3))
                     .onPositive(new MaterialDialog.SingleButtonCallback() {
                         @Override
                         public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
@@ -166,9 +167,9 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
     public void exitAppDialog() {
         new MaterialDialog.Builder(this)
-                .content("Are you sure you want to exit?")
-                .positiveText("Yes")
-                .negativeText("No")
+                .content(res.getString(R.string.baseAct_reminder4))
+                .positiveText(res.getString(R.string.baseAct_reminder5))
+                .negativeText(res.getString(R.string.baseAct_reminder6))
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
