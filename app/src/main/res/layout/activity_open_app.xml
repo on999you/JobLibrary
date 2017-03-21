@@ -8,13 +8,9 @@
     android:background="#5B8085"
     tools:context="com.example.dennislam.myapplication.activity.OpenAppActivity">
 
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="JOB LIBRARY"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"/>
+        android:src="@drawable/appicon"/>
 
 </LinearLayout>

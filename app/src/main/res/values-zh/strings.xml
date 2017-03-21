@@ -39,9 +39,9 @@
     <string name="dra_appliedJobs">已申請的工作</string>
     <string name="dra_aboutUs">關於我們</string>
     <string name="barC_title">薪酬分佈</string>
-    <string name="barC_mid">\"中位數 : $\"</string>
-    <string name="barC_low">\"最低 : $\"</string>
-    <string name="barC_high">\"最高 : $\"</string>
+    <string name="barC_mid">中位數 : $</string>
+    <string name="barC_low">最低 : $</string>
+    <string name="barC_high">最高 : $</string>
     <string name="barC_landscape_title">薪酬分佈棒形圖</string>
     <string name="companyInfo">關於公司</string>
     <string name="apply">申請</string>
