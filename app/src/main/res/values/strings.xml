@@ -32,6 +32,12 @@
     <string name="sC_buttonSearch">SEARCH NOW</string>
     <string name="sC_Workstart">Work Experience (From)</string>
     <string name="sC_WorkTo">Work Experience (To)</string>
+    <string name="sC_reminder1">Please enter the job title first</string>
+    <string name="sC_reminder2">Select up to 5 choices only.</string>
+    <string name="sC_reminder3"> items selected</string>
+    <string name="sC_reminder4">Salary Source(s) Within -</string>
+    <string name="sC_reminder5">Work Exp To - </string>
+    <string name="sC_reminder6">Work Exp From - </string>
     <string name="from">From</string>
     <string name="to">To</string>
     <string name="unspecified">UNSPECIFIED</string>
@@ -71,11 +77,13 @@
     <string name="companyInfo">Company Info</string>
     <string name="jobFun">Job Funcion</string>
 
+    <string name="act_lab_cv">Curriculum Vitae</string>
     <string name="mainPage">Home page</string>
     <string name="jobs">JOBS</string>
     <string name="salary">SALARY</string>
     <string name="others">OTHERS</string>
 
-    <string name="act_lab_cv">Curriculum Vitae</string>
+
+
 
 </resources>

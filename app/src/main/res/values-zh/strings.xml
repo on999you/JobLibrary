@@ -63,6 +63,7 @@
     <string name="jobs">關於工作</string>
     <string name="jobinfo">關於工作</string>
     <string name="jobFun">工種:</string>
-    <string name="faq_title">有東西想說?</string>
     <string name="act_lab_cv">履歷表</string>
+    <string name="faq_title">有東西想說?</string>
+
 </resources>

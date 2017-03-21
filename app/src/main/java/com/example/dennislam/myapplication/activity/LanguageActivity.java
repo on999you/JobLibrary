@@ -31,16 +31,16 @@ public class LanguageActivity extends BaseActivity{
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_lang, null, false);
         mDrawer.addView(contentView, 0);
+         chi = (TextView)findViewById(R.id.chineseLangField);
+         eng = (TextView)findViewById(R.id.englishLangField);
 
-        chi = (TextView)findViewById(R.id.chineseLangField);
-        eng = (TextView)findViewById(R.id.englishLangField);
-
-        SharedPreferences prefs = getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("CommonPrefs",
+                Activity.MODE_PRIVATE);
         Drawable checked= ResourcesCompat.getDrawable(getResources(), R.drawable.checked, null);
         checked.setBounds(0, 0, checked.getMinimumWidth(), checked.getMinimumHeight());
-        if(prefs.getString("Language","")=="zh"){
+        if("zh".equals(prefs.getString("Language",""))){
             chi.setCompoundDrawables(null,null,checked,null);
-        } else{
+        }else{
             eng.setCompoundDrawables(null,null,checked,null);
         }
     }
@@ -75,10 +75,10 @@ public class LanguageActivity extends BaseActivity{
             Intent refresh = new Intent(this, MainPageActivity.class);
             startActivity(refresh);
             finish();
-            if(langu=="zh"){
+            if("zh".equals(prefs.getString("Language",""))){
                 chi.setCompoundDrawables(null,null,checked,null);
                 eng.setCompoundDrawables(null,null,null,null);
-            }else{
+            }else if ("en".equals(prefs.getString("Language",""))){
                 eng.setCompoundDrawables(null,null,checked,null);
                 chi.setCompoundDrawables(null,null,null,null);
             }

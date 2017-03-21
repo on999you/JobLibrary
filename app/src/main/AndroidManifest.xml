@@ -38,10 +38,10 @@
         <activity android:name=".activity.BaseActivity" />
         <activity
             android:name=".activity.SalaryCheckActivity"
-            android:label="@string/mp_salaryCheck" />
+             />
         <activity
             android:name=".activity.CvActivity"
-            android:label="@string/act_lab_cv" />
+            />
         <activity
             android:name="com.afollestad.materialcamera.CaptureActivity"
             android:theme="@style/MaterialCamera.CaptureActivity" />
@@ -54,12 +54,12 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".activity.JobListActivity"
-            android:label="Jobs" />
-        <activity android:name=".activity.MainPageActivity" />
+           />
+        <activity android:name=".activity.SearchJobsActivity$MainPageActivity" />
         <activity android:name=".activity.RelevantDataActivity" />
         <activity
             android:name=".activity.JobDetailActivity"
-            android:label="Job Detail" />
+            />
         <activity
             android:name=".activity.AppliedJobActivity"
             android:label="@string/dra_appliedJobs" />
@@ -68,7 +68,7 @@
             android:label="@string/dra_aboutUs" />
         <activity
             android:name=".activity.SalaryReportActivity"
-            android:label="@string/dra_salaryReport" />
+           />
         <activity
             android:name=".activity.SearchJobsActivity"/>
         <activity
