@@ -60,11 +60,14 @@ public class SalaryResultDao {
             DefaultHttpClient httpClient = new DefaultHttpClient(httpParams);
             HttpPost httpPost = new HttpPost(URL);
 
-            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(5);
+            Log.v("testingjobcat", finalSelectedJobCatArray.toString());
+            Log.v("testingjobind", finalSelectedJobIndustryArray.toString());
+
+            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(7);
             nameValuePair.add(new BasicNameValuePair("jobTitle", jobTitle));
             nameValuePair.add(new BasicNameValuePair("withSimilarWord", withSimilarWord.toString()));
-            //nameValuePair.add(new BasicNameValuePair("jobCat", finalSelectedJobCatArray));
-            //nameValuePair.add(new BasicNameValuePair("jobIndustry", finalSelectedJobIndustryArray));
+            nameValuePair.add(new BasicNameValuePair("jobCat", finalSelectedJobCatArray.toString()));
+            nameValuePair.add(new BasicNameValuePair("jobIndustry", finalSelectedJobIndustryArray.toString()));
             nameValuePair.add(new BasicNameValuePair("expFrom", workExpFrom));
             nameValuePair.add(new BasicNameValuePair("expTo", workExpTo));
             nameValuePair.add(new BasicNameValuePair("salarySource", salarySourceValue));

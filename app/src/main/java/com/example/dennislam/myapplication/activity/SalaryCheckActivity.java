@@ -65,7 +65,9 @@ public class SalaryCheckActivity extends BaseActivity {
     TextView jobFunctionButton , jobIndustryButton;
 
     //Values that pass to database
-    String finalWorkExpFromID, finalWorkExpToID, finalSalarySourceID;
+    String finalSalarySourceID;
+    String finalWorkExpFromID = "";
+    String finalWorkExpToID = "";
     ArrayList<String> finalSelectedJobCatArray = new ArrayList<String>();
     ArrayList<String> finalSelectedJobIndustryArray = new ArrayList<String>();
 
@@ -83,10 +85,12 @@ public class SalaryCheckActivity extends BaseActivity {
 
         //Detect Language
         SharedPreferences prefs = getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
-        if(prefs.getString("Language","")=="zh"){
+        if("zh".equals(prefs.getString("Language", ""))){
             currLanguage = "chi";
+            Log.v("testinglang", "chi now");
         } else{
             currLanguage = "eng";
+            Log.v("testinglang", "eng now");
         }
 
         final EditText jobTitleField = (EditText)findViewById(R.id.jobTitleField);
@@ -147,6 +151,10 @@ public class SalaryCheckActivity extends BaseActivity {
                 if(jobTitleField.getText().toString().isEmpty()){
                     Toast.makeText(getBaseContext(), res.getString(R.string.sC_reminder1), Toast.LENGTH_LONG).show();
                 }
+                else if( ((!finalWorkExpFromID.equals("") && finalWorkExpToID.equals("")) || (finalWorkExpFromID.equals("") && !finalWorkExpToID.equals(""))) ||
+                        ((!finalWorkExpFromID.equals("") && !finalWorkExpToID.equals("")) && (Integer.parseInt(finalWorkExpFromID) > Integer.parseInt(finalWorkExpToID)) )){
+                    Toast.makeText(getBaseContext(), "Please select the correct work exp range", Toast.LENGTH_LONG).show();
+                }
                 else {
                     Intent intent = new Intent(getBaseContext(), SalaryCheckResultActivity.class);
                     intent.putExtra("jobTitle", jobTitleField.getText().toString().trim());
@@ -157,7 +165,7 @@ public class SalaryCheckActivity extends BaseActivity {
                     intent.putExtra("workExpTo", finalWorkExpToID);
                     intent.putExtra("salarySource", finalSalarySourceID);
 
-                    Log.v("criterias_bg", jobTitleField.getText().toString().trim() + "\n" + similarCheckBox.isChecked() + "\n" + finalSelectedJobCatArray + "\n" + finalSelectedJobIndustryArray + "\n" + finalWorkExpFromID + "\n" + finalWorkExpToID + "\n" + finalSalarySourceID);
+                    Log.v("testingPassingCriterias", jobTitleField.getText().toString().trim() + "\n" + similarCheckBox.isChecked() + "\n" + finalSelectedJobCatArray + "\n" + finalSelectedJobIndustryArray + "\n" + finalWorkExpFromID + "\n" + finalWorkExpToID + "\n" + finalSalarySourceID);
                     startActivity(intent);
                 }
             }
@@ -344,6 +352,7 @@ public class SalaryCheckActivity extends BaseActivity {
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        finalSelectedJobCatArray.clear();
                         for(int i =0; i<tempJobCatArray.size(); i++){
                             finalSelectedJobCatArray.add(jobCatIdArray.get(Integer.parseInt(tempJobCatArray.get(i))));
                         }
@@ -380,6 +389,7 @@ public class SalaryCheckActivity extends BaseActivity {
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        finalSelectedJobIndustryArray.clear();
                         for(int i =0; i<tempJobIndustryArray.size(); i++){
                             finalSelectedJobIndustryArray.add(industryIdArray.get(Integer.parseInt(tempJobIndustryArray.get(i))));
                         }
