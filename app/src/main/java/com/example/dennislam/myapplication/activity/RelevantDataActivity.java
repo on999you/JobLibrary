@@ -156,7 +156,7 @@ public class RelevantDataActivity extends BaseActivity {
 
             if(relevantDataItemList == null){
                 needLoadMore = false;
-                Toast.makeText(RelevantDataActivity.this, "No more data", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RelevantDataActivity.this, res.getString(R.string.relevantData_reminder1), Toast.LENGTH_SHORT).show();
             }
             else{
                 for(int i = 0; i < relevantDataItemList.size(); i++) {

@@ -144,8 +144,8 @@ public class JobDetailActivity extends BaseActivity {
                 //prevent double click in a second
                 if (SystemClock.elapsedRealtime() - mLastClickTime < 3000) {
                     new MaterialDialog.Builder(JobDetailActivity.this)
-                            .content("Cannot apply the same job within 3 seconds")
-                            .positiveText("ok")
+                            .content(res.getString(R.string.jobDetail_reminder1))
+                            .positiveText(res.getString(R.string.baseAct_reminder3))
                             .show();
                     return;
                 }
@@ -164,7 +164,7 @@ public class JobDetailActivity extends BaseActivity {
         protected void onPreExecute(){
             super.onPreExecute();
             loadingInternetDialog = new ProgressDialog(JobDetailActivity.this);
-            loadingInternetDialog.setMessage("Loading...");
+            loadingInternetDialog.setMessage(res.getString(R.string.Cv_reminder3));
             loadingInternetDialog.show();
         }
 
@@ -253,7 +253,7 @@ public class JobDetailActivity extends BaseActivity {
 
                 new MaterialDialog.Builder(JobDetailActivity.this)
                         .content(dialogMessage)
-                        .positiveText("ok")
+                        .positiveText(res.getString(R.string.baseAct_reminder3))
                         .show();
             }
         }

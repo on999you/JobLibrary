@@ -348,7 +348,7 @@ public class SalaryCheckActivity extends BaseActivity {
 
                 })
                 .positiveColor(Color.parseColor("#486E76"))
-                .positiveText("Done")
+                .positiveText(res.getString(R.string.faq_btnD))
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
@@ -385,7 +385,7 @@ public class SalaryCheckActivity extends BaseActivity {
                     return allowSelectionChange;
                 })
                 .positiveColor(Color.parseColor("#486E76"))
-                .positiveText("Done")
+                .positiveText(res.getString(R.string.faq_btnD))
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
