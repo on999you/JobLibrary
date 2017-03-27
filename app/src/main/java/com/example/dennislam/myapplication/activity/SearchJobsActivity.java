@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +37,7 @@ public class SearchJobsActivity extends BaseActivity {
 
     private Toast toast;
     EditText jobTitleField,salaryMin, salaryMax;
+    CheckBox similarCheckBox;
 
     ArrayList<String> jobCatArray = new ArrayList<String>();
     ArrayList<String> jobCatIdArray = new ArrayList<String>();
@@ -66,6 +68,7 @@ public class SearchJobsActivity extends BaseActivity {
         }
 
         jobTitleField = (EditText)findViewById(R.id.jobTitleField);
+        similarCheckBox = (CheckBox)findViewById(R.id.similarCheckBox);
         jobFunctionButton = (TextView)findViewById(R.id.jobFunctionButton);
         jobIndustryButton = (TextView)findViewById(R.id.jobIndustryButton);
         salaryMin = (EditText)findViewById(R.id.salaryMin);
@@ -88,6 +91,7 @@ public class SearchJobsActivity extends BaseActivity {
 
         Intent intent = new Intent(getBaseContext(), JobListActivity.class);
         intent.putExtra("jobTitle", jobTitleField.getText().toString().trim());
+        intent.putExtra("withSimilarWord", similarCheckBox.isChecked());
         startActivity(intent);
     }
 

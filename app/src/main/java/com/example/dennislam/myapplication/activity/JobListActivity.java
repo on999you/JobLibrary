@@ -29,6 +29,7 @@ import java.util.List;
 public class JobListActivity extends BaseActivity {
 
     String finalJobTitle;
+    Boolean withSimilarWord;
 
     //Card View
     private AnimRFRecyclerView recyclerView;
@@ -56,6 +57,7 @@ public class JobListActivity extends BaseActivity {
         Bundle b = intent.getExtras();
         if(b!=null) {
             finalJobTitle = (String) b.get("jobTitle");
+            withSimilarWord =(Boolean) b.get("withSimilarWord");
         }
 
         //Card View
@@ -152,7 +154,7 @@ public class JobListActivity extends BaseActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            jobListItemList = jobListItemDao.jobListItemDao(finalJobTitle, rownumStart, rownumEnd);
+            jobListItemList = jobListItemDao.jobListItemDao(rownumStart, rownumEnd, finalJobTitle, withSimilarWord);
             return null;
         }
 
