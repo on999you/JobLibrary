@@ -30,6 +30,8 @@ public class JobListActivity extends BaseActivity {
 
     String finalJobTitle;
     Boolean withSimilarWord;
+    ArrayList<String> finalSelectedJobCatArray = new ArrayList<String>();
+    ArrayList<String> finalSelectedJobIndustryArray = new ArrayList<String>();
 
     //Card View
     private AnimRFRecyclerView recyclerView;
@@ -58,6 +60,8 @@ public class JobListActivity extends BaseActivity {
         if(b!=null) {
             finalJobTitle = (String) b.get("jobTitle");
             withSimilarWord =(Boolean) b.get("withSimilarWord");
+            finalSelectedJobCatArray =(ArrayList<String>) b.get("jobCat");
+            finalSelectedJobIndustryArray =(ArrayList<String>) b.get("jobIndustry");
         }
 
         //Card View
@@ -154,7 +158,7 @@ public class JobListActivity extends BaseActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            jobListItemList = jobListItemDao.jobListItemDao(rownumStart, rownumEnd, finalJobTitle, withSimilarWord);
+            jobListItemList = jobListItemDao.jobListItemDao(rownumStart, rownumEnd, finalJobTitle, withSimilarWord, finalSelectedJobCatArray, finalSelectedJobIndustryArray);
             return null;
         }
 

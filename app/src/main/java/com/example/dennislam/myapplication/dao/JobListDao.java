@@ -50,7 +50,7 @@ public class JobListDao {
     }
 
 
-    public List<JobListXML.JobListItem> jobListItemDao(int rownumStart, int rownumEnd, String finalJobTitle, Boolean withSimilarWord){
+    public List<JobListXML.JobListItem> jobListItemDao(int rownumStart, int rownumEnd, String finalJobTitle, Boolean withSimilarWord,ArrayList<String> finalSelectedJobCatArray, ArrayList<String> finalSelectedJobIndustryArray){
 
         String xml;
 
@@ -61,12 +61,14 @@ public class JobListDao {
             DefaultHttpClient httpClient = new DefaultHttpClient(httpParams);
             HttpPost httpPost = new HttpPost(URL);
 
-            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(5);
+            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(7);
             nameValuePair.add(new BasicNameValuePair("udid", "1123456"));
             nameValuePair.add(new BasicNameValuePair("rownumStart", String.valueOf(rownumStart)));
             nameValuePair.add(new BasicNameValuePair("rownumEnd", String.valueOf(rownumEnd)));
             nameValuePair.add(new BasicNameValuePair("jobTitle", finalJobTitle));
             nameValuePair.add(new BasicNameValuePair("withSimilarWord", withSimilarWord.toString()));
+            nameValuePair.add(new BasicNameValuePair("jobCat", finalSelectedJobCatArray.toString()));
+            nameValuePair.add(new BasicNameValuePair("jobIndustry", finalSelectedJobIndustryArray.toString()));
 
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
 
