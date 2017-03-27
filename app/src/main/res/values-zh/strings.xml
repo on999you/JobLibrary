@@ -75,7 +75,7 @@
     <string name="sC_reminder6">工作經驗-由</string>
     <string name="sC_reminder7">沒有相關記錄</string>
     <string name="sC_reminder8">請輸入其他有效關鍵詞</string>
-    <string name="relevantData_reminder1">沒有記錄</string>
+    <string name="relevantData_reminder1">沒有更多記錄</string>
     <string name="jobDetail_reminder1">不要狂APPLY JOB LA</string>
     <string name="baseAct_reminder1">線已斷</string>
     <string name="baseAct_reminder2">請先與網絡連線</string>
@@ -93,5 +93,7 @@
     <string name="Cv_reminder7">播放舊片</string>
     <string name="Cv_reminder9">對不起, 目標檔案不存在於你手機之內</string>
     <string name="appJob_reminder1">沒有記錄</string>
+    <string name="sj_salaryMax">薪金 (最多)</string>
+    <string name="sj_salaryMin">薪金 (最少)</string>
 
 </resources>
