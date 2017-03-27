@@ -35,7 +35,7 @@ public class SearchJobsActivity extends BaseActivity {
     String currLanguage;
 
     private Toast toast;
-    EditText salaryMin, salaryMax;
+    EditText jobTitleField,salaryMin, salaryMax;
 
     ArrayList<String> jobCatArray = new ArrayList<String>();
     ArrayList<String> jobCatIdArray = new ArrayList<String>();
@@ -65,6 +65,7 @@ public class SearchJobsActivity extends BaseActivity {
             currLanguage = "eng";
         }
 
+        jobTitleField = (EditText)findViewById(R.id.jobTitleField);
         jobFunctionButton = (TextView)findViewById(R.id.jobFunctionButton);
         jobIndustryButton = (TextView)findViewById(R.id.jobIndustryButton);
         salaryMin = (EditText)findViewById(R.id.salaryMin);
@@ -77,11 +78,17 @@ public class SearchJobsActivity extends BaseActivity {
     }
 
     public void searchNow(View view){
+        /*
         if(salaryMin.getText().toString()!="" && salaryMax.getText().toString()!=""){
             if(Integer.parseInt(salaryMin.getText().toString()) > Integer.parseInt(salaryMax.getText().toString())){
                 Toast.makeText(getBaseContext(), "Wrong salary range", Toast.LENGTH_SHORT).show();
             }
         }
+        */
+
+        Intent intent = new Intent(getBaseContext(), JobListActivity.class);
+        intent.putExtra("jobTitle", jobTitleField.getText().toString().trim());
+        startActivity(intent);
     }
 
     class getCriteriasAsyncTaskRunner extends AsyncTask<Void, Void, Void> {

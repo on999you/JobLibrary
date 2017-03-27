@@ -50,7 +50,7 @@ public class JobListDao {
     }
 
 
-    public List<JobListXML.JobListItem> jobListItemDao(int rownumStart, int rownumEnd){
+    public List<JobListXML.JobListItem> jobListItemDao(String finalJobTitle, int rownumStart, int rownumEnd){
 
         String xml;
 
@@ -61,10 +61,11 @@ public class JobListDao {
             DefaultHttpClient httpClient = new DefaultHttpClient(httpParams);
             HttpPost httpPost = new HttpPost(URL);
 
-            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(3);
+            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(4);
             nameValuePair.add(new BasicNameValuePair("udid", "1123456"));
             nameValuePair.add(new BasicNameValuePair("rownumStart", String.valueOf(rownumStart)));
             nameValuePair.add(new BasicNameValuePair("rownumEnd", String.valueOf(rownumEnd)));
+            nameValuePair.add(new BasicNameValuePair("jobTitle", finalJobTitle));
 
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
 
