@@ -82,22 +82,21 @@ public class SearchJobsActivity extends BaseActivity {
     }
 
     public void searchNow(View view){
-        /*
-        if(salaryMin.getText().toString()!="" && salaryMax.getText().toString()!=""){
-            if(Integer.parseInt(salaryMin.getText().toString()) > Integer.parseInt(salaryMax.getText().toString())){
-                Toast.makeText(getBaseContext(), "Wrong salary range", Toast.LENGTH_SHORT).show();
-            }
-        }
-        */
 
-        Intent intent = new Intent(getBaseContext(), JobListActivity.class);
-        intent.putExtra("jobTitle", jobTitleField.getText().toString().trim());
-        intent.putExtra("withSimilarWord", similarCheckBox.isChecked());
-        intent.putExtra("jobCat", finalSelectedJobCatArray);
-        intent.putExtra("jobIndustry", finalSelectedJobIndustryArray);
-        intent.putExtra("salaryMin", salaryMin.getText().toString());
-        intent.putExtra("salaryMax", salaryMax.getText().toString());
-        startActivity(intent);
+        if( ((!salaryMin.getText().toString().equals("") && salaryMax.getText().toString().equals("") )    ||    (salaryMin.getText().toString().equals("") && !salaryMax.getText().toString().equals("")) ) ||
+                ( (!salaryMin.getText().toString().equals("") && !salaryMax.getText().toString().equals("") ) && (Integer.parseInt(salaryMin.getText().toString()) > Integer.parseInt(salaryMax.getText().toString())) )){
+            Toast.makeText(getBaseContext(), "Wrong salary range", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            Intent intent = new Intent(getBaseContext(), JobListActivity.class);
+            intent.putExtra("jobTitle", jobTitleField.getText().toString().trim());
+            intent.putExtra("withSimilarWord", similarCheckBox.isChecked());
+            intent.putExtra("jobCat", finalSelectedJobCatArray);
+            intent.putExtra("jobIndustry", finalSelectedJobIndustryArray);
+            intent.putExtra("salaryMin", salaryMin.getText().toString());
+            intent.putExtra("salaryMax", salaryMax.getText().toString());
+            startActivity(intent);
+        }
     }
 
     class getCriteriasAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
