@@ -9,13 +9,20 @@
     android:background="@drawable/testingbg"
     tools:context="com.example.dennislam.myapplication.activity.SearchJobsActivity">
 
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:background="#638EBA"
+        android:text="@string/dra_searchJobs"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"/>
     <EditText
         android:layout_marginTop="12dp"
         android:id="@+id/jobTitleField"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:hint="JOB TITLE"
+        android:hint="@string/sC_jobtitle"
         android:layout_gravity="center"
         android:gravity="center"
         android:backgroundTint="#000000" />
@@ -24,7 +31,7 @@
         android:id="@+id/similarCheckBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Search with similar words"
+        android:text="@string/sC_searchWithS"
         android:layout_gravity="center"
         android:checked="true"
         android:buttonTint="#000000"/>
@@ -37,7 +44,7 @@
         android:layout_height="45dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="Job Function"
+        android:text="@string/sC_jobFunction"
         android:textSize="17sp"
         android:background="@drawable/criterias_bg" />
 
@@ -49,7 +56,7 @@
         android:layout_height="45dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:text="Job Industry"
+        android:text="@string/sC_jobIndustry"
         android:textSize="17sp"
         android:background="@drawable/criterias_bg"/>
 
@@ -57,25 +64,27 @@
         android:id="@+id/salaryMin"
         android:layout_width="300dp"
         android:layout_height="45dp"
-        android:hint="Salary Range (Min)"
+        android:hint="@string/sj_salaryMin"
         android:inputType="number"
         android:layout_marginTop="12dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:textSize="17sp"
-        android:background="@drawable/criterias_bg" />
+        android:background="@drawable/criterias_bg"
+        android:drawableLeft="@drawable/money_user"/>
 
     <EditText
         android:id="@+id/salaryMax"
         android:layout_width="300dp"
         android:layout_height="45dp"
-        android:hint="Salary Range (Max)"
+        android:hint="@string/sj_salaryMax"
         android:inputType="number"
         android:layout_marginTop="12dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:textSize="17sp"
-        android:background="@drawable/criterias_bg" />
+        android:background="@drawable/criterias_bg"
+        android:drawableLeft="@drawable/money_user"/>
 
     <LinearLayout
         android:paddingTop="5dp"
@@ -83,7 +92,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -93,11 +103,12 @@
             android:id="@+id/searchButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Search NOW"
+            android:text="@string/sC_buttonSearch"
             android:textSize="20sp"
             android:textColor="#F7F7F7"
             android:background="@drawable/button_style"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center"
+            />
 
     </LinearLayout>
 

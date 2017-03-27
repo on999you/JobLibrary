@@ -15,7 +15,7 @@
         android:layout_height="30dp"
         android:gravity="center"
         android:background="#638EBA"
-        android:text="Salary Check"
+        android:text="@string/dra_salaryCheck"
         android:textSize="20sp"
         android:textColor="#FFFFFF"/>
 

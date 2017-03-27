@@ -112,5 +112,8 @@
     <string name="baseAct_reminder5">Yes</string>
     <string name="baseAct_reminder6">No</string>
 
+    <string name="sj_salaryMin">Salary Range (Min)</string>
+    <string name="sj_salaryMax">Salary Range (Max)</string>
+
 
 </resources>
