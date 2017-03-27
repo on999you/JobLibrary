@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +36,8 @@ public class SearchJobsActivity extends BaseActivity {
     String currLanguage;
 
     private Toast toast;
-    EditText salaryMin, salaryMax;
+    EditText jobTitleField,salaryMin, salaryMax;
+    CheckBox similarCheckBox;
 
     ArrayList<String> jobCatArray = new ArrayList<String>();
     ArrayList<String> jobCatIdArray = new ArrayList<String>();
@@ -45,10 +47,11 @@ public class SearchJobsActivity extends BaseActivity {
 
     TextView jobFunctionButton , jobIndustryButton;
 
-    ArrayList<String> tempJobCatArray = new ArrayList<String>();
+    ArrayList<String> finalSelectedJobCatArray = new ArrayList<String>();
+    ArrayList<String> finalSelectedJobIndustryArray = new ArrayList<String>();
 
-    ArrayList<String> selectedJobCatArray = new ArrayList<String>();
-    ArrayList<String> selectedJobIndustryArray = new ArrayList<String>();
+    ArrayList<String> tempJobCatArray = new ArrayList<String>();
+    ArrayList<String> tempJobIndustryArray = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +68,8 @@ public class SearchJobsActivity extends BaseActivity {
             currLanguage = "eng";
         }
 
+        jobTitleField = (EditText)findViewById(R.id.jobTitleField);
+        similarCheckBox = (CheckBox)findViewById(R.id.similarCheckBox);
         jobFunctionButton = (TextView)findViewById(R.id.jobFunctionButton);
         jobIndustryButton = (TextView)findViewById(R.id.jobIndustryButton);
         salaryMin = (EditText)findViewById(R.id.salaryMin);
@@ -77,11 +82,22 @@ public class SearchJobsActivity extends BaseActivity {
     }
 
     public void searchNow(View view){
+        /*
         if(salaryMin.getText().toString()!="" && salaryMax.getText().toString()!=""){
             if(Integer.parseInt(salaryMin.getText().toString()) > Integer.parseInt(salaryMax.getText().toString())){
                 Toast.makeText(getBaseContext(), "Wrong salary range", Toast.LENGTH_SHORT).show();
             }
         }
+        */
+
+        Intent intent = new Intent(getBaseContext(), JobListActivity.class);
+        intent.putExtra("jobTitle", jobTitleField.getText().toString().trim());
+        intent.putExtra("withSimilarWord", similarCheckBox.isChecked());
+        intent.putExtra("jobCat", finalSelectedJobCatArray);
+        intent.putExtra("jobIndustry", finalSelectedJobIndustryArray);
+        intent.putExtra("salaryMin", salaryMin.getText().toString());
+        intent.putExtra("salaryMax", salaryMax.getText().toString());
+        startActivity(intent);
     }
 
     class getCriteriasAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
@@ -161,12 +177,12 @@ public class SearchJobsActivity extends BaseActivity {
 
                     boolean allowSelectionChange = which.length <= 5;
                     if (!allowSelectionChange) {
-                        showToast( res.getString(R.string.sC_reminder2));
+                        showToast(res.getString(R.string.sC_reminder2) + "");
                     }
                     if(which.length == 6){
-                        jobFunctionButton.setText(5 +  res.getString(R.string.sC_reminder3));
+                        jobFunctionButton.setText(5 + res.getString(R.string.sC_reminder3));
                     } else {
-                        jobFunctionButton.setText(which.length +  res.getString(R.string.sC_reminder3));
+                        jobFunctionButton.setText(which.length + "" + res.getString(R.string.sC_reminder3));
 
                         tempJobCatArray.clear();
                         for(int i=0; i< which.length; i++){
@@ -177,15 +193,14 @@ public class SearchJobsActivity extends BaseActivity {
 
                 })
                 .positiveColor(Color.parseColor("#486E76"))
-                .positiveText("Done")
+                .positiveText(res.getString(R.string.faq_btnD))
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        Log.v("criterias_bg", tempJobCatArray.toString());
+                        finalSelectedJobCatArray.clear();
                         for(int i =0; i<tempJobCatArray.size(); i++){
-                            selectedJobCatArray.add(jobCatIdArray.get(Integer.parseInt(tempJobCatArray.get(i))));
+                            finalSelectedJobCatArray.add(jobCatIdArray.get(Integer.parseInt(tempJobCatArray.get(i))));
                         }
-                        Log.v("criterias_bg", selectedJobCatArray.toString());
                     }
                 })
                 .alwaysCallMultiChoiceCallback()
@@ -200,24 +215,33 @@ public class SearchJobsActivity extends BaseActivity {
                 .itemsCallbackMultiChoice(new Integer[]{}, (dialog, which, text) -> {
                     boolean allowSelectionChange = which.length <= 5;
                     if (!allowSelectionChange) {
-                        showToast(res.getString(R.string.sC_reminder2));
+                        showToast(res.getString(R.string.sC_reminder2) + "");
                     }
                     if(which.length == 6){
                         jobIndustryButton.setText(5 + res.getString(R.string.sC_reminder3));
                     } else {
-                        jobIndustryButton.setText(which.length + res.getString(R.string.sC_reminder3));
+                        jobIndustryButton.setText(which.length + "" + res.getString(R.string.sC_reminder3));
+
+                        tempJobIndustryArray.clear();
+                        for(int i=0; i< which.length; i++){
+                            tempJobIndustryArray.add(which[i].toString());
+                        }
                     }
                     return allowSelectionChange;
                 })
                 .positiveColor(Color.parseColor("#486E76"))
                 .positiveText(res.getString(R.string.faq_btnD))
+                .onPositive(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        finalSelectedJobIndustryArray.clear();
+                        for(int i =0; i<tempJobIndustryArray.size(); i++){
+                            finalSelectedJobIndustryArray.add(industryIdArray.get(Integer.parseInt(tempJobIndustryArray.get(i))));
+                        }
+                    }
+                })
                 .alwaysCallMultiChoiceCallback()
                 .show();
-    }
-
-    public void testing(View view){
-        Intent intent = new Intent(getBaseContext(), JobListActivity.class);
-        startActivity(intent);
     }
 
 }

@@ -27,7 +27,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class JobListActivity extends BaseActivity {
-//HI
+
+    String finalJobTitle, salaryMin, salaryMax;
+    Boolean withSimilarWord;
+    ArrayList<String> finalSelectedJobCatArray = new ArrayList<String>();
+    ArrayList<String> finalSelectedJobIndustryArray = new ArrayList<String>();
+
     //Card View
     private AnimRFRecyclerView recyclerView;
     private AnimRFLinearLayoutManager manager ;
@@ -49,6 +54,17 @@ public class JobListActivity extends BaseActivity {
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
         View contentView = inflater.inflate(R.layout.activity_job_list, null, false);
         mDrawer.addView(contentView, 0);
+
+        Intent intent= getIntent();
+        Bundle b = intent.getExtras();
+        if(b!=null) {
+            finalJobTitle = (String) b.get("jobTitle");
+            withSimilarWord =(Boolean) b.get("withSimilarWord");
+            finalSelectedJobCatArray =(ArrayList<String>) b.get("jobCat");
+            finalSelectedJobIndustryArray =(ArrayList<String>) b.get("jobIndustry");
+            salaryMin =(String) b.get("salaryMin");
+            salaryMax =(String) b.get("salaryMax");
+        }
 
         //Card View
         recyclerView = (AnimRFRecyclerView)findViewById(R.id.refresh_layout);
@@ -135,6 +151,8 @@ public class JobListActivity extends BaseActivity {
         new getJobListAsyncTaskRunner().execute();
     }
 
+
+
     class getJobListAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
         List<JobListXML.JobListItem> jobListItemList = new ArrayList<JobListXML.JobListItem>();
@@ -142,7 +160,7 @@ public class JobListActivity extends BaseActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            jobListItemList = jobListItemDao.jobListItemDao(rownumStart, rownumEnd);
+            jobListItemList = jobListItemDao.jobListItemDao(rownumStart, rownumEnd, finalJobTitle, withSimilarWord, finalSelectedJobCatArray, finalSelectedJobIndustryArray, salaryMin, salaryMax);
             return null;
         }
 
@@ -166,29 +184,6 @@ public class JobListActivity extends BaseActivity {
                     System.out.println(jobTitleList);
                 }
             }
-
-
-            /*
-            final int notifyID = 1; // 通知的識別號碼
-            final boolean autoCancel = true;
-            final int requestCode = notifyID; // PendingIntent的Request Code
-            final Intent intent = new Intent(getApplicationContext(), MainPageActivity.class); // 開啟另一個Activity的Intent
-            final int flags = PendingIntent.FLAG_UPDATE_CURRENT; // ONE_SHOT：PendingIntent只使用一次；CANCEL_CURRENT：PendingIntent執行前會先結束掉之前的；NO_CREATE：沿用先前的PendingIntent，不建立新的PendingIntent；UPDATE_CURRENT：更新先前PendingIntent所帶的額外資料，並繼續沿用
-            final TaskStackBuilder stackBuilder = TaskStackBuilder.create(getApplicationContext()); // 建立TaskStackBuilder
-            stackBuilder.addParentStack(MainPageActivity.class); // 加入目前要啟動的Activity，這個方法會將這個Activity的所有上層的Activity(Parents)都加到堆疊中
-            stackBuilder.addNextIntent(intent); // 加入啟動Activity的Intent
-            final PendingIntent pendingIntent = stackBuilder.getPendingIntent(requestCode, flags); // 取得PendingIntent
-            final NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE); // 取得系統的通知服務
-            final Notification notification = new Notification.Builder(getApplicationContext())
-                    .setSmallIcon(R.drawable.drawer_icon)
-                    .setContentTitle("Testing - Title")
-                    .setContentText("Testing - Text")
-                    .setContentIntent(pendingIntent)
-                    .setAutoCancel(autoCancel)
-                    .setVibrate(new long[] { 1000, 1000, 1000 })
-                    .build(); // 建立通知
-            notificationManager.notify(notifyID, notification); // 發送通知
-            */
 
         }
     }
