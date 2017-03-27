@@ -95,6 +95,8 @@ public class SearchJobsActivity extends BaseActivity {
         intent.putExtra("withSimilarWord", similarCheckBox.isChecked());
         intent.putExtra("jobCat", finalSelectedJobCatArray);
         intent.putExtra("jobIndustry", finalSelectedJobIndustryArray);
+        intent.putExtra("salaryMin", salaryMin.getText().toString());
+        intent.putExtra("salaryMax", salaryMax.getText().toString());
         startActivity(intent);
     }
 

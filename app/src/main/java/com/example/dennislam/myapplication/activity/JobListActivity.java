@@ -28,7 +28,7 @@ import java.util.List;
 
 public class JobListActivity extends BaseActivity {
 
-    String finalJobTitle;
+    String finalJobTitle, salaryMin, salaryMax;
     Boolean withSimilarWord;
     ArrayList<String> finalSelectedJobCatArray = new ArrayList<String>();
     ArrayList<String> finalSelectedJobIndustryArray = new ArrayList<String>();
@@ -62,6 +62,8 @@ public class JobListActivity extends BaseActivity {
             withSimilarWord =(Boolean) b.get("withSimilarWord");
             finalSelectedJobCatArray =(ArrayList<String>) b.get("jobCat");
             finalSelectedJobIndustryArray =(ArrayList<String>) b.get("jobIndustry");
+            salaryMin =(String) b.get("salaryMin");
+            salaryMax =(String) b.get("salaryMax");
         }
 
         //Card View
@@ -158,7 +160,7 @@ public class JobListActivity extends BaseActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            jobListItemList = jobListItemDao.jobListItemDao(rownumStart, rownumEnd, finalJobTitle, withSimilarWord, finalSelectedJobCatArray, finalSelectedJobIndustryArray);
+            jobListItemList = jobListItemDao.jobListItemDao(rownumStart, rownumEnd, finalJobTitle, withSimilarWord, finalSelectedJobCatArray, finalSelectedJobIndustryArray, salaryMin, salaryMax);
             return null;
         }
 

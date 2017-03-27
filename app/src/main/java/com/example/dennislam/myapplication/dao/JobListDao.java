@@ -50,7 +50,7 @@ public class JobListDao {
     }
 
 
-    public List<JobListXML.JobListItem> jobListItemDao(int rownumStart, int rownumEnd, String finalJobTitle, Boolean withSimilarWord,ArrayList<String> finalSelectedJobCatArray, ArrayList<String> finalSelectedJobIndustryArray){
+    public List<JobListXML.JobListItem> jobListItemDao(int rownumStart, int rownumEnd, String finalJobTitle, Boolean withSimilarWord,ArrayList<String> finalSelectedJobCatArray, ArrayList<String> finalSelectedJobIndustryArray, String salaryMin, String salaryMax){
 
         String xml;
 
@@ -61,7 +61,7 @@ public class JobListDao {
             DefaultHttpClient httpClient = new DefaultHttpClient(httpParams);
             HttpPost httpPost = new HttpPost(URL);
 
-            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(7);
+            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(9);
             nameValuePair.add(new BasicNameValuePair("udid", "1123456"));
             nameValuePair.add(new BasicNameValuePair("rownumStart", String.valueOf(rownumStart)));
             nameValuePair.add(new BasicNameValuePair("rownumEnd", String.valueOf(rownumEnd)));
@@ -69,6 +69,8 @@ public class JobListDao {
             nameValuePair.add(new BasicNameValuePair("withSimilarWord", withSimilarWord.toString()));
             nameValuePair.add(new BasicNameValuePair("jobCat", finalSelectedJobCatArray.toString()));
             nameValuePair.add(new BasicNameValuePair("jobIndustry", finalSelectedJobIndustryArray.toString()));
+            nameValuePair.add(new BasicNameValuePair("salaryMin", salaryMin));
+            nameValuePair.add(new BasicNameValuePair("salaryMax", salaryMax));
 
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
 
