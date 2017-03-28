@@ -8,7 +8,14 @@
     android:paddingTop="?attr/actionBarSize"
     tools:context="com.example.dennislam.myapplication.activity.SalaryCheckResultActivity">
 
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:theme="@style/titleBar"
+        android:text="@string/sC_resultTitle"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

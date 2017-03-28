@@ -42,6 +42,7 @@
     <string name="sC_reminder8">Please search with othes keywords</string>
     <string name="sC_entriesName1">Labour</string>
     <string name="sC_entriesName2">Employer</string>
+    <string name="sC_resultTitle">Salary Check Result</string>
     <string name="from">From</string>
     <string name="to">To</string>
     <string name="unspecified">UNSPECIFIED</string>
