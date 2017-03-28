@@ -25,6 +25,7 @@ import java.util.Locale;
 public class LanguageActivity extends BaseActivity{
     private String lang;
     private TextView chi,eng;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,10 +39,20 @@ public class LanguageActivity extends BaseActivity{
                 Activity.MODE_PRIVATE);
         Drawable checked= ResourcesCompat.getDrawable(getResources(), R.drawable.checked, null);
         checked.setBounds(0, 0, checked.getMinimumWidth(), checked.getMinimumHeight());
+
+        Drawable chinese= ResourcesCompat.getDrawable(getResources(), R.drawable.chinese, null);
+        chinese.setBounds(0, 0, checked.getMinimumWidth(), checked.getMinimumHeight());
+
+        Drawable english= ResourcesCompat.getDrawable(getResources(), R.drawable.english, null);
+        english.setBounds(0, 0, checked.getMinimumWidth(), checked.getMinimumHeight());
+
+        chi.setCompoundDrawables(chinese,null,null,null);
+        eng.setCompoundDrawables(english,null,null,null);
+
         if("zh".equals(prefs.getString("Language",""))){
-            chi.setCompoundDrawables(null,null,checked,null);
+            chi.setCompoundDrawables(chinese,null,checked,null);
         }else{
-            eng.setCompoundDrawables(null,null,checked,null);
+            eng.setCompoundDrawables(english,null,checked,null);
         }
     }
 

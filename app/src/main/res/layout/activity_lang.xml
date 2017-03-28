@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:paddingTop="?attr/actionBarSize"
     tool:context="com.example.dennislam.myapplication.activity.LanguageActivity">
+
     <TextView
         android:id="@+id/englishLangField"
         android:layout_width="match_parent"
@@ -15,7 +16,7 @@
         android:textStyle="bold"
         android:padding="10dp"
         android:background="#ffffff"
-        android:onClick="changeEngLang"/>
+        android:onClick="changeEngLang" />
     <TextView
         android:id="@+id/chineseLangField"
         android:layout_width="match_parent"
@@ -25,7 +26,7 @@
         android:textStyle="bold"
         android:padding="10dp"
         android:background="#ffffff"
-        android:onClick="changeChinLang"/>
+        android:onClick="changeChinLang" />
 
 
 </LinearLayout>
