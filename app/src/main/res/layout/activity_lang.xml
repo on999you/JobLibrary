@@ -15,25 +15,28 @@
         android:text="@string/language"
         android:textSize="20sp"
         android:textColor="#FFFFFF"/>
+
     <TextView
         android:id="@+id/englishLangField"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:text="ENGLISH"
         android:textSize="25dp"
-        android:textStyle="bold"
         android:padding="10dp"
-        android:background="#ffffff"
         android:onClick="changeEngLang" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
     <TextView
         android:id="@+id/chineseLangField"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:text="中文"
         android:textSize="25dp"
-        android:textStyle="bold"
         android:padding="10dp"
-        android:background="#ffffff"
         android:onClick="changeChinLang" />
 
 

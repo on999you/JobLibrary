@@ -6,24 +6,27 @@
     android:layout_height="match_parent"
     android:paddingTop="?attr/actionBarSize"
     tool:context="com.example.dennislam.myapplication.activity.SearchJobsActivity">
+
     <TextView
-     android:layout_width="match_parent"
-     android:layout_height="55dp"
-     android:text="@string/notification"
-     android:textSize="25dp"
-     android:textStyle="bold"
-     android:padding="10dp"
-     android:drawableRight="@drawable/next_black"
-     android:background="#ffffff" />
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="@string/notification"
+        android:textSize="25dp"
+        android:padding="10dp"
+        android:drawableRight="@drawable/next_black" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:text="@string/language"
         android:textSize="25dp"
-        android:textStyle="bold"
         android:padding="10dp"
         android:drawableRight="@drawable/next_black"
-        android:background="#ffffff"
         android:onClick="passToLang"/>
 
 
