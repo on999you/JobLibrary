@@ -19,8 +19,8 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="RatingBar" parent="Theme.AppCompat">
-        <item name="colorControlNormal">#2D6B6E</item>
-        <item name="colorControlActivated">#489396</item>
+        <item name="colorControlNormal">#FFFFFF</item>
+        <item name="colorControlActivated">#1F585A</item>
     </style>
     <style name="titleBar">
         <item name="android:background">#638EBA</item>

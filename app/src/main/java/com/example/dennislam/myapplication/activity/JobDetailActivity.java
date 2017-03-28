@@ -104,10 +104,17 @@ public class JobDetailActivity extends BaseActivity {
                     companyInfoRadio.setTextColor(Color.parseColor("#3B616B"));
                     //Toast.makeText(getApplicationContext(), "choice: job", Toast.LENGTH_SHORT).show();
 
-                    textView1.setText("Job Function");
-                    textView3.setText("Job Industry");
-                    textView5.setText("Job Description");
-                    textView7.setText("Salary");
+                    textView1.setText(" Job Function");
+                    textView1.setCompoundDrawablesWithIntrinsicBounds( R.drawable.job_function,0,0,0);
+
+                    textView3.setText(" Job Industry");
+                    textView3.setCompoundDrawablesWithIntrinsicBounds( R.drawable.job_industry,0,0,0);
+
+                    textView5.setText(" Job Description");
+                    textView5.setCompoundDrawablesWithIntrinsicBounds( R.drawable.job_desc ,0,0,0);
+
+                    textView7.setText(" Salary");
+                    textView7.setCompoundDrawablesWithIntrinsicBounds( R.drawable.salary,0,0,0);
 
                     textView2.setText(jobAreaArray.get(0) + salaryArray.get(0));
                     textView4.setText(industryArray.get(0));
@@ -121,10 +128,17 @@ public class JobDetailActivity extends BaseActivity {
                     jobDescRadio.setTextColor(Color.parseColor("#3B616B"));
                     //Toast.makeText(getApplicationContext(), "choice: company", Toast.LENGTH_SHORT).show();
 
-                    textView1.setText("Email Address");
-                    textView3.setText("Contact");
-                    textView5.setText("Company Description");
+                    textView1.setText(" Email Address");
+                    textView1.setCompoundDrawablesWithIntrinsicBounds( R.drawable.email, 0, 0, 0);
+
+                    textView3.setText(" Contact");
+                    textView3.setCompoundDrawablesWithIntrinsicBounds( R.drawable.contact, 0, 0, 0);
+
+                    textView5.setText(" Company Description");
+                    textView5.setCompoundDrawablesWithIntrinsicBounds( R.drawable.company_desc, 0, 0, 0);
+
                     textView7.setText("");
+                    textView7.setCompoundDrawablesWithIntrinsicBounds( 0, 0, 0, 0);
 
                     textView2.setText(emailArray.get(0));
                     textView4.setText(contactArray.get(0));
@@ -201,10 +215,17 @@ public class JobDetailActivity extends BaseActivity {
                     companyView.setText("( " + companyArray.get(0) + " )");
                     createDateView.setText(createDateArray.get(0));
 
-                    textView1.setText("Job Function");
-                    textView3.setText("Industry");
-                    textView5.setText("Job Description");
-                    textView7.setText("Salary");
+                    textView1.setText(" Job Function");
+                    textView1.setCompoundDrawablesWithIntrinsicBounds( R.drawable.job_function,0,0,0);
+
+                    textView3.setText(" Job Industry");
+                    textView3.setCompoundDrawablesWithIntrinsicBounds( R.drawable.job_industry,0,0,0);
+
+                    textView5.setText(" Job Description");
+                    textView5.setCompoundDrawablesWithIntrinsicBounds( R.drawable.job_desc ,0,0,0);
+
+                    textView7.setText(" Salary");
+                    textView7.setCompoundDrawablesWithIntrinsicBounds( R.drawable.salary,0,0,0);
 
                     textView2.setText(jobAreaArray.get(0));
                     textView4.setText(industryArray.get(0));
@@ -251,10 +272,22 @@ public class JobDetailActivity extends BaseActivity {
             else {
                 String dialogMessage = applyJobItemList.get(0).getMsg();
 
-                new MaterialDialog.Builder(JobDetailActivity.this)
-                        .content(dialogMessage)
-                        .positiveText(res.getString(R.string.baseAct_reminder3))
-                        .show();
+                int statusCode = applyJobItemList.get(0).getStatus_code();
+
+                if(statusCode == 1){
+                    new MaterialDialog.Builder(JobDetailActivity.this)
+                            .content("Please make sure that you have submitted the CV first")
+                            .positiveText(res.getString(R.string.baseAct_reminder3))
+                            .show();
+                }
+                else if (statusCode == 0){
+                    new MaterialDialog.Builder(JobDetailActivity.this)
+                            .content("Success")
+                            .positiveText(res.getString(R.string.baseAct_reminder3))
+                            .show();
+                }
+
+
             }
         }
     }
