@@ -1,8 +1,7 @@
 package com.example.dennislam.myapplication.dao.criteria;
 
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
-import com.example.dennislam.myapplication.xml.SalarySourceXML;
-import com.example.dennislam.myapplication.xml.WorkExpXML;
+import com.example.dennislam.myapplication.xml.GetSalarySourceXML;
 import com.thoughtworks.xstream.XStream;
 
 import org.apache.http.HttpEntity;
@@ -27,7 +26,7 @@ import java.util.List;
 public class SalarySourceDao {
 
     static final String URL = "http://192.168.232.66:8009/API_CT2_SALARY/GET_ALL_SALARY_SOURCE.aspx";
-    private List<SalarySourceXML.SalarySourceItem> salarySourceItemList;
+    private List<GetSalarySourceXML.SalarySourceItem> salarySourceItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;
     int statusCode;
@@ -35,7 +34,7 @@ public class SalarySourceDao {
         return statusCode;
     }
 
-    public List<SalarySourceXML.SalarySourceItem> getSalarySourceItemDao(){
+    public List<GetSalarySourceXML.SalarySourceItem> getSalarySourceItemDao(){
 
         String xml;
 
@@ -55,9 +54,9 @@ public class SalarySourceDao {
             String contentNoBom = new String(bytes, 3, bytes.length - 3);
 
             XStream xStream = new XStream();
-            xStream.processAnnotations(SalarySourceXML.class);
+            xStream.processAnnotations(GetSalarySourceXML.class);
 
-            SalarySourceXML xmlFile = (SalarySourceXML) xStream.fromXML(contentNoBom);
+            GetSalarySourceXML xmlFile = (GetSalarySourceXML) xStream.fromXML(contentNoBom);
 
             getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();

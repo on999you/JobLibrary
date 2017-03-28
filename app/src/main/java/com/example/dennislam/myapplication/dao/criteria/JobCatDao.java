@@ -1,8 +1,7 @@
 package com.example.dennislam.myapplication.dao.criteria;
 
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
-import com.example.dennislam.myapplication.xml.JobCatXML;
-import com.example.dennislam.myapplication.xml.SalarySourceXML;
+import com.example.dennislam.myapplication.xml.GetJobCatXML;
 import com.thoughtworks.xstream.XStream;
 
 import org.apache.http.HttpEntity;
@@ -27,7 +26,7 @@ import java.util.List;
 public class JobCatDao {
 
     static final String URL = "http://192.168.232.66:8009/API_CT2_SALARY/GET_ALL_JOB_FUNCTION.aspx";
-    private List<JobCatXML.JobCatItem> jobCatItemList;
+    private List<GetJobCatXML.JobCatItem> jobCatItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;
     int statusCode;
@@ -35,7 +34,7 @@ public class JobCatDao {
         return statusCode;
     }
 
-    public List<JobCatXML.JobCatItem> getJobCatItemDao(){
+    public List<GetJobCatXML.JobCatItem> getJobCatItemDao(){
 
         String xml;
 
@@ -55,9 +54,9 @@ public class JobCatDao {
             String contentNoBom = new String(bytes, 3, bytes.length - 3);
 
             XStream xStream = new XStream();
-            xStream.processAnnotations(JobCatXML.class);
+            xStream.processAnnotations(GetJobCatXML.class);
 
-            JobCatXML xmlFile = (JobCatXML) xStream.fromXML(contentNoBom);
+            GetJobCatXML xmlFile = (GetJobCatXML) xStream.fromXML(contentNoBom);
 
             getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();

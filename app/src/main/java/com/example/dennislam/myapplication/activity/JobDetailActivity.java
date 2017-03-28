@@ -19,7 +19,7 @@ import com.example.dennislam.myapplication.R;
 import com.example.dennislam.myapplication.dao.ApplyJobDao;
 import com.example.dennislam.myapplication.dao.GetJobDetailDao;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
-import com.example.dennislam.myapplication.xml.JobDetailXML;
+import com.example.dennislam.myapplication.xml.GetJobDetailXML;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -163,7 +163,7 @@ public class JobDetailActivity extends BaseActivity {
 
     class getJobDetailAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
-        List<JobDetailXML.JobDetailItem> jobDetailItemList = new ArrayList<JobDetailXML.JobDetailItem>();
+        List<GetJobDetailXML.JobDetailItem> jobDetailItemList = new ArrayList<GetJobDetailXML.JobDetailItem>();
         GetJobDetailDao jobDetailItemDao = new GetJobDetailDao();
 
         @Override

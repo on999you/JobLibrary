@@ -1,8 +1,7 @@
 package com.example.dennislam.myapplication.dao.criteria;
 
-import com.example.dennislam.myapplication.xml.IndustryXML;
+import com.example.dennislam.myapplication.xml.GetJobIndustryXML;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
-import com.example.dennislam.myapplication.xml.JobCatXML;
 import com.thoughtworks.xstream.XStream;
 
 import org.apache.http.HttpEntity;
@@ -27,7 +26,7 @@ import java.util.List;
 public class IndustryDao {
 
     static final String URL = "http://192.168.232.66:8009/API_CT2_SALARY/GET_ALL_INDUSTRY.aspx";
-    private List<IndustryXML.IndustryItem> industryItemList;
+    private List<GetJobIndustryXML.IndustryItem> industryItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;
     int statusCode;
@@ -35,7 +34,7 @@ public class IndustryDao {
         return statusCode;
     }
 
-    public List<IndustryXML.IndustryItem> getIndustryItemDao(){
+    public List<GetJobIndustryXML.IndustryItem> getIndustryItemDao(){
 
         String xml;
 
@@ -55,9 +54,9 @@ public class IndustryDao {
             String contentNoBom = new String(bytes, 3, bytes.length - 3);
 
             XStream xStream = new XStream();
-            xStream.processAnnotations(IndustryXML.class);
+            xStream.processAnnotations(GetJobIndustryXML.class);
 
-            IndustryXML xmlFile = (IndustryXML) xStream.fromXML(contentNoBom);
+            GetJobIndustryXML xmlFile = (GetJobIndustryXML) xStream.fromXML(contentNoBom);
 
             getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();

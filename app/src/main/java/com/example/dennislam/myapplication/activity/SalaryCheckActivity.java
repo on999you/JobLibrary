@@ -1,9 +1,7 @@
 package com.example.dennislam.myapplication.activity;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -11,7 +9,6 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.StringRes;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,16 +27,14 @@ import com.example.dennislam.myapplication.dao.criteria.IndustryDao;
 import com.example.dennislam.myapplication.dao.criteria.JobCatDao;
 import com.example.dennislam.myapplication.dao.criteria.SalarySourceDao;
 import com.example.dennislam.myapplication.dao.criteria.WorkExpDao;
-import com.example.dennislam.myapplication.xml.IndustryXML;
-import com.example.dennislam.myapplication.xml.JobCatXML;
-import com.example.dennislam.myapplication.xml.SalarySourceXML;
-import com.example.dennislam.myapplication.xml.WorkExpXML;
+import com.example.dennislam.myapplication.xml.GetJobIndustryXML;
+import com.example.dennislam.myapplication.xml.GetJobCatXML;
+import com.example.dennislam.myapplication.xml.GetSalarySourceXML;
+import com.example.dennislam.myapplication.xml.GetWorkExpXML;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import static com.example.dennislam.myapplication.R.id.jobDescription;
 import static com.example.dennislam.myapplication.R.id.unspecifiedRadio;
 
 public class SalaryCheckActivity extends BaseActivity {
@@ -179,10 +174,10 @@ public class SalaryCheckActivity extends BaseActivity {
 
     class getCriteriasAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
-        List<WorkExpXML.WorkExpItem> workExpItemList = new ArrayList<WorkExpXML.WorkExpItem>();
-        List<JobCatXML.JobCatItem> jobCatItemList = new ArrayList<JobCatXML.JobCatItem>();
-        List<IndustryXML.IndustryItem> industryItemList = new ArrayList<IndustryXML.IndustryItem>();
-        List<SalarySourceXML.SalarySourceItem> salarySourceItemList = new ArrayList<SalarySourceXML.SalarySourceItem>();
+        List<GetWorkExpXML.WorkExpItem> workExpItemList = new ArrayList<GetWorkExpXML.WorkExpItem>();
+        List<GetJobCatXML.JobCatItem> jobCatItemList = new ArrayList<GetJobCatXML.JobCatItem>();
+        List<GetJobIndustryXML.IndustryItem> industryItemList = new ArrayList<GetJobIndustryXML.IndustryItem>();
+        List<GetSalarySourceXML.SalarySourceItem> salarySourceItemList = new ArrayList<GetSalarySourceXML.SalarySourceItem>();
 
         WorkExpDao workExpItemDao = new WorkExpDao();
         SalarySourceDao salarySourceItemDao = new SalarySourceDao();

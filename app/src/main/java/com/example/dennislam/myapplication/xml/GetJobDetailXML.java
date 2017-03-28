@@ -10,7 +10,7 @@ import java.util.List;
  */
 
 @XStreamAlias("CTItemListRSS")
-public class JobDetailXML extends ItemsInfoBaseXML {
+public class GetJobDetailXML extends ItemsInfoBaseXML {
 
     @XStreamAlias("itemsInfo")
     @XStreamImplicit

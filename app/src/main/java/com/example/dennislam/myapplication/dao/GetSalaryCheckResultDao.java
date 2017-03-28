@@ -3,15 +3,13 @@ package com.example.dennislam.myapplication.dao;
 import android.util.Log;
 
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
-import com.example.dennislam.myapplication.xml.SalaryResultXML;
-import com.example.dennislam.myapplication.xml.SendFeedbackXML;
+import com.example.dennislam.myapplication.xml.GetSalaryCheckResultXML;
 import com.thoughtworks.xstream.XStream;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -34,7 +32,7 @@ import java.util.List;
 public class GetSalaryCheckResultDao {
 
     static final String URL = "http://192.168.232.66:8009/API_CT2_SALARY/GET_RESULT_FROM_SALARY_CHECK.aspx";
-    private List<SalaryResultXML.SalaryResultItem> salaryResultItemList;
+    private List<GetSalaryCheckResultXML.SalaryResultItem> salaryResultItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;
 
@@ -49,7 +47,7 @@ public class GetSalaryCheckResultDao {
     }
 
 
-    public List<SalaryResultXML.SalaryResultItem> getSalaryResultItemDao(String jobTitle, Boolean withSimilarWord,ArrayList<String> finalSelectedJobCatArray, ArrayList<String> finalSelectedJobIndustryArray, String workExpFrom, String workExpTo, String salarySourceValue){
+    public List<GetSalaryCheckResultXML.SalaryResultItem> getSalaryResultItemDao(String jobTitle, Boolean withSimilarWord, ArrayList<String> finalSelectedJobCatArray, ArrayList<String> finalSelectedJobIndustryArray, String workExpFrom, String workExpTo, String salarySourceValue){
 
         String xml;
 
@@ -83,9 +81,9 @@ public class GetSalaryCheckResultDao {
             String contentNoBom = new String(bytes, 3, bytes.length - 3);
 
             XStream xStream = new XStream();
-            xStream.processAnnotations(SalaryResultXML.class);
+            xStream.processAnnotations(GetSalaryCheckResultXML.class);
 
-            SalaryResultXML xmlFile = (SalaryResultXML) xStream.fromXML(contentNoBom);
+            GetSalaryCheckResultXML xmlFile = (GetSalaryCheckResultXML) xStream.fromXML(contentNoBom);
 
             getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();

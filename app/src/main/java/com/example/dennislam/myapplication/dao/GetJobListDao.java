@@ -1,18 +1,13 @@
 package com.example.dennislam.myapplication.dao;
 
-import android.util.Log;
-
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
-import com.example.dennislam.myapplication.xml.JobCatXML;
-import com.example.dennislam.myapplication.xml.JobListXML;
-import com.example.dennislam.myapplication.xml.SendFeedbackXML;
+import com.example.dennislam.myapplication.xml.GetJobListXML;
 import com.thoughtworks.xstream.XStream;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -35,7 +30,7 @@ import java.util.List;
 public class GetJobListDao {
 
     static final String URL = "http://192.168.232.66:8009/API_CT2_MOBILECV/GET_RESULT_FROM_SEARCH_JOB.aspx";
-    private List<JobListXML.JobListItem> jobListItemList;
+    private List<GetJobListXML.JobListItem> jobListItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;
 
@@ -50,7 +45,7 @@ public class GetJobListDao {
     }
 
 
-    public List<JobListXML.JobListItem> jobListItemDao(int rownumStart, int rownumEnd, String finalJobTitle, Boolean withSimilarWord,ArrayList<String> finalSelectedJobCatArray, ArrayList<String> finalSelectedJobIndustryArray, String salaryMin, String salaryMax){
+    public List<GetJobListXML.JobListItem> jobListItemDao(int rownumStart, int rownumEnd, String finalJobTitle, Boolean withSimilarWord, ArrayList<String> finalSelectedJobCatArray, ArrayList<String> finalSelectedJobIndustryArray, String salaryMin, String salaryMax){
 
         String xml;
 
@@ -83,9 +78,9 @@ public class GetJobListDao {
             String contentNoBom = new String(bytes, 3, bytes.length - 3);
 
             XStream xStream = new XStream();
-            xStream.processAnnotations(JobListXML.class);
+            xStream.processAnnotations(GetJobListXML.class);
 
-            JobListXML xmlFile = (JobListXML) xStream.fromXML(contentNoBom);
+            GetJobListXML xmlFile = (GetJobListXML) xStream.fromXML(contentNoBom);
 
             getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();

@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.example.dennislam.myapplication.R;
 import com.example.dennislam.myapplication.adapter.RelevantDataCardViewAdapter;
 import com.example.dennislam.myapplication.dao.GetRelevantDataDao;
-import com.example.dennislam.myapplication.xml.RelevantDataXML;
+import com.example.dennislam.myapplication.xml.GetRelevantDataXML;
 import com.sch.rfview.AnimRFRecyclerView;
 import com.sch.rfview.manager.AnimRFLinearLayoutManager;
 
@@ -146,7 +146,7 @@ public class RelevantDataActivity extends BaseActivity {
 
     class RelevantDataGetDataTask extends AsyncTask<Void, Void, Void> {
 
-        List<RelevantDataXML.RelevantDataItem> relevantDataItemList = new ArrayList<RelevantDataXML.RelevantDataItem>();
+        List<GetRelevantDataXML.RelevantDataItem> relevantDataItemList = new ArrayList<GetRelevantDataXML.RelevantDataItem>();
         GetRelevantDataDao relevantDataItemDao = new GetRelevantDataDao();
 
         @Override

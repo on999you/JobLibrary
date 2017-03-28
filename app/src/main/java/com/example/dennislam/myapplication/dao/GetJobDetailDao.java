@@ -1,15 +1,13 @@
 package com.example.dennislam.myapplication.dao;
 
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
-import com.example.dennislam.myapplication.xml.JobDetailXML;
-import com.example.dennislam.myapplication.xml.JobListXML;
+import com.example.dennislam.myapplication.xml.GetJobDetailXML;
 import com.thoughtworks.xstream.XStream;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -32,7 +30,7 @@ import java.util.List;
 public class GetJobDetailDao {
 
     static final String URL = "http://192.168.232.66:8009/API_CT2_MOBILECV/GET_JOB_DETAIL.aspx";
-    private List<JobDetailXML.JobDetailItem> jobDetailItemList;
+    private List<GetJobDetailXML.JobDetailItem> jobDetailItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;
     int statusCode;
@@ -41,7 +39,7 @@ public class GetJobDetailDao {
     }
 
 
-    public List<JobDetailXML.JobDetailItem> jobDetailItemDao(String jobId){
+    public List<GetJobDetailXML.JobDetailItem> jobDetailItemDao(String jobId){
 
         String xml;
 
@@ -66,9 +64,9 @@ public class GetJobDetailDao {
             String contentNoBom = new String(bytes, 3, bytes.length - 3);
 
             XStream xStream = new XStream();
-            xStream.processAnnotations(JobDetailXML.class);
+            xStream.processAnnotations(GetJobDetailXML.class);
 
-            JobDetailXML xmlFile = (JobDetailXML) xStream.fromXML(contentNoBom);
+            GetJobDetailXML xmlFile = (GetJobDetailXML) xStream.fromXML(contentNoBom);
 
             getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();

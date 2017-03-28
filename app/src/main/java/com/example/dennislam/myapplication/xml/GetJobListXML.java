@@ -6,11 +6,11 @@ import com.thoughtworks.xstream.annotations.XStreamImplicit;
 import java.util.List;
 
 /**
- * Created by dennislam on 23/1/2017.
+ * Created by dennislam on 24/1/2017.
  */
 
 @XStreamAlias("CTItemListRSS")
-public class RelevantDataXML extends ItemsInfoBaseXML {
+public class GetJobListXML extends ItemsInfoBaseXML {
 
     @XStreamAlias("itemsInfo")
     @XStreamImplicit
@@ -28,16 +28,14 @@ public class RelevantDataXML extends ItemsInfoBaseXML {
 
 
 
-
-
     @XStreamAlias("items")
-    private RelevantDataItems items;
+    private JobListItems items;
 
-    public RelevantDataItems getItems() {
+    public JobListItems getItems() {
         return items;
     }
 
-    public void setItems(RelevantDataItems items) {
+    public void setItems(JobListItems items) {
         this.items = items;
     }
 
@@ -46,7 +44,7 @@ public class RelevantDataXML extends ItemsInfoBaseXML {
 
 
     @XStreamImplicit
-    private List<RelevantDataItem> item;
+    private List<JobListItem> item;
 
 
 
@@ -54,16 +52,16 @@ public class RelevantDataXML extends ItemsInfoBaseXML {
 
 
     @XStreamAlias("items")
-    public class RelevantDataItems {
+    public class JobListItems {
 
         @XStreamImplicit
-        private List<RelevantDataItem> item;
+        private List<JobListItem> item;
 
-        public List<RelevantDataItem> getItem() {
+        public List<JobListItem> getItem() {
             return item;
         }
 
-        public void setItem(List<RelevantDataItem> item) {
+        public void setItem(List<JobListItem> item) {
             this.item = item;
         }
     }
@@ -73,20 +71,31 @@ public class RelevantDataXML extends ItemsInfoBaseXML {
 
 
     @XStreamAlias("item")
-    public class RelevantDataItem {
+    public class JobListItem {
+
+        @XStreamAlias("JOB_ID")
+        private String jobID;
 
         @XStreamAlias("JOBTITLE")
         private String jobTitle;
 
-        @XStreamAlias("JOBCAT_NAME")
-        private String jobCat;
+        @XStreamAlias("COMPANY_NAME")
+        private String company;
 
-        @XStreamAlias("EXPERIENCE_NAME")
-        private String exp;
+        @XStreamAlias("CREATE_DATE")
+        private String createDate;
 
         @XStreamAlias("SALARY")
         private String salary;
 
+
+        public String getJobID() {
+            return jobID;
+        }
+
+        public void setJobID(String jobID) {
+            this.jobID = jobID;
+        }
 
         public String getJobTitle() {
             return jobTitle;
@@ -96,20 +105,20 @@ public class RelevantDataXML extends ItemsInfoBaseXML {
             this.jobTitle = jobTitle;
         }
 
-        public String getJobCat() {
-            return jobCat;
+        public String getCompany() {
+            return company;
         }
 
-        public void setJobCat(String jobCat) {
-            this.jobCat = jobCat;
+        public void setCompany(String company) {
+            this.company = company;
         }
 
-        public String getExp() {
-            return exp;
+        public String getCreateDate() {
+            return createDate;
         }
 
-        public void setExp(String exp) {
-            this.exp = exp;
+        public void setCreateDate(String createDate) {
+            this.createDate = createDate;
         }
 
         public String getSalary() {

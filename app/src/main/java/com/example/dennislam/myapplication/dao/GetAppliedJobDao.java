@@ -1,8 +1,7 @@
 package com.example.dennislam.myapplication.dao;
 
-import com.example.dennislam.myapplication.xml.AppliedJobXML;
+import com.example.dennislam.myapplication.xml.GetAppliedJobXML;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
-import com.example.dennislam.myapplication.xml.JobCatXML;
 import com.thoughtworks.xstream.XStream;
 
 import org.apache.http.HttpEntity;
@@ -31,7 +30,7 @@ import java.util.List;
 public class GetAppliedJobDao {
 
     static final String URL = "http://192.168.232.66:8009/API_CT2_MOBILECV/GET_APPLIED_JOB.aspx";
-    private List<AppliedJobXML.AppliedJobItem> appliedJobItemList;
+    private List<GetAppliedJobXML.AppliedJobItem> appliedJobItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;
     int statusCode;
@@ -39,7 +38,7 @@ public class GetAppliedJobDao {
         return statusCode;
     }
 
-    public List<AppliedJobXML.AppliedJobItem> getAppliedJobItemDao(int rownumStart, int rownumEnd, String udid){
+    public List<GetAppliedJobXML.AppliedJobItem> getAppliedJobItemDao(int rownumStart, int rownumEnd, String udid){
 
         String xml;
 
@@ -66,9 +65,9 @@ public class GetAppliedJobDao {
             String contentNoBom = new String(bytes, 3, bytes.length - 3);
 
             XStream xStream = new XStream();
-            xStream.processAnnotations(AppliedJobXML.class);
+            xStream.processAnnotations(GetAppliedJobXML.class);
 
-            AppliedJobXML xmlFile = (AppliedJobXML) xStream.fromXML(contentNoBom);
+            GetAppliedJobXML xmlFile = (GetAppliedJobXML) xStream.fromXML(contentNoBom);
 
             getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();

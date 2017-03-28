@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
@@ -21,12 +20,8 @@ import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.dennislam.myapplication.R;
 import com.example.dennislam.myapplication.dao.criteria.IndustryDao;
 import com.example.dennislam.myapplication.dao.criteria.JobCatDao;
-import com.example.dennislam.myapplication.dao.criteria.SalarySourceDao;
-import com.example.dennislam.myapplication.dao.criteria.WorkExpDao;
-import com.example.dennislam.myapplication.xml.IndustryXML;
-import com.example.dennislam.myapplication.xml.JobCatXML;
-import com.example.dennislam.myapplication.xml.SalarySourceXML;
-import com.example.dennislam.myapplication.xml.WorkExpXML;
+import com.example.dennislam.myapplication.xml.GetJobIndustryXML;
+import com.example.dennislam.myapplication.xml.GetJobCatXML;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -101,8 +96,8 @@ public class SearchJobsActivity extends BaseActivity {
 
     class getCriteriasAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
-        List<JobCatXML.JobCatItem> jobCatItemList = new ArrayList<JobCatXML.JobCatItem>();
-        List<IndustryXML.IndustryItem> industryItemList = new ArrayList<IndustryXML.IndustryItem>();
+        List<GetJobCatXML.JobCatItem> jobCatItemList = new ArrayList<GetJobCatXML.JobCatItem>();
+        List<GetJobIndustryXML.IndustryItem> industryItemList = new ArrayList<GetJobIndustryXML.IndustryItem>();
 
         JobCatDao jobCatItemDao = new JobCatDao();
         IndustryDao industryItemDao = new IndustryDao();

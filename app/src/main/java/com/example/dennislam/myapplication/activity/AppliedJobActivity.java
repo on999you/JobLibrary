@@ -13,7 +13,7 @@ import com.example.dennislam.myapplication.R;
 import com.example.dennislam.myapplication.RecyclerItemClickListener;
 import com.example.dennislam.myapplication.adapter.AppliedJobCardViewAdapter;
 import com.example.dennislam.myapplication.dao.GetAppliedJobDao;
-import com.example.dennislam.myapplication.xml.AppliedJobXML;
+import com.example.dennislam.myapplication.xml.GetAppliedJobXML;
 import com.sch.rfview.AnimRFRecyclerView;
 import com.sch.rfview.manager.AnimRFLinearLayoutManager;
 
@@ -131,7 +131,7 @@ public class AppliedJobActivity extends BaseActivity{
 
     class AppliedJobGetDataTask extends AsyncTask<Void, Void, Void> {
 
-        List<AppliedJobXML.AppliedJobItem> appliedJobItemList = new ArrayList<AppliedJobXML.AppliedJobItem>();
+        List<GetAppliedJobXML.AppliedJobItem> appliedJobItemList = new ArrayList<GetAppliedJobXML.AppliedJobItem>();
         GetAppliedJobDao appliedJobItemDao = new GetAppliedJobDao();
 
         @Override

@@ -36,7 +36,7 @@ import com.example.dennislam.myapplication.R;
 import com.example.dennislam.myapplication.dao.GetCurrentCvDao;
 import com.example.dennislam.myapplication.dao.criteria.EducationLevelDao;
 import com.example.dennislam.myapplication.dao.SendCvDao;
-import com.example.dennislam.myapplication.xml.EducationLevelXML;
+import com.example.dennislam.myapplication.xml.GetEducationLevelXML;
 import com.example.dennislam.myapplication.xml.GetCvXML;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
 
@@ -145,7 +145,7 @@ public class CvActivity extends BaseActivity {
     class getEduLvAndCvAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
         List<GetCvXML.GetCvItem> getCvItemList = new ArrayList<GetCvXML.GetCvItem>();
-        List<EducationLevelXML.EducationLevelItem> educationLevelItemList = new ArrayList<EducationLevelXML.EducationLevelItem>();
+        List<GetEducationLevelXML.EducationLevelItem> educationLevelItemList = new ArrayList<GetEducationLevelXML.EducationLevelItem>();
         EducationLevelDao educationLevelItemDao = new EducationLevelDao();
         GetCurrentCvDao getCvItemDao = new GetCurrentCvDao();
 

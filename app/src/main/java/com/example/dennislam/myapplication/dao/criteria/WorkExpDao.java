@@ -1,9 +1,7 @@
 package com.example.dennislam.myapplication.dao.criteria;
 
-import android.util.Log;
-
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
-import com.example.dennislam.myapplication.xml.WorkExpXML;
+import com.example.dennislam.myapplication.xml.GetWorkExpXML;
 import com.thoughtworks.xstream.XStream;
 
 import org.apache.http.HttpEntity;
@@ -28,7 +26,7 @@ import java.util.List;
 public class WorkExpDao {
 
     static final String URL = "http://192.168.232.66:8009/API_CT2_SALARY/GET_ALL_EXPERIENCE.aspx";
-    private List<WorkExpXML.WorkExpItem> workExpItemList;
+    private List<GetWorkExpXML.WorkExpItem> workExpItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;
     int statusCode;
@@ -36,7 +34,7 @@ public class WorkExpDao {
         return statusCode;
     }
 
-    public List<WorkExpXML.WorkExpItem> getWorkExpItemDao(){
+    public List<GetWorkExpXML.WorkExpItem> getWorkExpItemDao(){
 
         String xml;
 
@@ -56,9 +54,9 @@ public class WorkExpDao {
             String contentNoBom = new String(bytes, 3, bytes.length - 3);
 
             XStream xStream = new XStream();
-            xStream.processAnnotations(WorkExpXML.class);
+            xStream.processAnnotations(GetWorkExpXML.class);
 
-            WorkExpXML xmlFile = (WorkExpXML) xStream.fromXML(contentNoBom);
+            GetWorkExpXML xmlFile = (GetWorkExpXML) xStream.fromXML(contentNoBom);
 
             getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();

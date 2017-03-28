@@ -1,18 +1,15 @@
 package com.example.dennislam.myapplication.dao.criteria;
 
-import com.example.dennislam.myapplication.xml.EducationLevelXML;
-import com.example.dennislam.myapplication.xml.IndustryXML;
+import com.example.dennislam.myapplication.xml.GetEducationLevelXML;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
 import com.thoughtworks.xstream.XStream;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.HttpVersion;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.CoreProtocolPNames;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.HTTP;
@@ -29,7 +26,7 @@ import java.util.List;
 public class EducationLevelDao {
 
     static final String URL = "http://192.168.232.66:8009/API_CT2_MOBILECV/GET_ALL_EDUCATION_LEVEL.aspx";
-    private List<EducationLevelXML.EducationLevelItem> educationLevelItemList;
+    private List<GetEducationLevelXML.EducationLevelItem> educationLevelItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;
     int statusCode;
@@ -37,7 +34,7 @@ public class EducationLevelDao {
         return statusCode;
     }
 
-    public List<EducationLevelXML.EducationLevelItem> getEducationLevelItemDao(){
+    public List<GetEducationLevelXML.EducationLevelItem> getEducationLevelItemDao(){
 
         String xml;
 
@@ -57,9 +54,9 @@ public class EducationLevelDao {
             String contentNoBom = new String(bytes, 3, bytes.length - 3);
 
             XStream xStream = new XStream();
-            xStream.processAnnotations(EducationLevelXML.class);
+            xStream.processAnnotations(GetEducationLevelXML.class);
 
-            EducationLevelXML xmlFile = (EducationLevelXML) xStream.fromXML(contentNoBom);
+            GetEducationLevelXML xmlFile = (GetEducationLevelXML) xStream.fromXML(contentNoBom);
 
             getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();

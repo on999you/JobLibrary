@@ -1,6 +1,5 @@
 package com.example.dennislam.myapplication.dao;
 
-import com.example.dennislam.myapplication.xml.AppliedJobXML;
 import com.example.dennislam.myapplication.xml.GetCvXML;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
 import com.thoughtworks.xstream.XStream;

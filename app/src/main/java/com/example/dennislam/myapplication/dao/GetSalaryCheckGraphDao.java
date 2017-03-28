@@ -1,17 +1,13 @@
 package com.example.dennislam.myapplication.dao;
 
-import android.util.Log;
-
-import com.example.dennislam.myapplication.xml.GraphInfoXML;
+import com.example.dennislam.myapplication.xml.GetSalaryCheckGraphXML;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
-import com.example.dennislam.myapplication.xml.SalaryResultXML;
 import com.thoughtworks.xstream.XStream;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -34,7 +30,7 @@ import java.util.List;
 public class GetSalaryCheckGraphDao {
 
     static final String URL = "http://192.168.232.66:8009/API_CT2_SALARY/GET_GRAPH_INFO_FROM_SALARY_DATA.aspx";
-    private List<GraphInfoXML.GraphInfoItem> graphInfoItemList;
+    private List<GetSalaryCheckGraphXML.GraphInfoItem> graphInfoItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;
     int statusCode;
@@ -43,7 +39,7 @@ public class GetSalaryCheckGraphDao {
     }
 
 
-    public List<GraphInfoXML.GraphInfoItem> getGraphInfoItemDao(String jobTitle, Boolean withSimilarWord,ArrayList<String> finalSelectedJobCatArray, ArrayList<String> finalSelectedJobIndustryArray, String workExpFrom, String workExpTo, String salarySourceValue){
+    public List<GetSalaryCheckGraphXML.GraphInfoItem> getGraphInfoItemDao(String jobTitle, Boolean withSimilarWord, ArrayList<String> finalSelectedJobCatArray, ArrayList<String> finalSelectedJobIndustryArray, String workExpFrom, String workExpTo, String salarySourceValue){
 
         String xml;
 
@@ -74,9 +70,9 @@ public class GetSalaryCheckGraphDao {
             String contentNoBom = new String(bytes, 3, bytes.length - 3);
 
             XStream xStream = new XStream();
-            xStream.processAnnotations(GraphInfoXML.class);
+            xStream.processAnnotations(GetSalaryCheckGraphXML.class);
 
-            GraphInfoXML xmlFile = (GraphInfoXML) xStream.fromXML(contentNoBom);
+            GetSalaryCheckGraphXML xmlFile = (GetSalaryCheckGraphXML) xStream.fromXML(contentNoBom);
 
             getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();

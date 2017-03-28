@@ -1,20 +1,13 @@
 package com.example.dennislam.myapplication.dao;
 
-import android.util.Log;
-
-import com.example.dennislam.myapplication.activity.FeedbackActivity;
-import com.example.dennislam.myapplication.xml.EducationLevelXML;
-import com.example.dennislam.myapplication.xml.IndustryXML;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
 import com.example.dennislam.myapplication.xml.SendFeedbackXML;
 import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.converters.basic.FloatConverter;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -27,7 +20,6 @@ import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
