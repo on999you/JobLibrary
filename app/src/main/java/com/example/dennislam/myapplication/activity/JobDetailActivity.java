@@ -251,10 +251,22 @@ public class JobDetailActivity extends BaseActivity {
             else {
                 String dialogMessage = applyJobItemList.get(0).getMsg();
 
-                new MaterialDialog.Builder(JobDetailActivity.this)
-                        .content(dialogMessage)
-                        .positiveText(res.getString(R.string.baseAct_reminder3))
-                        .show();
+                int statusCode = applyJobItemList.get(0).getStatus_code();
+
+                if(statusCode == 1){
+                    new MaterialDialog.Builder(JobDetailActivity.this)
+                            .content("Please make sure that you have submitted the CV first")
+                            .positiveText(res.getString(R.string.baseAct_reminder3))
+                            .show();
+                }
+                else if (statusCode == 0){
+                    new MaterialDialog.Builder(JobDetailActivity.this)
+                            .content("Success")
+                            .positiveText(res.getString(R.string.baseAct_reminder3))
+                            .show();
+                }
+
+
             }
         }
     }

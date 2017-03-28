@@ -43,7 +43,7 @@ public class GraphInfoDao {
     }
 
 
-    public List<GraphInfoXML.GraphInfoItem> getGraphInfoItemDao(String jobTitle){
+    public List<GraphInfoXML.GraphInfoItem> getGraphInfoItemDao(String jobTitle, Boolean withSimilarWord,ArrayList<String> finalSelectedJobCatArray, ArrayList<String> finalSelectedJobIndustryArray, String workExpFrom, String workExpTo, String salarySourceValue){
 
         String xml;
 
@@ -54,11 +54,14 @@ public class GraphInfoDao {
             DefaultHttpClient httpClient = new DefaultHttpClient(httpParams);
             HttpPost httpPost = new HttpPost(URL);
 
-            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(4);
+            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(7);
             nameValuePair.add(new BasicNameValuePair("jobTitle", jobTitle));
-            nameValuePair.add(new BasicNameValuePair("withSimilarWord", "123"));
-            nameValuePair.add(new BasicNameValuePair("expFrom", "123"));
-            nameValuePair.add(new BasicNameValuePair("expTo", "123"));
+            nameValuePair.add(new BasicNameValuePair("withSimilarWord", withSimilarWord.toString()));
+            nameValuePair.add(new BasicNameValuePair("jobCat", finalSelectedJobCatArray.toString()));
+            nameValuePair.add(new BasicNameValuePair("jobIndustry", finalSelectedJobIndustryArray.toString()));
+            nameValuePair.add(new BasicNameValuePair("expFrom", workExpFrom));
+            nameValuePair.add(new BasicNameValuePair("expTo", workExpTo));
+            nameValuePair.add(new BasicNameValuePair("salarySource", salarySourceValue));
 
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
 
