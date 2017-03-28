@@ -9,26 +9,19 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
-import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.afollestad.materialcamera.MaterialCamera;
@@ -39,16 +32,13 @@ import java.util.List;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.example.dennislam.myapplication.GlobalClass;
 import com.example.dennislam.myapplication.R;
-import com.example.dennislam.myapplication.dao.GetCvDao;
+import com.example.dennislam.myapplication.dao.GetCurrentCvDao;
 import com.example.dennislam.myapplication.dao.criteria.EducationLevelDao;
 import com.example.dennislam.myapplication.dao.SendCvDao;
 import com.example.dennislam.myapplication.xml.EducationLevelXML;
 import com.example.dennislam.myapplication.xml.GetCvXML;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
-
-import org.apache.commons.io.FileSystemUtils;
 
 public class CvActivity extends BaseActivity {
 
@@ -157,7 +147,7 @@ public class CvActivity extends BaseActivity {
         List<GetCvXML.GetCvItem> getCvItemList = new ArrayList<GetCvXML.GetCvItem>();
         List<EducationLevelXML.EducationLevelItem> educationLevelItemList = new ArrayList<EducationLevelXML.EducationLevelItem>();
         EducationLevelDao educationLevelItemDao = new EducationLevelDao();
-        GetCvDao getCvItemDao = new GetCvDao();
+        GetCurrentCvDao getCvItemDao = new GetCurrentCvDao();
 
         @Override
         protected void onPreExecute(){

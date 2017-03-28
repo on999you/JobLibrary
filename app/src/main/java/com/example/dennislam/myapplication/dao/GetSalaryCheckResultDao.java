@@ -1,14 +1,17 @@
 package com.example.dennislam.myapplication.dao;
 
-import com.example.dennislam.myapplication.xml.AppliedJobXML;
+import android.util.Log;
+
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
-import com.example.dennislam.myapplication.xml.JobCatXML;
+import com.example.dennislam.myapplication.xml.SalaryResultXML;
+import com.example.dennislam.myapplication.xml.SendFeedbackXML;
 import com.thoughtworks.xstream.XStream;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -25,35 +28,49 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by dennislam on 24/1/2017.
+ * Created by dennislam on 16/1/2017.
  */
 
-public class AppliedJobDao {
+public class GetSalaryCheckResultDao {
 
-    static final String URL = "http://192.168.232.66:8009/API_CT2_MOBILECV/GET_APPLIED_JOB.aspx";
-    private List<AppliedJobXML.AppliedJobItem> appliedJobItemList;
+    static final String URL = "http://192.168.232.66:8009/API_CT2_SALARY/GET_RESULT_FROM_SALARY_CHECK.aspx";
+    private List<SalaryResultXML.SalaryResultItem> salaryResultItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;
+
     int statusCode;
     public int getStatusCode() {
         return statusCode;
     }
 
-    public List<AppliedJobXML.AppliedJobItem> getAppliedJobItemDao(int rownumStart, int rownumEnd, String udid){
+    int itemsTotal;
+    public int getItemsTotal() {
+        return itemsTotal;
+    }
+
+
+    public List<SalaryResultXML.SalaryResultItem> getSalaryResultItemDao(String jobTitle, Boolean withSimilarWord,ArrayList<String> finalSelectedJobCatArray, ArrayList<String> finalSelectedJobIndustryArray, String workExpFrom, String workExpTo, String salarySourceValue){
 
         String xml;
 
         try {
             final HttpParams httpParams = new BasicHttpParams();
-            HttpConnectionParams.setConnectionTimeout(httpParams, 3000);
+            HttpConnectionParams.setConnectionTimeout(httpParams, 10000);
 
             DefaultHttpClient httpClient = new DefaultHttpClient(httpParams);
             HttpPost httpPost = new HttpPost(URL);
 
-            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(3);
-            nameValuePair.add(new BasicNameValuePair("udid", udid));
-            nameValuePair.add(new BasicNameValuePair("rownumStart", String.valueOf(rownumStart)));
-            nameValuePair.add(new BasicNameValuePair("rownumEnd", String.valueOf(rownumEnd)));
+            Log.v("testingjobcat", finalSelectedJobCatArray.toString());
+            Log.v("testingjobind", finalSelectedJobIndustryArray.toString());
+
+            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(7);
+            nameValuePair.add(new BasicNameValuePair("jobTitle", jobTitle));
+            nameValuePair.add(new BasicNameValuePair("withSimilarWord", withSimilarWord.toString()));
+            nameValuePair.add(new BasicNameValuePair("jobCat", finalSelectedJobCatArray.toString()));
+            nameValuePair.add(new BasicNameValuePair("jobIndustry", finalSelectedJobIndustryArray.toString()));
+            nameValuePair.add(new BasicNameValuePair("expFrom", workExpFrom));
+            nameValuePair.add(new BasicNameValuePair("expTo", workExpTo));
+            nameValuePair.add(new BasicNameValuePair("salarySource", salarySourceValue));
 
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
 
@@ -66,15 +83,16 @@ public class AppliedJobDao {
             String contentNoBom = new String(bytes, 3, bytes.length - 3);
 
             XStream xStream = new XStream();
-            xStream.processAnnotations(AppliedJobXML.class);
+            xStream.processAnnotations(SalaryResultXML.class);
 
-            AppliedJobXML xmlFile = (AppliedJobXML) xStream.fromXML(contentNoBom);
+            SalaryResultXML xmlFile = (SalaryResultXML) xStream.fromXML(contentNoBom);
 
             getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();
+            itemsTotal = getItemsInfo.get(0).getItemsTotal();
 
             if(statusCode == 0) {
-                appliedJobItemList = xmlFile.getItems().getItem();
+                salaryResultItemList = xmlFile.getItems().getItem();
             }
 
         } catch (UnsupportedEncodingException e) {
@@ -84,8 +102,7 @@ public class AppliedJobDao {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return appliedJobItemList;
-
+        return salaryResultItemList;
     }
 
 }

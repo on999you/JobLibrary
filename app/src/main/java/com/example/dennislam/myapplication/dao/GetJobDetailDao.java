@@ -1,10 +1,8 @@
 package com.example.dennislam.myapplication.dao;
 
-import android.util.Log;
-
-import com.example.dennislam.myapplication.xml.GraphInfoXML;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
-import com.example.dennislam.myapplication.xml.SalaryResultXML;
+import com.example.dennislam.myapplication.xml.JobDetailXML;
+import com.example.dennislam.myapplication.xml.JobListXML;
 import com.thoughtworks.xstream.XStream;
 
 import org.apache.http.HttpEntity;
@@ -31,10 +29,10 @@ import java.util.List;
  * Created by dennislam on 24/1/2017.
  */
 
-public class GraphInfoDao {
+public class GetJobDetailDao {
 
-    static final String URL = "http://192.168.232.66:8009/API_CT2_SALARY/GET_GRAPH_INFO_FROM_SALARY_DATA.aspx";
-    private List<GraphInfoXML.GraphInfoItem> graphInfoItemList;
+    static final String URL = "http://192.168.232.66:8009/API_CT2_MOBILECV/GET_JOB_DETAIL.aspx";
+    private List<JobDetailXML.JobDetailItem> jobDetailItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;
     int statusCode;
@@ -43,7 +41,7 @@ public class GraphInfoDao {
     }
 
 
-    public List<GraphInfoXML.GraphInfoItem> getGraphInfoItemDao(String jobTitle, Boolean withSimilarWord,ArrayList<String> finalSelectedJobCatArray, ArrayList<String> finalSelectedJobIndustryArray, String workExpFrom, String workExpTo, String salarySourceValue){
+    public List<JobDetailXML.JobDetailItem> jobDetailItemDao(String jobId){
 
         String xml;
 
@@ -54,14 +52,8 @@ public class GraphInfoDao {
             DefaultHttpClient httpClient = new DefaultHttpClient(httpParams);
             HttpPost httpPost = new HttpPost(URL);
 
-            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(7);
-            nameValuePair.add(new BasicNameValuePair("jobTitle", jobTitle));
-            nameValuePair.add(new BasicNameValuePair("withSimilarWord", withSimilarWord.toString()));
-            nameValuePair.add(new BasicNameValuePair("jobCat", finalSelectedJobCatArray.toString()));
-            nameValuePair.add(new BasicNameValuePair("jobIndustry", finalSelectedJobIndustryArray.toString()));
-            nameValuePair.add(new BasicNameValuePair("expFrom", workExpFrom));
-            nameValuePair.add(new BasicNameValuePair("expTo", workExpTo));
-            nameValuePair.add(new BasicNameValuePair("salarySource", salarySourceValue));
+            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(1);
+            nameValuePair.add(new BasicNameValuePair("jobId", jobId));
 
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
 
@@ -74,15 +66,15 @@ public class GraphInfoDao {
             String contentNoBom = new String(bytes, 3, bytes.length - 3);
 
             XStream xStream = new XStream();
-            xStream.processAnnotations(GraphInfoXML.class);
+            xStream.processAnnotations(JobDetailXML.class);
 
-            GraphInfoXML xmlFile = (GraphInfoXML) xStream.fromXML(contentNoBom);
+            JobDetailXML xmlFile = (JobDetailXML) xStream.fromXML(contentNoBom);
 
             getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();
 
             if(statusCode == 0) {
-                graphInfoItemList = xmlFile.getItems().getItem();
+                jobDetailItemList = xmlFile.getItems().getItem();
             }
 
         } catch (UnsupportedEncodingException e) {
@@ -92,8 +84,7 @@ public class GraphInfoDao {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return graphInfoItemList;
+        return jobDetailItemList;
     }
 
 }

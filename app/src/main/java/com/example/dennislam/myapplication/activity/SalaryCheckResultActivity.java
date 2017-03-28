@@ -17,11 +17,10 @@ import android.widget.Toast;
 
 import com.example.dennislam.myapplication.R;
 import com.example.dennislam.myapplication.adapter.SalaryCheckListViewAdapter;
-import com.example.dennislam.myapplication.dao.GraphInfoDao;
-import com.example.dennislam.myapplication.dao.SalaryResultDao;
+import com.example.dennislam.myapplication.dao.GetSalaryCheckGraphDao;
+import com.example.dennislam.myapplication.dao.GetSalaryCheckResultDao;
 import com.example.dennislam.myapplication.xml.GraphInfoXML;
 import com.example.dennislam.myapplication.xml.SalaryResultXML;
-import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
@@ -210,7 +209,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
     class GetSalaryCheckResultAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
         List<SalaryResultXML.SalaryResultItem> salaryResultItemList = new ArrayList<SalaryResultXML.SalaryResultItem>();
-        SalaryResultDao salaryResultItemDao = new SalaryResultDao();
+        GetSalaryCheckResultDao salaryResultItemDao = new GetSalaryCheckResultDao();
 
         @Override
         protected void onPreExecute(){
@@ -281,7 +280,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
     class GetGraphInfoAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
         List<GraphInfoXML.GraphInfoItem> graphInfoItemList = new ArrayList<GraphInfoXML.GraphInfoItem>();
-        GraphInfoDao graphInfoItemDao = new GraphInfoDao();
+        GetSalaryCheckGraphDao graphInfoItemDao = new GetSalaryCheckGraphDao();
 
         @Override
         protected void onPreExecute(){

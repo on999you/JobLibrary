@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -13,7 +12,7 @@ import android.widget.Toast;
 import com.example.dennislam.myapplication.R;
 import com.example.dennislam.myapplication.RecyclerItemClickListener;
 import com.example.dennislam.myapplication.adapter.AppliedJobCardViewAdapter;
-import com.example.dennislam.myapplication.dao.AppliedJobDao;
+import com.example.dennislam.myapplication.dao.GetAppliedJobDao;
 import com.example.dennislam.myapplication.xml.AppliedJobXML;
 import com.sch.rfview.AnimRFRecyclerView;
 import com.sch.rfview.manager.AnimRFLinearLayoutManager;
@@ -133,7 +132,7 @@ public class AppliedJobActivity extends BaseActivity{
     class AppliedJobGetDataTask extends AsyncTask<Void, Void, Void> {
 
         List<AppliedJobXML.AppliedJobItem> appliedJobItemList = new ArrayList<AppliedJobXML.AppliedJobItem>();
-        AppliedJobDao appliedJobItemDao = new AppliedJobDao();
+        GetAppliedJobDao appliedJobItemDao = new GetAppliedJobDao();
 
         @Override
         protected Void doInBackground(Void... params) {

@@ -1,15 +1,14 @@
 package com.example.dennislam.myapplication.dao;
 
+import com.example.dennislam.myapplication.xml.AppliedJobXML;
+import com.example.dennislam.myapplication.xml.GetCvXML;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
-import com.example.dennislam.myapplication.xml.JobDetailXML;
-import com.example.dennislam.myapplication.xml.JobListXML;
 import com.thoughtworks.xstream.XStream;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
@@ -26,13 +25,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by dennislam on 24/1/2017.
+ * Created by dennislam on 14/3/2017.
  */
 
-public class JobDetailDao {
+public class GetCurrentCvDao {
 
-    static final String URL = "http://192.168.232.66:8009/API_CT2_MOBILECV/GET_JOB_DETAIL.aspx";
-    private List<JobDetailXML.JobDetailItem> jobDetailItemList;
+    static final String URL = "http://192.168.232.66:8009/API_CT2_MOBILECV/GET_CV.aspx";
+    private List<GetCvXML.GetCvItem> getCvItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;
     int statusCode;
@@ -40,8 +39,7 @@ public class JobDetailDao {
         return statusCode;
     }
 
-
-    public List<JobDetailXML.JobDetailItem> jobDetailItemDao(String jobId){
+    public List<GetCvXML.GetCvItem> getCvItemDao(String udid){
 
         String xml;
 
@@ -53,7 +51,7 @@ public class JobDetailDao {
             HttpPost httpPost = new HttpPost(URL);
 
             List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(1);
-            nameValuePair.add(new BasicNameValuePair("jobId", jobId));
+            nameValuePair.add(new BasicNameValuePair("udid", udid));
 
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
 
@@ -66,15 +64,15 @@ public class JobDetailDao {
             String contentNoBom = new String(bytes, 3, bytes.length - 3);
 
             XStream xStream = new XStream();
-            xStream.processAnnotations(JobDetailXML.class);
+            xStream.processAnnotations(GetCvXML.class);
 
-            JobDetailXML xmlFile = (JobDetailXML) xStream.fromXML(contentNoBom);
+            GetCvXML xmlFile = (GetCvXML) xStream.fromXML(contentNoBom);
 
             getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();
 
             if(statusCode == 0) {
-                jobDetailItemList = xmlFile.getItems().getItem();
+                getCvItemList = xmlFile.getItems().getItem();
             }
 
         } catch (UnsupportedEncodingException e) {
@@ -84,7 +82,8 @@ public class JobDetailDao {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return jobDetailItemList;
+        return getCvItemList;
+
     }
 
 }

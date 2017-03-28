@@ -1,15 +1,9 @@
 package com.example.dennislam.myapplication.activity;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
-import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -18,7 +12,7 @@ import android.widget.Toast;
 import com.example.dennislam.myapplication.R;
 import com.example.dennislam.myapplication.RecyclerItemClickListener;
 import com.example.dennislam.myapplication.adapter.JobListCardViewAdapter;
-import com.example.dennislam.myapplication.dao.JobListDao;
+import com.example.dennislam.myapplication.dao.GetJobListDao;
 import com.example.dennislam.myapplication.xml.JobListXML;
 import com.sch.rfview.AnimRFRecyclerView;
 import com.sch.rfview.manager.AnimRFLinearLayoutManager;
@@ -156,7 +150,7 @@ public class JobListActivity extends BaseActivity {
     class getJobListAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
         List<JobListXML.JobListItem> jobListItemList = new ArrayList<JobListXML.JobListItem>();
-        JobListDao jobListItemDao = new JobListDao();
+        GetJobListDao jobListItemDao = new GetJobListDao();
 
         @Override
         protected Void doInBackground(Void... params) {

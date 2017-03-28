@@ -2,10 +2,9 @@ package com.example.dennislam.myapplication.dao;
 
 import android.util.Log;
 
+import com.example.dennislam.myapplication.xml.GraphInfoXML;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
-import com.example.dennislam.myapplication.xml.JobCatXML;
-import com.example.dennislam.myapplication.xml.JobListXML;
-import com.example.dennislam.myapplication.xml.SendFeedbackXML;
+import com.example.dennislam.myapplication.xml.SalaryResultXML;
 import com.thoughtworks.xstream.XStream;
 
 import org.apache.http.HttpEntity;
@@ -32,25 +31,19 @@ import java.util.List;
  * Created by dennislam on 24/1/2017.
  */
 
-public class JobListDao {
+public class GetSalaryCheckGraphDao {
 
-    static final String URL = "http://192.168.232.66:8009/API_CT2_MOBILECV/GET_RESULT_FROM_SEARCH_JOB.aspx";
-    private List<JobListXML.JobListItem> jobListItemList;
+    static final String URL = "http://192.168.232.66:8009/API_CT2_SALARY/GET_GRAPH_INFO_FROM_SALARY_DATA.aspx";
+    private List<GraphInfoXML.GraphInfoItem> graphInfoItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;
-
     int statusCode;
     public int getStatusCode() {
         return statusCode;
     }
 
-    int itemsTotal;
-    public int getItemsTotal() {
-        return itemsTotal;
-    }
 
-
-    public List<JobListXML.JobListItem> jobListItemDao(int rownumStart, int rownumEnd, String finalJobTitle, Boolean withSimilarWord,ArrayList<String> finalSelectedJobCatArray, ArrayList<String> finalSelectedJobIndustryArray, String salaryMin, String salaryMax){
+    public List<GraphInfoXML.GraphInfoItem> getGraphInfoItemDao(String jobTitle, Boolean withSimilarWord,ArrayList<String> finalSelectedJobCatArray, ArrayList<String> finalSelectedJobIndustryArray, String workExpFrom, String workExpTo, String salarySourceValue){
 
         String xml;
 
@@ -61,16 +54,14 @@ public class JobListDao {
             DefaultHttpClient httpClient = new DefaultHttpClient(httpParams);
             HttpPost httpPost = new HttpPost(URL);
 
-            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(9);
-            nameValuePair.add(new BasicNameValuePair("udid", "1123456"));
-            nameValuePair.add(new BasicNameValuePair("rownumStart", String.valueOf(rownumStart)));
-            nameValuePair.add(new BasicNameValuePair("rownumEnd", String.valueOf(rownumEnd)));
-            nameValuePair.add(new BasicNameValuePair("jobTitle", finalJobTitle));
+            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(7);
+            nameValuePair.add(new BasicNameValuePair("jobTitle", jobTitle));
             nameValuePair.add(new BasicNameValuePair("withSimilarWord", withSimilarWord.toString()));
             nameValuePair.add(new BasicNameValuePair("jobCat", finalSelectedJobCatArray.toString()));
             nameValuePair.add(new BasicNameValuePair("jobIndustry", finalSelectedJobIndustryArray.toString()));
-            nameValuePair.add(new BasicNameValuePair("salaryMin", salaryMin));
-            nameValuePair.add(new BasicNameValuePair("salaryMax", salaryMax));
+            nameValuePair.add(new BasicNameValuePair("expFrom", workExpFrom));
+            nameValuePair.add(new BasicNameValuePair("expTo", workExpTo));
+            nameValuePair.add(new BasicNameValuePair("salarySource", salarySourceValue));
 
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
 
@@ -83,16 +74,15 @@ public class JobListDao {
             String contentNoBom = new String(bytes, 3, bytes.length - 3);
 
             XStream xStream = new XStream();
-            xStream.processAnnotations(JobListXML.class);
+            xStream.processAnnotations(GraphInfoXML.class);
 
-            JobListXML xmlFile = (JobListXML) xStream.fromXML(contentNoBom);
+            GraphInfoXML xmlFile = (GraphInfoXML) xStream.fromXML(contentNoBom);
 
             getItemsInfo = xmlFile.getItemsInfo();
             statusCode = getItemsInfo.get(0).getStatus_code();
-            itemsTotal = getItemsInfo.get(0).getItemsTotal();
 
             if(statusCode == 0) {
-                jobListItemList = xmlFile.getItems().getItem();
+                graphInfoItemList = xmlFile.getItems().getItem();
             }
 
         } catch (UnsupportedEncodingException e) {
@@ -102,7 +92,8 @@ public class JobListDao {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return jobListItemList;
+
+        return graphInfoItemList;
     }
 
 }
