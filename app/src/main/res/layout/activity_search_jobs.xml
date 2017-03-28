@@ -71,7 +71,8 @@
         android:gravity="center"
         android:textSize="17sp"
         android:background="@drawable/criterias_bg"
-        android:drawableLeft="@drawable/money_user"/>
+        android:drawableLeft="@drawable/money_user"
+        android:paddingLeft="3dp"/>
 
     <EditText
         android:id="@+id/salaryMax"
@@ -84,7 +85,8 @@
         android:gravity="center"
         android:textSize="17sp"
         android:background="@drawable/criterias_bg"
-        android:drawableLeft="@drawable/money_user"/>
+        android:drawableLeft="@drawable/money_user"
+        android:paddingLeft="3dp"/>
 
     <LinearLayout
         android:paddingTop="5dp"
