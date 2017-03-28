@@ -37,17 +37,12 @@ public class LandScapeBarChart extends AppCompatActivity {
             sdtv.setText(title +" 's Salary Distribution Chart");
         }
 
-
         BarChart barChart = (BarChart)findViewById(R.id.barChart2) ;
 
         BarDataSet set1 = new BarDataSet(SalaryCheckResultActivity.entries, "Labour");
         BarDataSet set2 =new BarDataSet(SalaryCheckResultActivity.entries2,"Employer");
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// x-axis  value
-        ///// //x-axis value for bar Chart
 
         final  String[] salaryIndex = new String[] {"10k-20k", "20k-30k", "30k-40k","40k-50k","50k-60K","60k-70k","70k-80k" ,"80k-90k","90k-100K",">100k","","","","","","","",""};
-
-        //////Formatter
 
         IAxisValueFormatter moneyFormatter = new IAxisValueFormatter() {
 
@@ -60,7 +55,6 @@ public class LandScapeBarChart extends AppCompatActivity {
             public int getDecimalDigits() {  return 0; }
         };
 
-
         XAxis xAxis = barChart.getXAxis();
         xAxis.setValueFormatter(moneyFormatter);
         xAxis.setGranularity(1f);
@@ -70,10 +64,6 @@ public class LandScapeBarChart extends AppCompatActivity {
         barChart.getAxisLeft().setValueFormatter(new PercentFormatter());
         barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
 
-//        barChart.setHighlightPerDragEnabled(false);
-//        barChart.setHighlightPerTapEnabled(false);
-
-        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Onclick
         barChart.setOnChartGestureListener(new OnChartGestureListener() {
             @Override
             public void onChartGestureStart(MotionEvent me, ChartTouchListener.ChartGesture lastPerformedGesture) {
@@ -117,16 +107,13 @@ public class LandScapeBarChart extends AppCompatActivity {
 
             }
         });
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////Setting of chart
 
-        //////////////legend
         Legend legendBarChart = barChart.getLegend();
         legendBarChart.setOrientation(Legend.LegendOrientation.VERTICAL);
         legendBarChart.setPosition(Legend.LegendPosition.ABOVE_CHART_RIGHT);
-        ////////////////Description
+
         barChart.getDescription().setEnabled(false);
 
-        //////////////Color and space
         set1.setColors(Color.parseColor("#81DAF5"));
         set2.setColor(Color.parseColor("#5858FA"));
         float groupSpace = 0.06f;
@@ -137,12 +124,9 @@ public class LandScapeBarChart extends AppCompatActivity {
         BarData data = new BarData(set1,set2);
         data.setBarWidth(barWidth);
         barChart.setData(data);
-
         barChart.setVisibleXRange(0f,10f);
         barChart.setFitBars(true);
-
         barChart.groupBars(-0.5f, groupSpace, barSpace);
-
         barChart.invalidate();
 
 

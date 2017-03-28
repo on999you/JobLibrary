@@ -38,7 +38,7 @@ public class SendFeedbackDao {
 
         try {
             final HttpParams httpParams = new BasicHttpParams();
-            HttpConnectionParams.setConnectionTimeout(httpParams, 3000);
+            HttpConnectionParams.setConnectionTimeout(httpParams, 20000);
 
             DefaultHttpClient httpClient = new DefaultHttpClient(httpParams);
             HttpPost httpPost = new HttpPost(URL);

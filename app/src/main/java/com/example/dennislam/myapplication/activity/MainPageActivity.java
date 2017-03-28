@@ -57,23 +57,5 @@ public class MainPageActivity extends BaseActivity {
         exitAppDialog();
     }
 
-    //    public void loadLocale() {
-    //        String langPref = "Language";
-    //        SharedPreferences prefs = getSharedPreferences("CommonPrefs",
-    //                Activity.MODE_PRIVATE);
-    //        String language = prefs.getString(langPref, "");
-    //        setLocale(language);
-    //
-    //    }
-    //
-    //    public void setLocale(String lang) {
-    //        Locale myLocale = new Locale(lang);
-    //        Resources res = getResources();
-    //        DisplayMetrics dm = res.getDisplayMetrics();
-    //        Configuration conf = res.getConfiguration();
-    //        conf.locale = myLocale;
-    //        res.updateConfiguration(conf, dm);
-    //
-    //    }
 }
 

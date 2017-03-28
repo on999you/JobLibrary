@@ -86,10 +86,11 @@ public class LanguageActivity extends BaseActivity{
             Intent refresh = new Intent(this, MainPageActivity.class);
             startActivity(refresh);
             finish();
+
             if("zh".equals(prefs.getString("Language",""))){
                 chi.setCompoundDrawables(null,null,checked,null);
                 eng.setCompoundDrawables(null,null,null,null);
-            }else if ("en".equals(prefs.getString("Language",""))){
+            } else if ("en".equals(prefs.getString("Language",""))){
                 eng.setCompoundDrawables(null,null,checked,null);
                 chi.setCompoundDrawables(null,null,null,null);
             }
