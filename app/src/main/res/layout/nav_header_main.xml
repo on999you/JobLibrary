@@ -10,10 +10,10 @@
 
 
     <ImageView
-        android:layout_width="50dp"
+        android:layout_width="120dp"
         android:layout_height="50dp"
         android:scaleType="fitXY"
-        android:src="@drawable/drawer_icon"
+        android:src="@drawable/appicon"
         android:layout_gravity="center"/>
 
     <TextView
@@ -23,7 +23,7 @@
         android:paddingTop="5dp"
         android:paddingBottom="10dp"
         android:textSize="20sp"
-        android:text="JOB LIBRARY"
+        android:text="- JOB LIBRARY -"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
 

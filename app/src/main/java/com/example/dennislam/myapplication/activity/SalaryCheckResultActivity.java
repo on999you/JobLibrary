@@ -92,8 +92,11 @@ public class SalaryCheckResultActivity extends BaseActivity {
                 Intent intent = new Intent(getBaseContext(), RelevantDataActivity.class);
                 intent.putExtra("jobTitle", finalJobTitle);
                 intent.putExtra("withSimilarWord", withSimilarWord);
+                intent.putExtra("jobCat", finalSelectedJobCatArray);
+                intent.putExtra("jobIndustry", finalSelectedJobIndustryArray);
                 intent.putExtra("workExpFrom", finalWorkExpFromID);
                 intent.putExtra("workExpTo", finalWorkExpToID);
+                intent.putExtra("salarySource", finalSalarySourceID);
                 startActivity(intent);
             }
         });

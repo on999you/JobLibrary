@@ -35,8 +35,11 @@ public class RelevantDataActivity extends BaseActivity {
 
     Boolean needLoadMore = true;
 
-    String jobTitle, workExpFrom, workExpTo;
+    //Receive inserting data
     Boolean withSimilarWord;
+    String finalJobTitle, finalWorkExpFromID, finalWorkExpToID, finalSalarySourceID;
+    ArrayList<String> finalSelectedJobCatArray = new ArrayList<String>();
+    ArrayList<String> finalSelectedJobIndustryArray = new ArrayList<String>();
 
 
 
@@ -50,10 +53,13 @@ public class RelevantDataActivity extends BaseActivity {
         Intent intent= getIntent();
         Bundle b = intent.getExtras();
         if(b!=null) {
-            jobTitle =(String) b.get("jobTitle");
+            finalJobTitle =(String) b.get("jobTitle");
             withSimilarWord =(Boolean) b.get("withSimilarWord");
-            workExpFrom =(String) b.get("workExpFrom");
-            workExpTo =(String) b.get("workExpTo");
+            finalSelectedJobCatArray =(ArrayList<String>) b.get("jobCat");
+            finalSelectedJobIndustryArray =(ArrayList<String>) b.get("jobIndustry");
+            finalWorkExpFromID =(String) b.get("workExpFrom");
+            finalWorkExpToID =(String) b.get("workExpTo");
+            finalSalarySourceID =(String) b.get("salarySource");
         }
 
         /*
@@ -145,7 +151,7 @@ public class RelevantDataActivity extends BaseActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            relevantDataItemList = relevantDataItemDao.getRelevantDataItemDao(jobTitle,rownumStart,rownumEnd);
+            relevantDataItemList = relevantDataItemDao.getRelevantDataItemDao(rownumStart,rownumEnd,finalJobTitle, withSimilarWord, finalSelectedJobCatArray, finalSelectedJobIndustryArray, finalWorkExpFromID, finalWorkExpToID, finalSalarySourceID);
             return null;
         }
 
