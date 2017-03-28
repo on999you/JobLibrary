@@ -22,5 +22,7 @@
         <item name="colorControlNormal">#FFFFFF</item>
         <item name="colorControlActivated">#1F585A</item>
     </style>
-
+    <style name="titleBar">
+        <item name="android:background">#638EBA</item>
+    </style>
 </resources>

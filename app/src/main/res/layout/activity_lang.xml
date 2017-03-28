@@ -8,6 +8,14 @@
     tool:context="com.example.dennislam.myapplication.activity.LanguageActivity">
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:theme="@style/titleBar"
+        android:text="@string/language"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"/>
+    <TextView
         android:id="@+id/englishLangField"
         android:layout_width="match_parent"
         android:layout_height="55dp"

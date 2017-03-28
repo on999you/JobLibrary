@@ -7,7 +7,14 @@
     android:background="@drawable/testingbg"
     android:paddingTop="?attr/actionBarSize"
     tools:context="com.example.dennislam.myapplication.activity.FeedbackActivity">
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:theme="@style/titleBar"
+        android:text="@string/feedback"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"/>
     <TextView
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"

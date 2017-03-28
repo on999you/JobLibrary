@@ -8,7 +8,14 @@
     android:paddingTop="?attr/actionBarSize"
     android:background="@drawable/testingbg"
     tools:context="com.example.dennislam.myapplication.activity.AppliedJobActivity">
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:theme="@style/titleBar"
+        android:text="@string/dra_appliedJobs"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"/>
     <com.sch.rfview.AnimRFRecyclerView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/refresh_layout"
