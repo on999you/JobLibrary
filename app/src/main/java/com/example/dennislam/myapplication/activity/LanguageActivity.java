@@ -30,7 +30,7 @@ public class LanguageActivity extends BaseActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LayoutInflater inflater = (LayoutInflater) this.getSystemService(LAYOUT_INFLATER_SERVICE);
-        View contentView = inflater.inflate(R.layout.activity_lang, null, false);
+        View contentView = inflater.inflate(R.layout.activity_language, null, false);
         mDrawer.addView(contentView, 0);
          chi = (TextView)findViewById(R.id.chineseLangField);
          eng = (TextView)findViewById(R.id.englishLangField);

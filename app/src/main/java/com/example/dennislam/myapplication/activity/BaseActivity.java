@@ -124,43 +124,43 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if(id == R.id.nav_home) {
-            Intent intent = new Intent(getBaseContext(), MainPageActivity.class);
-            startActivity(intent);
+            Intent homePageIntent = new Intent(getBaseContext(), MainPageActivity.class);
+            startActivity(homePageIntent);
 
         } else if(id == R.id.nav_search) {
-            Intent intent = new Intent(getBaseContext(), SearchJobsActivity.class);
-            startActivity(intent);
+            Intent searchJobsIntent = new Intent(getBaseContext(), SearchJobsActivity.class);
+            startActivity(searchJobsIntent);
 
         } else if (id == R.id.nav_applied) {
-            Intent intent = new Intent(getBaseContext(), AppliedJobActivity.class);
-            startActivity(intent);
+            Intent appliedJobIntent = new Intent(getBaseContext(), AppliedJobActivity.class);
+            startActivity(appliedJobIntent);
 
         } else if (id == R.id.nav_cv) {
-            Intent intent = new Intent(getBaseContext(), CvActivity.class);
-            startActivity(intent);
+            Intent cvIntent = new Intent(getBaseContext(), CvActivity.class);
+            startActivity(cvIntent);
 
         } else if (id == R.id.nav_salary) {
-            Intent intent = new Intent(getBaseContext(), SalaryCheckActivity.class);
-            startActivity(intent);
+            Intent salaryCheckIntent = new Intent(getBaseContext(), SalaryCheckActivity.class);
+            startActivity(salaryCheckIntent);
 
         } else if (id == R.id.nav_report) {
-            Intent intent = new Intent(getBaseContext(), SalaryReportActivity.class);
-            startActivity(intent);
+            Intent salaryReportIntent = new Intent(getBaseContext(), SalaryReportActivity.class);
+            startActivity(salaryReportIntent);
 
         } else if (id == R.id.nav_faq) {
-            Intent intent = new Intent(getBaseContext(), FeedbackActivity.class);
-            startActivity(intent);
+            Intent faqIntent = new Intent(getBaseContext(), FeedbackActivity.class);
+            startActivity(faqIntent);
 
         } else if (id == R.id.nav_aboutus) {
-            Intent intent = new Intent(getBaseContext(), AboutUsActivity.class);
-            startActivity(intent);
+            Intent aboutUsIntent = new Intent(getBaseContext(), AboutUsActivity.class);
+            startActivity(aboutUsIntent);
 
         } else if (id == R.id.nav_exit) {
             //Exit app
             exitAppDialog();
         } else if (id == R.id.nav_setting){
-            Intent intent = new Intent(getBaseContext(), SettingsActivity.class);
-            startActivity(intent);
+            Intent settingIntent = new Intent(getBaseContext(), SettingsActivity.class);
+            startActivity(settingIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
