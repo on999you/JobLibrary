@@ -21,10 +21,26 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <ListView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/list_view"/>
+                android:layout_height="125dp"
+                android:orientation="horizontal">
+                <com.github.mikephil.charting.charts.PieChart
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/pieMax"
+                    android:layout_weight="1"/>
+                <com.github.mikephil.charting.charts.PieChart
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/pieMed"
+                    android:layout_weight="1"/>
+                <com.github.mikephil.charting.charts.PieChart
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/pieMin"
+                    android:layout_weight="1"/>
+                </LinearLayout>
 
 
             <LinearLayout
