@@ -31,7 +31,8 @@
         android:paddingRight="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Job Library is a platform that providing different functions about job recruitment, for instance, job seeking, salary check, job applying, self-introduction video CV."
+        android:textColor="#000000"
+        android:text="Job Library is a platform that providing different functions about job recruitment. Users could search variety of jobs and apply it through this mobile application. Before applying the jobs, users also could upload the Curriculum Vitae with a self-induction video. If users are worry about how to fill in the expected salary in CV, salary check function should be used, salary report also included in this application. Thank you."
         android:textSize="16sp"
         />
 

@@ -276,7 +276,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
 
                 resultMax = Integer.parseInt(salaryResultItemList.get(0).getMaxSalary());
                 resultMin = Integer.parseInt(salaryResultItemList.get(0).getMinSalary());
-                resultMed = (resultMax+resultMin)/2;
+                resultMed = median;
 
                 Log.v(resultMax+" "+resultMed+" "+resultMin+" ","~~");
 
