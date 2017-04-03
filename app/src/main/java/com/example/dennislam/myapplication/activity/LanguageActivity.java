@@ -25,6 +25,7 @@ import java.util.Locale;
 public class LanguageActivity extends BaseActivity{
     private String lang;
     private TextView chi,eng;
+    Drawable chinese, english;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +41,10 @@ public class LanguageActivity extends BaseActivity{
         Drawable checked= ResourcesCompat.getDrawable(getResources(), R.drawable.checked, null);
         checked.setBounds(0, 0, checked.getMinimumWidth(), checked.getMinimumHeight());
 
-        Drawable chinese= ResourcesCompat.getDrawable(getResources(), R.drawable.chinese, null);
+        chinese= ResourcesCompat.getDrawable(getResources(), R.drawable.chinese, null);
         chinese.setBounds(0, 0, checked.getMinimumWidth(), checked.getMinimumHeight());
 
-        Drawable english= ResourcesCompat.getDrawable(getResources(), R.drawable.english, null);
+        english= ResourcesCompat.getDrawable(getResources(), R.drawable.english, null);
         english.setBounds(0, 0, checked.getMinimumWidth(), checked.getMinimumHeight());
 
         chi.setCompoundDrawables(chinese,null,null,null);
@@ -72,6 +73,7 @@ public class LanguageActivity extends BaseActivity{
         SharedPreferences.Editor editor = prefs.edit();
         Drawable checked= ResourcesCompat.getDrawable(getResources(), R.drawable.checked, null);
         checked.setBounds(0, 0, checked.getMinimumWidth(), checked.getMinimumHeight());
+
         if (!langu.equals(prefs.getString("Language",""))) {
             Log.v("change","~");
             editor.putString("Language", langu);
@@ -83,16 +85,17 @@ public class LanguageActivity extends BaseActivity{
             conf.locale = myLocale;
             res.updateConfiguration(conf, dm);
             Locale.setDefault(myLocale);
+
             Intent refresh = new Intent(this, MainPageActivity.class);
             startActivity(refresh);
             finish();
 
             if("zh".equals(prefs.getString("Language",""))){
-                chi.setCompoundDrawables(null,null,checked,null);
-                eng.setCompoundDrawables(null,null,null,null);
+                chi.setCompoundDrawables(chinese,null,checked,null);
+                eng.setCompoundDrawables(english,null,null,null);
             } else if ("en".equals(prefs.getString("Language",""))){
-                eng.setCompoundDrawables(null,null,checked,null);
-                chi.setCompoundDrawables(null,null,null,null);
+                chi.setCompoundDrawables(chinese,null,null,null);
+                eng.setCompoundDrawables(english,null,checked,null);
             }
         }
     }
