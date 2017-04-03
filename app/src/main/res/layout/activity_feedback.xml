@@ -84,6 +84,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="@string/faq_btnR"
+            android:textAllCaps="false"
             android:textSize="15sp"
             android:layout_marginRight="25dp"/>
 
@@ -92,6 +93,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="@string/faq_btnD"
+            android:textAllCaps="false"
             android:textSize="15sp" />
 
 

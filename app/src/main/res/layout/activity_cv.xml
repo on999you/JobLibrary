@@ -120,7 +120,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/CV_submit"
-            android:textSize="20sp"
+            android:textSize="24sp"
+            android:textAllCaps="false"
             android:textColor="#F7F7F7"
             android:background="@drawable/button_style"
             android:layout_gravity="center"/>

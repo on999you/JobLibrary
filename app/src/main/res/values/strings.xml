@@ -29,7 +29,7 @@
     <string name="sC_searchWithS">Search with similar words</string>
     <string name="sC_workExp">Work Exp</string>
     <string name="sC_SourceT">Source Type</string>
-    <string name="sC_buttonSearch">SEARCH NOW</string>
+    <string name="sC_buttonSearch">Search Now</string>
     <string name="sC_Workstart">Work Experience (From)</string>
     <string name="sC_WorkTo">Work Experience (To)</string>
     <string name="sC_reminder1">Please enter the job title first</string>
@@ -45,9 +45,10 @@
     <string name="sC_resultTitle">Salary Check Result</string>
     <string name="from">From</string>
     <string name="to">To</string>
-    <string name="unspecified">UNSPECIFIED</string>
-    <string name="employer">EMPLOYER</string>
-    <string name="jobSeeker">JOB SEEKER</string>
+
+    <string name="unspecified">Unspecified</string>
+    <string name="employer">Employer</string>
+    <string name="jobSeeker">Job Seeker</string>
 
     <string name="barC_title">Salary Distribution</string>
     <string name="relevantSalaryD">RELEVANT SALARY DATA</string>
@@ -63,8 +64,8 @@
     <string name="faq_name">Name</string>
     <string name="faq_email">Email Address</string>
     <string name="faq_comments">Comments</string>
-    <string name="faq_btnR">RESET</string>
-    <string name="faq_btnD">DONE</string>
+    <string name="faq_btnR">Reset</string>
+    <string name="faq_btnD">Done</string>
     <string name="faq_title">Having something to say?</string>
     <string name="feedback">FeedBack</string>
 

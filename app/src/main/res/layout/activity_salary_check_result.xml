@@ -35,7 +35,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Salary Distribution"
+                    android:text="- Salary Distribution -"
                     android:textSize="20dp"
                     android:textColor="#000000"
                     android:textAlignment="center"
@@ -55,10 +55,14 @@
                     android:layout_weight="1"/>
 
                 <Button
+                    android:layout_marginTop="10dp"
                     android:id="@+id/relevantDataButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="RELEVANT SALARY DATA"
+                    android:background="@drawable/button_style2"
+                    android:layout_width="200dp"
+                    android:layout_height="40dp"
+                    android:textColor="#FFFFFF"
+                    android:textAllCaps="false"
+                    android:text="Relevant Salary Data"
                     android:layout_gravity="center"/>
 
             </LinearLayout>
