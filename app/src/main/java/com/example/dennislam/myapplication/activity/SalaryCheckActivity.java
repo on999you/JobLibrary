@@ -259,7 +259,12 @@ public class SalaryCheckActivity extends BaseActivity {
             } else {
                 //Get Salary Source
                 for (int i = 0; i < salarySourceItemList.size(); i++) {
-                    salarySourceArray.add(i, salarySourceItemList.get(i).getDescription());
+
+                    if(currLanguage == "chi") {
+                        salarySourceArray.add(i, salarySourceItemList.get(i).getDescriptionChi());
+                    } else {
+                        salarySourceArray.add(i, salarySourceItemList.get(i).getDescription());
+                    }
                     salarySourceIdArray.add(i, salarySourceItemList.get(i).getSoruce_id());
                 }
             }

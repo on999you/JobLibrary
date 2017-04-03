@@ -66,6 +66,9 @@ public class GetSalarySourceXML extends ItemsInfoBaseXML{
         @XStreamAlias("DESCRIPTION")
         private String description;
 
+        @XStreamAlias("DESCRIPTION_CHI")
+        private String descriptionChi;
+
         public String getSoruce_id() {
             return soruce_id;
         }
@@ -88,6 +91,14 @@ public class GetSalarySourceXML extends ItemsInfoBaseXML{
 
         public void setDescription(String description) {
             this.description = description;
+        }
+
+        public String getDescriptionChi() {
+            return descriptionChi;
+        }
+
+        public void setDescriptionChi(String descriptionChi) {
+            this.descriptionChi = descriptionChi;
         }
 
     }
