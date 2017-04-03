@@ -57,6 +57,7 @@ public class FeedbackActivity extends BaseActivity {
                 feedbackName.setText("");
                 feedbackEmail.setText("");
                 feedbackComment.setText("");
+                feedbackRating.setRating(4);
             }
         });
 
