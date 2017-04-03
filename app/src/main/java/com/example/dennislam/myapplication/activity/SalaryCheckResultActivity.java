@@ -276,7 +276,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
 
                 resultMax = Integer.parseInt(salaryResultItemList.get(0).getMaxSalary());
                 resultMin = Integer.parseInt(salaryResultItemList.get(0).getMinSalary());
-                resultMed = (resultMax+resultMin)/2;
+                resultMed = median;
 
                 Log.v(resultMax+" "+resultMed+" "+resultMin+" ","~~");
 
@@ -492,9 +492,9 @@ public class SalaryCheckResultActivity extends BaseActivity {
             pieChartMed.setData(pieDataMed);
             pieChartMin.setData(pieDataMin);
 
-            pieChartMax.setCenterText("Highest \n"+resultMax);
-            pieChartMed.setCenterText("Median \n"+resultMed);
-            pieChartMin.setCenterText("Lowest\n"+resultMin);
+            pieChartMax.setCenterText(res.getString(R.string.barC_high)+"\n $"+resultMax);
+            pieChartMed.setCenterText(res.getString(R.string.barC_mid)+"\n $"+resultMed);
+            pieChartMin.setCenterText(res.getString(R.string.barC_low)+"\n $"+resultMin);
 
             pieChartMax.setRotationEnabled(false);
             pieChartMed.setRotationEnabled(false);

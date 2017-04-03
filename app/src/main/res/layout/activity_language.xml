@@ -26,11 +26,6 @@
         android:padding="10dp"
         android:onClick="changeEngLang" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"/>
-
     <TextView
         android:id="@+id/chineseLangField"
         android:layout_width="match_parent"

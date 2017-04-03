@@ -43,6 +43,7 @@
     <string name="sC_entriesName1">Labour</string>
     <string name="sC_entriesName2">Employer</string>
     <string name="sC_resultTitle">Salary Check Result</string>
+    <string name="sC_doubleTap" color="#B88C8C">double tap for full screen display</string>
     <string name="from">From</string>
     <string name="to">To</string>
 
@@ -53,9 +54,9 @@
     <string name="barC_title">Salary Distribution</string>
     <string name="relevantSalaryD">RELEVANT SALARY DATA</string>
     <string name="barC_landscape_title"> Salary Distribution Chart</string>
-    <string name="barC_low">Lowest  : $</string>
-    <string name="barC_mid">Median  : $</string>
-    <string name="barC_high">Highest : $</string>
+    <string name="barC_low">Lowest</string>
+    <string name="barC_mid">Median</string>
+    <string name="barC_high">Highest</string>
 
     <string name="rlj_jobT">Job Tilte : </string>
     <string name="rlj_workExp">WorkExp : </string>

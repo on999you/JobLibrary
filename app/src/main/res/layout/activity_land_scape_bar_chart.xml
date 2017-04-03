@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:textSize="15dp"
         android:textAlignment="center"
-        android:text="double click for exit"
+        android:text="@string/sC_doubleTap"
         />
 
     <com.github.mikephil.charting.charts.BarChart

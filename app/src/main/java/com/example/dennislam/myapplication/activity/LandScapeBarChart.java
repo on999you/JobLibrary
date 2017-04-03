@@ -1,9 +1,15 @@
 package com.example.dennislam.myapplication.activity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.TextView;
 
@@ -20,6 +26,8 @@ import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 
+import java.util.Locale;
+
 public class LandScapeBarChart extends AppCompatActivity {
 
     String title;
@@ -27,15 +35,36 @@ public class LandScapeBarChart extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        SharedPreferences prefs = getSharedPreferences("CommonPrefs",
+                Activity.MODE_PRIVATE);
+        Log.v(prefs.getString("Language",""),"~~~~");
+        if("zh".equals(prefs.getString("Language",""))){
+            Locale myLocale = new Locale("zh");
+            Resources res = getResources();
+            DisplayMetrics dm = res.getDisplayMetrics();
+            Configuration conf = res.getConfiguration();
+            conf.locale = myLocale;
+            res.updateConfiguration(conf, dm);
+            Locale.setDefault(myLocale);
+        }else{
+            Locale myLocale = new Locale("en");
+            Resources res = getResources();
+            DisplayMetrics dm = res.getDisplayMetrics();
+            Configuration conf = res.getConfiguration();
+            conf.locale = myLocale;
+            res.updateConfiguration(conf, dm);
+            Locale.setDefault(myLocale);
+            System.out.print("haha eng");
+        }
         setContentView(R.layout.activity_land_scape_bar_chart);
 
-        Intent intent= getIntent();
-        Bundle b = intent.getExtras();
-        if(b!=null) {
-            title = (String) b.get("title");
-            TextView sdtv = (TextView)findViewById(R.id.salarydistributionTVL);
-            sdtv.setText(title +" 's Salary Distribution Chart");
-        }
+//        Intent intent= getIntent();
+//        Bundle b = intent.getExtras();
+//        if(b!=null) {
+//            title = (String) b.get("title");
+//            TextView sdtv = (TextView)findViewById(R.id.salarydistributionTVL);
+//            sdtv.setText(title +" 's Salary Distribution Chart");
+//        }
 
         BarChart barChart = (BarChart)findViewById(R.id.barChart2) ;
 
