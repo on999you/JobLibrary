@@ -23,10 +23,12 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.dennislam.myapplication.R;
+import com.example.dennislam.myapplication.dao.criteria.DataSourceDao;
 import com.example.dennislam.myapplication.dao.criteria.IndustryDao;
 import com.example.dennislam.myapplication.dao.criteria.JobCatDao;
 import com.example.dennislam.myapplication.dao.criteria.SalarySourceDao;
 import com.example.dennislam.myapplication.dao.criteria.WorkExpDao;
+import com.example.dennislam.myapplication.xml.GetDataSourceXML;
 import com.example.dennislam.myapplication.xml.GetJobIndustryXML;
 import com.example.dennislam.myapplication.xml.GetJobCatXML;
 import com.example.dennislam.myapplication.xml.GetSalarySourceXML;
@@ -57,6 +59,8 @@ public class SalaryCheckActivity extends BaseActivity {
     ArrayList<String> salarySourceArray = new ArrayList<String>();
     ArrayList<String> salarySourceIdArray = new ArrayList<String>();
 
+    ArrayList<String> dataSourceArray = new ArrayList<String>();
+
     TextView jobFunctionButton , jobIndustryButton;
 
     //Values that pass to database
@@ -69,6 +73,9 @@ public class SalaryCheckActivity extends BaseActivity {
 
     ArrayList<String> tempJobCatArray = new ArrayList<String>();
     ArrayList<String> tempJobIndustryArray = new ArrayList<String>();
+
+    RadioGroup soruceRadioGroup;
+    RadioButton unspecifiedRadioBtn, employerRadioBtn, jobSeekerRadioBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,10 +103,10 @@ public class SalaryCheckActivity extends BaseActivity {
         jobFunctionButton = (TextView)findViewById(R.id.jobFunctionButton);
         jobIndustryButton = (TextView)findViewById(R.id.jobIndustryButton);
 
-        RadioGroup soruceRadioGroup = (RadioGroup)findViewById(R.id.soruceRadioGroup);
-        RadioButton unspecifiedRadioBtn = (RadioButton) findViewById(R.id.unspecifiedRadio);
-        RadioButton employerRadioBtn = (RadioButton) findViewById(R.id.employerRadio);
-        RadioButton jobSeekerRadioBtn = (RadioButton) findViewById(R.id.jobSeekerRadio);
+        soruceRadioGroup = (RadioGroup)findViewById(R.id.soruceRadioGroup);
+        unspecifiedRadioBtn = (RadioButton) findViewById(R.id.unspecifiedRadio);
+        employerRadioBtn = (RadioButton) findViewById(R.id.employerRadio);
+        jobSeekerRadioBtn = (RadioButton) findViewById(R.id.jobSeekerRadio);
 
         soruceRadioGroup.check(unspecifiedRadio);
         finalDataSource = "0";
@@ -184,9 +191,11 @@ public class SalaryCheckActivity extends BaseActivity {
         List<GetJobCatXML.JobCatItem> jobCatItemList = new ArrayList<GetJobCatXML.JobCatItem>();
         List<GetJobIndustryXML.IndustryItem> industryItemList = new ArrayList<GetJobIndustryXML.IndustryItem>();
         List<GetSalarySourceXML.SalarySourceItem> salarySourceItemList = new ArrayList<GetSalarySourceXML.SalarySourceItem>();
+        List<GetDataSourceXML.DataSourceItem> dataSourceItemList = new ArrayList<GetDataSourceXML.DataSourceItem>();
 
         WorkExpDao workExpItemDao = new WorkExpDao();
         SalarySourceDao salarySourceItemDao = new SalarySourceDao();
+        DataSourceDao dataSourceItemDao = new DataSourceDao();
         JobCatDao jobCatItemDao = new JobCatDao();
         IndustryDao industryItemDao = new IndustryDao();
 
@@ -204,6 +213,7 @@ public class SalaryCheckActivity extends BaseActivity {
             workExpItemList = workExpItemDao.getWorkExpItemDao();
             salarySourceItemList = salarySourceItemDao.getSalarySourceItemDao();
             industryItemList = industryItemDao.getIndustryItemDao();
+            dataSourceItemList = dataSourceItemDao.getDataSourceItemDao();
             return null;
         }
 
@@ -267,6 +277,23 @@ public class SalaryCheckActivity extends BaseActivity {
                     }
                     salarySourceIdArray.add(i, salarySourceItemList.get(i).getSoruce_id());
                 }
+            }
+
+            if(dataSourceItemList == null || dataSourceItemList.isEmpty()) {
+                Toast.makeText(SalaryCheckActivity.this, "cannot get data source", Toast.LENGTH_LONG).show();
+            } else {
+                //Get Salary Source
+                for (int i = 0; i < dataSourceItemList.size(); i++) {
+
+                    if(currLanguage == "chi") {
+                        dataSourceArray.add(i, dataSourceItemList.get(i).getDataSourceChi());
+                    } else {
+                        dataSourceArray.add(i, dataSourceItemList.get(i).getDataSource());
+                    }
+                }
+                unspecifiedRadioBtn.setText(dataSourceArray.get(0));
+                employerRadioBtn.setText(dataSourceArray.get(1));
+                jobSeekerRadioBtn.setText(dataSourceArray.get(2));
             }
 
         }
