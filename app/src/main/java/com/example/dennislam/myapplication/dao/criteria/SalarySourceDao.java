@@ -25,7 +25,7 @@ import java.util.List;
 
 public class SalarySourceDao {
 
-    static final String URL = "http://192.168.232.66:8009/API_CT2_SALARY/GET_ALL_SALARY_SOURCE.aspx";
+    static final String URL = "http://192.168.232.66:8009/API/GET_ALL_SALARY_SOURCE.aspx";
     private List<GetSalarySourceXML.SalarySourceItem> salarySourceItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;

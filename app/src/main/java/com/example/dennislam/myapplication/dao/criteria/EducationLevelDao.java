@@ -25,7 +25,7 @@ import java.util.List;
 
 public class EducationLevelDao {
 
-    static final String URL = "http://192.168.232.66:8009/API_CT2_MOBILECV/GET_ALL_EDUCATION_LEVEL.aspx";
+    static final String URL = "http://192.168.232.66:8009/API/GET_ALL_EDUCATION_LEVEL.aspx";
     private List<GetEducationLevelXML.EducationLevelItem> educationLevelItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;

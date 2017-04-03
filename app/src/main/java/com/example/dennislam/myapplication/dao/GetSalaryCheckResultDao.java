@@ -31,7 +31,7 @@ import java.util.List;
 
 public class GetSalaryCheckResultDao {
 
-    static final String URL = "http://192.168.232.66:8009/API_CT2_SALARY/GET_RESULT_FROM_SALARY_CHECK.aspx";
+    static final String URL = "http://192.168.232.66:8009/API/GET_RESULT_FROM_SALARY_CHECK.aspx";
     private List<GetSalaryCheckResultXML.SalaryResultItem> salaryResultItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;

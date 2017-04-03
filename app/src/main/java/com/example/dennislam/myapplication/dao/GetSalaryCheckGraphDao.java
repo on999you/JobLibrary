@@ -29,7 +29,7 @@ import java.util.List;
 
 public class GetSalaryCheckGraphDao {
 
-    static final String URL = "http://192.168.232.66:8009/API_CT2_SALARY/GET_GRAPH_INFO_FROM_SALARY_DATA.aspx";
+    static final String URL = "http://192.168.232.66:8009/API/GET_GRAPH_INFO_FROM_SALARY_DATA.aspx";
     private List<GetSalaryCheckGraphXML.GraphInfoItem> graphInfoItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;

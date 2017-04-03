@@ -29,7 +29,7 @@ import java.util.List;
 
 public class GetCurrentCvDao {
 
-    static final String URL = "http://192.168.232.66:8009/API_CT2_MOBILECV/GET_CV.aspx";
+    static final String URL = "http://192.168.232.66:8009/API/GET_CV.aspx";
     private List<GetCvXML.GetCvItem> getCvItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;

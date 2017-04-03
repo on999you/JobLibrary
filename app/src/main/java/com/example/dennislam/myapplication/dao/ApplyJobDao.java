@@ -31,7 +31,7 @@ import java.util.List;
 
 public class ApplyJobDao {
 
-    static final String URL = "http://192.168.232.66:8009/API_CT2_MOBILECV/APPLY_JOB.aspx";
+    static final String URL = "http://192.168.232.66:8009/API/APPLY_JOB.aspx";
     private List<ItemsInfoBaseXML> applyJobItemList;
 
     public List<ItemsInfoBaseXML> applyJobItemDao(String udid, String jobId){

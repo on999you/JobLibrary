@@ -25,7 +25,7 @@ import java.util.List;
 
 public class WorkExpDao {
 
-    static final String URL = "http://192.168.232.66:8009/API_CT2_SALARY/GET_ALL_EXPERIENCE.aspx";
+    static final String URL = "http://192.168.232.66:8009/API/GET_ALL_EXPERIENCE.aspx";
     private List<GetWorkExpXML.WorkExpItem> workExpItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;

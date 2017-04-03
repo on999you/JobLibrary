@@ -40,7 +40,7 @@ import java.util.List;
 
 public class SendCvDao {
 
-    static final String URL = "http://192.168.232.66:8009/API_CT2_MOBILECV/SEND_CV.aspx";
+    static final String URL = "http://192.168.232.66:8009/API/SEND_CV.aspx";
     private List<ItemsInfoBaseXML> cvItemList;
 
     public List<ItemsInfoBaseXML> sendCvItemDao(File videoFile, String udid, String name, String email, String mobileNo,String expectedSalary,String educationLevelId){

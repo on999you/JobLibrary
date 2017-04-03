@@ -29,7 +29,7 @@ import java.util.List;
 
 public class SendFeedbackDao {
 
-    static final String URL = "http://192.168.232.66:8009/API_CT2_SALARY/SEND_FEEDBACK.aspx";
+    static final String URL = "http://192.168.232.66:8009/API/SEND_FEEDBACK.aspx";
     private List<ItemsInfoBaseXML> feedbackItemList;
 
     public List<ItemsInfoBaseXML> getFeedbackItemDao(String udid, String name, String email, String comments, Float rating){

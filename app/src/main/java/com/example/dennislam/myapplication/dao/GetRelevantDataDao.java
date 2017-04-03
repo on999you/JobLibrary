@@ -29,7 +29,7 @@ import java.util.List;
 
 public class GetRelevantDataDao {
 
-    static final String URL = "http://192.168.232.66:8009/API_CT2_SALARY/GET_RELEVANT_SALARY_DATA.aspx";
+    static final String URL = "http://192.168.232.66:8009/API/GET_RELEVANT_SALARY_DATA.aspx";
     private List<GetRelevantDataXML.RelevantDataItem> relevantDataItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;

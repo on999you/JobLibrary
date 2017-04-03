@@ -29,7 +29,7 @@ import java.util.List;
 
 public class OpenAppDao {
 
-    static final String URL = "http://192.168.232.66:8009/API_CT2_SALARY/OPEN_APP_CHECK_VERISON.aspx";
+    static final String URL = "http://192.168.232.66:8009/API/OPEN_APP_CHECK_VERISON.aspx";
     private List<OpenAppXML.OpenAppItem> openAppItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;

@@ -25,7 +25,7 @@ import java.util.List;
 
 public class IndustryDao {
 
-    static final String URL = "http://192.168.232.66:8009/API_CT2_SALARY/GET_ALL_INDUSTRY.aspx";
+    static final String URL = "http://192.168.232.66:8009/API/GET_ALL_INDUSTRY.aspx";
     private List<GetJobIndustryXML.IndustryItem> industryItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;

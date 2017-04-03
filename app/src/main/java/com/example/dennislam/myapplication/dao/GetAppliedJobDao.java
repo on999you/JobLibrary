@@ -29,7 +29,7 @@ import java.util.List;
 
 public class GetAppliedJobDao {
 
-    static final String URL = "http://192.168.232.66:8009/API_CT2_MOBILECV/GET_APPLIED_JOB.aspx";
+    static final String URL = "http://192.168.232.66:8009/API/GET_APPLIED_JOB.aspx";
     private List<GetAppliedJobXML.AppliedJobItem> appliedJobItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;
