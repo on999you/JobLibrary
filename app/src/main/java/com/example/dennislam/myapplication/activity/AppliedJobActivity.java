@@ -22,16 +22,19 @@ import java.util.List;
 
 public class AppliedJobActivity extends BaseActivity{
 
-    //Card View
+    //Set the card view
     private AnimRFRecyclerView recyclerView;
     private AnimRFLinearLayoutManager manager ;
     private View headerView;
     private View footerView;
     private AppliedJobCardViewAdapter customAdapter;
+
+    //List of job information
     private List<String> jobIdList= new ArrayList<>();
     private List<String> jobTitleList= new ArrayList<>();
     private List<String> companyNameList= new ArrayList<>();
     private List<String> applyDateList= new ArrayList<>();
+
     int rownumStart, rownumEnd;
     Boolean needLoadMore = true;
 
@@ -42,7 +45,7 @@ public class AppliedJobActivity extends BaseActivity{
         View contentView = inflater.inflate(R.layout.activity_applied_job, null, false);
         mDrawer.addView(contentView, 0);
 
-        //Card View
+        //Set the card view
         recyclerView = (AnimRFRecyclerView)findViewById(R.id.refresh_layout);
         headerView = LayoutInflater.from(this).inflate(R.layout.header_view, null);
         footerView = LayoutInflater.from(this).inflate(R.layout.footer_view, null);
@@ -52,11 +55,9 @@ public class AppliedJobActivity extends BaseActivity{
         recyclerView.setAdapter(customAdapter);
         recyclerView.setHeaderImage((ImageView)headerView.findViewById(R.id.iv_hander));
         manager = new AnimRFLinearLayoutManager(this);
-
         DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 manager.getOrientation());
         recyclerView.addItemDecoration(mDividerItemDecoration);
-
         recyclerView.setLayoutManager(manager);
 
         recyclerView.setLoadDataListener(new AnimRFRecyclerView.LoadDataListener(){
@@ -66,7 +67,7 @@ public class AppliedJobActivity extends BaseActivity{
                     @Override
                     public void run() {
                         rownumStart = 1;
-                        rownumEnd = 5;
+                        rownumEnd = 10;
                         newData();
                         recyclerView.refreshComplate();
                     }
@@ -84,22 +85,22 @@ public class AppliedJobActivity extends BaseActivity{
                 loadMore.start();
                 loadMoreComplate();
                 recyclerView.loadMoreComplate();
-
-                //recyclerView.loadMoreComplate();
             }
         });
         recyclerView.setRefresh(true);
 
+        //OnClick function of selecting specific job
         recyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(getBaseContext(), recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
+                        //Pass To Job Detail
                         Intent intent = new Intent(getBaseContext(), JobDetailActivity.class);
                         intent.putExtra("jobId", jobIdList.get(position-2));
                         startActivity(intent);
                     }
 
                     @Override public void onLongItemClick(View view, int position) {
-                        // do whatever
+                        //Not necessary to use this function
                     }
                 })
         );
@@ -112,8 +113,8 @@ public class AppliedJobActivity extends BaseActivity{
 
     private void addData(Boolean needLoadMore) {
         if(needLoadMore){
-            rownumStart += 5;
-            rownumEnd += 5;
+            rownumStart += 10;
+            rownumEnd += 10;
             new AppliedJobGetDataTask().execute();
         }
         else{

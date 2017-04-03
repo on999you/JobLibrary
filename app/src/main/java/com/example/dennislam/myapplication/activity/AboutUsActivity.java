@@ -18,6 +18,7 @@ public class AboutUsActivity extends BaseActivity {
         mDrawer.addView(contentView, 0);
     }
 
+    //Action after clicking the "Email Us" button
     public void emailUs (View v) {
         Intent email = new Intent(Intent.ACTION_SEND);
         email.setType("message/rfc822");
