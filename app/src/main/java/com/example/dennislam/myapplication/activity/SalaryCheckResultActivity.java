@@ -22,6 +22,7 @@ import com.example.dennislam.myapplication.dao.GetSalaryCheckResultDao;
 import com.example.dennislam.myapplication.xml.GetSalaryCheckGraphXML;
 import com.example.dennislam.myapplication.xml.GetSalaryCheckResultXML;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
@@ -29,6 +30,9 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.listener.ChartTouchListener;
@@ -45,14 +49,19 @@ public class SalaryCheckResultActivity extends BaseActivity {
 
     public static List<BarEntry> entries = new ArrayList<>();
     public static List<BarEntry> entries2 = new ArrayList<>();
+    public static List<PieEntry> entriesMax = new ArrayList<>();
+    public static List<PieEntry> entriesMed = new ArrayList<>();
+    public static List<PieEntry> entriesMin = new ArrayList<>();
     boolean firstuse =true;
     public BarChart barChart;
+    public PieChart pieChartMax,pieChartMin,pieChartMed;
     public static int totalE= 0;
     public static int totalJ= 0;
     public double percent=0;
     public int sourceType= 0;
     private double itemcount;
     private DecimalFormat decimalFormat = new DecimalFormat("###,###,###,##0.00");
+    private int resultMax, resultMed, resultMin;
 
 
 
@@ -81,8 +90,11 @@ public class SalaryCheckResultActivity extends BaseActivity {
         totalJ = 0;
         entries.clear();
         entries2.clear();
+        entriesMax.clear();
+        entriesMed.clear();
+        entriesMin.clear();
 
-        listView = (ListView)findViewById(R.id.list_view);
+//        listView = (ListView)findViewById(R.id.list_view);
         Button relevantDataButton = (Button)findViewById(R.id.relevantDataButton);
 
         relevantDataButton.setOnClickListener(new View.OnClickListener() {
@@ -132,6 +144,10 @@ public class SalaryCheckResultActivity extends BaseActivity {
 
 
         barChart = (BarChart) findViewById(R.id.barChart);
+        pieChartMax = (PieChart) findViewById(R.id.pieMax);
+        pieChartMed = (PieChart) findViewById(R.id.pieMed);
+        pieChartMin = (PieChart) findViewById(R.id.pieMin);
+
         final  String[] salaryIndex = new String[] {"10k-20k", "20k-30k", "30k-40k","40k-50k","50k-60K","60k-70k","70k-80k" ,"80k-90k","90k-100K",">100k"};
 
         IAxisValueFormatter moneyFormatter = new IAxisValueFormatter() {
@@ -150,7 +166,9 @@ public class SalaryCheckResultActivity extends BaseActivity {
         xAxis.setGranularity(1f);
 
         barChart.getDescription().setEnabled(false);
-
+        pieChartMax.getDescription().setEnabled(false);
+        pieChartMed.getDescription().setEnabled(false);
+        pieChartMin.getDescription().setEnabled(false);
 
         YAxis rightYAxis = barChart.getAxisRight();
         rightYAxis.setEnabled(false);
@@ -225,7 +243,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
         protected Void doInBackground(Void... params) {
 
             if(salaryResultItemList == null) {
-                //Toast.makeText(getBaseContext(), "nothing", Toast.LENGTH_LONG).show();
+                Toast.makeText(getBaseContext(), "nothing first", Toast.LENGTH_LONG).show();
             } else {
                 salaryResultItemList = salaryResultItemDao.getSalaryResultItemDao(finalJobTitle, withSimilarWord, finalSelectedJobCatArray, finalSelectedJobIndustryArray, finalWorkExpFromID, finalWorkExpToID, finalSalarySourceID, finalDataSource);
             }
@@ -256,20 +274,38 @@ public class SalaryCheckResultActivity extends BaseActivity {
                     median = (median + (int)medSalaryArray.get(mid-1))/2;
                 }
 
-                String resultMedSalary = res.getString(R.string.barC_mid) + median;
-                String resultMaxSalary = res.getString(R.string.barC_high) + salaryResultItemList.get(0).getMaxSalary();
-                String resultMinSalary = res.getString(R.string.barC_low) + salaryResultItemList.get(0).getMinSalary();
+                resultMax = Integer.parseInt(salaryResultItemList.get(0).getMaxSalary());
+                resultMin = Integer.parseInt(salaryResultItemList.get(0).getMinSalary());
+                resultMed = (resultMax+resultMin)/2;
 
-                //Set ListView Item
-                //Header
-                View header = (View)getLayoutInflater().inflate(R.layout.salary_check_result_listview_header,null);
-                TextView headerValue = (TextView) header.findViewById(R.id.txtHeader);
-                headerValue.setText(finalJobTitle);
-                listView.addHeaderView(header);
+                Log.v(resultMax+" "+resultMed+" "+resultMin+" ","~~");
 
-                //Row
-                String[] list = {resultMinSalary,resultMedSalary,resultMaxSalary};
-                listView.setAdapter(new SalaryCheckListViewAdapter(getBaseContext(), list));
+                entriesMax.add(new PieEntry(resultMax, 0));
+                entriesMed.add(new PieEntry(resultMed, 0));
+                entriesMin.add(new PieEntry(resultMin, 0));
+
+                entriesMax.add(new PieEntry(110000-resultMax,1));
+                entriesMed.add(new PieEntry(110000-resultMed,1));
+                entriesMin.add(new PieEntry(110000-resultMin,1));
+
+
+
+//                String resultMedSalary = res.getString(R.string.barC_mid) + median;
+//                String resultMaxSalary = res.getString(R.string.barC_high) + salaryResultItemList.get(0).getMaxSalary();
+//                String resultMinSalary = res.getString(R.string.barC_low) + salaryResultItemList.get(0).getMinSalary();
+
+
+
+//                //Set ListView Item
+//                //Header
+//                View header = (View)getLayoutInflater().inflate(R.layout.salary_check_result_listview_header,null);
+//                TextView headerValue = (TextView) header.findViewById(R.id.txtHeader);
+//                headerValue.setText(finalJobTitle);
+//                listView.addHeaderView(header);
+//
+//                //Row
+//                String[] list = {resultMinSalary,resultMedSalary,resultMaxSalary};
+//                listView.setAdapter(new SalaryCheckListViewAdapter(getBaseContext(), list));
 
                 System.out.println(itemsTotal);
                 Log.v("Testing steps", "Salary Check : Got Salary Check Result");
@@ -312,6 +348,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
                     System.out.println(labelArray.get(i));
                     System.out.println(countArray.get(i));
                     System.out.println(sourceTypeArray.get(i));
+
             }
 
                 for (int i = 0; i < graphInfoItemList.size(); i++) {
@@ -424,20 +461,53 @@ public class SalaryCheckResultActivity extends BaseActivity {
                 myAD.setNeutralButton(R.string.baseAct_reminder3,OkClick);
                 myAD.show();
             }
-
+            PieDataSet setPieMax = new PieDataSet(entriesMax,"");
+            PieDataSet setPieMed = new PieDataSet(entriesMed,"");
+            PieDataSet setPieMin = new PieDataSet(entriesMin,"");
 
             BarDataSet set1 = new BarDataSet(entries,"Labour");
             BarDataSet set2 = new BarDataSet(entries2,"Employer");
 
-            set1.setColors(Color.parseColor("#81DAF5"));
-            set2.setColor(Color.parseColor("#5858FA"));
+            setPieMax.setColors(new int[]{Color.parseColor("#B88C8C"),Color.parseColor("#778787")});
+            setPieMed.setColors(new int[]{Color.parseColor("#B88C8C"),Color.parseColor("#778787")});
+            setPieMin.setColors(new int[]{Color.parseColor("#B88C8C"),Color.parseColor("#778787")});
+
+            set1.setColor(Color.parseColor("#5B6940"));
+            set2.setColor(Color.parseColor("#996940"));
             float groupSpace = 0.06f;
             float barSpace = 0.02f; // x2 dataset
             float barWidth = 0.45f; // x2 dataset
 
+            PieData pieDataMax = new PieData(setPieMax);
+            PieData pieDataMed = new PieData(setPieMed);
+            PieData pieDataMin = new PieData(setPieMin);
+            pieDataMax.setDrawValues(false);
+            pieDataMed.setDrawValues(false);
+            pieDataMin.setDrawValues(false);
+
             BarData data = new BarData(set1,set2);
             data.setBarWidth(barWidth);
             barChart.setData(data);
+            pieChartMax.setData(pieDataMax);
+            pieChartMed.setData(pieDataMed);
+            pieChartMin.setData(pieDataMin);
+
+            pieChartMax.setCenterText("Highest \n"+resultMax);
+            pieChartMed.setCenterText("Median \n"+resultMed);
+            pieChartMin.setCenterText("Lowest\n"+resultMin);
+
+            pieChartMax.setRotationEnabled(false);
+            pieChartMed.setRotationEnabled(false);
+            pieChartMin.setRotationEnabled(false);
+
+
+            pieChartMax.getLegend().setEnabled(false);
+            pieChartMed.getLegend().setEnabled(false);
+            pieChartMin.getLegend().setEnabled(false);
+
+            pieChartMax.invalidate();
+            pieChartMed.invalidate();
+            pieChartMin.invalidate();
 
             barChart.setFitBars(true);
             barChart.setDoubleTapToZoomEnabled(false);

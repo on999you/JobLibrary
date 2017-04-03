@@ -25,4 +25,5 @@
     <style name="titleBar">
         <item name="android:background">#638EBA</item>
     </style>
+
 </resources>
