@@ -1,6 +1,7 @@
 package com.example.dennislam.myapplication.activity;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,6 +18,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.res.ResourcesCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -41,6 +43,8 @@ import com.example.dennislam.myapplication.xml.GetCvXML;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
 
 public class CvActivity extends BaseActivity {
+
+    String currLanguage;
 
     File videoFile = new File("");
     ImageButton clickToVideo;
@@ -81,6 +85,16 @@ public class CvActivity extends BaseActivity {
             videoCvField.setText(res.getString(R.string.Cv_reminder1));
             //previewVideo = ThumbnailUtils.createVideoThumbnail(file.getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
             //clickToVideo.setImageBitmap(previewVideo);
+        }
+
+        //Detect Language
+        SharedPreferences prefs = getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
+        if("zh".equals(prefs.getString("Language", ""))){
+            currLanguage = "chi";
+            Log.v("testinglang", "chi now");
+        } else{
+            currLanguage = "eng";
+            Log.v("testinglang", "eng now");
         }
 
         nameField = (EditText)findViewById(R.id.nameField);
@@ -180,7 +194,12 @@ public class CvActivity extends BaseActivity {
             }
             else{
                 for(int i = 0; i < educationLevelItemList.size(); i++){
-                    educationLevelArray.add(i, educationLevelItemList.get(i).getEducationName());
+
+                    if(currLanguage == "chi") {
+                        educationLevelArray.add(i, educationLevelItemList.get(i).getEducationNameChi());
+                    } else {
+                        educationLevelArray.add(i, educationLevelItemList.get(i).getEducationName());
+                    }
                     educationLevelIdArray.add(i, educationLevelItemList.get(i).getEducationID());
                 }
             }
