@@ -45,7 +45,7 @@ public class GetRelevantDataDao {
     }
 
 
-    public List<GetRelevantDataXML.RelevantDataItem> getRelevantDataItemDao(int rownumStart, int rownumEnd, String jobTitle, Boolean withSimilarWord, ArrayList<String> finalSelectedJobCatArray, ArrayList<String> finalSelectedJobIndustryArray, String workExpFrom, String workExpTo, String salarySourceValue){
+    public List<GetRelevantDataXML.RelevantDataItem> getRelevantDataItemDao(int rownumStart, int rownumEnd, String jobTitle, Boolean withSimilarWord, ArrayList<String> finalSelectedJobCatArray, ArrayList<String> finalSelectedJobIndustryArray, String workExpFrom, String workExpTo, String salarySourceValue, String dataSourceValue){
 
         String xml;
 
@@ -56,7 +56,7 @@ public class GetRelevantDataDao {
             DefaultHttpClient httpClient = new DefaultHttpClient(httpParams);
             HttpPost httpPost = new HttpPost(URL);
 
-            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(9);
+            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(10);
             nameValuePair.add(new BasicNameValuePair("rownumStart", String.valueOf(rownumStart)));
             nameValuePair.add(new BasicNameValuePair("rownumEnd", String.valueOf(rownumEnd)));
             nameValuePair.add(new BasicNameValuePair("jobTitle", jobTitle));
@@ -66,6 +66,7 @@ public class GetRelevantDataDao {
             nameValuePair.add(new BasicNameValuePair("expFrom", workExpFrom));
             nameValuePair.add(new BasicNameValuePair("expTo", workExpTo));
             nameValuePair.add(new BasicNameValuePair("salarySource", salarySourceValue));
+            nameValuePair.add(new BasicNameValuePair("dataSource", dataSourceValue));
 
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
 

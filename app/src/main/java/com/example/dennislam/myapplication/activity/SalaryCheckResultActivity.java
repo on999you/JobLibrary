@@ -58,7 +58,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
 
     //Receive inserting data
     Boolean withSimilarWord;
-    String finalJobTitle, finalWorkExpFromID, finalWorkExpToID, finalSalarySourceID;
+    String finalJobTitle, finalWorkExpFromID, finalWorkExpToID, finalSalarySourceID, finalDataSource;
     ArrayList<String> finalSelectedJobCatArray = new ArrayList<String>();
     ArrayList<String> finalSelectedJobIndustryArray = new ArrayList<String>();
 
@@ -96,6 +96,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
                 intent.putExtra("workExpFrom", finalWorkExpFromID);
                 intent.putExtra("workExpTo", finalWorkExpToID);
                 intent.putExtra("salarySource", finalSalarySourceID);
+                intent.putExtra("dataSource", finalDataSource);
                 startActivity(intent);
             }
         });
@@ -110,6 +111,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
             finalWorkExpFromID =(String) b.get("workExpFrom");
             finalWorkExpToID =(String) b.get("workExpTo");
             finalSalarySourceID =(String) b.get("salarySource");
+            finalDataSource = (String) b.get("dataSource");
 
             Log.v("criterias_bg",
                     finalJobTitle + "\n" +
@@ -225,7 +227,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
             if(salaryResultItemList == null) {
                 //Toast.makeText(getBaseContext(), "nothing", Toast.LENGTH_LONG).show();
             } else {
-                salaryResultItemList = salaryResultItemDao.getSalaryResultItemDao(finalJobTitle, withSimilarWord, finalSelectedJobCatArray, finalSelectedJobIndustryArray, finalWorkExpFromID, finalWorkExpToID, finalSalarySourceID);
+                salaryResultItemList = salaryResultItemDao.getSalaryResultItemDao(finalJobTitle, withSimilarWord, finalSelectedJobCatArray, finalSelectedJobIndustryArray, finalWorkExpFromID, finalWorkExpToID, finalSalarySourceID, finalDataSource);
             }
 
             itemsTotal = salaryResultItemDao.getItemsTotal();

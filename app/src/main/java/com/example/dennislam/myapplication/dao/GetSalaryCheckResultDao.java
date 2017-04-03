@@ -47,7 +47,7 @@ public class GetSalaryCheckResultDao {
     }
 
 
-    public List<GetSalaryCheckResultXML.SalaryResultItem> getSalaryResultItemDao(String jobTitle, Boolean withSimilarWord, ArrayList<String> finalSelectedJobCatArray, ArrayList<String> finalSelectedJobIndustryArray, String workExpFrom, String workExpTo, String salarySourceValue){
+    public List<GetSalaryCheckResultXML.SalaryResultItem> getSalaryResultItemDao(String jobTitle, Boolean withSimilarWord, ArrayList<String> finalSelectedJobCatArray, ArrayList<String> finalSelectedJobIndustryArray, String workExpFrom, String workExpTo, String salarySourceValue, String dataSourceValue){
 
         String xml;
 
@@ -58,10 +58,9 @@ public class GetSalaryCheckResultDao {
             DefaultHttpClient httpClient = new DefaultHttpClient(httpParams);
             HttpPost httpPost = new HttpPost(URL);
 
-            Log.v("testingjobcat", finalSelectedJobCatArray.toString());
-            Log.v("testingjobind", finalSelectedJobIndustryArray.toString());
+            Log.v("testingdatasource", dataSourceValue);
 
-            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(7);
+            List<NameValuePair> nameValuePair = new ArrayList<NameValuePair>(8);
             nameValuePair.add(new BasicNameValuePair("jobTitle", jobTitle));
             nameValuePair.add(new BasicNameValuePair("withSimilarWord", withSimilarWord.toString()));
             nameValuePair.add(new BasicNameValuePair("jobCat", finalSelectedJobCatArray.toString()));
@@ -69,6 +68,7 @@ public class GetSalaryCheckResultDao {
             nameValuePair.add(new BasicNameValuePair("expFrom", workExpFrom));
             nameValuePair.add(new BasicNameValuePair("expTo", workExpTo));
             nameValuePair.add(new BasicNameValuePair("salarySource", salarySourceValue));
+            nameValuePair.add(new BasicNameValuePair("dataSource", dataSourceValue));
 
             httpPost.setEntity(new UrlEncodedFormEntity(nameValuePair));
 

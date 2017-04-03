@@ -63,6 +63,7 @@ public class SalaryCheckActivity extends BaseActivity {
     String finalSalarySourceID;
     String finalWorkExpFromID = "";
     String finalWorkExpToID = "";
+    String finalDataSource = "";
     ArrayList<String> finalSelectedJobCatArray = new ArrayList<String>();
     ArrayList<String> finalSelectedJobIndustryArray = new ArrayList<String>();
 
@@ -101,6 +102,7 @@ public class SalaryCheckActivity extends BaseActivity {
         RadioButton jobSeekerRadioBtn = (RadioButton) findViewById(R.id.jobSeekerRadio);
 
         soruceRadioGroup.check(unspecifiedRadio);
+        finalDataSource = "0";
         unspecifiedRadioBtn.setBackgroundColor(Color.parseColor("#85A4A0"));
         unspecifiedRadioBtn.setTextColor(Color.parseColor("#F7F7F7"));
         employerRadioBtn.setBackgroundColor(Color.parseColor("#FFFFFF"));
@@ -112,6 +114,7 @@ public class SalaryCheckActivity extends BaseActivity {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 if(checkedId == unspecifiedRadio) {
+                    finalDataSource = "0";
                     unspecifiedRadioBtn.setBackgroundColor(Color.parseColor("#85A4A0"));
                     unspecifiedRadioBtn.setTextColor(Color.parseColor("#F7F7F7"));
                     employerRadioBtn.setBackgroundColor(Color.parseColor("#FFFFFF"));
@@ -120,6 +123,7 @@ public class SalaryCheckActivity extends BaseActivity {
                     jobSeekerRadioBtn.setTextColor(Color.parseColor("#3B616B"));
 
                 } else if(checkedId == R.id.employerRadio) {
+                    finalDataSource = "1";
                     employerRadioBtn.setBackgroundColor(Color.parseColor("#85A4A0"));
                     employerRadioBtn.setTextColor(Color.parseColor("#F7F7F7"));
                     unspecifiedRadioBtn.setBackgroundColor(Color.parseColor("#FFFFFF"));
@@ -128,6 +132,7 @@ public class SalaryCheckActivity extends BaseActivity {
                     jobSeekerRadioBtn.setTextColor(Color.parseColor("#3B616B"));
 
                 } else if(checkedId == R.id.jobSeekerRadio) {
+                    finalDataSource = "2";
                     jobSeekerRadioBtn.setBackgroundColor(Color.parseColor("#85A4A0"));
                     jobSeekerRadioBtn.setTextColor(Color.parseColor("#F7F7F7"));
                     employerRadioBtn.setBackgroundColor(Color.parseColor("#FFFFFF"));
@@ -159,6 +164,7 @@ public class SalaryCheckActivity extends BaseActivity {
                     intent.putExtra("workExpFrom", finalWorkExpFromID);
                     intent.putExtra("workExpTo", finalWorkExpToID);
                     intent.putExtra("salarySource", finalSalarySourceID);
+                    intent.putExtra("dataSource", finalDataSource);
 
                     Log.v("testingPassingCriterias", jobTitleField.getText().toString().trim() + "\n" + similarCheckBox.isChecked() + "\n" + finalSelectedJobCatArray + "\n" + finalSelectedJobIndustryArray + "\n" + finalWorkExpFromID + "\n" + finalWorkExpToID + "\n" + finalSalarySourceID);
                     startActivity(intent);
