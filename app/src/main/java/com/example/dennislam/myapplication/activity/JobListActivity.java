@@ -99,7 +99,6 @@ public class JobListActivity extends BaseActivity {
                 };
                 Thread loadMore = new Thread(myRun);
                 loadMore.start();
-                loadMoreComplate();
                 recyclerView.loadMoreComplate();
             }
         });
@@ -121,10 +120,6 @@ public class JobListActivity extends BaseActivity {
                 })
         );
 
-    }
-
-    public void loadMoreComplate() {
-        recyclerView.getAdapter().notifyDataSetChanged();
     }
 
     private void addData(Boolean needLoadMore) {

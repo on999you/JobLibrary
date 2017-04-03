@@ -35,7 +35,8 @@ public class AppliedJobActivity extends BaseActivity{
     private List<String> companyNameList= new ArrayList<>();
     private List<String> applyDateList= new ArrayList<>();
 
-    int rownumStart, rownumEnd;
+    //Value that use for limit amount of data
+    int rowNumStart, rowNumEnd;
     Boolean needLoadMore = true;
 
     @Override
@@ -55,6 +56,7 @@ public class AppliedJobActivity extends BaseActivity{
         recyclerView.setAdapter(customAdapter);
         recyclerView.setHeaderImage((ImageView)headerView.findViewById(R.id.iv_hander));
         manager = new AnimRFLinearLayoutManager(this);
+
         DividerItemDecoration mDividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(),
                 manager.getOrientation());
         recyclerView.addItemDecoration(mDividerItemDecoration);
@@ -66,8 +68,8 @@ public class AppliedJobActivity extends BaseActivity{
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        rownumStart = 1;
-                        rownumEnd = 10;
+                        rowNumStart = 1;
+                        rowNumEnd = 10;
                         newData();
                         recyclerView.refreshComplate();
                     }
@@ -83,7 +85,6 @@ public class AppliedJobActivity extends BaseActivity{
                 };
                 Thread loadMore = new Thread(myRun);
                 loadMore.start();
-                loadMoreComplate();
                 recyclerView.loadMoreComplate();
             }
         });
@@ -107,14 +108,11 @@ public class AppliedJobActivity extends BaseActivity{
 
     }
 
-    public void loadMoreComplate() {
-        recyclerView.getAdapter().notifyDataSetChanged();
-    }
-
+    //Load more data
     private void addData(Boolean needLoadMore) {
         if(needLoadMore){
-            rownumStart += 10;
-            rownumEnd += 10;
+            rowNumStart += 10;
+            rowNumEnd += 10;
             new AppliedJobGetDataTask().execute();
         }
         else{
@@ -123,6 +121,7 @@ public class AppliedJobActivity extends BaseActivity{
 
     }
 
+    //First load
     public void newData() {
         jobTitleList.clear();
         companyNameList.clear();
@@ -130,6 +129,7 @@ public class AppliedJobActivity extends BaseActivity{
         new AppliedJobGetDataTask().execute();
     }
 
+    //Async Task to get applied job
     class AppliedJobGetDataTask extends AsyncTask<Void, Void, Void> {
 
         List<GetAppliedJobXML.AppliedJobItem> appliedJobItemList = new ArrayList<GetAppliedJobXML.AppliedJobItem>();
@@ -137,8 +137,9 @@ public class AppliedJobActivity extends BaseActivity{
 
         @Override
         protected Void doInBackground(Void... params) {
+            //Get Currently udid
             String udid = globalVariable.getUdid();
-            appliedJobItemList = appliedJobItemDao.getAppliedJobItemDao(rownumStart, rownumEnd,udid);
+            appliedJobItemList = appliedJobItemDao.getAppliedJobItemDao(rowNumStart, rowNumEnd,udid);
             return null;
         }
 
@@ -147,6 +148,7 @@ public class AppliedJobActivity extends BaseActivity{
             recyclerView.getAdapter().notifyDataSetChanged();
             recyclerView.setRefresh(false);
 
+            //Load all the data already ; need to stop it
             if(appliedJobItemList == null){
                 needLoadMore = false;
                 Toast.makeText(AppliedJobActivity.this,"No record was found!",Toast.LENGTH_LONG).show();
