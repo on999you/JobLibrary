@@ -26,18 +26,14 @@ public class OpenAppActivity extends BaseActivity {
 
     private SharedPreferences settings;
     private static final String data = "DATA";
-
-    String udid;
-    String appVersion = "1.5.0";
-    String mobAppId = "3";
-    String osType = "A";
+    String udid, appVersion = "1.5.0", mobAppId = "3", osType = "A";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_open_app);
 
+        //Get Currently udid
         settings = getSharedPreferences(data,0);
         udid = settings.getString("existingUdid", "");
 
@@ -45,8 +41,9 @@ public class OpenAppActivity extends BaseActivity {
         if(globalVariable.getNetwork() == true){
             new openAppAsyncTaskRunner().execute();
         }
-
     }
+
+    //Detect which language
     public void loadLocale() {
         SharedPreferences prefs = getSharedPreferences("CommonPrefs",
                 Activity.MODE_PRIVATE);
@@ -56,6 +53,7 @@ public class OpenAppActivity extends BaseActivity {
          Log.v(prefs.getString("Language",""),"~nionoiopnionionoinionojk");
     }
 
+    //Set language that chose last time
     public void setLocale(String lang) {
         Locale myLocale = new Locale(lang);
         Resources res = getResources();
@@ -63,9 +61,9 @@ public class OpenAppActivity extends BaseActivity {
         Configuration conf = res.getConfiguration();
         conf.locale = myLocale;
         res.updateConfiguration(conf, dm);
-        ;
     }
 
+    //Async Task to handle open app checking
     class openAppAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 
         List<OpenAppXML.OpenAppItem> openAppItemList = new ArrayList<OpenAppXML.OpenAppItem>();
@@ -74,6 +72,8 @@ public class OpenAppActivity extends BaseActivity {
         @Override
         protected void onPreExecute(){
             super.onPreExecute();
+
+            //Loading Dialog
             loadingInternetDialog = new ProgressDialog(OpenAppActivity.this);
             loadingInternetDialog.setMessage("Loading");
             loadingInternetDialog.show();
@@ -81,6 +81,8 @@ public class OpenAppActivity extends BaseActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
+            //Check the device contains udid already or not
+            //Check app version is the latest version or not
             openAppItemList = openAppItemDao.getOpenAppItemDao(udid, appVersion, mobAppId, osType);
             return null;
         }
@@ -88,8 +90,10 @@ public class OpenAppActivity extends BaseActivity {
         @Override
         protected void onPostExecute(Void result) {
 
+            //Stop loading dialog
             loadingInternetDialog.dismiss();
 
+            //Internet is not working
             if(openAppItemList == null || openAppItemList.isEmpty()){
                 new MaterialDialog.Builder(OpenAppActivity.this)
                         .content(res.getString(R.string.Cv_reminder4))
@@ -103,10 +107,15 @@ public class OpenAppActivity extends BaseActivity {
                         })
                         .show();
             }
+            //Internet is working
             else {
+                //Detect Language
                 loadLocale();
+
+                //Get status code ; 0 is correct ; 1 is error
                 int status_code = openAppItemDao.getStatusCode();
 
+                //When udid is empty ; which mean the device open the app first time
                 if(udid == "" && status_code == 0) {
                     settings = getSharedPreferences(data,0);
                     settings.edit()
@@ -115,11 +124,12 @@ public class OpenAppActivity extends BaseActivity {
                     udid = settings.getString("existingUdid", "");
                 }
 
-                //final GlobalClass globalVariable = (GlobalClass) getApplicationContext();
+                //Set the updated udid
                 globalVariable.setUdid(udid);
 
                 Log.v("Testing steps", "Open App : Udid = " + udid);
 
+                //Pass To Main Page
                 Intent intent = new Intent(getBaseContext(), MainPageActivity.class);
                 startActivity(intent);
             }

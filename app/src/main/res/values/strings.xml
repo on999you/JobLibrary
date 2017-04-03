@@ -79,7 +79,7 @@
     <string name="Cv_reminder1">Already taken a video</string>
     <string name="Cv_reminder2">Empty Field(s) Found</string>
     <string name="Cv_reminder3">Loading...</string>
-    <string name="Cv_reminder4">Internet are not working</string>
+    <string name="Cv_reminder4">Internet is not working</string>
     <string name="Cv_reminder5">Take a new video or Play currently video ?</string>
     <string name="Cv_reminder6">Take Video</string>
     <string name="Cv_reminder7">Play</string>
