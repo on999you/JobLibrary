@@ -80,6 +80,15 @@
         android:drawablePadding="-35dp"/>
 
     <TextView
+        android:layout_marginTop="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Cv_video_title"
+        android:textSize="20sp"
+        android:layout_gravity="center"
+        android:textColor="#FFFFFF"/>
+
+    <TextView
         android:id="@+id/videoCvField"
         android:onClick="startRecordVideo"
         android:layout_width="300dp"
