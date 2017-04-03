@@ -294,7 +294,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            graphInfoItemList = graphInfoItemDao.getGraphInfoItemDao(finalJobTitle, withSimilarWord, finalSelectedJobCatArray, finalSelectedJobIndustryArray, finalWorkExpFromID, finalWorkExpToID, finalSalarySourceID);
+            graphInfoItemList = graphInfoItemDao.getGraphInfoItemDao(finalJobTitle, withSimilarWord, finalSelectedJobCatArray, finalSelectedJobIndustryArray, finalWorkExpFromID, finalWorkExpToID, finalSalarySourceID, finalDataSource);
             return null;
         }
 
