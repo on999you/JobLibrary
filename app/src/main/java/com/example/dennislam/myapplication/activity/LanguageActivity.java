@@ -41,10 +41,10 @@ public class LanguageActivity extends BaseActivity{
         Drawable checked= ResourcesCompat.getDrawable(getResources(), R.drawable.checked, null);
         checked.setBounds(0, 0, checked.getMinimumWidth(), checked.getMinimumHeight());
 
-        chinese= ResourcesCompat.getDrawable(getResources(), R.drawable.chinese, null);
+        chinese= ResourcesCompat.getDrawable(getResources(), R.drawable.language_chinese, null);
         chinese.setBounds(0, 0, checked.getMinimumWidth(), checked.getMinimumHeight());
 
-        english= ResourcesCompat.getDrawable(getResources(), R.drawable.english, null);
+        english= ResourcesCompat.getDrawable(getResources(), R.drawable.language_english, null);
         english.setBounds(0, 0, checked.getMinimumWidth(), checked.getMinimumHeight());
 
         chi.setCompoundDrawables(chinese,null,null,null);

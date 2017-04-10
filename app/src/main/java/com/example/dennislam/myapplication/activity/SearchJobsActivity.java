@@ -77,17 +77,17 @@ public class SearchJobsActivity extends BaseActivity {
             new getCriteriasAsyncTaskRunner().execute();
         }
 
-        Drawable jobfun_icon= ResourcesCompat.getDrawable(getResources(), R.drawable.jobfun_icon, null);
-        jobfun_icon.setBounds(80, 0, 140, 60);
+        Drawable form_job_funcation= ResourcesCompat.getDrawable(getResources(), R.drawable.form_job_funcation, null);
+        form_job_funcation.setBounds(80, 0, 140, 60);
 
-        Drawable jobind_icon= ResourcesCompat.getDrawable(getResources(), R.drawable.jobind_icon, null);
-        jobind_icon.setBounds(80, 0, 140, 60);
+        Drawable form_job_industry= ResourcesCompat.getDrawable(getResources(), R.drawable.form_job_industry, null);
+        form_job_industry.setBounds(80, 0, 140, 60);
 
-        Drawable money_icon= ResourcesCompat.getDrawable(getResources(), R.drawable.money_icon, null);
+        Drawable money_icon= ResourcesCompat.getDrawable(getResources(), R.drawable.form_salary, null);
         money_icon.setBounds(80, 0, 140, 60);
 
-        jobFunctionButton.setCompoundDrawables(jobfun_icon,null,null,null);
-        jobIndustryButton.setCompoundDrawables(jobind_icon,null,null,null);
+        jobFunctionButton.setCompoundDrawables(form_job_funcation,null,null,null);
+        jobIndustryButton.setCompoundDrawables(form_job_industry,null,null,null);
         salaryMin.setCompoundDrawables(money_icon,null,null,null);
         salaryMax.setCompoundDrawables(money_icon,null,null,null);
 

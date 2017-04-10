@@ -17,8 +17,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,8 +33,6 @@ import com.example.dennislam.myapplication.xml.GetJobIndustryXML;
 import com.example.dennislam.myapplication.xml.GetJobCatXML;
 import com.example.dennislam.myapplication.xml.GetSalarySourceXML;
 import com.example.dennislam.myapplication.xml.GetWorkExpXML;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -140,11 +136,11 @@ public class SalaryCheckActivity extends BaseActivity {
             new getCriteriasAsyncTaskRunner().execute();
         }
 
-        Drawable jobfun_icon= ResourcesCompat.getDrawable(getResources(), R.drawable.jobfun_icon, null);
-        jobfun_icon.setBounds(80, 0, 140, 60);
+        Drawable form_job_funcation= ResourcesCompat.getDrawable(getResources(), R.drawable.form_job_funcation, null);
+        form_job_funcation.setBounds(80, 0, 140, 60);
 
-        Drawable jobind_icon= ResourcesCompat.getDrawable(getResources(), R.drawable.jobind_icon, null);
-        jobind_icon.setBounds(80, 0, 140, 60);
+        Drawable form_job_industry= ResourcesCompat.getDrawable(getResources(), R.drawable.form_job_industry, null);
+        form_job_industry.setBounds(80, 0, 140, 60);
 
         Drawable form_exp= ResourcesCompat.getDrawable(getResources(), R.drawable.form_exp, null);
         form_exp.setBounds(80, 0, 140, 60);
@@ -155,8 +151,8 @@ public class SalaryCheckActivity extends BaseActivity {
         Drawable form_source_type= ResourcesCompat.getDrawable(getResources(), R.drawable.form_source_type, null);
         form_source_type.setBounds(80, 0, 140, 60);
 
-        jobFunctionButton.setCompoundDrawables(jobfun_icon,null,null,null);
-        jobIndustryButton.setCompoundDrawables(jobind_icon,null,null,null);
+        jobFunctionButton.setCompoundDrawables(form_job_funcation,null,null,null);
+        jobIndustryButton.setCompoundDrawables(form_job_industry,null,null,null);
         WorkExpFrom.setCompoundDrawables(form_exp,null,null,null);
         WorkExpTo.setCompoundDrawables(form_exp,null,null,null);
         salarySource.setCompoundDrawables(form_salary_source,null,null,null);
@@ -282,7 +278,8 @@ public class SalaryCheckActivity extends BaseActivity {
                 .items(workExpNameArray.toArray(new CharSequence[workExpNameArray.size()]))
                 .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
                     TextView WorkExpFrom = (TextView)findViewById(R.id.WorkExpFrom);
-                    WorkExpFrom.setText(res.getString(R.string.sC_reminder6) + "" + text );
+                    //WorkExpFrom.setText(res.getString(R.string.sC_reminder6) + "" + text );
+                    WorkExpFrom.setText(text);
                     finalWorkExpFromID = workExpIdArray.get(which);
                     return true; // allow selection
                 })
@@ -298,7 +295,8 @@ public class SalaryCheckActivity extends BaseActivity {
                 .items(workExpNameArray.toArray(new CharSequence[workExpNameArray.size()]))
                 .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
                     TextView WorkExpTo = (TextView)findViewById(R.id.WorkExpTo);
-                    WorkExpTo.setText(res.getString(R.string.sC_reminder5) + "" + text);
+                    //WorkExpTo.setText(res.getString(R.string.sC_reminder5) + "" + text);
+                    WorkExpTo.setText(text);
                     finalWorkExpToID = workExpIdArray.get(which);
                     return true; // allow selection
                 })
@@ -314,7 +312,8 @@ public class SalaryCheckActivity extends BaseActivity {
                 .items(salarySourceArray.toArray(new CharSequence[salarySourceArray.size()]))
                 .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
                     TextView salarySource = (TextView)findViewById(R.id.salarySource);
-                    salarySource.setText(res.getString(R.string.sC_reminder4) + "" + text);
+                    //salarySource.setText(res.getString(R.string.sC_reminder4) + "" + text);
+                    salarySource.setText(text);
                     finalSalarySourceID = salarySourceIdArray.get(which);
                     return true; // allow selection
                 })
@@ -330,7 +329,8 @@ public class SalaryCheckActivity extends BaseActivity {
                 .items(dataSourceArray.toArray(new CharSequence[dataSourceArray.size()]))
                 .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
                     TextView dataSource = (TextView)findViewById(R.id.dataSource);
-                    dataSource.setText(res.getString(R.string.sC_reminder9) + "" + text);
+                    //dataSource.setText(res.getString(R.string.sC_reminder9) + "" + text);
+                    dataSource.setText(text);
                     finalDataSource = Integer.toString(which);
                     return true; // allow selection
                 })

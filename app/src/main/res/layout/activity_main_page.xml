@@ -28,7 +28,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/search"
+                android:src="@drawable/mainpage_search_jobs"
                 android:layout_gravity="center" />
 
             <TextView
