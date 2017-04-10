@@ -87,8 +87,7 @@
         android:layout_marginTop="12dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:background="@drawable/form_textview_style"
-        android:drawablePadding="-35dp"/>
+        android:background="@drawable/form_textview_style" />
 
 
 
