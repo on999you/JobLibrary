@@ -48,7 +48,7 @@
         android:gravity="center"
         android:text="@string/sC_jobFunction"
         android:textSize="17sp"
-        android:background="@drawable/criterias_bg" />
+        android:background="@drawable/form_textview_style" />
 
     <TextView
         android:id="@+id/jobIndustryButton"
@@ -60,7 +60,7 @@
         android:gravity="center"
         android:text="@string/sC_jobIndustry"
         android:textSize="17sp"
-        android:background="@drawable/criterias_bg"/>
+        android:background="@drawable/form_textview_style"/>
 
     <TextView
         android:id="@+id/WorkExpFrom"
@@ -72,7 +72,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:textSize="17sp"
-        android:background="@drawable/criterias_bg" />
+        android:background="@drawable/form_textview_style" />
 
     <TextView
         android:id="@+id/WorkExpTo"
@@ -84,7 +84,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:textSize="17sp"
-        android:background="@drawable/criterias_bg" />
+        android:background="@drawable/form_textview_style" />
 
     <TextView
         android:id="@+id/salarySource"
@@ -96,7 +96,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:textSize="17sp"
-        android:background="@drawable/criterias_bg" />
+        android:background="@drawable/form_textview_style" />
 
     <TextView
         android:id="@+id/dataSource"
@@ -108,7 +108,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:textSize="17sp"
-        android:background="@drawable/criterias_bg" />
+        android:background="@drawable/form_textview_style" />
 
 
     <LinearLayout
@@ -130,7 +130,7 @@
             android:textAllCaps="false"
             android:textSize="24sp"
             android:textColor="#F7F7F7"
-            android:background="@drawable/button_style"
+            android:background="@drawable/form_bottom_button_style"
             android:layout_gravity="center"/>
 
     </LinearLayout>

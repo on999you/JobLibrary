@@ -181,7 +181,7 @@ public class SearchJobsActivity extends BaseActivity {
 
     public void showJobFunction(View v){
         new MaterialDialog.Builder(this)
-                .title("Job Function")
+                .title(res.getString(R.string.sC_jobFunction))
                 .widgetColor(Color.parseColor("#6F9394"))
                 .items(jobCatArray.toArray(new CharSequence[jobCatArray.size()]))
                 .itemsCallbackMultiChoice(new Integer[]{}, (dialog, which, text) -> {
@@ -220,7 +220,7 @@ public class SearchJobsActivity extends BaseActivity {
 
     public void showJobIndustry (View v){
         new MaterialDialog.Builder(this)
-                .title("Job Industry")
+                .title(res.getString(R.string.sC_jobIndustry))
                 .widgetColor(Color.parseColor("#6F9394"))
                 .items(industryArray.toArray(new CharSequence[industryArray.size()]))
                 .itemsCallbackMultiChoice(new Integer[]{}, (dialog, which, text) -> {

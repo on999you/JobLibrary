@@ -22,7 +22,7 @@
         android:layout_height="55dp"
         android:drawablePadding="10dp"
         android:text="ENGLISH"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:padding="10dp"
         android:onClick="changeEngLang" />
 
@@ -32,7 +32,7 @@
         android:layout_height="55dp"
         android:drawablePadding="10dp"
         android:text="繁體中文"
-        android:textSize="25dp"
+        android:textSize="25sp"
         android:padding="10dp"
         android:onClick="changeChinLang" />
 

@@ -273,7 +273,7 @@ public class SalaryCheckActivity extends BaseActivity {
 
     public void WorkExpFromDialog(View v) {
         new MaterialDialog.Builder(this)
-                .title("Work Experience")
+                .title(res.getString(R.string.sC_Workstart))
                 .widgetColor(Color.parseColor("#6F9394"))
                 .items(workExpNameArray.toArray(new CharSequence[workExpNameArray.size()]))
                 .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
@@ -290,7 +290,7 @@ public class SalaryCheckActivity extends BaseActivity {
 
     public void WorkExpToDialog(View v) {
         new MaterialDialog.Builder(this)
-                .title("Work Experience")
+                .title(res.getString(R.string.sC_WorkTo))
                 .widgetColor(Color.parseColor("#6F9394"))
                 .items(workExpNameArray.toArray(new CharSequence[workExpNameArray.size()]))
                 .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
@@ -307,7 +307,7 @@ public class SalaryCheckActivity extends BaseActivity {
 
     public void salarySourceDialog(View v) {
         new MaterialDialog.Builder(this)
-                .title("Salary Source(s) Within")
+                .title(res.getString(R.string.sC_Salarysource))
                 .widgetColor(Color.parseColor("#6F9394"))
                 .items(salarySourceArray.toArray(new CharSequence[salarySourceArray.size()]))
                 .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
@@ -324,7 +324,7 @@ public class SalaryCheckActivity extends BaseActivity {
 
     public void dataSourceDialog(View v) {
         new MaterialDialog.Builder(this)
-                .title("Source Type")
+                .title(res.getString(R.string.sC_SourceT))
                 .widgetColor(Color.parseColor("#6F9394"))
                 .items(dataSourceArray.toArray(new CharSequence[dataSourceArray.size()]))
                 .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
@@ -350,7 +350,7 @@ public class SalaryCheckActivity extends BaseActivity {
 
     public void showJobFunction(View v){
         new MaterialDialog.Builder(this)
-                .title("Job Function")
+                .title(res.getString(R.string.sC_jobFunction))
                 .widgetColor(Color.parseColor("#6F9394"))
                 .items(jobCatArray.toArray(new CharSequence[jobCatArray.size()]))
                 .itemsCallbackMultiChoice(new Integer[]{}, (dialog, which, text) -> {
@@ -389,7 +389,7 @@ public class SalaryCheckActivity extends BaseActivity {
 
     public void showJobIndustry (View v){
         new MaterialDialog.Builder(this)
-                .title("Job Industry")
+                .title(res.getString(R.string.sC_jobIndustry))
                 .widgetColor(Color.parseColor("#6F9394"))
                 .items(industryArray.toArray(new CharSequence[industryArray.size()]))
                 .itemsCallbackMultiChoice(new Integer[]{}, (dialog, which, text) -> {

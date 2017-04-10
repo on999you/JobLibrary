@@ -125,7 +125,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
             finalSalarySourceID =(String) b.get("salarySource");
             finalDataSource = (String) b.get("dataSource");
 
-            Log.v("criterias_bg",
+            Log.v("form_textview_style",
                     finalJobTitle + "\n" +
                             withSimilarWord + "\n" +
                             finalSelectedJobCatArray + "\n" +

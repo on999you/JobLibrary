@@ -24,7 +24,7 @@
         android:hint="@string/faq_name"
         android:layout_gravity="center"
         android:gravity="center"
-        android:background="@drawable/criterias_bg"
+        android:background="@drawable/form_textview_style"
         android:drawablePadding="7dp"/>
 
     <EditText
@@ -35,7 +35,7 @@
         android:layout_marginTop="12dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:background="@drawable/criterias_bg"
+        android:background="@drawable/form_textview_style"
         android:drawablePadding="7dp"/>
 
 
@@ -48,7 +48,7 @@
         android:layout_marginTop="12dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:background="@drawable/criterias_bg"
+        android:background="@drawable/form_textview_style"
         android:drawablePadding="7dp"/>
 
     <EditText
@@ -60,7 +60,7 @@
         android:layout_marginTop="12dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:background="@drawable/criterias_bg"
+        android:background="@drawable/form_textview_style"
         android:drawablePadding="7dp"/>
 
     <TextView
@@ -74,7 +74,7 @@
         android:layout_marginTop="12dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:background="@drawable/criterias_bg" />
+        android:background="@drawable/form_textview_style" />
 
     <TextView
         android:id="@+id/videoCvField"
@@ -87,7 +87,7 @@
         android:layout_marginTop="12dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:background="@drawable/criterias_bg"
+        android:background="@drawable/form_textview_style"
         android:drawablePadding="-35dp"/>
 
 
@@ -111,7 +111,7 @@
             android:textSize="24sp"
             android:textAllCaps="false"
             android:textColor="#F7F7F7"
-            android:background="@drawable/button_style"
+            android:background="@drawable/form_bottom_button_style"
             android:layout_gravity="center"/>
 
     </LinearLayout>

@@ -20,7 +20,7 @@
 
     <style name="RatingBar" parent="Theme.AppCompat">
         <item name="colorControlNormal">#FFFFFF</item>
-        <item name="colorControlActivated">#1F585A</item>
+        <item name="colorControlActivated">#136AC1</item>
     </style>
     <style name="titleBar">
         <item name="android:background">#638EBA</item>

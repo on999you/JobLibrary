@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="?attr/actionBarSize"
-    android:background="@drawable/testingbg"
     tools:context="com.example.dennislam.myapplication.activity.AppliedJobActivity">
     <TextView
         android:layout_width="match_parent"
