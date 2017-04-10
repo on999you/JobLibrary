@@ -18,73 +18,75 @@
         android:textColor="#FFFFFF"/>
 
 
-    <EditText
-        android:layout_marginTop="12dp"
-        android:id="@+id/jobTitleField"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:hint="@string/sC_jobtitle"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:backgroundTint="#000000" />
+        <EditText
+            android:layout_marginTop="12dp"
+            android:id="@+id/jobTitleField"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:hint="@string/sC_jobtitle"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:backgroundTint="#000000" />
 
-    <CheckBox
-        android:id="@+id/similarCheckBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sC_searchWithS"
-        android:layout_gravity="center"
-        android:checked="true"
-        android:buttonTint="#6F9394"/>
+        <CheckBox
+            android:id="@+id/similarCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sC_searchWithS"
+            android:layout_gravity="center"
+            android:checked="true"
+            android:buttonTint="#6F9394"/>
 
-    <TextView
-        android:layout_marginTop="12dp"
-        android:id="@+id/jobFunctionButton"
-        android:onClick="showJobFunction"
-        android:layout_width="300dp"
-        android:layout_height="45dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="@string/sC_jobFunction"
-        android:textSize="17sp"
-        android:background="@drawable/form_textview_style" />
+        <TextView
+            android:layout_marginTop="12dp"
+            android:id="@+id/jobFunctionButton"
+            android:onClick="showJobFunction"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/sC_jobFunction"
+            android:textSize="17sp"
+            android:background="@drawable/form_textview_style" />
 
-    <TextView
-        android:id="@+id/jobIndustryButton"
-        android:onClick="showJobIndustry"
-        android:layout_marginTop="12dp"
-        android:layout_width="300dp"
-        android:layout_height="45dp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:text="@string/sC_jobIndustry"
-        android:textSize="17sp"
-        android:background="@drawable/form_textview_style"/>
+        <TextView
+            android:id="@+id/jobIndustryButton"
+            android:onClick="showJobIndustry"
+            android:layout_marginTop="12dp"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/sC_jobIndustry"
+            android:textSize="17sp"
+            android:background="@drawable/form_textview_style"/>
 
-    <EditText
-        android:id="@+id/salaryMin"
-        android:layout_width="300dp"
-        android:layout_height="45dp"
-        android:hint="@string/sj_salaryMin"
-        android:inputType="number"
-        android:layout_marginTop="12dp"
-        android:layout_gravity="center"
-        android:textSize="17sp"
-        android:gravity="center"
-        android:background="@drawable/form_textview_style"
-        />
+        <EditText
+            android:id="@+id/salaryMin"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:hint="@string/sj_salaryMin"
+            android:inputType="number"
+            android:layout_marginTop="12dp"
+            android:layout_gravity="center"
+            android:textSize="17sp"
+            android:gravity="center"
+            android:background="@drawable/form_textview_style"
+            />
 
-    <EditText
-        android:id="@+id/salaryMax"
-        android:layout_width="300dp"
-        android:layout_height="45dp"
-        android:hint="@string/sj_salaryMax"
-        android:inputType="number"
-        android:layout_marginTop="12dp"
-        android:layout_gravity="center"
-        android:textSize="17sp"
-        android:gravity="center"
-        android:background="@drawable/form_textview_style" />
+        <EditText
+            android:id="@+id/salaryMax"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:hint="@string/sj_salaryMax"
+            android:inputType="number"
+            android:layout_marginTop="12dp"
+            android:layout_gravity="center"
+            android:textSize="17sp"
+            android:gravity="center"
+            android:background="@drawable/form_textview_style" />
+
+
 
 
     <LinearLayout

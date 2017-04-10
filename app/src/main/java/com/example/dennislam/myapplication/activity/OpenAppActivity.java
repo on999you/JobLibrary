@@ -9,6 +9,7 @@ import android.content.res.Resources;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
 
@@ -122,6 +123,15 @@ public class OpenAppActivity extends BaseActivity {
                             .putString("existingUdid", openAppItemList.get(0).getUdid())
                             .apply();
                     udid = settings.getString("existingUdid", "");
+
+
+                    /*
+                    NotificationCompat.Builder mBuilder =
+                            new NotificationCompat.Builder(OpenAppActivity.this)
+                                    .setSmallIcon(R.drawable.appicon)
+                                    .setContentTitle("Welcome to Job Library")
+                                    .setContentText("Hello World!");
+                                    */
                 }
 
                 //Set the updated udid

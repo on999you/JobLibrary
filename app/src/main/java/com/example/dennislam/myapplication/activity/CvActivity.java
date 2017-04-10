@@ -104,6 +104,30 @@ public class CvActivity extends BaseActivity {
         educationLevelField = (TextView)findViewById(R.id.educationLevelField);
         //clickToVideo = (ImageButton)findViewById(R.id.clickToVideo);
 
+        Drawable form_name= ResourcesCompat.getDrawable(getResources(), R.drawable.form_name, null);
+        form_name.setBounds(80, 0, 140, 60);
+
+        Drawable form_email= ResourcesCompat.getDrawable(getResources(), R.drawable.form_email, null);
+        form_email.setBounds(80, 0, 140, 60);
+
+        Drawable form_mobile_num= ResourcesCompat.getDrawable(getResources(), R.drawable.form_mobile_num, null);
+        form_mobile_num.setBounds(80, 0, 140, 60);
+
+        Drawable form_salary= ResourcesCompat.getDrawable(getResources(), R.drawable.form_salary, null);
+        form_salary.setBounds(80, 0, 140, 60);
+
+        Drawable form_education_level= ResourcesCompat.getDrawable(getResources(), R.drawable.form_education_level, null);
+        form_education_level.setBounds(80, 0, 140, 60);
+
+        Drawable form_cv= ResourcesCompat.getDrawable(getResources(), R.drawable.form_camera, null);
+        form_cv.setBounds(80, 0, 140, 60);
+
+        nameField.setCompoundDrawables(form_name,null,null,null);
+        emailField.setCompoundDrawables(form_email,null,null,null);
+        mobileNoField.setCompoundDrawables(form_mobile_num,null,null,null);
+        expectedSalaryField.setCompoundDrawables(form_salary,null,null,null);
+        educationLevelField.setCompoundDrawables(form_education_level,null,null,null);
+        videoCvField.setCompoundDrawables(form_cv,null,null,null);
 
         Button sendCvButton = (Button)findViewById(R.id.sendCvButton);
         Drawable exclamation= ResourcesCompat.getDrawable(getResources(), R.drawable.exclamation_mark, null);
