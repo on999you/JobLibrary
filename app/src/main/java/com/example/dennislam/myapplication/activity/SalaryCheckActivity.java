@@ -6,9 +6,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.content.res.ResourcesCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,11 +35,8 @@ import com.example.dennislam.myapplication.xml.GetJobIndustryXML;
 import com.example.dennislam.myapplication.xml.GetJobCatXML;
 import com.example.dennislam.myapplication.xml.GetSalarySourceXML;
 import com.example.dennislam.myapplication.xml.GetWorkExpXML;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.example.dennislam.myapplication.R.id.unspecifiedRadio;
 
 public class SalaryCheckActivity extends BaseActivity {
 
@@ -67,15 +66,12 @@ public class SalaryCheckActivity extends BaseActivity {
     String finalSalarySourceID;
     String finalWorkExpFromID = "";
     String finalWorkExpToID = "";
-    String finalDataSource = "";
+    String finalDataSource = "0";
     ArrayList<String> finalSelectedJobCatArray = new ArrayList<String>();
     ArrayList<String> finalSelectedJobIndustryArray = new ArrayList<String>();
 
     ArrayList<String> tempJobCatArray = new ArrayList<String>();
     ArrayList<String> tempJobIndustryArray = new ArrayList<String>();
-
-    RadioGroup soruceRadioGroup;
-    RadioButton unspecifiedRadioBtn, employerRadioBtn, jobSeekerRadioBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,53 +99,6 @@ public class SalaryCheckActivity extends BaseActivity {
         jobFunctionButton = (TextView)findViewById(R.id.jobFunctionButton);
         jobIndustryButton = (TextView)findViewById(R.id.jobIndustryButton);
 
-        soruceRadioGroup = (RadioGroup)findViewById(R.id.soruceRadioGroup);
-        unspecifiedRadioBtn = (RadioButton) findViewById(R.id.unspecifiedRadio);
-        employerRadioBtn = (RadioButton) findViewById(R.id.employerRadio);
-        jobSeekerRadioBtn = (RadioButton) findViewById(R.id.jobSeekerRadio);
-
-        soruceRadioGroup.check(unspecifiedRadio);
-        finalDataSource = "0";
-        unspecifiedRadioBtn.setBackgroundColor(Color.parseColor("#85A4A0"));
-        unspecifiedRadioBtn.setTextColor(Color.parseColor("#F7F7F7"));
-        employerRadioBtn.setBackgroundColor(Color.parseColor("#FFFFFF"));
-        employerRadioBtn.setTextColor(Color.parseColor("#3B616B"));
-        jobSeekerRadioBtn.setBackgroundColor(Color.parseColor("#FFFFFF"));
-        jobSeekerRadioBtn.setTextColor(Color.parseColor("#3B616B"));
-
-        soruceRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                if(checkedId == unspecifiedRadio) {
-                    finalDataSource = "0";
-                    unspecifiedRadioBtn.setBackgroundColor(Color.parseColor("#85A4A0"));
-                    unspecifiedRadioBtn.setTextColor(Color.parseColor("#F7F7F7"));
-                    employerRadioBtn.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                    employerRadioBtn.setTextColor(Color.parseColor("#3B616B"));
-                    jobSeekerRadioBtn.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                    jobSeekerRadioBtn.setTextColor(Color.parseColor("#3B616B"));
-
-                } else if(checkedId == R.id.employerRadio) {
-                    finalDataSource = "1";
-                    employerRadioBtn.setBackgroundColor(Color.parseColor("#85A4A0"));
-                    employerRadioBtn.setTextColor(Color.parseColor("#F7F7F7"));
-                    unspecifiedRadioBtn.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                    unspecifiedRadioBtn.setTextColor(Color.parseColor("#3B616B"));
-                    jobSeekerRadioBtn.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                    jobSeekerRadioBtn.setTextColor(Color.parseColor("#3B616B"));
-
-                } else if(checkedId == R.id.jobSeekerRadio) {
-                    finalDataSource = "2";
-                    jobSeekerRadioBtn.setBackgroundColor(Color.parseColor("#85A4A0"));
-                    jobSeekerRadioBtn.setTextColor(Color.parseColor("#F7F7F7"));
-                    employerRadioBtn.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                    employerRadioBtn.setTextColor(Color.parseColor("#3B616B"));
-                    unspecifiedRadioBtn.setBackgroundColor(Color.parseColor("#FFFFFF"));
-                    unspecifiedRadioBtn.setTextColor(Color.parseColor("#3B616B"));
-
-                }
-            }
-        });
 
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,7 +122,7 @@ public class SalaryCheckActivity extends BaseActivity {
                     intent.putExtra("salarySource", finalSalarySourceID);
                     intent.putExtra("dataSource", finalDataSource);
 
-                    Log.v("testingPassingCriterias", jobTitleField.getText().toString().trim() + "\n" + similarCheckBox.isChecked() + "\n" + finalSelectedJobCatArray + "\n" + finalSelectedJobIndustryArray + "\n" + finalWorkExpFromID + "\n" + finalWorkExpToID + "\n" + finalSalarySourceID);
+                    Log.v("testingPassingCriterias", jobTitleField.getText().toString().trim() + "\n" + similarCheckBox.isChecked() + "\n" + finalSelectedJobCatArray + "\n" + finalSelectedJobIndustryArray + "\n" + finalWorkExpFromID + "\n" + finalWorkExpToID + "\n" + finalSalarySourceID+ "\n" + finalDataSource);
                     startActivity(intent);
                 }
             }
@@ -291,9 +240,6 @@ public class SalaryCheckActivity extends BaseActivity {
                         dataSourceArray.add(i, dataSourceItemList.get(i).getDataSource());
                     }
                 }
-                unspecifiedRadioBtn.setText(dataSourceArray.get(0));
-                employerRadioBtn.setText(dataSourceArray.get(1));
-                jobSeekerRadioBtn.setText(dataSourceArray.get(2));
             }
 
         }
@@ -340,6 +286,22 @@ public class SalaryCheckActivity extends BaseActivity {
                     TextView salarySource = (TextView)findViewById(R.id.salarySource);
                     salarySource.setText(res.getString(R.string.sC_reminder4) + "" + text);
                     finalSalarySourceID = salarySourceIdArray.get(which);
+                    return true; // allow selection
+                })
+                .positiveColor(Color.parseColor("#486E76"))
+                .positiveText("Done")
+                .show();
+    }
+
+    public void dataSourceDialog(View v) {
+        new MaterialDialog.Builder(this)
+                .title("Source Type")
+                .widgetColor(Color.parseColor("#6F9394"))
+                .items(dataSourceArray.toArray(new CharSequence[dataSourceArray.size()]))
+                .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
+                    TextView dataSource = (TextView)findViewById(R.id.dataSource);
+                    dataSource.setText(res.getString(R.string.sC_reminder9) + "" + text);
+                    finalDataSource = Integer.toString(which);
                     return true; // allow selection
                 })
                 .positiveColor(Color.parseColor("#486E76"))

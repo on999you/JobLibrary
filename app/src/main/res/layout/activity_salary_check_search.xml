@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    android:background="@drawable/testingbg"
+
     android:paddingTop="?attr/actionBarSize"
     tools:context="com.example.dennislam.myapplication.activity.SalaryCheckActivity">
 
@@ -98,63 +98,18 @@
         android:textSize="17sp"
         android:background="@drawable/criterias_bg" />
 
-
     <TextView
+        android:id="@+id/dataSource"
+        android:onClick="dataSourceDialog"
         android:layout_marginTop="12dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:text="@string/sC_SourceT"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:textColor="#F7F7F7"
-        android:gravity="center"/>
-
-    <RadioGroup
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:id="@+id/soruceRadioGroup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_width="300dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
         android:gravity="center"
-        android:orientation="horizontal" >
+        android:textSize="17sp"
+        android:background="@drawable/criterias_bg" />
 
-        <RadioButton
-            android:id="@+id/unspecifiedRadio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:checked="true"
-            android:buttonTint="#000000"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="@string/unspecified"
-            android:button="@android:color/transparent"/>
-
-        <RadioButton
-            android:id="@+id/employerRadio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:checked="false"
-            android:gravity="center"
-            android:padding="5dp"
-            android:buttonTint="#000000"
-            android:text="@string/employer"
-            android:button="@android:color/transparent"/>
-
-        <RadioButton
-            android:id="@+id/jobSeekerRadio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:padding="5dp"
-            android:buttonTint="#000000"
-            android:text="@string/jobSeeker"
-            android:button="@android:color/transparent"/>
-
-    </RadioGroup>
 
     <LinearLayout
         android:paddingTop="5dp"

@@ -32,16 +32,38 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="#000000"
-        android:text="Job Library is a platform that providing different functions about job recruitment. Users could search variety of jobs and apply it through this mobile application. Before applying the jobs, users also could upload the Curriculum Vitae with a self-induction video. If users are worry about how to fill in the expected salary in CV, salary check function should be used, salary report also included in this application. Thank you."
-        android:textSize="16sp"
+        android:text="Job Library is a platform about job recruitment. Users could search variety of jobs and apply it through this mobile application. Before applying the jobs, users also could upload the Curriculum Vitae with a self-induction video. If users are worry about how to fill in the expected salary in CV, salary check function should be used, salary report also included in this application. Thank you."
+        android:textSize="18sp"
         />
 
-    <Button
-        android:layout_gravity="center"
-        android:onClick="emailUs"
-        android:layout_marginTop="30dp"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Email us"/>
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:onClick="emailUs"
+            android:background="@drawable/button_style2"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginRight="20dp"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:text="Email Us"/>
+
+        <Button
+            android:onClick="contactUs"
+            android:background="@drawable/button_style2"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false"
+            android:text="Contact Us"/>
+
+    </LinearLayout>
+
+
 
 </LinearLayout>

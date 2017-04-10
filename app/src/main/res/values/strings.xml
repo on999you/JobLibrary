@@ -35,11 +35,12 @@
     <string name="sC_reminder1">Please enter the job title first</string>
     <string name="sC_reminder2">Select up to 5 choices only.</string>
     <string name="sC_reminder3"> items selected</string>
-    <string name="sC_reminder4">Salary Source(s) Within -</string>
+    <string name="sC_reminder4">Salary Source(s) Within - </string>
     <string name="sC_reminder5">Work Exp To - </string>
     <string name="sC_reminder6">Work Exp From - </string>
     <string name="sC_reminder7">Zero result was found</string>
     <string name="sC_reminder8">Please search with othes keywords</string>
+    <string name="sC_reminder9">Source Type - </string>
     <string name="sC_entriesName1">Labour</string>
     <string name="sC_entriesName2">Employer</string>
     <string name="sC_resultTitle">Salary Check Result</string>

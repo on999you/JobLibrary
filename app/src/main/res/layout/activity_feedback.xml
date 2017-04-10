@@ -81,20 +81,24 @@
 
         <Button
             android:id="@+id/resetFeedback"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
             android:text="@string/faq_btnR"
             android:textAllCaps="false"
             android:textSize="15sp"
-            android:layout_marginRight="25dp"/>
+            android:layout_marginRight="20dp"
+            android:background="@drawable/button_style2"
+            android:textColor="#FFFFFF"/>
 
         <Button
             android:id="@+id/submitFeedback"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
             android:text="@string/faq_btnD"
             android:textAllCaps="false"
-            android:textSize="15sp" />
+            android:textSize="15sp"
+            android:background="@drawable/button_style2"
+            android:textColor="#FFFFFF"/>
 
 
     </LinearLayout>
