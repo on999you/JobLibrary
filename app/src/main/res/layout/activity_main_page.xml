@@ -53,7 +53,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/salarycheck"
+                android:src="@drawable/mainpage_salary_check"
                 android:layout_gravity="center" />
 
             <TextView
@@ -87,7 +87,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/appliedjob"
+                android:src="@drawable/mainpage_applied_job"
                 android:layout_gravity="center" />
 
             <TextView
@@ -112,7 +112,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/updatecv"
+                android:src="@drawable/mainpage_cv"
                 android:layout_gravity="center" />
 
             <TextView
@@ -146,7 +146,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/faq"
+                android:src="@drawable/mainpage_faq"
                 android:layout_gravity="center" />
 
             <TextView
@@ -171,7 +171,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/exit"
+                android:src="@drawable/mainpage_exit"
                 android:layout_gravity="center" />
 
             <TextView

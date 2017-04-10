@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingTop="?attr/actionBarSize"
-    android:background="@drawable/testingbg"
     tools:context="com.example.dennislam.myapplication.activity.SearchJobsActivity">
 
     <TextView
@@ -17,6 +16,8 @@
         android:text="@string/dra_searchJobs"
         android:textSize="20sp"
         android:textColor="#FFFFFF"/>
+
+
     <EditText
         android:layout_marginTop="12dp"
         android:id="@+id/jobTitleField"
@@ -34,7 +35,7 @@
         android:text="@string/sC_searchWithS"
         android:layout_gravity="center"
         android:checked="true"
-        android:buttonTint="#000000"/>
+        android:buttonTint="#6F9394"/>
 
     <TextView
         android:layout_marginTop="12dp"
@@ -68,11 +69,10 @@
         android:inputType="number"
         android:layout_marginTop="12dp"
         android:layout_gravity="center"
-        android:gravity="center"
         android:textSize="17sp"
+        android:gravity="center"
         android:background="@drawable/criterias_bg"
-        android:drawableLeft="@drawable/money_user"
-        android:paddingLeft="3dp"/>
+        />
 
     <EditText
         android:id="@+id/salaryMax"
@@ -82,11 +82,10 @@
         android:inputType="number"
         android:layout_marginTop="12dp"
         android:layout_gravity="center"
-        android:gravity="center"
         android:textSize="17sp"
-        android:background="@drawable/criterias_bg"
-        android:drawableLeft="@drawable/money_user"
-        android:paddingLeft="3dp"/>
+        android:gravity="center"
+        android:background="@drawable/criterias_bg" />
+
 
     <LinearLayout
         android:paddingTop="5dp"

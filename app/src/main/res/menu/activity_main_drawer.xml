@@ -11,15 +11,15 @@
         <group android:checkableBehavior="single">
             <item
                 android:id="@+id/nav_search"
-                android:icon="@drawable/search2"
+                android:icon="@drawable/drawer_search_jobs"
                 android:title="@string/dra_searchJobs" />
             <item
                 android:id="@+id/nav_applied"
-                android:icon="@drawable/appliedjob2"
+                android:icon="@drawable/drawer_applied_job"
                 android:title="@string/dra_appliedJobs" />
             <item
                 android:id="@+id/nav_cv"
-                android:icon="@drawable/updatecv2"
+                android:icon="@drawable/drawer_cv"
                 android:title="@string/mp_CV" />
         </group>
         </menu>
@@ -30,7 +30,7 @@
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/nav_salary"
-                    android:icon="@drawable/salarycheck2"
+                    android:icon="@drawable/drawer_salary_check"
                     android:title="@string/dra_salaryCheck" />
                 <item
                     android:id="@+id/nav_report"
@@ -45,20 +45,20 @@
             <group android:checkableBehavior="single">
             <item
                 android:id="@+id/nav_faq"
-                android:icon="@drawable/faq2"
+                android:icon="@drawable/drawer_faq"
                 android:title="@string/mp_FAQ" />
                 <item
                     android:id="@+id/nav_setting"
-                    android:icon="@drawable/settings"
+                    android:icon="@drawable/drawer_setting"
                     android:title="@string/dra_settings" />
             <item
                 android:id="@+id/nav_aboutus"
-                android:icon="@drawable/aboutus"
+                android:icon="@drawable/drawer_about_us"
                 android:title="@string/dra_aboutUs" />
 
             <item
                 android:id="@+id/nav_exit"
-                android:icon="@drawable/exit2"
+                android:icon="@drawable/drawer_exit"
                 android:title="@string/dra_exit" />
             </group>
         </menu>

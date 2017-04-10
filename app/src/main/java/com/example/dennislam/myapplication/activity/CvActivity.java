@@ -256,7 +256,6 @@ public class CvActivity extends BaseActivity {
         }
     }
 
-
     @SuppressWarnings("ResultOfMethodCallIgnored")
     public void startRecordVideo(View view) {
 
@@ -355,7 +354,6 @@ public class CvActivity extends BaseActivity {
             }
         }
     }
-
 
     class sendCvAsyncTaskRunner extends AsyncTask<Void, Void, Void> {
 

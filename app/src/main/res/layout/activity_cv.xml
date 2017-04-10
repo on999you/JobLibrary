@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/testingbg"
     android:paddingTop="?attr/actionBarSize"
     tools:context="com.example.dennislam.myapplication.activity.CvActivity">
 
@@ -19,7 +18,7 @@
 
     <EditText
         android:id="@+id/nameField"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="30dp"
         android:layout_width="300dp"
         android:layout_height="45dp"
         android:hint="@string/faq_name"
@@ -67,7 +66,6 @@
     <TextView
         android:id="@+id/educationLevelField"
         android:onClick="EducationLevelDialog"
-        android:drawableRight="@drawable/next_black"
         android:layout_width="300dp"
         android:layout_height="45dp"
         android:hint="@string/Cv_eduLevel"
@@ -76,24 +74,14 @@
         android:layout_marginTop="12dp"
         android:layout_gravity="center"
         android:gravity="center"
-        android:background="@drawable/criterias_bg"
-        android:drawablePadding="-35dp"/>
-
-    <TextView
-        android:layout_marginTop="12dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Cv_video_title"
-        android:textSize="20sp"
-        android:layout_gravity="center"
-        android:textColor="#FFFFFF"/>
+        android:background="@drawable/criterias_bg" />
 
     <TextView
         android:id="@+id/videoCvField"
         android:onClick="startRecordVideo"
         android:layout_width="300dp"
-        android:layout_height="45dp"
-        android:hint="Take a video ?"
+        android:layout_height="70dp"
+        android:hint="@string/Cv_video_title"
         android:textSize="18sp"
         android:textColor="#000000"
         android:layout_marginTop="12dp"

@@ -5,9 +5,11 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
+import android.support.v4.content.res.ResourcesCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
@@ -74,6 +76,21 @@ public class SearchJobsActivity extends BaseActivity {
         if(globalVariable.getNetwork() == true){
             new getCriteriasAsyncTaskRunner().execute();
         }
+
+        Drawable jobfun_icon= ResourcesCompat.getDrawable(getResources(), R.drawable.jobfun_icon, null);
+        jobfun_icon.setBounds(80, 0, 140, 60);
+
+        Drawable jobind_icon= ResourcesCompat.getDrawable(getResources(), R.drawable.jobind_icon, null);
+        jobind_icon.setBounds(80, 0, 140, 60);
+
+        Drawable money_icon= ResourcesCompat.getDrawable(getResources(), R.drawable.money_icon, null);
+        money_icon.setBounds(80, 0, 140, 60);
+
+        jobFunctionButton.setCompoundDrawables(jobfun_icon,null,null,null);
+        jobIndustryButton.setCompoundDrawables(jobind_icon,null,null,null);
+        salaryMin.setCompoundDrawables(money_icon,null,null,null);
+        salaryMax.setCompoundDrawables(money_icon,null,null,null);
+
     }
 
     public void searchNow(View view){
