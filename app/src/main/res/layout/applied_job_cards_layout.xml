@@ -44,7 +44,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:drawableLeft="@drawable/company"
+                android:drawableLeft="@drawable/job_list_company"
                 android:drawablePadding="5dp"
                 android:layout_weight="1"
                 android:id="@+id/companyName"
@@ -59,7 +59,7 @@
 
             <TextView
                 android:drawablePadding="5dp"
-                android:drawableLeft="@drawable/clock"
+                android:drawableLeft="@drawable/job_list_date"
                 android:layout_weight="1"
                 android:id="@+id/applyDate"
                 android:layout_width="match_parent"

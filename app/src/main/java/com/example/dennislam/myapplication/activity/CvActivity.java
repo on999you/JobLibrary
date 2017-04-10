@@ -279,9 +279,9 @@ public class CvActivity extends BaseActivity {
                                 .primaryColor(Color.parseColor("#3E5975"))
                                 .videoEncodingBitRate(500000)
                                 .audioEncodingBitRate(50000)
-                                .videoPreferredHeight(640)
+                                .videoPreferredHeight(720)
                                 //.qualityProfile(MaterialCamera.QUALITY_480P)
-                                .videoPreferredAspect(4f / 3f)
+                                .videoPreferredAspect(16f / 9f)
                                 .countdownMinutes(0.5f)
                                 .videoFrameRate(30)
 

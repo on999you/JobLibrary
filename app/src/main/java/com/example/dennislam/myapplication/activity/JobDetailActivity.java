@@ -118,7 +118,7 @@ public class JobDetailActivity extends BaseActivity {
                     jobDescRadio.setBackgroundColor(Color.parseColor("#FFFFFF"));
                     companyInfoRadio.setTextColor(Color.parseColor("#F7F7F7"));
                     jobDescRadio.setTextColor(Color.parseColor("#3B616B"));
-                    //Toast.makeText(getApplicationContext(), "choice: company", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "choice: job_list_company", Toast.LENGTH_SHORT).show();
 
                     textView1.setText(" Email Address");
                     textView1.setCompoundDrawablesWithIntrinsicBounds( R.drawable.email, 0, 0, 0);
