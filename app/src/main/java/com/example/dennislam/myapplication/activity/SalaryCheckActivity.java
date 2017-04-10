@@ -35,6 +35,9 @@ import com.example.dennislam.myapplication.xml.GetJobIndustryXML;
 import com.example.dennislam.myapplication.xml.GetJobCatXML;
 import com.example.dennislam.myapplication.xml.GetSalarySourceXML;
 import com.example.dennislam.myapplication.xml.GetWorkExpXML;
+
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +63,7 @@ public class SalaryCheckActivity extends BaseActivity {
 
     ArrayList<String> dataSourceArray = new ArrayList<String>();
 
-    TextView jobFunctionButton , jobIndustryButton;
+    TextView jobFunctionButton , jobIndustryButton, WorkExpFrom, WorkExpTo, salarySource, dataSource;
 
     //Values that pass to database
     String finalSalarySourceID;
@@ -98,6 +101,10 @@ public class SalaryCheckActivity extends BaseActivity {
 
         jobFunctionButton = (TextView)findViewById(R.id.jobFunctionButton);
         jobIndustryButton = (TextView)findViewById(R.id.jobIndustryButton);
+        WorkExpFrom = (TextView)findViewById(R.id.WorkExpFrom);
+        WorkExpTo = (TextView)findViewById(R.id.WorkExpTo);
+        salarySource = (TextView)findViewById(R.id.salarySource);
+        dataSource = (TextView)findViewById(R.id.dataSource);
 
 
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -139,8 +146,21 @@ public class SalaryCheckActivity extends BaseActivity {
         Drawable jobind_icon= ResourcesCompat.getDrawable(getResources(), R.drawable.jobind_icon, null);
         jobind_icon.setBounds(80, 0, 140, 60);
 
+        Drawable form_exp= ResourcesCompat.getDrawable(getResources(), R.drawable.form_exp, null);
+        form_exp.setBounds(80, 0, 140, 60);
+
+        Drawable form_salary_source= ResourcesCompat.getDrawable(getResources(), R.drawable.form_salary_source, null);
+        form_salary_source.setBounds(80, 0, 140, 60);
+
+        Drawable form_source_type= ResourcesCompat.getDrawable(getResources(), R.drawable.form_source_type, null);
+        form_source_type.setBounds(80, 0, 140, 60);
+
         jobFunctionButton.setCompoundDrawables(jobfun_icon,null,null,null);
         jobIndustryButton.setCompoundDrawables(jobind_icon,null,null,null);
+        WorkExpFrom.setCompoundDrawables(form_exp,null,null,null);
+        WorkExpTo.setCompoundDrawables(form_exp,null,null,null);
+        salarySource.setCompoundDrawables(form_salary_source,null,null,null);
+        dataSource.setCompoundDrawables(form_source_type,null,null,null);
 
     }
 
