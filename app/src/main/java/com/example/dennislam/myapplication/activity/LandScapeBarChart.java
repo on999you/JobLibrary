@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.widget.TextView;
 
 import com.example.dennislam.myapplication.R;
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Legend;
@@ -28,6 +29,8 @@ import com.github.mikephil.charting.listener.OnChartGestureListener;
 
 import java.util.Locale;
 
+import static com.example.dennislam.myapplication.activity.SalaryCheckActivity.salarySource_opt;
+
 public class LandScapeBarChart extends AppCompatActivity {
 
     String title;
@@ -37,7 +40,6 @@ public class LandScapeBarChart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         SharedPreferences prefs = getSharedPreferences("CommonPrefs",
                 Activity.MODE_PRIVATE);
-        Log.v(prefs.getString("Language",""),"~~~~");
         if("zh".equals(prefs.getString("Language",""))){
             Locale myLocale = new Locale("zh");
             Resources res = getResources();
@@ -54,7 +56,6 @@ public class LandScapeBarChart extends AppCompatActivity {
             conf.locale = myLocale;
             res.updateConfiguration(conf, dm);
             Locale.setDefault(myLocale);
-            System.out.print("haha eng");
         }
         setContentView(R.layout.activity_land_scape_bar_chart);
 
@@ -68,7 +69,7 @@ public class LandScapeBarChart extends AppCompatActivity {
 
         BarChart barChart = (BarChart)findViewById(R.id.barChart2) ;
 
-        BarDataSet set1 = new BarDataSet(SalaryCheckResultActivity.entries, "Labour");
+        BarDataSet set1 = new BarDataSet(SalaryCheckResultActivity.entries, "Job seeker");
         BarDataSet set2 =new BarDataSet(SalaryCheckResultActivity.entries2,"Employer");
 
         final  String[] salaryIndex = new String[] {"10k-20k", "20k-30k", "30k-40k","40k-50k","50k-60K","60k-70k","70k-80k" ,"80k-90k","90k-100K",">100k","","","","","","","",""};
@@ -144,7 +145,7 @@ public class LandScapeBarChart extends AppCompatActivity {
         legendBarChart.setPosition(Legend.LegendPosition.ABOVE_CHART_RIGHT);
 
         barChart.getDescription().setEnabled(false);
-
+        barChart.animateY(1500, Easing.EasingOption.EaseOutBounce);
         set1.setColors(Color.parseColor("#81DAF5"));
         set2.setColor(Color.parseColor("#5858FA"));
         float groupSpace = 0.06f;
@@ -152,12 +153,20 @@ public class LandScapeBarChart extends AppCompatActivity {
         float barWidth = 0.45f; // x2 dataset
 
 
-        BarData data = new BarData(set1,set2);
-        data.setBarWidth(barWidth);
-        barChart.setData(data);
+        if(salarySource_opt.equals(getResources().getString(R.string.all))){
+            BarData data = new BarData(set1, set2);
+            data.setBarWidth(barWidth);
+            barChart.setData(data);
+            barChart.groupBars(-0.5f, groupSpace, barSpace);
+        }else if(salarySource_opt.equals(getResources().getString(R.string.jobSeeker))){
+            BarData data = new BarData(set1);
+            barChart.setData(data);
+        }else if (salarySource_opt.equals(getResources().getString(R.string.employer))){
+            BarData data = new BarData(set2);
+            barChart.setData(data);
+        }
         barChart.setVisibleXRange(0f,10f);
         barChart.setFitBars(true);
-        barChart.groupBars(-0.5f, groupSpace, barSpace);
         barChart.invalidate();
 
 

@@ -44,6 +44,7 @@ public class SalaryCheckActivity extends BaseActivity {
 
     private Toast toast;
     public static String sdtvName;
+    public static String salarySource_opt = "Unspecified";
 
     ArrayList<String> workExpNameArray = new ArrayList<String>();
     ArrayList<String> workExpIdArray = new ArrayList<String>();
@@ -331,8 +332,10 @@ public class SalaryCheckActivity extends BaseActivity {
                     TextView dataSource = (TextView)findViewById(R.id.dataSource);
                     //dataSource.setText(res.getString(R.string.sC_reminder9) + "" + text);
                     dataSource.setText(text);
+                    salarySource_opt = (String)dataSource.getText();
+                    Log.v(salarySource_opt,"~");
                     finalDataSource = Integer.toString(which);
-                    return true; // allow selection
+                    return true; // allow selectio
                 })
                 .positiveColor(Color.parseColor("#486E76"))
                 .positiveText("Done")

@@ -21,6 +21,7 @@ import com.example.dennislam.myapplication.dao.GetSalaryCheckGraphDao;
 import com.example.dennislam.myapplication.dao.GetSalaryCheckResultDao;
 import com.example.dennislam.myapplication.xml.GetSalaryCheckGraphXML;
 import com.example.dennislam.myapplication.xml.GetSalaryCheckResultXML;
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.AxisBase;
@@ -35,6 +36,7 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.jobs.AnimatedMoveViewJob;
 import com.github.mikephil.charting.listener.ChartTouchListener;
 import com.github.mikephil.charting.listener.OnChartGestureListener;
 
@@ -42,6 +44,8 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static com.example.dennislam.myapplication.activity.SalaryCheckActivity.salarySource_opt;
 
 public class SalaryCheckResultActivity extends BaseActivity {
 
@@ -246,7 +250,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
         protected Void doInBackground(Void... params) {
 
             if(salaryResultItemList == null) {
-                Toast.makeText(getBaseContext(), "nothing first", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getBaseContext(), "nothing first", Toast.LENGTH_LONG).show();
             } else {
                 salaryResultItemList = salaryResultItemDao.getSalaryResultItemDao(finalJobTitle, withSimilarWord, finalSelectedJobCatArray, finalSelectedJobIndustryArray, finalWorkExpFromID, finalWorkExpToID, finalSalarySourceID, finalDataSource);
             }
@@ -262,7 +266,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
             //loadingInternetDialog.dismiss();
 
             if(salaryResultItemList == null || salaryResultItemList.isEmpty()) {
-                Toast.makeText(getBaseContext(), "nothing", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getBaseContext(), "nothing", Toast.LENGTH_LONG).show();
             } else {
 
                 for(int i = 0; i < salaryResultItemList.size(); i++) {
@@ -469,12 +473,17 @@ public class SalaryCheckResultActivity extends BaseActivity {
             PieDataSet setPieMed = new PieDataSet(entriesMed,"");
             PieDataSet setPieMin = new PieDataSet(entriesMin,"");
 
-            BarDataSet set1 = new BarDataSet(entries,"Labour");
+            BarDataSet set1 = new BarDataSet(entries,"Job seeker");
             BarDataSet set2 = new BarDataSet(entries2,"Employer");
 
-            setPieMax.setColors(new int[]{Color.parseColor("#F8B200"),Color.parseColor("#4091B8")});
-            setPieMed.setColors(new int[]{Color.parseColor("#F8B200"),Color.parseColor("#4091B8")});
-            setPieMin.setColors(new int[]{Color.parseColor("#F8B200"),Color.parseColor("#4091B8")});
+
+            setPieMax.setColors(new int[]{Color.parseColor("#4E7AC7"),Color.parseColor("#FFFFFF")});
+            setPieMed.setColors(new int[]{Color.parseColor("#4E7AC7"),Color.parseColor("#FFFFFF")});
+            setPieMin.setColors(new int[]{Color.parseColor("#4E7AC7"),Color.parseColor("#FFFFFF")});
+
+//            setPieMax.setHighlightEnabled(false);
+//            setPieMed.setHighlightEnabled(false);
+//            setPieMin.setHighlightEnabled(false);
 
             set1.setColor(Color.parseColor("#81DAF5"));
             set2.setColor(Color.parseColor("#5858FA"));
@@ -490,9 +499,19 @@ public class SalaryCheckResultActivity extends BaseActivity {
             pieDataMed.setDrawValues(false);
             pieDataMin.setDrawValues(false);
 
-            BarData data = new BarData(set1,set2);
-            data.setBarWidth(barWidth);
-            barChart.setData(data);
+            if(salarySource_opt.equals(getResources().getString(R.string.all))){
+                BarData data = new BarData(set1, set2);
+                data.setBarWidth(barWidth);
+                barChart.setData(data);
+                barChart.groupBars(-0.5f, groupSpace, barSpace);
+            }else if(salarySource_opt.equals(getResources().getString(R.string.jobSeeker))){
+                BarData data = new BarData(set1);
+                barChart.setData(data);
+            }else if (salarySource_opt.equals(getResources().getString(R.string.employer))){
+                BarData data = new BarData(set2);
+                barChart.setData(data);
+            }
+
             pieChartMax.setData(pieDataMax);
             pieChartMed.setData(pieDataMed);
             pieChartMin.setData(pieDataMin);
@@ -501,9 +520,25 @@ public class SalaryCheckResultActivity extends BaseActivity {
             pieChartMed.setCenterText(res.getString(R.string.barC_mid)+"\n $"+resultMed);
             pieChartMin.setCenterText(res.getString(R.string.barC_low)+"\n $"+resultMin);
 
-            pieChartMax.setRotationEnabled(false);
-            pieChartMed.setRotationEnabled(false);
-            pieChartMin.setRotationEnabled(false);
+            pieChartMax.setCenterTextColor(Color.WHITE);
+            pieChartMed.setCenterTextColor(Color.WHITE);
+            pieChartMin.setCenterTextColor(Color.WHITE);
+
+            pieChartMax.setHoleRadius(80f);
+            pieChartMed.setHoleRadius(80f);
+            pieChartMin.setHoleRadius(80f);
+
+            pieChartMax.animateX(2000, Easing.EasingOption.EaseOutBounce);
+            pieChartMed.animateX(2000, Easing.EasingOption.EaseOutBounce);
+            pieChartMin.animateX(2000, Easing.EasingOption.EaseOutBounce);
+
+            pieChartMax.setHoleColor(Color.parseColor("#d36e62"));
+            pieChartMed.setHoleColor(Color.parseColor("#d36e62"));
+            pieChartMin.setHoleColor(Color.parseColor("#d36e62"));
+
+            pieChartMax.setHighlightPerTapEnabled(false);
+            pieChartMed.setHighlightPerTapEnabled(false);
+            pieChartMin.setHighlightPerTapEnabled(false);
 
             pieChartMax.getLegend().setEnabled(false);
             pieChartMed.getLegend().setEnabled(false);
@@ -513,9 +548,9 @@ public class SalaryCheckResultActivity extends BaseActivity {
             pieChartMed.invalidate();
             pieChartMin.invalidate();
 
+            barChart.animateY(2000, Easing.EasingOption.Linear);
             barChart.setFitBars(true);
             barChart.setDoubleTapToZoomEnabled(false);
-            barChart.groupBars(-0.5f, groupSpace, barSpace);
             barChart.invalidate();
         }
     }
@@ -524,14 +559,18 @@ public class SalaryCheckResultActivity extends BaseActivity {
         itemcount = Integer.parseInt(count);
         percent= (itemcount*100/totalJ);
         decimalFormat.format(percent);
-        entries.add(new BarEntry(position,(float)percent));
+        if(salarySource_opt.equals(getResources().getString(R.string.jobSeeker))||salarySource_opt.equals(getResources().getString(R.string.all))) {
+            entries.add(new BarEntry(position, (float) percent));
+        }
     }
 
     public void addEntries2 (String count,int i,float firstletter){
         itemcount = Integer.parseInt(count);
         percent= (itemcount*100/totalE);
         decimalFormat.format(percent);
-        entries2.add(new BarEntry(firstletter,(float)percent));
+        if(salarySource_opt.equals(getResources().getString(R.string.employer))||salarySource_opt.equals(getResources().getString(R.string.all))) {
+            entries2.add(new BarEntry(firstletter, (float) percent));
+        }
     }
 
 

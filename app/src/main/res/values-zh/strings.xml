@@ -35,6 +35,7 @@
     <string name="faq_btnR">重寫</string>
     <string name="faq_btnD">完成</string>
     <string name="employer">僱主</string>
+    <string name="all">所有</string>
 
     <string name="dra_settings">設定</string>
     <string name="dra_searchJobs">好工搜尋</string>
@@ -111,5 +112,6 @@
     <string name="sj_salaryMin">薪金 (最少)</string>
     <string name="sC_doubleTap">點兩下放大睇</string>
     <string name="sC_resultTitle">薪酬搜尋結果</string>
+    <string name="sC_doubleTap_leave">點兩下走</string>
 
 </resources>
