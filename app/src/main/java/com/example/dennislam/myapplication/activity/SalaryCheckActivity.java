@@ -41,10 +41,7 @@ import java.util.List;
 public class SalaryCheckActivity extends BaseActivity {
 
     int remWorkExpFromChoice = 0, remWorkExpToChoice = 0, remSalarySourceChoice = 0, remDataSourceChoice = 0;
-    Integer[] remJobFunChoice = new Integer[]{};
-    //List<Integer> remJobFunChoice = new ArrayList<Integer>();
-    //List<Integer> remJobFunChoice = new ArrayList<Integer>();
-    //ArrayList<Integer[]> remJobFunChoice = new ArrayList<Integer[]>();
+    Integer[] remJobFunChoice, remJobIndChoice;
 
     String currLanguage;
     Resources res ;
@@ -367,22 +364,6 @@ public class SalaryCheckActivity extends BaseActivity {
                 .title(res.getString(R.string.sC_jobFunction))
                 .widgetColor(Color.parseColor("#6F9394"))
                 .items(jobCatArray.toArray(new CharSequence[jobCatArray.size()]))
-
-                .itemsCallbackMultiChoice(null, new MaterialDialog.ListCallbackMultiChoice() {
-                    @Override
-                    public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
-                        /**
-                         * If you use alwaysCallMultiChoiceCallback(), which is discussed below,
-                         * returning false here won't allow the newly selected check box to actually be selected
-                         * (or the newly unselected check box to be unchecked).
-                         * See the limited multi choice dialog example in the sample project for details.
-                         **/
-
-                        return true;
-                    }
-                })
-
-                /*
                 .itemsCallbackMultiChoice(remJobFunChoice, (dialog, which, text) -> {
 
                     boolean allowSelectionChange = which.length <= 5;
@@ -393,24 +374,16 @@ public class SalaryCheckActivity extends BaseActivity {
                         jobFunctionButton.setText(5 + " " + res.getString(R.string.sC_reminder3));
                     } else {
                         jobFunctionButton.setText(which.length + " " + res.getString(R.string.sC_reminder3));
-
+                        remJobFunChoice = new Integer[which.length];
                         tempJobCatArray.clear();
                         for(int i=0; i< which.length; i++){
                             tempJobCatArray.add(which[i].toString());
+                            remJobFunChoice[i] = which[i];
                         }
                     }
-
-                    Log.v("qwer_size", which.length + "");
-                    for(int i = 0; i<which.length; i++) {
-                         which[i] = remJobFunChoice[i];
-                        Log.v("qwer", remJobFunChoice[i] + "");
-                        Log.v("qwer2", which[i] + "");
-                    }
-
-
                     return allowSelectionChange;
                 })
-                */
+
 
                 .positiveColor(Color.parseColor("#486E76"))
                 .positiveText(res.getString(R.string.faq_btnD))
@@ -432,7 +405,8 @@ public class SalaryCheckActivity extends BaseActivity {
                 .title(res.getString(R.string.sC_jobIndustry))
                 .widgetColor(Color.parseColor("#6F9394"))
                 .items(industryArray.toArray(new CharSequence[industryArray.size()]))
-                .itemsCallbackMultiChoice(new Integer[]{}, (dialog, which, text) -> {
+                .itemsCallbackMultiChoice(remJobIndChoice, (dialog, which, text) -> {
+
                     boolean allowSelectionChange = which.length <= 5;
                     if (!allowSelectionChange) {
                         showToast(res.getString(R.string.sC_reminder2) + "");
@@ -441,10 +415,11 @@ public class SalaryCheckActivity extends BaseActivity {
                         jobIndustryButton.setText(5 + " " + res.getString(R.string.sC_reminder3));
                     } else {
                         jobIndustryButton.setText(which.length + " " + res.getString(R.string.sC_reminder3));
-
+                        remJobIndChoice = new Integer[which.length];
                         tempJobIndustryArray.clear();
                         for(int i=0; i< which.length; i++){
                             tempJobIndustryArray.add(which[i].toString());
+                            remJobIndChoice[i] = which[i];
                         }
                     }
                     return allowSelectionChange;

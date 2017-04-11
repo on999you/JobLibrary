@@ -30,6 +30,8 @@ import java.util.List;
 
 public class SearchJobsActivity extends BaseActivity {
 
+    Integer[] remJobFunChoice, remJobIndChoice;
+
     String currLanguage;
 
     private Toast toast;
@@ -184,7 +186,7 @@ public class SearchJobsActivity extends BaseActivity {
                 .title(res.getString(R.string.sC_jobFunction))
                 .widgetColor(Color.parseColor("#6F9394"))
                 .items(jobCatArray.toArray(new CharSequence[jobCatArray.size()]))
-                .itemsCallbackMultiChoice(new Integer[]{}, (dialog, which, text) -> {
+                .itemsCallbackMultiChoice(remJobFunChoice, (dialog, which, text) -> {
 
                     boolean allowSelectionChange = which.length <= 5;
                     if (!allowSelectionChange) {
@@ -194,10 +196,11 @@ public class SearchJobsActivity extends BaseActivity {
                         jobFunctionButton.setText(5 + res.getString(R.string.sC_reminder3));
                     } else {
                         jobFunctionButton.setText(which.length + "" + res.getString(R.string.sC_reminder3));
-
+                        remJobFunChoice = new Integer[which.length];
                         tempJobCatArray.clear();
                         for(int i=0; i< which.length; i++){
                             tempJobCatArray.add(which[i].toString());
+                            remJobFunChoice[i] = which[i];
                         }
                     }
                     return allowSelectionChange;
@@ -223,7 +226,7 @@ public class SearchJobsActivity extends BaseActivity {
                 .title(res.getString(R.string.sC_jobIndustry))
                 .widgetColor(Color.parseColor("#6F9394"))
                 .items(industryArray.toArray(new CharSequence[industryArray.size()]))
-                .itemsCallbackMultiChoice(new Integer[]{}, (dialog, which, text) -> {
+                .itemsCallbackMultiChoice(remJobIndChoice, (dialog, which, text) -> {
                     boolean allowSelectionChange = which.length <= 5;
                     if (!allowSelectionChange) {
                         showToast(res.getString(R.string.sC_reminder2) + "");
@@ -232,10 +235,11 @@ public class SearchJobsActivity extends BaseActivity {
                         jobIndustryButton.setText(5 + res.getString(R.string.sC_reminder3));
                     } else {
                         jobIndustryButton.setText(which.length + "" + res.getString(R.string.sC_reminder3));
-
+                        remJobIndChoice = new Integer[which.length];
                         tempJobIndustryArray.clear();
                         for(int i=0; i< which.length; i++){
                             tempJobIndustryArray.add(which[i].toString());
+                            remJobIndChoice[i] = which[i];
                         }
                     }
                     return allowSelectionChange;
