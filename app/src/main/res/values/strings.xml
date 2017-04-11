@@ -95,6 +95,7 @@
     <string name="Cv_reminder11" translatable="false"></string>
     <string name="Cv_reminder12" translatable="false"></string>
     <string name="Cv_reminder13" translatable="false"></string>
+    <string name="Cv_reminder14">Please enter the correct format for email address</string>
     <string name="Cv_video_title">Self Introduction Video</string>
 
     <string name="jobDetail_reminder1">Cannot apply the same job within 3 seconds</string>

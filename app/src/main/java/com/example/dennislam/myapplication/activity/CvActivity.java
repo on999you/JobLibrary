@@ -44,11 +44,11 @@ import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
 
 public class CvActivity extends BaseActivity {
 
+    int remEduLvChoice = 0;
+
     String currLanguage;
 
     File videoFile = new File("");
-    ImageButton clickToVideo;
-    Bitmap previewVideo;
 
     String videoCvName;
     private SharedPreferences settings;
@@ -83,8 +83,6 @@ public class CvActivity extends BaseActivity {
 
         if(!videoCvName.isEmpty()){
             videoCvField.setText(res.getString(R.string.Cv_reminder1));
-            //previewVideo = ThumbnailUtils.createVideoThumbnail(file.getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
-            //clickToVideo.setImageBitmap(previewVideo);
         }
 
         //Detect Language
@@ -138,7 +136,11 @@ public class CvActivity extends BaseActivity {
                 if(nameField.getText().toString().isEmpty() || emailField.getText().toString().isEmpty() || mobileNoField.getText().toString().isEmpty()
                         || expectedSalaryField.getText().toString().isEmpty() || educationLevelId.isEmpty()){
                     alertMsg(R.string.Cv_reminder2,R.string.Cv_reminder10);
-                } else{
+                } else if(isEmailValid(emailField.getText().toString()) == false) {
+                    Toast.makeText(view.getContext(), R.string.Cv_reminder14, Toast.LENGTH_LONG).show();
+                } else if(videoFile.getAbsolutePath().equals("/")) {
+                    Toast.makeText(view.getContext(), "Please take a video first", Toast.LENGTH_LONG).show();
+                } else {
                     name = nameField.getText().toString();
                     email = emailField.getText().toString();
                     mobileNo = mobileNoField.getText().toString();
@@ -259,24 +261,27 @@ public class CvActivity extends BaseActivity {
     }
 
     public void EducationLevelDialog(View v) {
-        System.out.println(educationLevelArray);
+
         if(educationLevelArray.isEmpty()) {
             Toast.makeText(getBaseContext(), "Cannot get education level", Toast.LENGTH_LONG).show();
         }
         else {
+
             new MaterialDialog.Builder(this)
-                    .title("Education Level")
+                    .title(res.getString(R.string.Cv_eduLevel))
                     .widgetColor(Color.parseColor("#6F9394"))
                     .items(educationLevelArray.toArray(new CharSequence[educationLevelArray.size()]))
-                    .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
+                    .itemsCallbackSingleChoice(remEduLvChoice, (dialog, view, which, text) -> {
                         TextView educationLevelField = (TextView)findViewById(R.id.educationLevelField);
                         educationLevelField.setText(text);
                         educationLevelId = educationLevelIdArray.get(which);
+                        remEduLvChoice = which;
                         return true; // allow selection
                     })
                     .positiveColor(Color.parseColor("#486E76"))
                     .positiveText("Done")
                     .show();
+
         }
     }
 

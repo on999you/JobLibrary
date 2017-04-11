@@ -3,6 +3,7 @@ package com.example.dennislam.myapplication.activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -71,6 +72,8 @@ public class FeedbackActivity extends BaseActivity {
                     Toast.makeText(view.getContext(), "Please enter your email address first", Toast.LENGTH_LONG).show();
                 } else if(feedbackComment.getText().toString().isEmpty()){
                     Toast.makeText(view.getContext(), "Please enter your comment first", Toast.LENGTH_LONG).show();
+                } else if(isEmailValid(feedbackEmail.getText().toString()) == false) {
+                    Toast.makeText(view.getContext(),  R.string.Cv_reminder14, Toast.LENGTH_LONG).show();
                 } else {
                     name = feedbackName.getText().toString();
                     email = feedbackEmail.getText().toString();

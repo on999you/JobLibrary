@@ -110,7 +110,6 @@
         android:textSize="17sp"
         android:background="@drawable/form_textview_style" />
 
-
     <LinearLayout
         android:paddingTop="5dp"
         android:paddingBottom="0dp"
