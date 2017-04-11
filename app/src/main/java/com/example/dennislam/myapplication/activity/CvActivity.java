@@ -44,6 +44,8 @@ import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
 
 public class CvActivity extends BaseActivity {
 
+    int remEduLvChoice = 0;
+
     String currLanguage;
 
     File videoFile = new File("");
@@ -264,14 +266,16 @@ public class CvActivity extends BaseActivity {
             Toast.makeText(getBaseContext(), "Cannot get education level", Toast.LENGTH_LONG).show();
         }
         else {
+
             new MaterialDialog.Builder(this)
-                    .title("Education Level")
+                    .title(res.getString(R.string.Cv_eduLevel))
                     .widgetColor(Color.parseColor("#6F9394"))
                     .items(educationLevelArray.toArray(new CharSequence[educationLevelArray.size()]))
-                    .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
+                    .itemsCallbackSingleChoice(remEduLvChoice, (dialog, view, which, text) -> {
                         TextView educationLevelField = (TextView)findViewById(R.id.educationLevelField);
                         educationLevelField.setText(text);
                         educationLevelId = educationLevelIdArray.get(which);
+                        remEduLvChoice = which;
                         return true; // allow selection
                     })
                     .positiveColor(Color.parseColor("#486E76"))
