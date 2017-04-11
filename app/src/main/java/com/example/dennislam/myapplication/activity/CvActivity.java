@@ -49,8 +49,6 @@ public class CvActivity extends BaseActivity {
     String currLanguage;
 
     File videoFile = new File("");
-    ImageButton clickToVideo;
-    Bitmap previewVideo;
 
     String videoCvName;
     private SharedPreferences settings;
@@ -85,8 +83,6 @@ public class CvActivity extends BaseActivity {
 
         if(!videoCvName.isEmpty()){
             videoCvField.setText(res.getString(R.string.Cv_reminder1));
-            //previewVideo = ThumbnailUtils.createVideoThumbnail(file.getAbsolutePath(), MediaStore.Images.Thumbnails.MINI_KIND);
-            //clickToVideo.setImageBitmap(previewVideo);
         }
 
         //Detect Language
@@ -142,6 +138,8 @@ public class CvActivity extends BaseActivity {
                     alertMsg(R.string.Cv_reminder2,R.string.Cv_reminder10);
                 } else if(isEmailValid(emailField.getText().toString()) == false) {
                     Toast.makeText(view.getContext(), R.string.Cv_reminder14, Toast.LENGTH_LONG).show();
+                } else if(videoFile.getAbsolutePath().equals("/")) {
+                    Toast.makeText(view.getContext(), "Please take a video first", Toast.LENGTH_LONG).show();
                 } else {
                     name = nameField.getText().toString();
                     email = emailField.getText().toString();
