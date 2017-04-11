@@ -43,6 +43,8 @@ public class SalaryCheckActivity extends BaseActivity {
     int remWorkExpFromChoice = 0, remWorkExpToChoice = 0, remSalarySourceChoice = 0, remDataSourceChoice = 0;
     Integer[] remJobFunChoice = new Integer[]{};
     //List<Integer> remJobFunChoice = new ArrayList<Integer>();
+    //List<Integer> remJobFunChoice = new ArrayList<Integer>();
+    //ArrayList<Integer[]> remJobFunChoice = new ArrayList<Integer[]>();
 
     String currLanguage;
     Resources res ;
@@ -365,7 +367,23 @@ public class SalaryCheckActivity extends BaseActivity {
                 .title(res.getString(R.string.sC_jobFunction))
                 .widgetColor(Color.parseColor("#6F9394"))
                 .items(jobCatArray.toArray(new CharSequence[jobCatArray.size()]))
-                .itemsCallbackMultiChoice(new Integer[]{}, (dialog, which, text) -> {
+
+                .itemsCallbackMultiChoice(null, new MaterialDialog.ListCallbackMultiChoice() {
+                    @Override
+                    public boolean onSelection(MaterialDialog dialog, Integer[] which, CharSequence[] text) {
+                        /**
+                         * If you use alwaysCallMultiChoiceCallback(), which is discussed below,
+                         * returning false here won't allow the newly selected check box to actually be selected
+                         * (or the newly unselected check box to be unchecked).
+                         * See the limited multi choice dialog example in the sample project for details.
+                         **/
+
+                        return true;
+                    }
+                })
+
+                /*
+                .itemsCallbackMultiChoice(remJobFunChoice, (dialog, which, text) -> {
 
                     boolean allowSelectionChange = which.length <= 5;
                     if (!allowSelectionChange) {
@@ -382,8 +400,18 @@ public class SalaryCheckActivity extends BaseActivity {
                         }
                     }
 
+                    Log.v("qwer_size", which.length + "");
+                    for(int i = 0; i<which.length; i++) {
+                         which[i] = remJobFunChoice[i];
+                        Log.v("qwer", remJobFunChoice[i] + "");
+                        Log.v("qwer2", which[i] + "");
+                    }
+
+
                     return allowSelectionChange;
                 })
+                */
+
                 .positiveColor(Color.parseColor("#486E76"))
                 .positiveText(res.getString(R.string.faq_btnD))
                 .onPositive(new MaterialDialog.SingleButtonCallback() {
