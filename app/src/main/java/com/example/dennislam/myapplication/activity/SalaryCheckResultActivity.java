@@ -175,6 +175,8 @@ public class SalaryCheckResultActivity extends BaseActivity {
         barChart.getAxisLeft().setValueFormatter(new PercentFormatter());
         barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
         barChart.getXAxis().setDrawGridLines(false);
+        barChart.getAxisLeft().setAxisMinimum(0);
+        barChart.getAxisRight().setAxisMinimum(0);
 
         barChart.setOnChartGestureListener(new OnChartGestureListener() {
             @Override
@@ -468,12 +470,12 @@ public class SalaryCheckResultActivity extends BaseActivity {
             BarDataSet set1 = new BarDataSet(entries,"Labour");
             BarDataSet set2 = new BarDataSet(entries2,"Employer");
 
-            setPieMax.setColors(new int[]{Color.parseColor("#B88C8C"),Color.parseColor("#778787")});
-            setPieMed.setColors(new int[]{Color.parseColor("#B88C8C"),Color.parseColor("#778787")});
-            setPieMin.setColors(new int[]{Color.parseColor("#B88C8C"),Color.parseColor("#778787")});
+            setPieMax.setColors(new int[]{Color.parseColor("#F8B200"),Color.parseColor("#4091B8")});
+            setPieMed.setColors(new int[]{Color.parseColor("#F8B200"),Color.parseColor("#4091B8")});
+            setPieMin.setColors(new int[]{Color.parseColor("#F8B200"),Color.parseColor("#4091B8")});
 
-            set1.setColor(Color.parseColor("#5B6940"));
-            set2.setColor(Color.parseColor("#996940"));
+            set1.setColor(Color.parseColor("#81DAF5"));
+            set2.setColor(Color.parseColor("#5858FA"));
             float groupSpace = 0.06f;
             float barSpace = 0.02f; // x2 dataset
             float barWidth = 0.45f; // x2 dataset
