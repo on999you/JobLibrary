@@ -117,6 +117,10 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     }
     */
 
+    boolean isEmailValid(CharSequence email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {

@@ -140,7 +140,9 @@ public class CvActivity extends BaseActivity {
                 if(nameField.getText().toString().isEmpty() || emailField.getText().toString().isEmpty() || mobileNoField.getText().toString().isEmpty()
                         || expectedSalaryField.getText().toString().isEmpty() || educationLevelId.isEmpty()){
                     alertMsg(R.string.Cv_reminder2,R.string.Cv_reminder10);
-                } else{
+                } else if(isEmailValid(emailField.getText().toString()) == false) {
+                    Toast.makeText(view.getContext(), R.string.Cv_reminder14, Toast.LENGTH_LONG).show();
+                } else {
                     name = nameField.getText().toString();
                     email = emailField.getText().toString();
                     mobileNo = mobileNoField.getText().toString();
