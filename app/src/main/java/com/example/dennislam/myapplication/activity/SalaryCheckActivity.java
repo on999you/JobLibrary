@@ -360,9 +360,9 @@ public class SalaryCheckActivity extends BaseActivity {
                         showToast(res.getString(R.string.sC_reminder2) + "");
                     }
                     if(which.length == 6){
-                        jobFunctionButton.setText(5 + res.getString(R.string.sC_reminder3));
+                        jobFunctionButton.setText(5 + " " + res.getString(R.string.sC_reminder3));
                     } else {
-                        jobFunctionButton.setText(which.length + "" + res.getString(R.string.sC_reminder3));
+                        jobFunctionButton.setText(which.length + " " + res.getString(R.string.sC_reminder3));
 
                         tempJobCatArray.clear();
                         for(int i=0; i< which.length; i++){
@@ -398,9 +398,9 @@ public class SalaryCheckActivity extends BaseActivity {
                         showToast(res.getString(R.string.sC_reminder2) + "");
                     }
                     if(which.length == 6){
-                        jobIndustryButton.setText(5 + res.getString(R.string.sC_reminder3));
+                        jobIndustryButton.setText(5 + " " + res.getString(R.string.sC_reminder3));
                     } else {
-                        jobIndustryButton.setText(which.length + "" + res.getString(R.string.sC_reminder3));
+                        jobIndustryButton.setText(which.length + " " + res.getString(R.string.sC_reminder3));
 
                         tempJobIndustryArray.clear();
                         for(int i=0; i< which.length; i++){

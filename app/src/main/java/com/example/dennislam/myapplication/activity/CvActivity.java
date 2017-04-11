@@ -259,7 +259,7 @@ public class CvActivity extends BaseActivity {
     }
 
     public void EducationLevelDialog(View v) {
-        System.out.println(educationLevelArray);
+
         if(educationLevelArray.isEmpty()) {
             Toast.makeText(getBaseContext(), "Cannot get education level", Toast.LENGTH_LONG).show();
         }
@@ -277,6 +277,7 @@ public class CvActivity extends BaseActivity {
                     .positiveColor(Color.parseColor("#486E76"))
                     .positiveText("Done")
                     .show();
+
         }
     }
 
