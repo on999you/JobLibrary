@@ -39,6 +39,8 @@ import java.util.List;
 
 public class SalaryCheckActivity extends BaseActivity {
 
+    int remWorkExpFromChoice = 0, remWorkExpToChoice = 0, remSalarySourceChoice = 0, remDataSourceChoice = 0;
+
     String currLanguage;
     Resources res ;
 
@@ -276,11 +278,12 @@ public class SalaryCheckActivity extends BaseActivity {
                 .title(res.getString(R.string.sC_Workstart))
                 .widgetColor(Color.parseColor("#6F9394"))
                 .items(workExpNameArray.toArray(new CharSequence[workExpNameArray.size()]))
-                .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
+                .itemsCallbackSingleChoice(remWorkExpFromChoice, (dialog, view, which, text) -> {
                     TextView WorkExpFrom = (TextView)findViewById(R.id.WorkExpFrom);
                     //WorkExpFrom.setText(res.getString(R.string.sC_reminder6) + "" + text );
                     WorkExpFrom.setText(text);
                     finalWorkExpFromID = workExpIdArray.get(which);
+                    remWorkExpFromChoice = which;
                     return true; // allow selection
                 })
                 .positiveColor(Color.parseColor("#486E76"))
@@ -293,11 +296,12 @@ public class SalaryCheckActivity extends BaseActivity {
                 .title(res.getString(R.string.sC_WorkTo))
                 .widgetColor(Color.parseColor("#6F9394"))
                 .items(workExpNameArray.toArray(new CharSequence[workExpNameArray.size()]))
-                .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
+                .itemsCallbackSingleChoice(remWorkExpToChoice, (dialog, view, which, text) -> {
                     TextView WorkExpTo = (TextView)findViewById(R.id.WorkExpTo);
                     //WorkExpTo.setText(res.getString(R.string.sC_reminder5) + "" + text);
                     WorkExpTo.setText(text);
                     finalWorkExpToID = workExpIdArray.get(which);
+                    remWorkExpToChoice = which;
                     return true; // allow selection
                 })
                 .positiveColor(Color.parseColor("#486E76"))
@@ -310,11 +314,12 @@ public class SalaryCheckActivity extends BaseActivity {
                 .title(res.getString(R.string.sC_Salarysource))
                 .widgetColor(Color.parseColor("#6F9394"))
                 .items(salarySourceArray.toArray(new CharSequence[salarySourceArray.size()]))
-                .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
+                .itemsCallbackSingleChoice(remSalarySourceChoice, (dialog, view, which, text) -> {
                     TextView salarySource = (TextView)findViewById(R.id.salarySource);
                     //salarySource.setText(res.getString(R.string.sC_reminder4) + "" + text);
                     salarySource.setText(text);
                     finalSalarySourceID = salarySourceIdArray.get(which);
+                    remSalarySourceChoice = which;
                     return true; // allow selection
                 })
                 .positiveColor(Color.parseColor("#486E76"))
@@ -327,11 +332,12 @@ public class SalaryCheckActivity extends BaseActivity {
                 .title(res.getString(R.string.sC_SourceT))
                 .widgetColor(Color.parseColor("#6F9394"))
                 .items(dataSourceArray.toArray(new CharSequence[dataSourceArray.size()]))
-                .itemsCallbackSingleChoice(0, (dialog, view, which, text) -> {
+                .itemsCallbackSingleChoice(remDataSourceChoice, (dialog, view, which, text) -> {
                     TextView dataSource = (TextView)findViewById(R.id.dataSource);
                     //dataSource.setText(res.getString(R.string.sC_reminder9) + "" + text);
                     dataSource.setText(text);
                     finalDataSource = Integer.toString(which);
+                    remDataSourceChoice = which;
                     return true; // allow selection
                 })
                 .positiveColor(Color.parseColor("#486E76"))
@@ -369,8 +375,9 @@ public class SalaryCheckActivity extends BaseActivity {
                             tempJobCatArray.add(which[i].toString());
                         }
                     }
-                    return allowSelectionChange;
 
+
+                    return allowSelectionChange;
                 })
                 .positiveColor(Color.parseColor("#486E76"))
                 .positiveText(res.getString(R.string.faq_btnD))
