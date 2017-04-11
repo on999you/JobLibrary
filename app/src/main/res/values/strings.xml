@@ -78,6 +78,7 @@
     <string name="appJob_reminder1">No record was found!</string>
 
     <string name="language">Language</string>
+    <string name="fontSizeSetting">Font Size</string>
     <string name="notification">Notification</string>
     <string name="CV_phoneNo">Phone Number</string>
     <string name="CV_expectedSalary">Expected Salary (HKD)</string>
@@ -126,5 +127,8 @@
     <string name="sj_salaryMax">Salary Range (Max)</string>
     <string name="all">Unspecified</string>
 
+    <string name="fontsizeLarge">Large</string>
+    <string name="fontsizeMedium">Medium</string>
+    <string name="fontsizeSmall">Small</string>
 
 </resources>

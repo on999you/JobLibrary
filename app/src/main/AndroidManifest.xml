@@ -76,7 +76,7 @@
             android:name=".activity.SettingsActivity"
             android:label="@string/dra_settings"/>
         <activity android:name=".activity.LanguageActivity"/>
-
+        <activity android:name=".activity.FontSizeSettingActivity"/>
     </application>
 
 </manifest>

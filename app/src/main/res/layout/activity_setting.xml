@@ -24,6 +24,14 @@
         android:padding="10dp"
         android:drawableRight="@drawable/next_black"
         android:onClick="passToLang"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:text="@string/fontSizeSetting"
+        android:textSize="22dp"
+        android:padding="10dp"
+        android:drawableRight="@drawable/next_black"
+        android:onClick="passToFont"/>
 
 
 </LinearLayout>
