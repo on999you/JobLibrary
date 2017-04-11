@@ -92,6 +92,8 @@ public class LandScapeBarChart extends AppCompatActivity {
         rightYAxis.setEnabled(false);
         barChart.getAxisLeft().setValueFormatter(new PercentFormatter());
         barChart.getXAxis().setPosition(XAxis.XAxisPosition.BOTTOM);
+        barChart.getAxisLeft().setAxisMinimum(0);
+        barChart.getAxisRight().setAxisMinimum(0);
 
         barChart.setOnChartGestureListener(new OnChartGestureListener() {
             @Override

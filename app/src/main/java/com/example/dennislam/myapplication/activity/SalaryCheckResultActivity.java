@@ -177,6 +177,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
         barChart.getXAxis().setDrawGridLines(false);
         barChart.getAxisLeft().setAxisMinimum(0);
         barChart.getAxisRight().setAxisMinimum(0);
+        barChart.setNoDataText("Loading...Please wait");
 
         barChart.setOnChartGestureListener(new OnChartGestureListener() {
             @Override
@@ -291,23 +292,24 @@ public class SalaryCheckResultActivity extends BaseActivity {
                 entriesMin.add(new PieEntry(110000-resultMin,1));
 
 
+                /*
 
-//                String resultMedSalary = res.getString(R.string.barC_mid) + median;
-//                String resultMaxSalary = res.getString(R.string.barC_high) + salaryResultItemList.get(0).getMaxSalary();
-//                String resultMinSalary = res.getString(R.string.barC_low) + salaryResultItemList.get(0).getMinSalary();
+                String resultMedSalary = res.getString(R.string.barC_mid) + median;
+                String resultMaxSalary = res.getString(R.string.barC_high) + salaryResultItemList.get(0).getMaxSalary();
+                String resultMinSalary = res.getString(R.string.barC_low) + salaryResultItemList.get(0).getMinSalary();
 
+                //Set ListView Item
+                //Header
+                View header = (View)getLayoutInflater().inflate(R.layout.salary_check_result_listview_header,null);
+                TextView headerValue = (TextView) header.findViewById(R.id.txtHeader);
+                headerValue.setText(finalJobTitle);
+                listView.addHeaderView(header);
 
+                //Row
+                String[] list = {resultMinSalary,resultMedSalary,resultMaxSalary};
+                listView.setAdapter(new SalaryCheckListViewAdapter(getBaseContext(), list));
 
-//                //Set ListView Item
-//                //Header
-//                View header = (View)getLayoutInflater().inflate(R.layout.salary_check_result_listview_header,null);
-//                TextView headerValue = (TextView) header.findViewById(R.id.txtHeader);
-//                headerValue.setText(finalJobTitle);
-//                listView.addHeaderView(header);
-//
-//                //Row
-//                String[] list = {resultMinSalary,resultMedSalary,resultMaxSalary};
-//                listView.setAdapter(new SalaryCheckListViewAdapter(getBaseContext(), list));
+                */
 
                 System.out.println(itemsTotal);
                 Log.v("Testing steps", "Salary Check : Got Salary Check Result");
@@ -483,6 +485,7 @@ public class SalaryCheckResultActivity extends BaseActivity {
             PieData pieDataMax = new PieData(setPieMax);
             PieData pieDataMed = new PieData(setPieMed);
             PieData pieDataMin = new PieData(setPieMin);
+
             pieDataMax.setDrawValues(false);
             pieDataMed.setDrawValues(false);
             pieDataMin.setDrawValues(false);
@@ -502,7 +505,6 @@ public class SalaryCheckResultActivity extends BaseActivity {
             pieChartMed.setRotationEnabled(false);
             pieChartMin.setRotationEnabled(false);
 
-
             pieChartMax.getLegend().setEnabled(false);
             pieChartMed.getLegend().setEnabled(false);
             pieChartMin.getLegend().setEnabled(false);
@@ -515,7 +517,6 @@ public class SalaryCheckResultActivity extends BaseActivity {
             barChart.setDoubleTapToZoomEnabled(false);
             barChart.groupBars(-0.5f, groupSpace, barSpace);
             barChart.invalidate();
-
         }
     }
 

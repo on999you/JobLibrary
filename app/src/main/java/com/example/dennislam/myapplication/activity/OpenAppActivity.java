@@ -1,11 +1,15 @@
 package com.example.dennislam.myapplication.activity;
 
 import android.app.Activity;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
@@ -125,13 +129,20 @@ public class OpenAppActivity extends BaseActivity {
                     udid = settings.getString("existingUdid", "");
 
 
-                    /*
-                    NotificationCompat.Builder mBuilder =
-                            new NotificationCompat.Builder(OpenAppActivity.this)
-                                    .setSmallIcon(R.drawable.appicon)
-                                    .setContentTitle("Welcome to Job Library")
-                                    .setContentText("Hello World!");
-                                    */
+                    //Show welcome notification when there are the new user
+                    NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(OpenAppActivity.this);
+                    Intent notIntent = new Intent(OpenAppActivity.this, AboutUsActivity.class);
+                    PendingIntent pendingIntent = PendingIntent.getActivity(OpenAppActivity.this, 0, notIntent, 0);
+
+                    mBuilder.setContentIntent(pendingIntent);
+                    mBuilder.setSmallIcon(R.drawable.appicon);
+                    mBuilder.setContentTitle("Welcome to Job Library");
+                    mBuilder.setContentText("Tap for know more about us");
+                    mBuilder.setAutoCancel(true);
+
+                    NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                    mNotificationManager.notify(001, mBuilder.build());
+
                 }
 
                 //Set the updated udid
@@ -142,6 +153,8 @@ public class OpenAppActivity extends BaseActivity {
                 //Pass To Main Page
                 Intent intent = new Intent(getBaseContext(), MainPageActivity.class);
                 startActivity(intent);
+
+
             }
 
         }

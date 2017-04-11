@@ -44,7 +44,11 @@
     <string name="sC_entriesName1">Labour</string>
     <string name="sC_entriesName2">Employer</string>
     <string name="sC_resultTitle">Salary Check Result</string>
+
     <string name="sC_doubleTap" color="#B88C8C">double tap for full screen display</string>
+    <string name="sC_doubleTap_leave" color="#B88C8C">double tap for exit full screen</string>
+
+
     <string name="from">From</string>
     <string name="to">To</string>
 

@@ -20,7 +20,7 @@
         android:textSize="15dp"
         android:textAlignment="center"
         android:textColor="#000000"
-        android:text="@string/sC_doubleTap"
+        android:text="@string/sC_doubleTap_leave"
         />
 
     <com.github.mikephil.charting.charts.BarChart
