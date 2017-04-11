@@ -7,6 +7,7 @@ package com.example.dennislam.myapplication.adapter;
 import java.util.HashMap;
 import java.util.List;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,6 +55,7 @@ public class CustomExpandableListAdapter extends BaseExpandableListAdapter {
         expandedListTextView.setText(expandedListText);
         return convertView;
     }
+
 
     @Override
     public int getChildrenCount(int listPosition) {

@@ -35,11 +35,14 @@ import com.example.dennislam.myapplication.xml.GetSalarySourceXML;
 import com.example.dennislam.myapplication.xml.GetWorkExpXML;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SalaryCheckActivity extends BaseActivity {
 
     int remWorkExpFromChoice = 0, remWorkExpToChoice = 0, remSalarySourceChoice = 0, remDataSourceChoice = 0;
+    Integer[] remJobFunChoice = new Integer[]{};
+    //List<Integer> remJobFunChoice = new ArrayList<Integer>();
 
     String currLanguage;
     Resources res ;
@@ -375,7 +378,6 @@ public class SalaryCheckActivity extends BaseActivity {
                             tempJobCatArray.add(which[i].toString());
                         }
                     }
-
 
                     return allowSelectionChange;
                 })
