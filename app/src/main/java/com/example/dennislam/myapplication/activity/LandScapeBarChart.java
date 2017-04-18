@@ -40,23 +40,7 @@ public class LandScapeBarChart extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         SharedPreferences prefs = getSharedPreferences("CommonPrefs",
                 Activity.MODE_PRIVATE);
-        if("zh".equals(prefs.getString("Language",""))){
-            Locale myLocale = new Locale("zh");
-            Resources res = getResources();
-            DisplayMetrics dm = res.getDisplayMetrics();
-            Configuration conf = res.getConfiguration();
-            conf.locale = myLocale;
-            res.updateConfiguration(conf, dm);
-            Locale.setDefault(myLocale);
-        }else{
-            Locale myLocale = new Locale("en");
-            Resources res = getResources();
-            DisplayMetrics dm = res.getDisplayMetrics();
-            Configuration conf = res.getConfiguration();
-            conf.locale = myLocale;
-            res.updateConfiguration(conf, dm);
-            Locale.setDefault(myLocale);
-        }
+
         setContentView(R.layout.activity_land_scape_bar_chart);
 
 //        Intent intent= getIntent();
