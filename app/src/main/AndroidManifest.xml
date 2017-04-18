@@ -55,8 +55,11 @@
         <activity
             android:name=".activity.JobListActivity"
            />
-        <activity android:name=".activity.MainPageActivity"
-                 android:theme="@style/AppTheme"/>
+        <activity
+            android:name=".activity.MainPageActivity"
+            android:theme="@style/AppTheme"
+            android:screenOrientation="portrait"/>
+
         <activity android:name=".activity.RelevantDataActivity" />
         <activity
             android:name=".activity.JobDetailActivity"
