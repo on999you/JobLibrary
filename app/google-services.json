@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "581808216504",
+    "firebase_url": "https://joblibrary-4b72b.firebaseio.com",
+    "project_id": "joblibrary-4b72b",
+    "storage_bucket": "joblibrary-4b72b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:581808216504:android:b52e70b9af30ddab",
+        "android_client_info": {
+          "package_name": "com.example.dennislam.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "581808216504-apkjfr8t55q4b4dreff3o94l4jr5t4dd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dennislam.myapplication",
+            "certificate_hash": "3ba85420cdc2e434a158ce46b86aa81c7e31a51c"
+          }
+        },
+        {
+          "client_id": "581808216504-vo81ubprdm1ukqrcvr9dd2sd3uban55p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBrAqVJrrdnJ8TananMgrE2d1P4agTYOMo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "581808216504-vo81ubprdm1ukqrcvr9dd2sd3uban55p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
