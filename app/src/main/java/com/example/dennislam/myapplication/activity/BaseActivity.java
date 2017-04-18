@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.pm.ActivityInfo;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -40,6 +41,9 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_base);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         SharedPreferences prefs = getSharedPreferences("CommonPrefs",
                 Activity.MODE_PRIVATE);
         if("zh".equals(prefs.getString("Language",""))){
@@ -59,8 +63,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             res.updateConfiguration(conf, dm);
             Locale.setDefault(myLocale);
         }
-        setContentView(R.layout.activity_base);
-        FirebaseMessaging.getInstance().subscribeToTopic("JOJO");
+
         globalVariable = (GlobalClass) getApplicationContext();
 
         res = getResources();

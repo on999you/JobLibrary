@@ -65,15 +65,14 @@ public class AppliedJobActivity extends BaseActivity{
         recyclerView.setLoadDataListener(new AnimRFRecyclerView.LoadDataListener(){
             @Override
             public void onRefresh() {
-                new Thread(new Runnable() {
+                AppliedJobActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         rowNumStart = 1;
                         rowNumEnd = 10;
                         newData();
-                        recyclerView.refreshComplate();
                     }
-                }).start();
+                });
             }
             @Override
             public void onLoadMore() {
@@ -123,10 +122,11 @@ public class AppliedJobActivity extends BaseActivity{
 
     //First load
     public void newData() {
+        recyclerView.getAdapter().notifyDataSetChanged();
+        new AppliedJobGetDataTask().execute();
         jobTitleList.clear();
         companyNameList.clear();
         applyDateList.clear();
-        new AppliedJobGetDataTask().execute();
     }
 
     //Async Task to get applied job
@@ -166,6 +166,12 @@ public class AppliedJobActivity extends BaseActivity{
 
 
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent homePageIntent = new Intent(getBaseContext(), MainPageActivity.class);
+        startActivity(homePageIntent);
     }
 
 }

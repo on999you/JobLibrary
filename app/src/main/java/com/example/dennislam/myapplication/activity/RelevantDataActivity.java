@@ -92,15 +92,14 @@ public class RelevantDataActivity extends BaseActivity {
         recyclerView.setLoadDataListener(new AnimRFRecyclerView.LoadDataListener(){
             @Override
             public void onRefresh() {
-                new Thread(new Runnable() {
+                RelevantDataActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         rownumStart = 1;
                         rownumEnd = 5;
                         newData();
-                        recyclerView.refreshComplate();
                     }
-                }).start();
+                });
             }
             @Override
             public void onLoadMore() {
@@ -138,11 +137,12 @@ public class RelevantDataActivity extends BaseActivity {
     }
 
     public void newData() {
+        recyclerView.getAdapter().notifyDataSetChanged();
+        new RelevantDataGetDataTask().execute();
         relevantJobTitleList.clear();
         relevantJobCatList.clear();
         relevantWorkExpList.clear();
         relevantSalaryList.clear();
-        new RelevantDataGetDataTask().execute();
     }
 
     class RelevantDataGetDataTask extends AsyncTask<Void, Void, Void> {

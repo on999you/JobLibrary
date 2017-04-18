@@ -2,6 +2,8 @@ package com.example.dennislam.myapplication.activity;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -33,5 +35,11 @@ public class AboutUsActivity extends BaseActivity {
         intent.setAction(Intent.ACTION_DIAL);
         intent.setData(Uri.fromParts("tel", "90979855", null));
         startActivity(Intent.createChooser(intent, ""));
+    }
+
+    @Override
+    public void onBackPressed() {
+            Intent homePageIntent = new Intent(getBaseContext(), MainPageActivity.class);
+            startActivity(homePageIntent);
     }
 }

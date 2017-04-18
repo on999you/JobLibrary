@@ -7,6 +7,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.health.SystemHealthManager;
 import android.support.v4.content.res.ResourcesCompat;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -24,7 +25,7 @@ import java.util.Locale;
 
 public class FontSizeSettingActivity extends BaseActivity{
     private TextView font_L,font_M,font_S;
-    Drawable chinese, english;
+    Drawable checked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +38,13 @@ public class FontSizeSettingActivity extends BaseActivity{
         font_M = (TextView)findViewById(R.id.fontSize_medium);
         font_S = (TextView)findViewById(R.id.fontSize_small);
 
-        SharedPreferences prefs = getSharedPreferences("CommonPrefs",
-                Activity.MODE_PRIVATE);
-        Drawable checked= ResourcesCompat.getDrawable(getResources(), R.drawable.checked, null);
+        SharedPreferences prefs = getSharedPreferences("fontSizeSetting", Activity.MODE_PRIVATE);
+        checked= ResourcesCompat.getDrawable(getResources(), R.drawable.checked, null);
         checked.setBounds(0, 0, checked.getMinimumWidth(), checked.getMinimumHeight());
-
 
         if("Large".equals(prefs.getString("FONT_SIZE",""))){
             font_L.setCompoundDrawables(null,null,checked,null);
-        }else  if("Medium".equals(prefs.getString("FONT_SIZE",""))){
+        }else if("Medium".equals(prefs.getString("FONT_SIZE",""))){
             font_M.setCompoundDrawables(null,null,checked,null);
         }else{
             font_S.setCompoundDrawables(null,null,checked,null);
@@ -59,20 +58,27 @@ public class FontSizeSettingActivity extends BaseActivity{
     public void changeFontMed(View v){
         setFontSize("Medium");
     }
+
     public void changeFontSmall(View v){
         setFontSize("Small");
     }
+
     public void setFontSize(String fontSize) {
-        SharedPreferences prefs = getSharedPreferences("fontSizeSetting",
-                Activity.MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("fontSizeSetting", Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        Drawable checked= ResourcesCompat.getDrawable(getResources(), R.drawable.checked, null);
-        checked.setBounds(0, 0, checked.getMinimumWidth(), checked.getMinimumHeight());
 
         if (!fontSize.equals(prefs.getString("FONT_SIZE",""))) {
             Log.v("change","~");
             editor.putString("FONT_SIZE", fontSize);
             editor.commit();
+
+            Locale myLocale = new Locale(fontSize);
+            Resources res = getResources();
+            DisplayMetrics dm = res.getDisplayMetrics();
+            Configuration conf = res.getConfiguration();
+            conf.locale = myLocale;
+            res.updateConfiguration(conf, dm);
+            Locale.setDefault(myLocale);
 
             Intent refresh = new Intent(this, MainPageActivity.class);
             startActivity(refresh);

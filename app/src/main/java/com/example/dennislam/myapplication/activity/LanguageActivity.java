@@ -25,7 +25,7 @@ import java.util.Locale;
 public class LanguageActivity extends BaseActivity{
     private String lang;
     private TextView chi,eng;
-    Drawable chinese, english;
+    Drawable chinese, english, checked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class LanguageActivity extends BaseActivity{
 
         SharedPreferences prefs = getSharedPreferences("CommonPrefs",
                 Activity.MODE_PRIVATE);
-        Drawable checked= ResourcesCompat.getDrawable(getResources(), R.drawable.checked, null);
+        checked= ResourcesCompat.getDrawable(getResources(), R.drawable.checked, null);
         checked.setBounds(0, 0, checked.getMinimumWidth(), checked.getMinimumHeight());
 
         chinese= ResourcesCompat.getDrawable(getResources(), R.drawable.language_chinese, null);
@@ -68,11 +68,8 @@ public class LanguageActivity extends BaseActivity{
     }
 
     public void setLocale(String langu) {
-        SharedPreferences prefs = getSharedPreferences("CommonPrefs",
-                Activity.MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
-        Drawable checked= ResourcesCompat.getDrawable(getResources(), R.drawable.checked, null);
-        checked.setBounds(0, 0, checked.getMinimumWidth(), checked.getMinimumHeight());
 
         if (!langu.equals(prefs.getString("Language",""))) {
             Log.v("change","~");

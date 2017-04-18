@@ -3,9 +3,11 @@ package com.example.dennislam.myapplication.activity;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.SystemClock;
 import android.os.Bundle;
+import android.support.v4.content.res.ResourcesCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -47,6 +49,8 @@ public class JobDetailActivity extends BaseActivity {
 
     private long mLastClickTime = 0;
 
+    Drawable job_detail_job_function, job_detail_job_industry, job_detail_job_description, job_detail_salary, job_detail_email, job_detail_contact, job_detail_company_description;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +81,27 @@ public class JobDetailActivity extends BaseActivity {
         textView7 = (TextView)findViewById(R.id.textView7);
         textView8 = (TextView)findViewById(R.id.textView8);
 
+        job_detail_job_function = ResourcesCompat.getDrawable(getResources(), R.drawable.job_detail_job_function, null);
+        job_detail_job_function.setBounds(0, 0, 70, 70);
+
+        job_detail_job_industry = ResourcesCompat.getDrawable(getResources(), R.drawable.job_detail_job_industry, null);
+        job_detail_job_industry.setBounds(0, 0, 70, 70);
+
+        job_detail_job_description = ResourcesCompat.getDrawable(getResources(), R.drawable.job_detail_job_description, null);
+        job_detail_job_description.setBounds(0, 0, 70, 70);
+
+        job_detail_salary = ResourcesCompat.getDrawable(getResources(), R.drawable.job_detail_salary, null);
+        job_detail_salary.setBounds(0, 0, 70, 70);
+
+        job_detail_email = ResourcesCompat.getDrawable(getResources(), R.drawable.job_detail_email, null);
+        job_detail_email.setBounds(0, 0, 70, 70);
+
+        job_detail_contact = ResourcesCompat.getDrawable(getResources(), R.drawable.job_detail_contact, null);
+        job_detail_contact.setBounds(0, 0, 70, 70);
+
+        job_detail_company_description = ResourcesCompat.getDrawable(getResources(), R.drawable.job_detail_company_description, null);
+        job_detail_company_description.setBounds(0, 0, 70, 70);
+
         RadioGroup jobDetailRadioGroup = (RadioGroup)findViewById(R.id.jobDetailRadioGroup);
         RadioButton jobDescRadio = (RadioButton) findViewById(R.id.jobDescription);
         RadioButton companyInfoRadio = (RadioButton) findViewById(R.id.companyInfo);
@@ -96,17 +121,17 @@ public class JobDetailActivity extends BaseActivity {
                     companyInfoRadio.setTextColor(Color.parseColor("#3B616B"));
                     //Toast.makeText(getApplicationContext(), "choice: job", Toast.LENGTH_SHORT).show();
 
-                    textView1.setText(" Job Function");
-                    textView1.setCompoundDrawablesWithIntrinsicBounds( R.drawable.job_function,0,0,0);
+                    textView1.setCompoundDrawables(job_detail_job_function,null,null,null);
+                    textView1.setText("Job Function");
 
-                    textView3.setText(" Job Industry");
-                    textView3.setCompoundDrawablesWithIntrinsicBounds( R.drawable.job_industry,0,0,0);
+                    textView3.setCompoundDrawables(job_detail_job_industry,null,null,null);
+                    textView3.setText("Job Industry");
 
-                    textView5.setText(" Job Description");
-                    textView5.setCompoundDrawablesWithIntrinsicBounds( R.drawable.job_desc ,0,0,0);
+                    textView5.setCompoundDrawables(job_detail_job_description,null,null,null);
+                    textView5.setText("Job Description");
 
-                    textView7.setText(" Salary");
-                    textView7.setCompoundDrawablesWithIntrinsicBounds( R.drawable.salary,0,0,0);
+                    textView7.setCompoundDrawables(job_detail_salary,null,null,null);
+                    textView7.setText("Salary");
 
                     textView2.setText(jobAreaArray.get(0) + salaryArray.get(0));
                     textView4.setText(industryArray.get(0));
@@ -120,17 +145,17 @@ public class JobDetailActivity extends BaseActivity {
                     jobDescRadio.setTextColor(Color.parseColor("#3B616B"));
                     //Toast.makeText(getApplicationContext(), "choice: job_list_company", Toast.LENGTH_SHORT).show();
 
-                    textView1.setText(" Email Address");
-                    textView1.setCompoundDrawablesWithIntrinsicBounds( R.drawable.email, 0, 0, 0);
+                    textView1.setCompoundDrawables(job_detail_email,null,null,null);
+                    textView1.setText("Email Address");
 
-                    textView3.setText(" Contact");
-                    textView3.setCompoundDrawablesWithIntrinsicBounds( R.drawable.contact, 0, 0, 0);
+                    textView3.setCompoundDrawables(job_detail_contact,null,null,null);
+                    textView3.setText("Contact");
 
-                    textView5.setText(" Company Description");
-                    textView5.setCompoundDrawablesWithIntrinsicBounds( R.drawable.company_desc, 0, 0, 0);
+                    textView5.setCompoundDrawables(job_detail_company_description,null,null,null);
+                    textView5.setText("Company Description");
 
+                    textView7.setCompoundDrawables(null,null,null,null);
                     textView7.setText("");
-                    textView7.setCompoundDrawablesWithIntrinsicBounds( 0, 0, 0, 0);
 
                     textView2.setText(emailArray.get(0));
                     textView4.setText(contactArray.get(0));
@@ -207,17 +232,18 @@ public class JobDetailActivity extends BaseActivity {
                     companyView.setText("( " + companyArray.get(0) + " )");
                     createDateView.setText(createDateArray.get(0));
 
-                    textView1.setText(" Job Function");
-                    textView1.setCompoundDrawablesWithIntrinsicBounds( R.drawable.job_function,0,0,0);
+                    textView1.setCompoundDrawables(job_detail_job_function,null,null,null);
+                    textView1.setText("Job Function");
 
-                    textView3.setText(" Job Industry");
-                    textView3.setCompoundDrawablesWithIntrinsicBounds( R.drawable.job_industry,0,0,0);
+                    textView3.setCompoundDrawables(job_detail_job_industry,null,null,null);
+                    textView3.setText("Job Industry");
 
-                    textView5.setText(" Job Description");
-                    textView5.setCompoundDrawablesWithIntrinsicBounds( R.drawable.job_desc ,0,0,0);
+                    textView5.setCompoundDrawables(job_detail_job_description,null,null,null);
+                    textView5.setText("Job Description");
 
-                    textView7.setText(" Salary");
-                    textView7.setCompoundDrawablesWithIntrinsicBounds( R.drawable.salary,0,0,0);
+                    textView7.setCompoundDrawables(job_detail_salary,null,null,null);
+                    textView7.setText("Salary");
+
 
                     textView2.setText(jobAreaArray.get(0));
                     textView4.setText(industryArray.get(0));

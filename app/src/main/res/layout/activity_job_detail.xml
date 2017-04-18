@@ -26,13 +26,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="CREATE_DATE"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:gravity="right"/>
 
             <TextView
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:paddingTop="10dp"
+                android:paddingTop="5dp"
                 android:id="@+id/jobTitleView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -94,7 +94,8 @@
                 android:text="@string/jobFun"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                android:drawablePadding="10dp"/>
 
             <TextView
                 android:id="@+id/textView2"
@@ -115,7 +116,8 @@
                 android:text="@string/industrial"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                android:drawablePadding="10dp"/>
 
             <TextView
                 android:id="@+id/textView4"
@@ -136,7 +138,8 @@
                 android:text="@string/jobDesc"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                android:drawablePadding="10dp"/>
 
             <TextView
                 android:id="@+id/textView6"
@@ -157,7 +160,8 @@
                 android:text="@string/rlj_wages"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="#000000" />
+                android:textColor="#000000"
+                android:drawablePadding="10dp"/>
 
             <TextView
                 android:id="@+id/textView8"
