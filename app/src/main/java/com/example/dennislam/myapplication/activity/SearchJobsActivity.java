@@ -79,8 +79,8 @@ public class SearchJobsActivity extends BaseActivity {
             new getCriteriasAsyncTaskRunner().execute();
         }
 
-        Drawable form_job_funcation= ResourcesCompat.getDrawable(getResources(), R.drawable.form_job_funcation, null);
-        form_job_funcation.setBounds(80, 0, 140, 60);
+        Drawable form_job_function= ResourcesCompat.getDrawable(getResources(), R.drawable.form_job_funcation, null);
+        form_job_function.setBounds(80, 0, 140, 60);
 
         Drawable form_job_industry= ResourcesCompat.getDrawable(getResources(), R.drawable.form_job_industry, null);
         form_job_industry.setBounds(80, 0, 140, 60);
@@ -88,7 +88,7 @@ public class SearchJobsActivity extends BaseActivity {
         Drawable money_icon= ResourcesCompat.getDrawable(getResources(), R.drawable.form_salary, null);
         money_icon.setBounds(80, 0, 140, 60);
 
-        jobFunctionButton.setCompoundDrawables(form_job_funcation,null,null,null);
+        jobFunctionButton.setCompoundDrawables(form_job_function,null,null,null);
         jobIndustryButton.setCompoundDrawables(form_job_industry,null,null,null);
         salaryMin.setCompoundDrawables(money_icon,null,null,null);
         salaryMax.setCompoundDrawables(money_icon,null,null,null);
