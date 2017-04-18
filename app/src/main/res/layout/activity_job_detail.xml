@@ -26,13 +26,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="CREATE_DATE"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:gravity="right"/>
 
             <TextView
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:paddingTop="10dp"
+                android:paddingTop="5dp"
                 android:id="@+id/jobTitleView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
