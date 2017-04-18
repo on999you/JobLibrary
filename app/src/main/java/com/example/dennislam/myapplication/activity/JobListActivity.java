@@ -86,8 +86,8 @@ public class JobListActivity extends BaseActivity {
                     public void run() {
                         rownumStart = 1;
                         rownumEnd = 5;
-                        newData();
                         needLoadMore = true;
+                        newData();
                     }
                 }).start();
             }
@@ -138,10 +138,14 @@ public class JobListActivity extends BaseActivity {
 
     public void newData() {
         Log.v("testing123", "newdate : " + rownumStart + " " + rownumEnd);
+
+        recyclerView.getAdapter().notifyDataSetChanged();
+
+        new getJobListAsyncTaskRunner().execute();
+
         jobTitleList.clear();
         companyNameList.clear();
         createDateList.clear();
-        new getJobListAsyncTaskRunner().execute();
     }
 
 
@@ -176,6 +180,7 @@ public class JobListActivity extends BaseActivity {
 
                     System.out.println(jobTitleList);
                 }
+
             }
 
         }
