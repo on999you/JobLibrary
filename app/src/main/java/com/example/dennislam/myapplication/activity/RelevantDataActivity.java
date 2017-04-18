@@ -98,7 +98,6 @@ public class RelevantDataActivity extends BaseActivity {
                         rownumStart = 1;
                         rownumEnd = 5;
                         newData();
-                        recyclerView.refreshComplate();
                     }
                 }).start();
             }
@@ -138,11 +137,12 @@ public class RelevantDataActivity extends BaseActivity {
     }
 
     public void newData() {
+        recyclerView.getAdapter().notifyDataSetChanged();
+        new RelevantDataGetDataTask().execute();
         relevantJobTitleList.clear();
         relevantJobCatList.clear();
         relevantWorkExpList.clear();
         relevantSalaryList.clear();
-        new RelevantDataGetDataTask().execute();
     }
 
     class RelevantDataGetDataTask extends AsyncTask<Void, Void, Void> {

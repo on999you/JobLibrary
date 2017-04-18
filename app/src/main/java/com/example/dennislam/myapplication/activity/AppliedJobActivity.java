@@ -71,7 +71,6 @@ public class AppliedJobActivity extends BaseActivity{
                         rowNumStart = 1;
                         rowNumEnd = 10;
                         newData();
-                        recyclerView.refreshComplate();
                     }
                 }).start();
             }
@@ -123,10 +122,11 @@ public class AppliedJobActivity extends BaseActivity{
 
     //First load
     public void newData() {
+        recyclerView.getAdapter().notifyDataSetChanged();
+        new AppliedJobGetDataTask().execute();
         jobTitleList.clear();
         companyNameList.clear();
         applyDateList.clear();
-        new AppliedJobGetDataTask().execute();
     }
 
     //Async Task to get applied job
