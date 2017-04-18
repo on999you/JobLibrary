@@ -259,4 +259,10 @@ public class SearchJobsActivity extends BaseActivity {
                 .show();
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent homePageIntent = new Intent(getBaseContext(), MainPageActivity.class);
+        startActivity(homePageIntent);
+    }
+
 }

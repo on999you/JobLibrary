@@ -1,5 +1,6 @@
 package com.example.dennislam.myapplication.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -23,5 +24,11 @@ public class SalaryReportActivity extends BaseActivity {
             browser.loadUrl("http://192.168.232.66:8009/SalaryReport.html");
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent homePageIntent = new Intent(getBaseContext(), MainPageActivity.class);
+        startActivity(homePageIntent);
     }
 }

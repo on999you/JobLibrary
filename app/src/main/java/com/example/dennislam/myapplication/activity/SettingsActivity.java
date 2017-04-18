@@ -27,4 +27,10 @@ public class SettingsActivity extends BaseActivity{
         Intent intent = new Intent(getBaseContext(),FontSizeSettingActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent homePageIntent = new Intent(getBaseContext(), MainPageActivity.class);
+        startActivity(homePageIntent);
+    }
 }

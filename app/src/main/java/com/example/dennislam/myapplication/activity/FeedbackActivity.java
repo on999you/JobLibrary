@@ -1,6 +1,7 @@
 package com.example.dennislam.myapplication.activity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -178,6 +179,12 @@ public class FeedbackActivity extends BaseActivity {
         expandableListDetail.put("Can I use the SalaryCheck results as a bargaining tool with my employer?  ", FAQ07);
         expandableListDetail.put("What is the median wage?  ", FAQ08);
         return expandableListDetail;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent homePageIntent = new Intent(getBaseContext(), MainPageActivity.class);
+        startActivity(homePageIntent);
     }
 
 }

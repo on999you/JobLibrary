@@ -438,4 +438,10 @@ public class SalaryCheckActivity extends BaseActivity {
                 .alwaysCallMultiChoiceCallback()
                 .show();
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent homePageIntent = new Intent(getBaseContext(), MainPageActivity.class);
+        startActivity(homePageIntent);
+    }
 }

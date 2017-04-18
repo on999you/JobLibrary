@@ -168,4 +168,10 @@ public class AppliedJobActivity extends BaseActivity{
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        Intent homePageIntent = new Intent(getBaseContext(), MainPageActivity.class);
+        startActivity(homePageIntent);
+    }
+
 }
