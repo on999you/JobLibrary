@@ -65,14 +65,14 @@ public class AppliedJobActivity extends BaseActivity{
         recyclerView.setLoadDataListener(new AnimRFRecyclerView.LoadDataListener(){
             @Override
             public void onRefresh() {
-                new Thread(new Runnable() {
+                AppliedJobActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         rowNumStart = 1;
                         rowNumEnd = 10;
                         newData();
                     }
-                }).start();
+                });
             }
             @Override
             public void onLoadMore() {

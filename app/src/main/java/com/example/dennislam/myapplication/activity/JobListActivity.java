@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -81,7 +82,7 @@ public class JobListActivity extends BaseActivity {
         recyclerView.setLoadDataListener(new AnimRFRecyclerView.LoadDataListener(){
             @Override
             public void onRefresh() {
-                new Thread(new Runnable() {
+                JobListActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         rownumStart = 1;
@@ -89,7 +90,7 @@ public class JobListActivity extends BaseActivity {
                         needLoadMore = true;
                         newData();
                     }
-                }).start();
+                });
             }
             @Override
             public void onLoadMore() {

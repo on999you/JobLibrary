@@ -92,14 +92,14 @@ public class RelevantDataActivity extends BaseActivity {
         recyclerView.setLoadDataListener(new AnimRFRecyclerView.LoadDataListener(){
             @Override
             public void onRefresh() {
-                new Thread(new Runnable() {
+                RelevantDataActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         rownumStart = 1;
                         rownumEnd = 5;
                         newData();
                     }
-                }).start();
+                });
             }
             @Override
             public void onLoadMore() {
