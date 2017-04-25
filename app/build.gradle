@@ -77,7 +77,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:25.0.1'
     compile 'com.sch.rfview:AnimRefreshRecyclerView:1.0.6@aar'
 
-    //JobCat Dialog
+    //Dialog
     compile 'com.afollestad.material-dialogs:core:0.9.3.0'
 }
 
