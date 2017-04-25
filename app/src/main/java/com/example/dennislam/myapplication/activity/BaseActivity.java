@@ -44,8 +44,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_base);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-
-         FirebaseMessaging.getInstance().subscribeToTopic("JOJO");
+        FirebaseMessaging.getInstance().subscribeToTopic("JOJO");
         SharedPreferences prefs = getSharedPreferences("CommonPrefs",
                 Activity.MODE_PRIVATE);
         if("zh".equals(prefs.getString("Language",""))){
