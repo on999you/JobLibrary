@@ -8,7 +8,7 @@
     <string name="title_activity_base2" translatable="false">BaseActivity2</string>
 
     <string name="mp_salaryCheck">SALARY CHECK</string>
-    <string name="mp_searchJobs">SEARCH</string>
+    <string name="mp_searchJobs">SEARCH JOBS</string>
     <string name="mp_CV">CV</string>
     <string name="mp_appliedJobs">APPLIED JOBS</string>
     <string name="mp_FAQ">FAQ</string>
