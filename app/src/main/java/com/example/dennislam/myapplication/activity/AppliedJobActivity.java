@@ -151,7 +151,7 @@ public class AppliedJobActivity extends BaseActivity{
             //Load all the data already ; need to stop it
             if(appliedJobItemList == null){
                 needLoadMore = false;
-                Toast.makeText(AppliedJobActivity.this,"No record was found!",Toast.LENGTH_LONG).show();
+                Toast.makeText(AppliedJobActivity.this, res.getString(R.string.appJob_reminder1),Toast.LENGTH_LONG).show();
             }
             else{
                 for(int i = 0; i < appliedJobItemList.size(); i++){
