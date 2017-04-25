@@ -116,4 +116,8 @@
     <string name="fontsizeMedium">中</string>
     <string name="fontsizeSmall">細</string>
 
+    <string name="pushNoti">通知</string>
+    <string name="Enable_Notification">開啟通知</string>
+
+
 </resources>

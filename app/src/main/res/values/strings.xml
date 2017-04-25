@@ -131,4 +131,6 @@
     <string name="fontsizeMedium">Medium</string>
     <string name="fontsizeSmall">Small</string>
 
+    <string name="pushNoti">Push Notification</string>
+    <string name="Enable_Notification">Enable Push Notification</string>
 </resources>
