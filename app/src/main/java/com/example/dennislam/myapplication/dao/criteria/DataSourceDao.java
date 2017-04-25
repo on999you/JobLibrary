@@ -1,5 +1,6 @@
 package com.example.dennislam.myapplication.dao.criteria;
 
+import com.example.dennislam.myapplication.activity.BaseActivity;
 import com.example.dennislam.myapplication.xml.GetDataSourceXML;
 import com.example.dennislam.myapplication.xml.GetSalarySourceXML;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;

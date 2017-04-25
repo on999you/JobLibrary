@@ -38,6 +38,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     protected DrawerLayout mDrawer;
     GlobalClass globalVariable;
     Resources res;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -238,6 +239,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         Intent intent = new Intent(Intent.ACTION_MAIN);
                         intent.addCategory(Intent.CATEGORY_HOME);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                     }
                 })

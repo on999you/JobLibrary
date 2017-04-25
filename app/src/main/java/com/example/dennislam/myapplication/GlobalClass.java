@@ -27,5 +27,4 @@ public class GlobalClass extends Application {
     public void setNetwork(Boolean network) {
         this.network = network;
     }
-
 }
