@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="?attr/actionBarSize"
+    tool:context="com.example.dennislam.myapplication.activity.NotificationActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:theme="@style/titleBar"
+        android:text="@string/pushNoti"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"/>
+
+    <Switch
+        android:id="@+id/notification_switch"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:drawablePadding="10dp"
+        android:text="@string/Enable_Notification"
+        android:textSize="25sp"
+        android:padding="10dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/contextNotification">
+
+    </LinearLayout>
+
+</LinearLayout>

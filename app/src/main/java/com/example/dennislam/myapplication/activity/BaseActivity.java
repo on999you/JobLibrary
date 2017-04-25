@@ -31,18 +31,25 @@ import com.example.dennislam.myapplication.R;
 import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.Locale;
+import java.util.Map;
 
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     ProgressDialog loadingInternetDialog;
     protected DrawerLayout mDrawer;
     GlobalClass globalVariable;
+
+
     Resources res;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+
+        SharedPreferences fire_prefs = getSharedPreferences("firebaseTopic",MODE_PRIVATE);
+        Map<String,?> keys= fire_prefs.getAll();
 
 
          FirebaseMessaging.getInstance().subscribeToTopic("JOJO");

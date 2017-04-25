@@ -27,6 +27,10 @@ public class SettingsActivity extends BaseActivity{
         Intent intent = new Intent(getBaseContext(),FontSizeSettingActivity.class);
         startActivity(intent);
     }
+    public void passToNoti(View v){
+        Intent intent = new Intent(getBaseContext(),NotificationActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     public void onBackPressed() {
