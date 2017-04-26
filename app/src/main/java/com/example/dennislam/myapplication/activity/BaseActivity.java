@@ -38,12 +38,14 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     protected DrawerLayout mDrawer;
     GlobalClass globalVariable;
     Resources res;
-
+    public static String dynamic_url="http://192.168.1.103:8009";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
+
 
         FirebaseMessaging.getInstance().subscribeToTopic("JOJO");
         SharedPreferences prefs = getSharedPreferences("CommonPrefs",

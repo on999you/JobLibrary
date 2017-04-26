@@ -1,5 +1,6 @@
 package com.example.dennislam.myapplication.dao.criteria;
 
+import com.example.dennislam.myapplication.activity.BaseActivity;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
 import com.example.dennislam.myapplication.xml.GetWorkExpXML;
 import com.thoughtworks.xstream.XStream;
@@ -25,7 +26,7 @@ import java.util.List;
 
 public class WorkExpDao {
 
-    static final String URL = "http://192.168.232.66:8009/API/GET_ALL_EXPERIENCE.aspx";
+    static final String URL = BaseActivity.dynamic_url+"/API/GET_ALL_EXPERIENCE.aspx";
     private List<GetWorkExpXML.WorkExpItem> workExpItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;

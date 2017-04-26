@@ -104,11 +104,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="- FAQ -"
+        android:text="-FAQ-"
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:textSize="20sp"
-        android:background="#85A4A0"
+        android:background="#638EBA"
         android:textColor="#FFFFFF"/>
 
 

@@ -3,6 +3,7 @@ package com.example.dennislam.myapplication.dao;
 import android.util.Log;
 
 import com.android.internal.http.multipart.MultipartEntity;
+import com.example.dennislam.myapplication.activity.BaseActivity;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
 import com.example.dennislam.myapplication.xml.SendCvXML;
 import com.example.dennislam.myapplication.xml.SendFeedbackXML;
@@ -40,7 +41,7 @@ import java.util.List;
 
 public class SendCvDao {
 
-    static final String URL = "http://192.168.232.66:8009/API/SEND_CV.aspx";
+    static final String URL = BaseActivity.dynamic_url+"/API/SEND_CV.aspx";
     private List<ItemsInfoBaseXML> cvItemList;
 
     public List<ItemsInfoBaseXML> sendCvItemDao(File videoFile, String udid, String name, String email, String mobileNo,String expectedSalary,String educationLevelId){

@@ -1,5 +1,6 @@
 package com.example.dennislam.myapplication.dao.criteria;
 
+import com.example.dennislam.myapplication.activity.BaseActivity;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
 import com.example.dennislam.myapplication.xml.GetJobCatXML;
 import com.thoughtworks.xstream.XStream;
@@ -25,7 +26,7 @@ import java.util.List;
 
 public class JobCatDao {
 
-    static final String URL = "http://192.168.232.66:8009/API/GET_ALL_JOB_FUNCTION.aspx";
+    static final String URL = BaseActivity.dynamic_url+"/API/GET_ALL_JOB_FUNCTION.aspx";
     private List<GetJobCatXML.JobCatItem> jobCatItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;

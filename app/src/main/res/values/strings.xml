@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">JOB LIBRARY</string>
-
+    <string name="localhost">http://192.168.1.103:8009</string>
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 
@@ -10,7 +10,7 @@
     <string name="mp_salaryCheck">SALARY CHECK</string>
     <string name="mp_searchJobs">SEARCH JOBS</string>
     <string name="mp_CV">CV</string>
-    <string name="mp_appliedJobs">APPLIED JOBS</string>
+    <string name="mp_appliedJobs">APPLIED\nJOBS</string>
     <string name="mp_FAQ">FAQ</string>
     <string name="mp_exit">EXIT</string>
 
@@ -133,4 +133,6 @@
 
     <string name="pushNoti">Push Notification</string>
     <string name="Enable_Notification">Enable Push Notification</string>
+
+    <string name="result">Result(s)</string>
 </resources>

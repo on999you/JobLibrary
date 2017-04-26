@@ -1,5 +1,6 @@
 package com.example.dennislam.myapplication.dao;
 
+import com.example.dennislam.myapplication.activity.BaseActivity;
 import com.example.dennislam.myapplication.xml.GetSalaryCheckGraphXML;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
 import com.thoughtworks.xstream.XStream;
@@ -29,7 +30,7 @@ import java.util.List;
 
 public class GetSalaryCheckGraphDao {
 
-    static final String URL = "http://192.168.232.66:8009/API/GET_GRAPH_INFO_FROM_SALARY_DATA.aspx";
+    static final String URL = BaseActivity.dynamic_url+"/API/GET_GRAPH_INFO_FROM_SALARY_DATA.aspx";
     private List<GetSalaryCheckGraphXML.GraphInfoItem> graphInfoItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;

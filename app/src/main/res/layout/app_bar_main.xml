@@ -24,7 +24,7 @@
                 android:layout_gravity="center"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="#3E5975"
+                android:background="#5379a0"
                 app:popupTheme="@style/AppTheme.PopupOverlay"
                 android:weightSum="1">
 

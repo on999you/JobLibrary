@@ -1,5 +1,6 @@
 package com.example.dennislam.myapplication.dao;
 
+import com.example.dennislam.myapplication.activity.BaseActivity;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
 import com.example.dennislam.myapplication.xml.SendFeedbackXML;
 import com.thoughtworks.xstream.XStream;
@@ -29,7 +30,7 @@ import java.util.List;
 
 public class SendFeedbackDao {
 
-    static final String URL = "http://192.168.232.66:8009/API/SEND_FEEDBACK.aspx";
+    static final String URL = BaseActivity.dynamic_url+"/API/SEND_FEEDBACK.aspx";
     private List<ItemsInfoBaseXML> feedbackItemList;
 
     public List<ItemsInfoBaseXML> getFeedbackItemDao(String udid, String name, String email, String comments, Float rating){

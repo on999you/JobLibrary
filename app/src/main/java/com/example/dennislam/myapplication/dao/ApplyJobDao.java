@@ -2,6 +2,7 @@ package com.example.dennislam.myapplication.dao;
 
 import android.util.Log;
 
+import com.example.dennislam.myapplication.activity.BaseActivity;
 import com.example.dennislam.myapplication.xml.ApplyJobXML;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
 import com.thoughtworks.xstream.XStream;
@@ -31,7 +32,7 @@ import java.util.List;
 
 public class ApplyJobDao {
 
-    static final String URL = "http://192.168.232.66:8009/API/APPLY_JOB.aspx";
+    static final String URL = BaseActivity.dynamic_url+"/API/APPLY_JOB.aspx";
     private List<ItemsInfoBaseXML> applyJobItemList;
 
     public List<ItemsInfoBaseXML> applyJobItemDao(String udid, String jobId){

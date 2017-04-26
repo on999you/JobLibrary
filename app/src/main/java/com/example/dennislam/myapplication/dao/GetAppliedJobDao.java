@@ -1,5 +1,6 @@
 package com.example.dennislam.myapplication.dao;
 
+import com.example.dennislam.myapplication.activity.BaseActivity;
 import com.example.dennislam.myapplication.xml.GetAppliedJobXML;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
 import com.thoughtworks.xstream.XStream;
@@ -29,7 +30,7 @@ import java.util.List;
 
 public class GetAppliedJobDao {
 
-    static final String URL = "http://192.168.232.66:8009/API/GET_APPLIED_JOB.aspx";
+    static final String URL = BaseActivity.dynamic_url+"/API/GET_APPLIED_JOB.aspx";
     private List<GetAppliedJobXML.AppliedJobItem> appliedJobItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;

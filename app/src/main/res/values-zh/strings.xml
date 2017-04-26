@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">JOB LIBRARY</string>
+    <string name="localhost">http://192.168.1.103:8009</string>
     <string name="action_settings"></string>
     <string name="unspecified">不指定</string>
     <string name="title_activity_base2"></string>
@@ -23,7 +24,7 @@
     <string name="mp_salaryCheck">薪酬搜尋引擎</string>
     <string name="mp_exit">退出</string>
     <string name="mp_appliedJobs">已申請的工作</string>
-    <string name="mp_FAQ">多次提及的問題</string>
+    <string name="mp_FAQ">FAQ</string>
     <string name="mp_CV">履歷表</string>
 
     <string name="language">語言</string>
@@ -119,5 +120,5 @@
     <string name="pushNoti">通知</string>
     <string name="Enable_Notification">開啟通知</string>
 
-
+    <string name="result">搜尋結果</string>
 </resources>

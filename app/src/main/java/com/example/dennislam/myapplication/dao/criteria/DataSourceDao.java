@@ -27,7 +27,7 @@ import java.util.List;
 
 public class DataSourceDao {
 
-    static final String URL = "http://192.168.232.66:8009/API/GET_ALL_DATA_SOURCE.aspx";
+    static final String URL = BaseActivity.dynamic_url+"/API/GET_ALL_DATA_SOURCE.aspx";
     private List<GetDataSourceXML.DataSourceItem> dataSourceItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;

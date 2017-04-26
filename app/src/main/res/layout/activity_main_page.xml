@@ -7,38 +7,11 @@
     android:orientation="vertical"
     android:paddingTop="?attr/actionBarSize"
     tools:context="com.example.dennislam.myapplication.activity.MainPageActivity">
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_height="80dp"
         android:orientation="horizontal"
-        android:gravity="center">
-
-        <LinearLayout
-            android:onClick="passToJobList"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:background="#85A4A0">
-
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/mainpage_search_jobs"
-                android:layout_gravity="center" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/mp_searchJobs"
-                android:textColor="#FFFFFF"
-                android:paddingTop="10dp"/>
-
-        </LinearLayout>
+        >
 
         <LinearLayout
             android:onClick="passToSalary"
@@ -47,33 +20,26 @@
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical"
-            android:background="#6F9394">
+            android:background="@drawable/blank"
+            android:layout_margin="1dp">
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/mainpage_salary_check"
+                android:src="@drawable/drawer_salary_check"
                 android:layout_gravity="center" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/mp_salaryCheck"
-                android:textColor="#FFFFFF"
-                android:paddingTop="10dp"/>
+                android:textColor="#000000"
+                android:textSize="10dp"
+                android:paddingTop="10dp"
+                android:textAlignment="center"/>
 
         </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:gravity="center">
-
         <LinearLayout
             android:onClick="passToAppliedJob"
             android:layout_width="match_parent"
@@ -81,24 +47,27 @@
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical"
-            android:background="#5B8085">
+            android:background="@drawable/blank"
+            android:layout_margin="1dp"
+           >
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/mainpage_applied_job"
+                android:src="@drawable/drawer_applied_job"
                 android:layout_gravity="center" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/mp_appliedJobs"
-                android:textColor="#FFFFFF"
-                android:paddingTop="10dp"/>
+                android:textColor="#000000"
+                android:textSize="10dp"
+                android:paddingTop="10dp"
+                android:textAlignment="center"/>
 
         </LinearLayout>
-
         <LinearLayout
             android:onClick="passToCV"
             android:layout_width="match_parent"
@@ -106,33 +75,26 @@
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical"
-            android:background="#486E76">
+            android:background="@drawable/blank"
+            android:layout_margin="1dp"
+            >
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/mainpage_cv"
+                android:src="@drawable/drawer_cv"
                 android:layout_gravity="center" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/mp_CV"
-                android:textColor="#FFFFFF"
+                android:textColor="#000000"
+                android:textSize="10dp"
                 android:paddingTop="10dp"/>
 
         </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:gravity="center">
-
         <LinearLayout
             android:onClick="passToFAQ"
             android:layout_width="match_parent"
@@ -140,24 +102,26 @@
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical"
-            android:background="#3B616B">
+            android:layout_margin="1dp"
+            android:background="@drawable/blank"
+            >
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/mainpage_faq"
+                android:src="@drawable/drawer_faq"
                 android:layout_gravity="center" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/mp_FAQ"
-                android:textColor="#FFFFFF"
+                android:textColor="#000000"
+                android:textSize="10dp"
                 android:paddingTop="10dp"/>
 
         </LinearLayout>
-
         <LinearLayout
             android:onClick="exitApp"
             android:layout_width="match_parent"
@@ -165,26 +129,141 @@
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical"
-            android:background="#2D515E">
+            android:layout_margin="1dp"
+            android:background="@drawable/blank"
+          >
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/mainpage_exit"
+                android:src="@drawable/drawer_exit"
                 android:layout_gravity="center" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/mp_exit"
-                android:textColor="#FFFFFF"
+                android:textColor="#000000"
+                android:textSize="10dp"
                 android:paddingTop="10dp"/>
 
         </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center">
+        <LinearLayout
+            android:id="@+id/activity_search_jobs"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <EditText
+                android:layout_marginTop="12dp"
+                android:id="@+id/jobTitleField"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:hint="@string/sC_jobtitle"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:backgroundTint="#000000" />
+
+            <CheckBox
+                android:id="@+id/similarCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sC_searchWithS"
+                android:layout_gravity="center"
+                android:checked="true"
+                android:buttonTint="#6F9394"/>
+
+            <TextView
+                android:layout_marginTop="12dp"
+                android:id="@+id/jobFunctionButton"
+                android:onClick="showJobFunction"
+                android:layout_width="300dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/sC_jobFunction"
+                android:textSize="17sp"
+                android:background="@drawable/form_textview_style" />
+
+            <TextView
+                android:id="@+id/jobIndustryButton"
+                android:onClick="showJobIndustry"
+                android:layout_marginTop="12dp"
+                android:layout_width="300dp"
+                android:layout_height="45dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="@string/sC_jobIndustry"
+                android:textSize="17sp"
+                android:background="@drawable/form_textview_style"/>
+
+            <EditText
+                android:id="@+id/salaryMin"
+                android:layout_width="300dp"
+                android:layout_height="45dp"
+                android:hint="@string/sj_salaryMin"
+                android:inputType="number"
+                android:layout_marginTop="12dp"
+                android:layout_gravity="center"
+                android:textSize="17sp"
+                android:gravity="center"
+                android:background="@drawable/form_textview_style"
+                />
+
+            <EditText
+                android:id="@+id/salaryMax"
+                android:layout_width="300dp"
+                android:layout_height="45dp"
+                android:hint="@string/sj_salaryMax"
+                android:inputType="number"
+                android:layout_marginTop="12dp"
+                android:layout_gravity="center"
+                android:textSize="17sp"
+                android:gravity="center"
+                android:background="@drawable/form_textview_style" />
+
+
+
+
+            <LinearLayout
+                android:paddingTop="5dp"
+                android:paddingBottom="0dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:orientation="vertical"
+                >
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+                <Button
+                    android:onClick="searchJobNow"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sC_buttonSearch"
+                    android:textAllCaps="false"
+                    android:textSize="24sp"
+                    android:textColor="#F7F7F7"
+                    android:background="@drawable/form_bottom_button_style"
+                    android:layout_gravity="center"
+                    android:textAlignment="center"
+                    />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
 
     </LinearLayout>
-
-
-
 </LinearLayout>

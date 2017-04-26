@@ -2,6 +2,7 @@ package com.example.dennislam.myapplication.dao;
 
 import android.util.Log;
 
+import com.example.dennislam.myapplication.activity.BaseActivity;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
 import com.example.dennislam.myapplication.xml.GetSalaryCheckResultXML;
 import com.thoughtworks.xstream.XStream;
@@ -31,7 +32,7 @@ import java.util.List;
 
 public class GetSalaryCheckResultDao {
 
-    static final String URL = "http://192.168.232.66:8009/API/GET_RESULT_FROM_SALARY_CHECK.aspx";
+    static final String URL = BaseActivity.dynamic_url+"/API/GET_RESULT_FROM_SALARY_CHECK.aspx";
     private List<GetSalaryCheckResultXML.SalaryResultItem> salaryResultItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;

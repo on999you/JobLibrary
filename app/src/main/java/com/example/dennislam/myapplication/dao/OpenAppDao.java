@@ -1,5 +1,6 @@
 package com.example.dennislam.myapplication.dao;
 
+import com.example.dennislam.myapplication.activity.BaseActivity;
 import com.example.dennislam.myapplication.xml.ItemsInfoBaseXML;
 import com.example.dennislam.myapplication.xml.OpenAppXML;
 import com.thoughtworks.xstream.XStream;
@@ -29,7 +30,7 @@ import java.util.List;
 
 public class OpenAppDao {
 
-    static final String URL = "http://192.168.232.66:8009/API/OPEN_APP_CHECK_VERISON.aspx";
+    static final String URL = BaseActivity.dynamic_url+"/API/OPEN_APP_CHECK_VERISON.aspx";
     private List<OpenAppXML.OpenAppItem> openAppItemList;
 
     private List<ItemsInfoBaseXML> getItemsInfo;
