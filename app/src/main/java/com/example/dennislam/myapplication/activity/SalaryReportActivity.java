@@ -21,7 +21,7 @@ public class SalaryReportActivity extends BaseActivity {
         //Run the code if there are network connected
         if(globalVariable.getNetwork() == true){
             WebView browser = (WebView) findViewById(R.id.webview);
-            browser.loadUrl("http://192.168.232.66:8009/SalaryReport.html");
+            browser.loadUrl(dynamic_url+"/SalaryReport.html");
         }
 
     }
