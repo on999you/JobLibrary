@@ -44,8 +44,13 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-
         SharedPreferences firebaseTopic = getSharedPreferences("firebaseTopic",MODE_PRIVATE);
+        SharedPreferences.Editor firebaseEditor = firebaseTopic.edit();
+        if ("".equals(firebaseTopic.getString("Noti_Topic",""))){
+            firebaseEditor.putString("Noti_Topic","Empty");
+            firebaseEditor.commit();
+        }
+
         Log.v("init sub "+firebaseTopic.getString("Noti_Topic",""),"~");
         if (!"Empty".equals(firebaseTopic.getString("Noti_Topic",""))) {
             String subedTopic = firebaseTopic.getString("Noti_Topic","").replace(" ","");
