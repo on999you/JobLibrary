@@ -38,16 +38,20 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     protected DrawerLayout mDrawer;
     GlobalClass globalVariable;
     Resources res;
-    public static String dynamic_url="http://192.168.1.103:8009";
+    public static String dynamic_url="http://192.168.1.101:8009";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
-
-
-        FirebaseMessaging.getInstance().subscribeToTopic("JOJO");
+        SharedPreferences firebaseTopic = getSharedPreferences("firebaseTopic",MODE_PRIVATE);
+        Log.v("init sub "+firebaseTopic.getString("Noti_Topic",""),"~");
+        if (!"Empty".equals(firebaseTopic.getString("Noti_Topic",""))) {
+            String subedTopic = firebaseTopic.getString("Noti_Topic","").replace(" ","");
+            subedTopic=subedTopic.replaceAll("/","");
+            FirebaseMessaging.getInstance().subscribeToTopic(subedTopic);
+        }
         SharedPreferences prefs = getSharedPreferences("CommonPrefs",
                 Activity.MODE_PRIVATE);
         if("zh".equals(prefs.getString("Language",""))){
